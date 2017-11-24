@@ -6,9 +6,13 @@ import document from '../images/document.svg'
 
 
 class Button extends React.Component {
+
   renderIcon() {
-    if(this.props.icon) {
-      return <img src={document} className='c-button--icon' alt="document" />
+    if ( this.props.icon ) {
+      let className = `c-button--icon ${this.props.iconPosition}`
+      return (
+        <img className={className} src={document} alt="document" />
+      )
     }
   }
 
@@ -27,6 +31,7 @@ class Button extends React.Component {
 Button.defaultProps = {
   text: 'Click me',
   icon: '',
+  iconPosition: 'right',
 }
 
 export default Button;

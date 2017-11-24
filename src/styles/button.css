@@ -18,6 +18,13 @@
   display: inline-block;
   width: 30px;
   height: 30px;
-  right: 0;
   position: absolute;
+}
+
+.c-button .c-button--icon.left {
+  left: 0;
+}
+
+.c-button .c-button--icon.right {
+  right: 0;
 }
