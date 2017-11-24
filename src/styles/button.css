@@ -1,7 +1,23 @@
 .c-button {
   cursor: pointer;
+  position: relative;
+  display: inline-block;
 }
 
 .c-button:hover {
   background-color: #ED6000;
+}
+
+.c-button .c-button--text {
+  display: inline-block;
+  line-height: 30px;
+  min-width: 200px;
+}
+
+.c-button .c-button--icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  position: absolute;
 }
