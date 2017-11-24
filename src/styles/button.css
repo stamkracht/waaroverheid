@@ -1,0 +1,7 @@
+.c-button {
+  cursor: pointer;
+}
+
+.c-button:hover {
+  background-color: #ED6000;
+}
