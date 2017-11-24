@@ -3,6 +3,8 @@ import React from 'react'
 import Container from './Container'
 import '../styles/button.css'
 import document from '../images/document.svg'
+import hamburger from '../images/hamburger.svg'
+import search from '../images/search.svg'
 
 
 class Button extends React.Component {
@@ -10,9 +12,13 @@ class Button extends React.Component {
   renderIcon() {
     if ( this.props.icon ) {
       let className = `c-button--icon ${this.props.iconPosition}`
-      return (
-        <img className={className} src={document} alt="document" />
-      )
+      if ( this.props.icon === 'document' ) {
+        return <img className={className} src={document} alt="document icon" />
+      } else if ( this.props.icon === 'hamburger' ) {
+        return <img className={className} src={hamburger} alt="hamburger icon" />
+      } else {
+        return <img className={className} src={search} alt="search icon" />
+      }
     }
   }
 
