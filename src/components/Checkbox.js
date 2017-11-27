@@ -11,8 +11,8 @@ class Checkbox extends React.Component {
 
   render() {
     return (
-      <div className="c-checkbox">
-        <input type="checkbox"
+      <div className='c-checkbox'>
+        <input type='checkbox'
           id={this.props.id}
           ref={(input) => {this.input = input}}
           checked={this.props.active}
