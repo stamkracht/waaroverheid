@@ -1,0 +1,21 @@
+.c-drawer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border: 1px solid;
+  text-align: left;
+  padding: 10px;
+
+}
+
+.c-drawer .c-drawer--text {
+  display: inline-block;
+  margin-left: 5px;
+  line-height: 30px;
+  margin-left: 35px;
+}
+
+.c-drawer .c-drawer--icon {
+  position: absolute;
+}
