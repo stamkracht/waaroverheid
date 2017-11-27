@@ -7,7 +7,11 @@
   -webkit-border-radius: 50%;
   background-color: #dddddd;
   text-align: center;
-  color: #ED6000;
+  color: #333;
   font-size: 12px;
   font-weight: 700;
+}
+
+.c-badge.active {
+  color: #ED6000;
 }
