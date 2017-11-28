@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import '../styles/app.css'
-import logo from '../images/logo.svg'
 
 import Map from './Map'
 
