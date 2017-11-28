@@ -17,13 +17,6 @@ class Drawer extends React.Component {
     this.setState({activeHam: !this.state.activeHam})
   }
 
-    // if(this.hamState === true) {
-    //   this.hamState = false
-    // else {
-    //   this.hamState = true
-    //   this.forceUpdate()
-    // }
-
   render() {
 
   let className = 'hamburger'
@@ -32,10 +25,10 @@ class Drawer extends React.Component {
   }
 
   return (
-      <div className='c-drawer'>
+      <div className='c-drawer' onClick={this.handleOnClick.bind(this)}>
           <img className='c-drawer--icon' src={document} alt="document icon" />
           <span className='c-drawer--text'>{this.props.text}</span>
-          <div className={className} onClick={this.handleOnClick.bind(this)}>
+          <div className={className}>
             <span className='line'></span>
             <span className='line'></span>
             <span className='line'></span>

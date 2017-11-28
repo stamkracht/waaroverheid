@@ -6,7 +6,10 @@
   border: 1px solid;
   text-align: left;
   padding: 10px;
+}
 
+.c-drawer:hover {
+  cursor: pointer;
 }
 
 .c-drawer .c-drawer--text {
@@ -14,6 +17,8 @@
   margin-left: 5px;
   line-height: 30px;
   margin-left: 35px;
+  font-size: large;
+  font-weight: lighter;
 }
 
 .c-drawer .c-drawer--icon {
