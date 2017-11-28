@@ -9,10 +9,6 @@ class App extends Component {
   render() {
     return (
       <div className="c-app">
-        <header className="c-app c-app--header">
-          <img src={logo} className="c-app--logo" alt="logo" />
-          <h1 className="c-app--title">WaarOverheid</h1>
-        </header>
         <Map />
       </div>
     )
