@@ -1,6 +1,8 @@
 .c-app {
   text-align: center;
 }
-.c-map--intro {
-  font-size: large;
+
+.c-app .leaflet-container {
+  width: 100%;
+  height: 800px;
 }
