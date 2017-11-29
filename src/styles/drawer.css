@@ -6,6 +6,14 @@
   border: 1px solid;
   text-align: left;
   padding: 10px;
+  height: 30px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+.c-drawer.active {
+  height: 85%;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.9;
 }
 
 .c-drawer:hover {
