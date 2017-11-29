@@ -6,13 +6,7 @@ class Badge extends React.Component {
 
   render() {
 
-    let className = 'c-badge'
-
-    if ( this.props.active ) {
-      className = 'c-badge active'
-    }
-
-    return  <div className={className}>{this.props.num}</div>
+    return  <div className={`${this.props.active ? 'c-badge active' : 'c-badge'}`}>{this.props.num}</div>
   }
 }
 
