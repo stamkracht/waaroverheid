@@ -6,7 +6,11 @@ class Badge extends React.Component {
 
   render() {
 
-    return  <div className={`${this.props.active ? 'c-badge active' : 'c-badge'}`}>{this.props.num}</div>
+    return (
+      <div className={`${this.props.active ? 'c-badge active' : 'c-badge'}`}>
+        {this.props.num}
+      </div>
+    )
   }
 }
 
@@ -15,4 +19,4 @@ Badge.defaultProps = {
   active: false,
 }
 
-export default Badge;
+export default Badge

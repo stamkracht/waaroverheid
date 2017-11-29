@@ -11,6 +11,7 @@
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
+  opacity: 0.9;
 }
 
 .c-drawer.active {
@@ -18,7 +19,6 @@
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-  opacity: 0.9;
 }
 
 .c-drawer .c-drawer--header {
@@ -38,16 +38,8 @@
   font-weight: lighter;
 }
 
-.c-drawer.active .c-drawer--text {
-  display: none;
-}
-
 .c-drawer .c-drawer--icon {
   position: absolute;
-}
-
-.c-drawer.active .c-drawer--icon {
-  display: none;
 }
 
 .c-hamburger {

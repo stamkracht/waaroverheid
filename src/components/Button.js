@@ -26,7 +26,9 @@ class Button extends React.Component {
     return (
       <div className='c-button'>
         <Container>
-          <div className='c-button--text'>{this.props.text}</div>
+          <div className='c-button--text'>
+            {this.props.text}
+          </div>
           {this.renderIcon()}
         </Container>
       </div>

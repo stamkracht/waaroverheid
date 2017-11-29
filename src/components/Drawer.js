@@ -8,6 +8,7 @@ class Drawer extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       activeDrawer: false,
     }
@@ -19,17 +20,27 @@ class Drawer extends React.Component {
     })
   }
 
+  renderHeaderContent() {
+    if(this.state.activeDrawer === false) {
+      return (
+        <div>
+          <img className='c-drawer--icon' src={document} alt="document icon" />
+          <span className='c-drawer--text'> {this.props.text} </span>
+        </div>
+      )
+    }
+  }
+
   render() {
 
     return (
       <div className={`${this.state.activeDrawer ? 'c-drawer active' : 'c-drawer'}`}>
         <div className='c-drawer--header' onClick={this.handleOnClick.bind(this)}>
-            <img className='c-drawer--icon' src={document} alt="document icon" />
-            <span className='c-drawer--text'>{this.props.text}</span>
+          {this.renderHeaderContent()}
             <div className={`${this.state.activeDrawer ? 'c-hamburger active' : 'c-hamburger'}`}>
-              <span className='line'></span>
-              <span className='line'></span>
-              <span className='line'></span>
+              <span className='line' />
+              <span className='line' />
+              <span className='line' />
             </div>
         </div>
       </div>

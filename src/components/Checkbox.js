@@ -16,8 +16,7 @@ class Checkbox extends React.Component {
           id={this.props.id}
           ref={(input) => {this.input = input}}
           checked={this.props.active}
-          onChange={this.props.onChange}
-        />
+          onChange={this.props.onChange} />
         <label htmlFor={this.props.id} />
         <span onClick={this.handleOnClick.bind(this)}>
           {this.props.label}
