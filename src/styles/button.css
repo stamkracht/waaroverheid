@@ -7,22 +7,3 @@
 .c-button:hover {
   background-color: #ED6000;
 }
-
-.c-button .c-button--text {
-  display: inline-block;
-  line-height: 30px;
-  min-width: 200px;
-}
-
-.c-button .c-button--icon {
-  display: inline-block;
-  position: absolute;
-}
-
-.c-button .c-button--icon.left {
-  left: 0;
-}
-
-.c-button .c-button--icon.right {
-  right: 0;
-}

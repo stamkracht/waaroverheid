@@ -1,8 +1,28 @@
 .c-container {
-  text-align: center;
+  display: inline-block;
+  position: relative;
+  padding: 5px;
   background: white;
   opacity: 0.9;
   border: 1px solid black;
-  padding: 5px;
+  text-align: center;
+}
+
+.c-container .c-container--text {
   display: inline-block;
+  min-width: 200px;
+  line-height: 30px;
+}
+
+.c-container .c-container--icon {
+  display: inline-block;
+  position: absolute;
+}
+
+.c-container .c-container--icon.left {
+  left: 0;
+}
+
+.c-container .c-container--icon.right {
+  right: 0;
 }
