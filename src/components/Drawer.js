@@ -31,18 +31,29 @@ class Drawer extends React.Component {
     }
   }
 
-  render() {
+  renderHamburger() {
+    return (
+      <div className={`${this.state.activeDrawer ? 'c-hamburger active' : 'c-hamburger'}`}>
+        <span className='line' />
+        <span className='line' />
+        <span className='line' />
+      </div>
+    )
+  }
 
+  renderHeader() {
+    return (
+      <div className='c-drawer--header' onClick={this.handleOnClick.bind(this)}>
+        {this.renderHeaderContent()}
+        {this.renderHamburger()}
+      </div>
+    )
+  }
+
+  render() {
     return (
       <div className={`${this.state.activeDrawer ? 'c-drawer active' : 'c-drawer'}`}>
-        <div className='c-drawer--header' onClick={this.handleOnClick.bind(this)}>
-          {this.renderHeaderContent()}
-            <div className={`${this.state.activeDrawer ? 'c-hamburger active' : 'c-hamburger'}`}>
-              <span className='line' />
-              <span className='line' />
-              <span className='line' />
-            </div>
-        </div>
+        {this.renderHeader()}
       </div>
     )
   }
