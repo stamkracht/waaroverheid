@@ -46,7 +46,7 @@ Container.defaultProps = {
   icon: '',
   iconPosition: 'right',
   textAlign: 'center',
-  shadow: true,
+  shadow: false,
 }
 
 
