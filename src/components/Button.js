@@ -22,7 +22,7 @@ class Button extends React.Component {
 
 Button.defaultProps = {
   text: 'Filter',
-  icon: 'arrow',
+  icon: '',
   iconPosition: 'right',
   textAlign: 'center',
   shadow: true,
