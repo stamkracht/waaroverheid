@@ -13,6 +13,7 @@ class Button extends React.Component {
           textAlign={this.props.textAlign}
           icon={this.props.icon}
           iconPosition={this.props.iconPosition}
+          shadow={this.props.shadow}
           />
       </div>
     )
@@ -20,10 +21,11 @@ class Button extends React.Component {
 }
 
 Button.defaultProps = {
-  text: 'Click me',
-  icon: '',
+  text: 'Filter',
+  icon: 'arrow',
   iconPosition: 'right',
   textAlign: 'center',
+  shadow: true,
 }
 
 export default Button;

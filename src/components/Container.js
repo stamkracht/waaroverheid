@@ -32,7 +32,7 @@ class Container extends React.Component {
 
   render() {
     return (
-      <div className='c-container'>
+      <div className={`${this.props.shadow ? 'c-container shadow' : 'c-container'}`}>
         {this.props.children}
         {this.renderText()}
         {this.renderIcon()}
@@ -46,6 +46,7 @@ Container.defaultProps = {
   icon: '',
   iconPosition: 'right',
   textAlign: 'center',
+  shadow: true,
 }
 
 
