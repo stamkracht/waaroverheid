@@ -1,10 +1,16 @@
 .c-searchBox {
     color: rgba(0,0,0,0.38);
-    cursor: text;
     position: relative;
     display: inline-block;
+    min-width: 200px;
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 5px;
 }
 
-.c-searchBox:hover {
+.c-searchBox:hover, .c-searchBox:focus {
   box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  outline: 0;
+  border: none;
 }

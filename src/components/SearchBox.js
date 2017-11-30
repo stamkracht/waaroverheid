@@ -8,14 +8,15 @@ class SearchBox extends React.Component {
 
   render() {
     return (
-      <div className='c-searchBox'>
-        <Container
+      <div>
+        {/* <Container
           text={this.props.text}
           textAlign={this.props.textAlign}
           icon={this.props.icon}
           iconPosition={this.props.iconPosition}
           shadow={this.props.shadow}
-        />
+        /> */}
+            <input className='c-searchBox' type="text" name="name" placeholder='Search' />
       </div>
     )
   }
