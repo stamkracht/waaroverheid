@@ -14,6 +14,14 @@
   line-height: 30px;
 }
 
+.c-container .c-container--text.left {
+  text-align: left;
+}
+
+.c-container .c-container--text.center {
+  text-align: center;
+}
+
 .c-container .c-container--icon {
   display: inline-block;
   position: absolute;
