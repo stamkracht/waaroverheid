@@ -1,0 +1,10 @@
+.c-searchBox {
+    color: rgba(0,0,0,0.38);
+    cursor: text;
+    position: relative;
+    display: inline-block;
+}
+
+.c-searchBox:hover {
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+}
