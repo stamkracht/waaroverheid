@@ -1,21 +1,32 @@
 import React from 'react'
 
 import Container from './Container'
+import Icon from './Icon'
 import '../styles/button.css'
 
 class Button extends React.Component {
 
+  renderText() {
+    if(this.props.text) {
+      return (
+        <div className={`c-button--text ${this.props.textAlign}`}>
+          {this.props.text}
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
-      <div className='c-button'>
-        <Container
-          text={this.props.text}
-          textAlign={this.props.textAlign}
-          icon={this.props.icon}
-          iconPosition={this.props.iconPosition}
-          shadow={this.props.shadow}
-          />
-      </div>
+      <Container shadow={this.props.shadow}>
+        <div className='c-button'>
+
+          {this.renderText()}
+
+          <Icon icon={this.props.icon} iconPosition={this.props.iconPosition} />
+
+        </div>
+      </Container>
     )
   }
 }
@@ -25,7 +36,6 @@ Button.defaultProps = {
   icon: '',
   iconPosition: 'right',
   textAlign: 'center',
-  shadow: true,
 }
 
-export default Button;
+export default Button
