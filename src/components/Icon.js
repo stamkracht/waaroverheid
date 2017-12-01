@@ -1,23 +1,24 @@
 import React from 'react'
 
+import FileIcon from './icons/FileIcon'
+import HamburgerIcon from './icons/HamburgerIcon'
+import ArrowIcon from './icons/ArrowIcon'
+import SearchIcon from './icons/SearchIcon'
+
 import '../styles/icon.css'
-import file from '../images/file.svg'
-import hamburger from '../images/hamburger.svg'
-import search from '../images/search.svg'
-import arrow from '../images/arrow.svg'
 
 class Icon extends React.Component {
 
   renderIcon() {
     if ( this.props.icon ) {
       if ( this.props.icon === 'file' ) {
-        return <img src={file} alt='file icon' />
+        return <FileIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       } else if ( this.props.icon === 'hamburger' ) {
-        return <img src={hamburger} alt='hamburger icon' />
+        return <HamburgerIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'arrow' ) {
-        return <img src={arrow} alt='arrow icon' />
+        return <ArrowIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       } else {
-        return <img src={search} alt='search icon' />
+        return <SearchIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       }
     }
   }
@@ -29,6 +30,13 @@ class Icon extends React.Component {
       </div>
     )
   }
+}
+
+Icon.defaultProps = {
+  width: 30,
+  height: 30,
+  icon: 'file',
+  iconPosition: 'right',
 }
 
 export default Icon
