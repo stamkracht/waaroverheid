@@ -1,39 +1,10 @@
 .c-container {
   display: inline-block;
-  position: relative;
-  padding: 5px;
-  background: white;
   opacity: 0.9;
+  margin: 15px;
 }
 
 .c-container.shadow {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
   transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-}
-
-.c-container .c-container--text {
-  display: inline-block;
-  min-width: 200px;
-  line-height: 30px;
-}
-
-.c-container .c-container--text.left {
-  text-align: left;
-}
-
-.c-container .c-container--text.center {
-  text-align: center;
-}
-
-.c-container .c-container--icon {
-  display: inline-block;
-  position: absolute;
-}
-
-.c-container .c-container--icon.left {
-  left: 0;
-}
-
-.c-container .c-container--icon.right {
-  right: 0;
 }
