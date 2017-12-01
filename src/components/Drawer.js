@@ -1,7 +1,8 @@
 import React from 'react'
 
+import Icon from './Icon'
+
 import '../styles/drawer.css'
-import file from '../images/file.svg'
 import '../styles/button.css'
 
 class Drawer extends React.Component {
@@ -24,7 +25,7 @@ class Drawer extends React.Component {
     if(this.state.activeDrawer === false) {
       return (
         <div>
-          <img className='c-drawer--icon' src={file} alt="file icon" />
+          <Icon icon='file' iconPosition='left' />
           <span className='c-drawer--text'> {this.props.text} </span>
         </div>
       )

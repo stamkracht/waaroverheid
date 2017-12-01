@@ -15,7 +15,7 @@
 }
 
 .c-drawer.active {
-  height: 85%;
+  height: 100%;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -38,7 +38,7 @@
   font-weight: lighter;
 }
 
-.c-drawer .c-drawer--icon {
+.c-drawer .icon {
   position: absolute;
 }
 
