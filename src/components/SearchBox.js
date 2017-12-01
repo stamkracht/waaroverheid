@@ -2,21 +2,15 @@ import React from 'react'
 
 import Container from './Container'
 import '../styles/searchBox.css'
-
+import search from '../images/search.svg'
 
 class SearchBox extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <Container
-          text={this.props.text}
-          textAlign={this.props.textAlign}
-          icon={this.props.icon}
-          iconPosition={this.props.iconPosition}
-          shadow={this.props.shadow}
-        /> */}
-            <input className='c-searchBox' type="text" name="name" placeholder='Search' />
+      <div className='c-searchBox'>
+        <input type="text" name="name" placeholder='Search' />
+        <img className='c-searchBox--icon' src={search} alt='search icon' />
       </div>
     )
   }
