@@ -13,8 +13,6 @@
     font-size: 14px;
     padding: 10px 40px 10px 10px;
     border: none;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-    transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
     font-weight: lighter;
 }
 
@@ -25,15 +23,6 @@
   border: none;
 }
 
-.c-searchBox .c-searchBox--icon {
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-  height: auto;
-  padding: 10px;
-  border: 0;
-  background: none;
+.c-searchBox img {
   cursor: pointer;
 }
