@@ -7,7 +7,7 @@ class ArrowIcon extends React.Component {
         fill={this.props.color}
         width={`${this.props.width}px`}
         height={`${this.props.height}px`}>
-        <path stroke='null' d='M21.15953 10.48748l-.93366-.93366-9.02497 9.02505-9.02507-9.02505-.93365.93366 9.95872 9.9587z' />
+        <path d='m24.958675,10.48748l-0.93366,-0.93366l-9.02497,9.02505l-9.02507,-9.02505l-0.93365,0.93366l9.95872,9.9587l9.95863,-9.9587z'/>
       </svg>
     )
   }
