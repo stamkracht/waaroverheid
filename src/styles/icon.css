@@ -17,3 +17,7 @@
 .icon.right {
   right: 0;
 }
+
+.icon:hover {
+  cursor: pointer;
+}
