@@ -5,7 +5,7 @@ import Icon from './Icon'
 import '../styles/button.css'
 
 class Button extends React.Component {
-  
+
   renderText() {
     if(this.props.text) {
       return (
@@ -19,12 +19,11 @@ class Button extends React.Component {
   render() {
     return (
       <Container shadow={this.props.shadow}>
-        <div className='c-button' onClick={this.props.onClick}>
+        <div className={`${this.props.hovering ? 'c-button hovering' : 'c-button'}`} onClick={this.props.onClick}>
 
           {this.renderText()}
 
-          <Icon icon={this.props.icon} iconPosition={this.props.iconPosition} />
-
+          <Icon icon={this.props.icon} iconPosition={this.props.iconPosition} pointRight={this.props.pointRight}/>
         </div>
       </Container>
     )
@@ -36,6 +35,7 @@ Button.defaultProps = {
   icon: '',
   iconPosition: 'right',
   textAlign: 'center',
+  hovering: true,
 }
 
 export default Button
