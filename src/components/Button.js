@@ -5,7 +5,7 @@ import Icon from './Icon'
 import '../styles/button.css'
 
 class Button extends React.Component {
-
+  
   renderText() {
     if(this.props.text) {
       return (
@@ -19,7 +19,7 @@ class Button extends React.Component {
   render() {
     return (
       <Container shadow={this.props.shadow}>
-        <div className='c-button'>
+        <div className='c-button' onClick={this.props.onClick}>
 
           {this.renderText()}
 
