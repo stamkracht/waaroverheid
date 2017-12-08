@@ -1,0 +1,30 @@
+.menus {
+  margin-right: 115px;
+  width: 100%;
+}
+
+.menus ul {
+  list-style: none;
+  display: block;
+  left: 0;
+  padding-left: 28px;
+  margin-top: 5px;
+  width: 85%;
+}
+
+.menus li {
+  text-align: left;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.menus .c-container {
+  margin: 0;
+  margin-right: inherit;
+}
+
+.menus .c-badge {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
