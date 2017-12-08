@@ -12,23 +12,27 @@ class Filters extends React.Component {
     super(props)
 
     this.state = {
-      show: true,
+      show: false,
     }
   }
 
   toggleShow = () => {
     this.setState({show: !this.state.show})
-    console.log(this.state.show)
   }
 
   renderFilters = () => {
-      return (
-        <div className='c-filters'>
-          <SearchBox />
-          <FilterList />
-        </div>
-      )
-    }
+    let types = ['Type 1', 'Type 2', 'Type 3']
+    let parties = ['P1', 'P2']
+
+    return (
+      <div className='c-filters'>
+        <SearchBox />
+
+        <FilterList text={'Soorten'} filters={types} />
+        <FilterList text={'Partijen'} filters={parties} />
+      </div>
+    )
+  }
 
   render() {
 

@@ -22,39 +22,43 @@ class FilterList extends React.Component {
     this.setState({pointRight: !this.state.pointRight})
   }
 
-  render() {
+  renderItems() {
+    return this.props.filters.map((item, id) => {
+      return <ListItem key={id} id={`${item}-${id}`} label={item} />
+    })
+  }
+
+  renderFilters() {
     return (
-      <div className='menus'>
+      <div>
         <Button
-          text='Soorten'
+          text={this.props.text}
           icon='arrow'
           iconPosition='left'
           textAlign='left'
           hovering={false}
           pointRight={this.state.pointRight}
           onClick={this.toggleDropdown}/>
-        <ul className='soortenList'>
-          <ListItem />
-          <ListItem />
-          <ListItem />
-        </ul>
-        <Button
-          text='Partijen'
-          icon='arrow'
-          iconPosition='left'
-          textAlign='left'
-          hovering={false}
-          pointRight={this.state.pointRight}
-          onClick={this.toggleDropdown}/>
-        <ul className='soortenList'>
-          <ListItem />
-          <ListItem />
-          <ListItem />
+        <ul>
+          {this.renderItems()}
         </ul>
       </div>
     )
   }
 
+  render() {
+    return (
+      <div className='menus'>
+        {this.renderFilters()}
+      </div>
+    )
+  }
+
+}
+
+FilterList.defaultProps = {
+  text: 'Label',
+  filters: [],
 }
 
 export default FilterList

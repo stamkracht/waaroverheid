@@ -11,27 +11,32 @@ class ListItem extends React.Component {
 
     this.state = {
       checked: false,
-      activeBadge: false,
-
     }
   }
 
   handleChange = () => {
-    console.log('hey')
-    this.setState({checked: !this.state.checked})
+    this.setState({
+      checked: !this.state.checked,
+    })
   }
 
   render() {
     return (
         <li>
           <Checkbox
-            label='Filter 1'
+            id={this.props.id}
+            label={this.props.label}
             active={this.state.checked}
             onChange={this.handleChange} />
-          <Badge />
+          <Badge active={this.state.checked} />
         </li>
     )
   }
+}
+
+ListItem.defaultProps = {
+  label: 'this is a label',
+  id: Math.round(Math.random()*1000),
 }
 
 export default ListItem
