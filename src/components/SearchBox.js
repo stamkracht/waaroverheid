@@ -35,7 +35,8 @@ SearchBox.defaultProps = {
   textAlign: 'left',
   icon: 'search',
   iconPosition: 'right',
-  onSubmit: undefined,
+  shadow: true,
+  onSubmit: () => alert('YOU forgot to pass an onSubmit function!'),
 }
 
 export default SearchBox
