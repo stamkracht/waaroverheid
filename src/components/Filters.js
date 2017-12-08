@@ -22,7 +22,7 @@ class Filters extends React.Component {
 
   renderFilters = () => {
     let types = ['Type 1', 'Type 2', 'Type 3']
-    let parties = ['P1', 'P2']
+    let parties = ['P1', 'P2', 'P3']
 
     return (
       <div className='c-filters'>
