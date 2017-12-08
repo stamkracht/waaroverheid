@@ -2,6 +2,9 @@ import React from 'react'
 
 import Button from './Button'
 import '../styles/filters.css'
+import SearchBox from './SearchBox'
+import FilterList from './FilterList'
+
 
 class Filters extends React.Component {
 
@@ -9,31 +12,32 @@ class Filters extends React.Component {
     super(props)
 
     this.state = {
-      clicked: false,
+      show: true,
     }
   }
 
-  toggleFilters = () => {
-    this.setState({clicked: !this.state.clicked})
-    console.log(this.state.clicked)
+  toggleShow = () => {
+    this.setState({show: !this.state.show})
+    console.log(this.state.show)
   }
 
   renderFilters = () => {
-    if(this.state.clicked)  {
       return (
-        <div className='c-filters' />
+        <div className='c-filters'>
+          <SearchBox />
+          <FilterList />
+        </div>
       )
     }
-  }
 
   render() {
 
     return (
       <div className='outCont'>
         <div className='container'>
-          <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleFilters} />
+          <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleShow} />
         </div>
-        {this.renderFilters}
+        {this.state.show && this.renderFilters()}
       </div>
     )
   }
