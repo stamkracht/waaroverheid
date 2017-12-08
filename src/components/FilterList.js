@@ -38,7 +38,7 @@ class FilterList extends React.Component {
           pointRight={this.state.pointRight}
           onClick={this.toggleDropdown}/>
         <ul>
-          {this.renderItems()}
+          {!this.state.pointRight && this.renderItems()}
         </ul>
       </div>
     )
