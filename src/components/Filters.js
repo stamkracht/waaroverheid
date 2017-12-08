@@ -22,10 +22,10 @@ class Filters extends React.Component {
 
   renderFilters = () => {
     let types = ['Type 1', 'Type 2', 'Type 3']
-    let parties = ['P1', 'P2', 'P3']
+    let parties = ['P1', 'P2', 'P3', 'P4', 'P5']
 
     return (
-      <div className='c-filters'>
+      <div className='filtersDropdown'>
         <SearchBox />
 
         <FilterList text={'Soorten'} filters={types} />
@@ -37,8 +37,8 @@ class Filters extends React.Component {
   render() {
 
     return (
-      <div className='outCont'>
-        <div className='container'>
+      <div className='outerContainer'>
+        <div className='buttonContainer'>
           <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleShow} />
         </div>
         {this.state.show && this.renderFilters()}

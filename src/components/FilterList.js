@@ -12,8 +12,6 @@ class FilterList extends React.Component {
     super(props)
 
     this.state = {
-      checked: false,
-      activeBadge: false,
       pointRight: true,
     }
   }
@@ -28,9 +26,9 @@ class FilterList extends React.Component {
     })
   }
 
-  renderFilters() {
+  render() {
     return (
-      <div>
+      <div className='collapsibleList'>
         <Button
           text={this.props.text}
           icon='arrow'
@@ -42,14 +40,6 @@ class FilterList extends React.Component {
         <ul>
           {this.renderItems()}
         </ul>
-      </div>
-    )
-  }
-
-  render() {
-    return (
-      <div className='menus'>
-        {this.renderFilters()}
       </div>
     )
   }
