@@ -1,12 +1,12 @@
 .c-searchBox {
   position: relative;
   display: block;
-  width: 300px;
+  width: 370px;
   height: 50px;
 }
 
 .c-searchBox input {
-    width: 250px;
+    width: 320px;
     color: rgba(0,0,0,0.38);
     line-height: 30px;
     font-family: sans-serif;
