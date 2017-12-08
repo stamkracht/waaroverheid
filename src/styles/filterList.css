@@ -1,6 +1,7 @@
 .menus {
   margin-right: 115px;
   width: 100%;
+  text-align: left;
 }
 
 .menus ul {
@@ -19,8 +20,7 @@
 }
 
 .menus .c-container {
-  margin: 0;
-  margin-right: inherit;
+  margin-bottom: 0;
 }
 
 .menus .c-badge {
