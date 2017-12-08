@@ -5,7 +5,7 @@ import '../styles/checkbox.css'
 
 class Checkbox extends React.Component {
 
-  handleOnClick() {
+  handleOnClick = () => {
     this.input.click()
   }
 
@@ -18,7 +18,7 @@ class Checkbox extends React.Component {
           checked={this.props.active}
           onChange={this.props.onChange} />
         <label htmlFor={this.props.id} />
-        <span onClick={this.handleOnClick.bind(this)}>
+        <span onClick={this.handleOnClick}>
           {this.props.label}
         </span>
       </div>
