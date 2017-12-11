@@ -1,0 +1,17 @@
+.c-badge {
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background-color: #dddddd;
+  text-align: center;
+  color: #333;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.c-badge.active {
+  color: #ED6000;
+}
