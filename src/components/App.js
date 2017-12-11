@@ -20,7 +20,7 @@ class App extends Component {
         <p className="c-app--intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Filters onSubmit={this.onSubmit}/>
+        <Filters onSearch={this.onSearch} />
       </div>
     )
   }
