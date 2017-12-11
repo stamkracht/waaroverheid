@@ -66,7 +66,10 @@ class Filters extends React.Component {
       </div>
     )
   }
+}
 
+Filters.defaultProps = {
+  onSubmit: undefined,
 }
 
 export default Filters
