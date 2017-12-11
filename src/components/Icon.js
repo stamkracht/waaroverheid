@@ -4,6 +4,8 @@ import FileIcon from './icons/FileIcon'
 import HamburgerIcon from './icons/HamburgerIcon'
 import ArrowIcon from './icons/ArrowIcon'
 import SearchIcon from './icons/SearchIcon'
+import AlertIcon from './icons/AlertIcon'
+
 
 import '../styles/icon.css'
 
@@ -17,6 +19,8 @@ class Icon extends React.Component {
         return <HamburgerIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'arrow' ) {
         return <ArrowIcon width={this.props.height} height={this.props.height} color={this.props.color} />
+      }  else if ( this.props.icon === 'alert' ) {
+        return <AlertIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       } else {
         return <SearchIcon width={this.props.height} height={this.props.height} color={this.props.color} />
       }
