@@ -30,6 +30,7 @@ class Filters extends React.Component {
 
         <FilterList text={'Soorten'} filters={types} />
         <FilterList text={'Partijen'} filters={parties} />
+        <Button text='Apply' shadow={true} />
       </div>
     )
   }
