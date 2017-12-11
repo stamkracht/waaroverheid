@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Container from './Container'
 import Icon from './Icon'
@@ -36,6 +37,7 @@ Button.defaultProps = {
   iconPosition: 'right',
   textAlign: 'center',
   hovering: true,
+  onClick: PropTypes.func,
 }
 
 export default Button
