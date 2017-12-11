@@ -1,9 +1,12 @@
 import React from 'react'
 
 import Button from './Button'
+import InputRange from 'react-input-range';
 import '../styles/filters.css'
 import SearchBox from './SearchBox'
 import FilterList from './FilterList'
+import 'react-input-range/lib/css/index.css'
+import '../styles/inputRange.css'
 
 
 class Filters extends React.Component {
@@ -13,7 +16,19 @@ class Filters extends React.Component {
 
     this.state = {
       show: false,
+      value: { min: 2, max: 10 },
     }
+  }
+
+  setLabel = (value, type) => {
+    console.log(value, type)
+    if(type === 'min') {
+      return 'Start'
+    }
+    else if(type === 'max') {
+      return 'End'
+    }
+
   }
 
   toggleShow = () => {
@@ -27,7 +42,12 @@ class Filters extends React.Component {
     return (
       <div className='filtersDropdown'>
         <SearchBox />
-
+        <InputRange
+          formatLabel={this.setLabel}
+          maxValue={20}
+          minValue={0}
+          value={this.state.value}
+          onChange={value => this.setState({ value })} />
         <FilterList text={'Soorten'} filters={types} />
         <FilterList text={'Partijen'} filters={parties} />
         <Button text='Apply' shadow={true} />
