@@ -41,7 +41,7 @@ class Filters extends React.Component {
 
     return (
       <div className='filtersDropdown'>
-        <SearchBox />
+        <SearchBox onSubmit={this.props.onSubmit}/>
         <InputRange
           formatLabel={this.setLabel}
           maxValue={20}
