@@ -1,8 +1,6 @@
 import React from 'react'
 
 import Button from './Button'
-import Checkbox from './Checkbox'
-import Badge from './Badge'
 import '../styles/filterList.css'
 import ListItem from './ListItem'
 
