@@ -31,8 +31,8 @@ class Map extends Component {
   }
 
   render() {
-    let position = [52.3695, 4.924]
-    let zoom = 18
+    let position = [52.0885, 5.1175]
+    let zoom = 15
     return (
       <div className="c-map">
         <LeafletMap center={position} zoom={zoom} zoomControl={false} dragging={false} tap={false} boxZoom={false} scrollWheelZoom={false} touchZoom={false} keyboard={false} worldCopyJump={false} doubleClickZoom={false} attributionControl={false}>
