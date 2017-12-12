@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map as LeafletMap, TileLayer, Polygon } from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet'
 
 import '../styles/map.css'
 
@@ -9,7 +9,7 @@ class Map extends Component {
     super(props)
 
     this.state = {
-      polygons: [],
+      geo: {},
     }
   }
 
@@ -18,27 +18,26 @@ class Map extends Component {
       method: 'GET',
     })
       .then(d => d.json())
-      .then(d => {
-        let polygons = d.features.map(f => {
-          return f.geometry.coordinates[0].map(c => {
-            return c.reverse()
-          })
-        })
-        this.setState({polygons})
+      .then(geo => {
+        this.setState({geo})
       })
       .catch(err => console.log(err))
   }
 
-  handleOnClick(d) {
+  handleOnClick = (d) => {
     console.log(d)
   }
 
-  renderPolygons() {
-    return this.state.polygons.map((p, i) => {
-      return (
-        <Polygon key={i} positions={p} interactive={true} onClick={() => this.handleOnClick(p)} />
-      )
+  onEachFeature = (feature, layer) => {
+    layer.on({
+      click: this.handleOnClick,
     })
+  }
+
+  renderFeatures() {
+    if ( Object.keys(this.state.geo).length > 0 ) {
+      return <GeoJSON data={this.state.geo} onEachFeature={this.onEachFeature} />
+    }
   }
 
   render() {
@@ -51,7 +50,7 @@ class Map extends Component {
             attributoin='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png'
           />
-          {this.renderPolygons()}
+          {this.renderFeatures()}
         </LeafletMap>
       </div>
     )
