@@ -1,1 +1,14 @@
-.c-documents {}
+.c-documents {
+  position: relative;
+  width: 1400px;
+  margin: 10px;
+  text-align: left;
+}
+
+.c-documents .Icon {
+  position: absolute;
+}
+
+.c-documents .c-documents--text {
+  margin-left: 80px;
+}
