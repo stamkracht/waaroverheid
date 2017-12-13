@@ -49,7 +49,9 @@ class Map extends Component {
     let zoom = 15
     return (
       <div className="c-map">
-        <LeafletMap center={position} zoom={zoom}
+        <LeafletMap
+          center={position}
+          zoom={zoom}
           zoomControl={false}
           dragging={false}
           tap={false}
