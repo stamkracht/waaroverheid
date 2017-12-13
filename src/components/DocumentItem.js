@@ -6,6 +6,29 @@ import Button from './Button'
 import '../styles/documents.css'
 
 class DocumentItem extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      show: false,
+    }
+  }
+
+
+  toggleDropdown = () => {
+    this.setState({show: !this.state.show})
+  }
+
+  renderDetails = () => {
+    return (
+      <Container shadow={true}>
+        <div>
+          <h1>Document details</h1>
+        </div>
+      </Container>
+    )
+  }
+
   render() {
     return (
         <div>
@@ -21,7 +44,11 @@ class DocumentItem extends Component {
                 <div><Button shadow={true} text={this.props.tag}/></div>
               </div>
             </div>
+            <button className='dropdown' onClick={this.toggleDropdown}>
+              <Icon icon='arrow' />
+            </button>
           </Container>
+            {this.state.show && this.renderDetails()}
         </div>
     )
   }
