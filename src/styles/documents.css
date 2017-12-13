@@ -6,7 +6,7 @@
 }
 
 .c-documents .c-documents--text {
-  margin: 15px 50px 15px 80px;
+  margin: 15px 190px 15px 80px;
 }
 
 .c-documents--text h3 {
@@ -17,6 +17,7 @@
 .c-documents--text h2 {
   font-weight: 600;
   margin: 5px 0;
+  cursor: pointer;
 }
 
 .tag-container {
@@ -54,4 +55,22 @@
 .document-details .icon {
   top: 50%;
   margin-top: -35px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+}
+
+.outerContainer {
+  margin: 20px;
+}
+
+.outerContainer > .c-container {
+  width: 90%
 }
