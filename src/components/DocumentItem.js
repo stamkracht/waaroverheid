@@ -8,22 +8,30 @@ import '../styles/documents.css'
 class DocumentItem extends Component {
   render() {
     return (
-          <Container shadow={true}>
+        <div>
+            <Container shadow={true}>
               <div className='document-details'>
-              <Icon icon='file' iconPosition='left' width='50' height='50'/>
-            <div className='c-documents--text'>
-              <h2>Busbaan Vleuterweide</h2>
-              <h3>9 sep. 2014, Agendapunt</h3>
+                <Icon icon='file' iconPosition='left' width='50' height='50'/>
+                <div className='c-documents--text'>
+                  <h2 onClick={this.toggleDropdown}>{this.props.fileTitle}</h2>
+                <h3>{this.props.fileDate}, {this.props.fileType}</h3>
+                </div>
+              <div className='tag-container'>
+                <div><Button shadow={true} text={this.props.tag}/></div>
+                <div><Button shadow={true} text={this.props.tag}/></div>
+              </div>
             </div>
-            <div className='tag-container'>
-              <div><Button shadow={true} text='Oudenoord'/></div>
-              <div><Button shadow={true} text='Kaatstraat'/></div>
-            </div>
-          </div>
-            <Icon icon='arrow' />
           </Container>
+        </div>
     )
   }
+}
+
+DocumentItem.defaultProps = {
+  fileTitle: 'Document title',
+  fileDate: 'Document date',
+  fileType: 'Document type',
+  tag: 'Tag',
 }
 
 export default DocumentItem
