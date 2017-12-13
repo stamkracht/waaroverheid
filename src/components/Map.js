@@ -25,7 +25,7 @@ class Map extends Component {
   }
 
   handleOnClick = (e) => {
-    console.log(e.target)
+    e.target._map.fitBounds(e.target.getBounds())
   }
 
   onEachFeature = (feature, layer) => {
