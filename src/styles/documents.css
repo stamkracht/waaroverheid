@@ -1,14 +1,57 @@
 .c-documents {
   position: relative;
-  width: 1400px;
   margin: 10px;
+  display: block;
   text-align: left;
 }
 
-.c-documents .Icon {
-  position: absolute;
+.c-documents .c-documents--text {
+  margin: 15px 50px 15px 80px;
 }
 
-.c-documents .c-documents--text {
-  margin-left: 80px;
+.c-documents--text h3 {
+  font-weight: lighter;
+  margin: 5px 0;
+}
+
+.c-documents--text h2 {
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.tag-container {
+  width: 93%;
+  padding-right: 45px;
+  position: absolute;
+  text-align: right;
+  top: 42%;
+}
+
+.tag-container div {
+  display: inline-block;
+ }
+
+.tag-container div .c-container {
+  width: auto;
+}
+
+.c-documents .c-container {
+  margin: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.c-documents .c-button {
+  background: #dddddd;
+  padding: 7px;
+}
+
+.c-documents .c-button--text {
+  min-width: 35px;
+  line-height: 10px;
+}
+
+.document-details .icon {
+  top: 50%;
+  margin-top: -35px;
 }
