@@ -37,8 +37,8 @@ class Map extends Component {
   renderFeatures() {
     if ( Object.keys(this.state.geo).length > 0 ) {
       return (
-        <GeoJSON data={this.state.geo}
-          className={'feature'}
+        <GeoJSON className={'feature'}
+          data={this.state.geo}
           onEachFeature={this.onEachFeature} />
       )
     }
@@ -49,7 +49,17 @@ class Map extends Component {
     let zoom = 15
     return (
       <div className="c-map">
-        <LeafletMap center={position} zoom={zoom} zoomControl={false} dragging={false} tap={false} boxZoom={false} scrollWheelZoom={false} touchZoom={false} keyboard={false} worldCopyJump={false} doubleClickZoom={false} attributionControl={false}>
+        <LeafletMap center={position} zoom={zoom}
+          zoomControl={false}
+          dragging={false}
+          tap={false}
+          boxZoom={false}
+          scrollWheelZoom={false}
+          touchZoom={false}
+          keyboard={false}
+          worldCopyJump={false}
+          doubleClickZoom={false}
+          attributionControl={false}>
           <TileLayer
             attributoin='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png'
