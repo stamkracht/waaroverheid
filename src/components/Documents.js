@@ -7,12 +7,14 @@ import DocumentItem from './DocumentItem'
 class Documents extends Component {
   render() {
     return (
+      <div className='outerContainer'>
       <Container>
         <div className='c-documents'>
           <DocumentItem />
           <DocumentItem />
         </div>
       </Container>
+    </div>
     )
   }
 }
