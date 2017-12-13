@@ -1,1 +1,89 @@
-.c-drawer {}
+.c-drawer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid;
+  text-align: left;
+  padding: 10px;
+  height: 30px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  opacity: 0.9;
+}
+
+.c-drawer.active {
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.c-drawer .c-drawer--header {
+  height: 30px;
+}
+
+.c-drawer .c-drawer--header:hover {
+  cursor: pointer;
+}
+
+.c-drawer .c-drawer--text {
+  display: inline-block;
+  margin-left: 5px;
+  line-height: 30px;
+  margin-left: 35px;
+  font-size: large;
+  font-weight: lighter;
+}
+
+.c-drawer .icon {
+  position: absolute;
+}
+
+.c-hamburger {
+  position: absolute;
+  right: 40px;
+  top: 9px;
+}
+
+.c-hamburger .line{
+  width: 40px;
+  height: 5px;
+  background-color: #333333;
+  display: block;
+  margin: 4px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.c-hamburger:hover{
+  cursor: pointer;
+}
+
+.c-hamburger.active .line:nth-child(2){
+  opacity: 0;
+}
+
+.c-hamburger.active .line:nth-child(1){
+  -webkit-transform: translateY(13px) rotate(45deg);
+  -ms-transform: translateY(13px) rotate(45deg);
+  -o-transform: translateY(13px) rotate(45deg);
+  transform: translateY(13px) rotate(45deg);
+  margin: 5px auto;
+}
+
+.c-hamburger.active .line:nth-child(3){
+  -webkit-transform: translateY(-13px) rotate(-45deg);
+  -ms-transform: translateY(-13px) rotate(-45deg);
+  -o-transform: translateY(-13px) rotate(-45deg);
+  transform: translateY(-13px) rotate(-45deg);
+  margin: 10px auto;
+}
+
+.c-hamburger.active {
+  right: 37px;
+  top: 6px;
+}

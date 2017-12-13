@@ -1,0 +1,26 @@
+.c-button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  background: white;
+  padding: 10px;
+}
+
+.c-button.hovering:hover {
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.c-button .c-button--text {
+  display: inline-block;
+  min-width: 200px;
+  line-height: 30px;
+}
+
+.c-button .c-button--text.left {
+  text-align: left;
+  padding-left: 35px;
+}
+
+.c-button .c-button--text.center {
+  text-align: center;
+}
