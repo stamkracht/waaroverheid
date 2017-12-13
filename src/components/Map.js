@@ -24,8 +24,8 @@ class Map extends Component {
       .catch(err => console.log(err))
   }
 
-  handleOnClick = (d) => {
-    console.log(d)
+  handleOnClick = (e) => {
+    console.log(e.target)
   }
 
   onEachFeature = (feature, layer) => {
@@ -36,7 +36,11 @@ class Map extends Component {
 
   renderFeatures() {
     if ( Object.keys(this.state.geo).length > 0 ) {
-      return <GeoJSON data={this.state.geo} onEachFeature={this.onEachFeature} />
+      return (
+        <GeoJSON data={this.state.geo}
+          className={'feature'}
+          onEachFeature={this.onEachFeature} />
+      )
     }
   }
 
