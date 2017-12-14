@@ -25,11 +25,11 @@ class DocumentItem extends Component {
         <Container shadow={true}>
           <div className='c-details--content'>
             <div className='c-details--text'>
-              <h3>Document details</h3>
-              <h3>Document details</h3>
+              <h3>{this.props.docDetails}</h3>
+              <h3>{this.props.docDetails}</h3>
             </div>
             <div className='c-details--snippets'>
-              <p>'Snippets'</p>
+              <p>'{this.props.snippet}'</p>
             </div>
             <div className='c-details--rating'>
               <Icon icon='like' />
@@ -77,6 +77,8 @@ DocumentItem.defaultProps = {
   fileDate: 'Document date',
   fileType: 'Document type',
   tag: 'Tag',
+  docDetails: 'Document details',
+  snippet: 'Snippet'
 }
 
 export default DocumentItem
