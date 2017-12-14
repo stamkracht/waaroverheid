@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Container from './Container'
 import Icon from './Icon'
 import Button from './Button'
-import '../styles/documents.css'
+import '../styles/documentItem.css'
 
 class DocumentItem extends Component {
   constructor(props) {
