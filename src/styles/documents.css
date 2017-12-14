@@ -32,6 +32,10 @@
   width: 60%;
 }
 
+.c-documents .c-searchBox:hover input {
+  box-shadow: none;
+}
+
 .c-documents input:hover {
   box-shadow: none;
 }
