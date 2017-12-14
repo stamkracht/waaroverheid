@@ -5,6 +5,9 @@ import HamburgerIcon from './icons/HamburgerIcon'
 import ArrowIcon from './icons/ArrowIcon'
 import SearchIcon from './icons/SearchIcon'
 import AlertIcon from './icons/AlertIcon'
+import LikeIcon from './icons/LikeIcon'
+import DislikeIcon from './icons/DislikeIcon'
+
 
 
 import '../styles/icon.css'
@@ -21,6 +24,10 @@ class Icon extends React.Component {
         return <ArrowIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'alert' ) {
         return <AlertIcon width={this.props.width} height={this.props.height} color={this.props.color} />
+      }  else if ( this.props.icon === 'like' ) {
+        return <LikeIcon width={this.props.width} height={this.props.height} color={this.props.color} />
+      }  else if ( this.props.icon === 'dislike' ) {
+        return <DislikeIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       } else {
         return <SearchIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }
