@@ -14,7 +14,6 @@ class DocumentItem extends Component {
     }
   }
 
-
   toggleDropdown = () => {
     this.setState({show: !this.state.show})
   }
@@ -41,6 +40,14 @@ class DocumentItem extends Component {
     )
   }
 
+  renderTags = () => {
+    let tags = ['Tag 1', 'Tag 2', 'Tag 3']
+    return tags.map((tag) => {
+      return <div><Button shadow={true} text={tag}/></div>
+    })
+  }
+
+
   renderDocumentItem = () => {
     return (
       <div className='c-documents--content'>
@@ -50,8 +57,7 @@ class DocumentItem extends Component {
           <h3>{this.props.fileDate}, {this.props.fileType}</h3>
         </div>
         <div className='c-documents--tag'>
-          <div><Button shadow={true} text={this.props.tag}/></div>
-          <div><Button shadow={true} text={this.props.tag}/></div>
+          {this.renderTags()}
         </div>
     </div>
     )
@@ -76,7 +82,7 @@ DocumentItem.defaultProps = {
   fileTitle: 'Document title',
   fileDate: 'Document date',
   fileType: 'Document type',
-  tag: 'Tag',
+  tags: [],
   docDetails: 'Document details',
   snippet: 'Snippet'
 }
