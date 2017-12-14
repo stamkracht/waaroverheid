@@ -1,8 +1,31 @@
+.outerContainer {
+  margin: 20px;
+}
+
+.outerContainer > .c-container {
+  width: 90%
+}
+
 .c-documents {
   position: relative;
   margin: 10px;
   display: block;
   text-align: left;
+}
+
+.c-documents .c-container {
+  margin: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.c-documents .c-documents--item {
+  margin-bottom: 30px;
+}
+
+.c-documents--content .icon {
+  top: 50%;
+  margin-top: -35px;
 }
 
 .c-documents .c-documents--text {
@@ -20,7 +43,7 @@
   cursor: pointer;
 }
 
-.tag-container {
+.c-documents--tag {
   width: 93%;
   padding-right: 45px;
   position: absolute;
@@ -28,18 +51,12 @@
   top: 42%;
 }
 
-.tag-container div {
+.c-documents--tag div {
   display: inline-block;
  }
 
-.tag-container div .c-container {
+.c-documents--tag div .c-container {
   width: auto;
-}
-
-.c-documents .c-container {
-  margin: 5px;
-  width: 100%;
-  position: relative;
 }
 
 .c-documents .c-button {
@@ -52,12 +69,7 @@
   line-height: 10px;
 }
 
-.document-details .icon {
-  top: 50%;
-  margin-top: -35px;
-}
-
-.dropdown {
+.c-documents .c-documents--dropdown {
     position: absolute;
     top: 0;
     right: 0;
@@ -67,10 +79,38 @@
     outline: none;
 }
 
-.outerContainer {
-  margin: 20px;
+.c-details .c-container {
+  margin-top: -4px;
 }
 
-.outerContainer > .c-container {
-  width: 90%
+.c-details .c-details--content {
+  padding: 10px;
+  background: #dddddd;
+}
+
+.c-details .c-details--text {
+  margin-bottom: 10px;
+}
+
+.c-details .c-details--snippets {
+  margin-bottom: 10px;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.c-details h3, p {
+  margin: 5px;
+  font-weight: normal;
+}
+
+.c-details .c-details--rating {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+}
+
+.c-details .icon {
+  position: relative;
+  display: inline-block;
 }

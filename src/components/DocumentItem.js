@@ -21,30 +21,48 @@ class DocumentItem extends Component {
 
   renderDetails = () => {
     return (
-      <Container shadow={true}>
-        <div>
-          <h1>Document details</h1>
+      <div className='c-details'>
+        <Container shadow={true}>
+          <div className='c-details--content'>
+            <div className='c-details--text'>
+              <h3>Document details</h3>
+              <h3>Document details</h3>
+            </div>
+            <div className='c-details--snippets'>
+              <p>'Snippets'</p>
+            </div>
+            <div className='c-details--rating'>
+              <Icon icon='like' />
+              <Icon icon='dislike' />
+            </div>
+          </div>
+        </Container>
+      </div>
+    )
+  }
+
+  renderDocumentItem = () => {
+    return (
+      <div className='c-documents--content'>
+        <Icon icon='file' iconPosition='left' width='50' height='50'/>
+        <div className='c-documents--text'>
+          <h2 onClick={this.toggleDropdown}>{this.props.fileTitle}</h2>
+          <h3>{this.props.fileDate}, {this.props.fileType}</h3>
         </div>
-      </Container>
+        <div className='c-documents--tag'>
+          <div><Button shadow={true} text={this.props.tag}/></div>
+          <div><Button shadow={true} text={this.props.tag}/></div>
+        </div>
+    </div>
     )
   }
 
   render() {
     return (
-        <div>
-            <Container shadow={true}>
-              <div className='document-details'>
-                <Icon icon='file' iconPosition='left' width='50' height='50'/>
-                <div className='c-documents--text'>
-                  <h2 onClick={this.toggleDropdown}>{this.props.fileTitle}</h2>
-                <h3>{this.props.fileDate}, {this.props.fileType}</h3>
-                </div>
-              <div className='tag-container'>
-                <div><Button shadow={true} text={this.props.tag}/></div>
-                <div><Button shadow={true} text={this.props.tag}/></div>
-              </div>
-            </div>
-            <button className='dropdown' onClick={this.toggleDropdown}>
+        <div className='c-documents--item'>
+          <Container shadow={true}>
+            {this.renderDocumentItem()}
+            <button className='c-documents--dropdown' onClick={this.toggleDropdown}>
               <Icon icon='arrow' />
             </button>
           </Container>
