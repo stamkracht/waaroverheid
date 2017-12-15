@@ -64,7 +64,7 @@ class Filters extends React.Component {
   render() {
 
     return (
-      <div className='outerContainer'>
+      <div className='c-filters'>
         <div className='buttonContainer'>
           <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleShow} />
         </div>
