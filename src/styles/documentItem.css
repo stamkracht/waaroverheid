@@ -1,0 +1,104 @@
+.c-documents .c-documents--item {
+  margin-bottom: 30px;
+  text-align: left;
+  width: 100%;
+}
+
+.c-documents--content .icon {
+  top: 50%;
+  margin-top: -35px;
+}
+
+.c-documents .c-documents--text {
+  margin: 15px 190px 15px 80px;
+}
+
+.c-documents--text h3 {
+  font-weight: lighter;
+  margin: 5px 0;
+}
+
+.c-documents--text h2 {
+  font-weight: 600;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.c-documents--tag {
+  width: 100%;
+  padding-right: 65px;
+  position: absolute;
+  text-align: right;
+  top: 42%;
+}
+
+.c-documents--tag div {
+  display: inline-block;
+ }
+
+.c-documents--tag div .c-container {
+  width: auto;
+  margin: 5px;
+}
+
+.c-documents .c-button {
+  background: #eeeeee;
+  padding: 7px;
+}
+
+.c-documents .c-button--text {
+  min-width: 35px;
+  line-height: 10px;
+}
+
+.c-documents .c-documents--dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+}
+
+.c-details .c-container {
+  margin-top: 2px;
+}
+
+.c-details .c-details--content {
+  padding: 10px;
+  background: #eeeeee;
+}
+
+.c-details .c-details--text {
+  margin-bottom: 10px;
+}
+
+.c-details .c-details--snippets {
+  margin-bottom: 10px;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.c-details h3, p {
+  margin: 5px;
+  font-weight: normal;
+}
+
+.c-details .c-details--rating {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+}
+
+.c-details .icon {
+  position: relative;
+  display: inline-block;
+}
+
+.c-documentList {
+  padding: 1px;
+  max-height: calc(100vh - 180px);
+  overflow: auto;
+}

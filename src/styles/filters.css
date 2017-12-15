@@ -1,0 +1,30 @@
+.c-filters {
+  position: relative;
+}
+
+.buttonContainer {
+  position: absolute;
+}
+
+.filtersDropdown {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  width: auto;
+  height: auto;
+  min-height: 25vh;
+  max-height: 75vh;
+  padding: 5px;
+  background: white;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+}
+
+.clicked {
+  box-shadow: 0 0px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.filtersContainer {
+  max-height: calc(75vh - 250px);
+  overflow: auto;
+}

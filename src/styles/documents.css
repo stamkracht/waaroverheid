@@ -1,0 +1,47 @@
+.outerContainer {
+  padding: 20px;
+}
+
+.outerContainer > .c-container {
+  width: 100%;
+  background: none;
+  text-align: center;
+  margin: 0;
+}
+
+.c-documents {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.c-documents .c-container {
+  margin: 0;
+  width: 100%;
+  position: relative;
+  opacity: 1;
+}
+
+.c-documents > .c-container {
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.c-documents .c-searchBox {
+  width: auto;
+}
+
+.c-documents input {
+  width: calc(100% - 60px);
+}
+
+.c-documents .c-searchBox:hover input {
+  box-shadow: none;
+}
+
+.c-documents input:hover {
+  box-shadow: none;
+}
+
+.c-documents input:focus {
+  box-shadow: none;
+}

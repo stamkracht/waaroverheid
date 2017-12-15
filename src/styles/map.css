@@ -1,0 +1,22 @@
+.c-map .leaflet-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.c-map .leaflet-container .feature {
+  pointer-events: auto;
+  cursor: pointer;
+  fill: #ed6000;
+  fill-opacity: 0.2;
+  stroke: #ed6000;
+  stroke-width: 2px;
+  stroke-opacity: 1;
+}
+
+.c-map .leaflet-container .feature:hover {
+  fill-opacity: 0.5;
+}

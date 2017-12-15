@@ -1,0 +1,21 @@
+.input-range {
+  width: 350px;
+  margin: 15px 15px 40px 25px;
+}
+
+.input-range__label {
+  color: #333;
+}
+
+.input-range__track {
+  background: #999;
+}
+
+.input-range__track--active {
+  background: #ed6000;
+}
+
+.input-range__slider {
+  background: #ed6000;
+  border: 1px solid #ed6000;
+}
