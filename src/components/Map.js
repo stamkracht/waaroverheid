@@ -46,12 +46,11 @@ class Map extends Component {
 
   render() {
     let position = [52.0885, 5.1175]
-    let zoom = 15
     return (
       <div className="c-map">
         <LeafletMap
           center={position}
-          zoom={zoom}
+          zoom={this.props.zoom}
           zoomControl={false}
           dragging={false}
           tap={false}
@@ -71,6 +70,10 @@ class Map extends Component {
       </div>
     )
   }
+}
+
+Map.defaultProps = {
+  zoom: 15,
 }
 
 export default Map
