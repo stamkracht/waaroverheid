@@ -7,7 +7,7 @@
 
 .c-searchBox input {
   width: 320px;
-  color: rgba(0,0,0,0.38);
+  color: #333;
   line-height: 30px;
   font-family: sans-serif;
   font-size: 14px;
