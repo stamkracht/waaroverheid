@@ -40,6 +40,8 @@ class Filters extends React.Component {
   renderFilters = () => {
     let types = ['Type 1', 'Type 2', 'Type 3']
     let parties = ['P1', 'P2', 'P3', 'P4', 'P5']
+    let veggies = ['Tomato', 'Potato', 'Zucchini', 'Bambini', 'Paprika']
+    let spices = ['Scary', 'Sporty', 'Ginger', 'Posh', 'Baby']
 
     return (
       <div className='filtersDropdown'>
@@ -52,6 +54,8 @@ class Filters extends React.Component {
           onChange={this.handleOnChange} />
         <FilterList text={'Soorten'} filters={types} />
         <FilterList text={'Partijen'} filters={parties} />
+        <FilterList text={'Veggies'} filters={veggies} />
+        <FilterList text={'Spices'} filters={spices} />
         <Button text='Apply' shadow={true} onClick={this.props.onSearch}  />
       </div>
     )
