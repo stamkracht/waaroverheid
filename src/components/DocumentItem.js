@@ -42,8 +42,8 @@ class DocumentItem extends Component {
 
   renderTags = () => {
     let tags = ['Tag 1', 'Tag 2', 'Tag 3']
-    return tags.map((tag) => {
-      return <div><Button shadow={true} text={tag}/></div>
+    return tags.map((tag, id) => {
+      return <div key={id}><Button shadow={true} text={tag} /></div>
     })
   }
 
