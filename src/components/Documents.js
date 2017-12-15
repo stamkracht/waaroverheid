@@ -12,8 +12,18 @@ class Documents extends Component {
       <Container>
         <div className='c-documents'>
           <SearchBox />
-          <DocumentItem />
-          <DocumentItem />
+          <div className='c-documentList'>
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+            <DocumentItem />
+          </div>
         </div>
       </Container>
     </div>
