@@ -1,11 +1,11 @@
-.collapsibleList {
+.c-filterList {
   height: auto;
   width: 100%;
   margin-right: 115px;
   text-align: left;
 }
 
-.collapsibleList ul {
+.c-filterList ul {
   display: block;
   width: 85%;
   left: 0;
@@ -14,18 +14,18 @@
   list-style: none;
 }
 
-.collapsibleList li {
+.c-filterList li {
   position: relative;
   margin-bottom: 10px;
   text-align: left;
 }
 
-.collapsibleList .c-container {
+.c-filterList .c-container {
   margin-bottom: 0;
   margin-top: 0;
 }
 
-.collapsibleList .c-badge {
+.c-filterList .c-badge {
   position: absolute;
   top: 0;
   right: 0;

@@ -5,6 +5,9 @@ import HamburgerIcon from './icons/HamburgerIcon'
 import ArrowIcon from './icons/ArrowIcon'
 import SearchIcon from './icons/SearchIcon'
 import AlertIcon from './icons/AlertIcon'
+import LikeIcon from './icons/LikeIcon'
+import DislikeIcon from './icons/DislikeIcon'
+
 
 
 import '../styles/icon.css'
@@ -14,15 +17,19 @@ class Icon extends React.Component {
   renderIcon() {
     if ( this.props.icon ) {
       if ( this.props.icon === 'file' ) {
-        return <FileIcon width={this.props.height} height={this.props.height} color={this.props.color} />
+        return <FileIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       } else if ( this.props.icon === 'hamburger' ) {
-        return <HamburgerIcon width={this.props.height} height={this.props.height} color={this.props.color} />
+        return <HamburgerIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'arrow' ) {
-        return <ArrowIcon width={this.props.height} height={this.props.height} color={this.props.color} />
+        return <ArrowIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'alert' ) {
-        return <AlertIcon width={this.props.height} height={this.props.height} color={this.props.color} />
+        return <AlertIcon width={this.props.width} height={this.props.height} color={this.props.color} />
+      }  else if ( this.props.icon === 'like' ) {
+        return <LikeIcon width={this.props.width} height={this.props.height} color={this.props.color} />
+      }  else if ( this.props.icon === 'dislike' ) {
+        return <DislikeIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       } else {
-        return <SearchIcon width={this.props.height} height={this.props.height} color={this.props.color} />
+        return <SearchIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }
     }
   }

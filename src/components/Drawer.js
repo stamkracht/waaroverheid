@@ -4,6 +4,7 @@ import Icon from './Icon'
 
 import '../styles/drawer.css'
 import '../styles/button.css'
+import Documents from './Documents'
 
 class Drawer extends React.Component {
 
@@ -51,10 +52,17 @@ class Drawer extends React.Component {
     )
   }
 
+  renderDocuments = () => {
+    return (
+      <Documents />
+    )
+  }
+
   render() {
     return (
       <div className={`${this.state.activeDrawer ? 'c-drawer active' : 'c-drawer'}`}>
         {this.renderHeader()}
+        {this.state.activeDrawer && this.renderDocuments()}
       </div>
     )
   }

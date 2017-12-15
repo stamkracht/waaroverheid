@@ -26,7 +26,7 @@ class FilterList extends React.Component {
 
   render() {
     return (
-      <div className='collapsibleList'>
+      <div className='c-filterList'>
         <Button
           text={this.props.text}
           icon='arrow'

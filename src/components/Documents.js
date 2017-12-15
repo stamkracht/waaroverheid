@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 
+import Container from './Container'
 import '../styles/documents.css'
+import DocumentItem from './DocumentItem'
+import SearchBox from './SearchBox'
 
 class Documents extends Component {
   render() {
     return (
-      <div className="c-documents">
-        <p className="c-documents--intro">
-          this is the documents component
-        </p>
-      </div>
+      <div className='outerContainer'>
+      <Container>
+        <div className='c-documents'>
+          <SearchBox />
+          <DocumentItem />
+          <DocumentItem />
+        </div>
+      </Container>
+    </div>
     )
   }
 }

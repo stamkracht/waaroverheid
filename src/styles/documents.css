@@ -1,0 +1,46 @@
+.outerContainer {
+  margin: 20px;
+}
+
+.outerContainer > .c-container {
+  width: 90%;
+  background: none;
+}
+
+.c-documents {
+  position: relative;
+  margin: 10px;
+  display: block;
+  text-align: left;
+}
+
+.c-documents .c-container {
+  margin: 5px;
+  width: 100%;
+  position: relative;
+  opacity: 1;
+}
+
+.c-documents > .c-container {
+  margin-bottom: 50px;
+}
+
+.c-documents .c-searchBox {
+  width: auto;
+}
+
+.c-documents input {
+  width: calc(100% - 60px);
+}
+
+.c-documents .c-searchBox:hover input {
+  box-shadow: none;
+}
+
+.c-documents input:hover {
+  box-shadow: none;
+}
+
+.c-documents input:focus {
+  box-shadow: none;
+}
