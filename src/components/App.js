@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import '../styles/app.css'
 import logo from '../images/logo.svg'
 import Filters from './Filters'
+import Drawer from './Drawer'
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <Filters onSearch={this.onSearch} />
+        <Drawer />
       </div>
     )
   }
