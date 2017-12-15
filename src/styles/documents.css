@@ -30,7 +30,7 @@
 }
 
 .c-documents input {
-  width: 60%;
+  width: calc(100% - 60px);
 }
 
 .c-documents .c-searchBox:hover input {
