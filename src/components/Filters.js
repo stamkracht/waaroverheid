@@ -52,10 +52,12 @@ class Filters extends React.Component {
           minValue={0}
           value={this.state.value}
           onChange={this.handleOnChange} />
-        <FilterList text={'Soorten'} filters={types} />
-        <FilterList text={'Partijen'} filters={parties} />
-        <FilterList text={'Veggies'} filters={veggies} />
-        <FilterList text={'Spices'} filters={spices} />
+        <div className="filtersContainer">
+          <FilterList text={'Soorten'} filters={types} />
+          <FilterList text={'Partijen'} filters={parties} />
+          <FilterList text={'Veggies'} filters={veggies} />
+          <FilterList text={'Spices'} filters={spices} />
+        </div>
         <Button text='Apply' shadow={true} onClick={this.props.onSearch}  />
       </div>
     )
