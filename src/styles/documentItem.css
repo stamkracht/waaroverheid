@@ -1,5 +1,7 @@
 .c-documents .c-documents--item {
   margin-bottom: 30px;
+  text-align: left;
+  width: 100%;
 }
 
 .c-documents--content .icon {
@@ -23,8 +25,8 @@
 }
 
 .c-documents--tag {
-  width: 93%;
-  padding-right: 45px;
+  width: 100%;
+  padding-right: 65px;
   position: absolute;
   text-align: right;
   top: 42%;
@@ -36,10 +38,11 @@
 
 .c-documents--tag div .c-container {
   width: auto;
+  margin: 5px;
 }
 
 .c-documents .c-button {
-  background: #dddddd;
+  background: #eeeeee;
   padding: 7px;
 }
 
@@ -59,12 +62,12 @@
 }
 
 .c-details .c-container {
-  margin-top: -4px;
+  margin-top: 2px;
 }
 
 .c-details .c-details--content {
   padding: 10px;
-  background: #dddddd;
+  background: #eeeeee;
 }
 
 .c-details .c-details--text {
@@ -92,4 +95,10 @@
 .c-details .icon {
   position: relative;
   display: inline-block;
+}
+
+.c-documentList {
+  padding: 1px;
+  max-height: calc(100vh - 180px);
+  overflow: auto;
 }
