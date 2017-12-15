@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import '../styles/app.css'
+
+import Map from './Map'
 import Filters from './Filters'
 import Drawer from './Drawer'
 
@@ -16,6 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="c-app">
+        <Map />
         <Filters onSearch={this.onSearch} />
         <Drawer />
       </div>

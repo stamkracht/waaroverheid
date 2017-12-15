@@ -4,9 +4,12 @@
   "homepage": "https://waaroverheid.github.io",
   "private": true,
   "dependencies": {
+    "leaflet": "^1.2.0",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-input-range": "^1.2.2",
+    "react-leaflet": "^1.7.7",
     "react-scripts": "1.0.17"
   },
   "scripts": {
