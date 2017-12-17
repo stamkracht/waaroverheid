@@ -14,7 +14,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    fetch('http://waaroverheid.cleverdon.hum.uva.nl/municipal/06/neighborhoods', {
+    fetch('https://waaroverheid.cleverdon.hum.uva.nl/municipal/06/neighborhoods', {
       method: 'GET',
     })
       .then(d => d.json())
