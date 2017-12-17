@@ -29,6 +29,11 @@ class Map extends Component {
   }
 
   onEachFeature = (feature, layer) => {
+    let tooltip = `
+      <h1>${feature.properties['NAAM']}</h1>
+      <h1>#${feature.properties['KODE']}</h1>
+    `
+    layer.bindTooltip(tooltip, {className: 'c-tooltip'})
     layer.on({
       click: this.handleOnClick,
     })
