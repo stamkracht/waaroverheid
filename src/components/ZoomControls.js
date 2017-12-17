@@ -21,10 +21,10 @@ class ZoomControls extends React.Component {
   render() {
     return (
       <div className='c-zoomControls'>
-        <Button text='Provincie' onClick={() => this.handleOnClick('provincie')} />
-        <Button text='Gemeente' onClick={() => this.handleOnClick('gemeente')} />
-        <Button text='Wijk' onClick={() => this.handleOnClick('wijk')} />
-        <Button text='Buurt' onClick={() => this.handleOnClick('buurt')} />
+        <Button text='Provincie' onClick={() => this.handleOnClick('provincie')} shadow={true} />
+        <Button text='Gemeente' onClick={() => this.handleOnClick('gemeente')} shadow={true} />
+        <Button text='Wijk' onClick={() => this.handleOnClick('wijk')} shadow={true} />
+        <Button text='Buurt' onClick={() => this.handleOnClick('buurt')} shadow={true} />
       </div>
     )
   }
