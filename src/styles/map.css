@@ -20,3 +20,19 @@
 .c-map .leaflet-container .feature:hover {
   fill-opacity: 0.5;
 }
+
+/* Tooltip */
+.c-map .leaflet-container .leaflet-pane .leaflet-tooltip.c-tooltip {
+  margin: 0;
+  padding: 0;
+  color: black;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.c-map .leaflet-container .leaflet-pane .leaflet-tooltip.c-tooltip:before {
+  content: none;
+}
+.c-map .leaflet-container .leaflet-pane .leaflet-tooltip.c-tooltip h1 {
+  margin: 0;
+}
