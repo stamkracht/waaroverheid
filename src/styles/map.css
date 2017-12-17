@@ -5,6 +5,10 @@
   right: 0;
   bottom: 0;
   z-index: 0;
+  background: white;
+}
+.c-map .leaflet-container .leaflet-pane.leaflet-tile-pane {
+  opacity: 0.75;
 }
 
 .c-map .leaflet-container .feature {
