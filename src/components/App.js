@@ -8,6 +8,14 @@ import Drawer from './Drawer'
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      level: 15,
+    }
+  }
+
   onSearch = (filters) => {
     console.log('Search query - ' + filters.query)
     console.log('Search range - from ' + filters.rangeMin + ' to ' + filters.rangeMax)
@@ -18,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="c-app">
-        <Map />
+        <Map zoom={this.state.level} />
         <Filters onSearch={this.onSearch} />
         <Drawer />
       </div>
