@@ -3,6 +3,7 @@
   display: block;
   width: 370px;
   height: 50px;
+  text-align: left;
 }
 
 .c-searchBox input {
@@ -18,7 +19,6 @@
 
 .c-searchBox:hover input,
 .c-searchBox input:focus {
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
   outline: 0;
   border: none;
 }

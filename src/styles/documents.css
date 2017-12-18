@@ -33,15 +33,3 @@
 .c-documents input {
   width: calc(100% - 60px);
 }
-
-.c-documents .c-searchBox:hover input {
-  box-shadow: none;
-}
-
-.c-documents input:hover {
-  box-shadow: none;
-}
-
-.c-documents input:focus {
-  box-shadow: none;
-}
