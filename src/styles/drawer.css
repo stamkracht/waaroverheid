@@ -93,5 +93,9 @@
 
 .c-hamburger.active {
   right: 20px;
-  top: 10px;
+  top: 25px;
+}
+
+.c-drawer .c-drawer--title {
+  text-align: center;
 }
