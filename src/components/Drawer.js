@@ -27,14 +27,14 @@ class Drawer extends React.Component {
       return (
         <div>
           <Icon icon='file' iconPosition='left' />
-          <span className='c-drawer--text'> {`${this.props.numberDoc} ${this.props.text} ${this.props.area}`} </span>
+          <span className='c-drawer--text'> {`${this.props.numberDoc} ${this.props.numberDoc === 1 ? 'document found in ' : 'documents found in '} ${this.props.area}`} </span>
         </div>
       )
     }
     else {
       return (
         <div>
-          <h1 className='c-drawer--title'> {`${this.props.numberDoc} ${this.props.text} ${this.props.area}`} </h1>
+          <h1 className='c-drawer--title'> {`${this.props.numberDoc} ${this.props.numberDoc === 1 ? 'document found in ' : 'documents found in '} ${this.props.area}`} </h1>
         </div>
       )
     }
@@ -77,7 +77,6 @@ class Drawer extends React.Component {
 
 Drawer.defaultProps = {
   numberDoc: 0,
-  text: 'documents found in',
   area: 'selected area',
 }
 
