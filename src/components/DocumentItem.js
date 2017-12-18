@@ -31,8 +31,7 @@ class DocumentItem extends Component {
               <p>'{this.props.snippet}'</p>
             </div>
             <div className='c-details--rating'>
-              <Icon icon='like' />
-              <Icon icon='dislike' />
+              <Icon icon='flag' />
             </div>
           </div>
         </Container>
