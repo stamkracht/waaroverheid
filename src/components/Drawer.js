@@ -69,7 +69,9 @@ class Drawer extends React.Component {
 }
 
 Drawer.defaultProps = {
-  text: 'Documents',
+  numberDoc: 0,
+  text: 'documents found in',
+  area: 'selected area',
 }
 
 export default Drawer
