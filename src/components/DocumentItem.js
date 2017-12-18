@@ -50,10 +50,10 @@ class DocumentItem extends Component {
 
   renderDocumentItem = () => {
     return (
-      <div className='c-documents--content'>
+      <div className='c-documents--content' onClick={this.toggleDropdown}>
         <Icon icon='file' iconPosition='left' width='50' height='50'/>
         <div className='c-documents--text'>
-          <h2 onClick={this.toggleDropdown}>{this.props.fileTitle}</h2>
+          <h2>{this.props.fileTitle}</h2>
           <h3>{this.props.fileDate}, {this.props.fileType}</h3>
         </div>
         <div className='c-documents--tag'>

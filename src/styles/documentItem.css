@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.c-documents--content {
+  cursor: pointer;
+}
+
 .c-documents--content .icon {
   top: 50%;
   margin-top: -35px;
