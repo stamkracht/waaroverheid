@@ -35,9 +35,10 @@ class DocumentItem extends Component {
             <div className='c-details--snippets'>
               <p>'{this.props.snippet}'</p>
             </div>
-            <div className='c-details--rating' onClick={this.toggleFlag}>
-              <Icon icon='flag' />
-            </div>
+            <button className='c-details--rating' onClick={this.toggleFlag}>
+              <Icon icon='flag' width='20' height='20'/>
+              {this.state.showFlag && this.renderFlag()}
+            </button>
           </div>
         </Container>
       </div>
@@ -46,7 +47,9 @@ class DocumentItem extends Component {
 
   renderFlag = () => {
     return (
-          <h1>FLAG!</h1>
+      <div className='flagDropdown'>
+        <h3>Report the document:</h3>
+      </div>
     )
   }
 
@@ -83,7 +86,6 @@ class DocumentItem extends Component {
             </button>
           </Container>
             {this.state.show && this.renderDetails()}
-            {this.state.showFlag && this.renderFlag()}
         </div>
     )
   }
