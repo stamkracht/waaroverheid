@@ -9,6 +9,9 @@ class DocumentItem extends Component {
   constructor(props) {
     super(props)
 
+      this.toggleFlag = this.toggleFlag.bind(this);
+      this.handleOutsideClick = this.handleOutsideClick.bind(this);
+
     this.state = {
       show: false,
       showFlag: false,
@@ -19,8 +22,22 @@ class DocumentItem extends Component {
     this.setState({show: !this.state.show})
   }
 
-  toggleFlag = () => {
+  toggleFlag() {
+    if (!this.state.showFlag) {
+    document.addEventListener('click', this.handleOutsideClick, false);
+  } else {
+    document.removeEventListener('click', this.handleOutsideClick, false);
+  }
+
     this.setState({showFlag: !this.state.showFlag})
+  }
+
+  handleOutsideClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    this.toggleFlag();
   }
 
   renderDetails = () => {
@@ -35,10 +52,14 @@ class DocumentItem extends Component {
             <div className='c-details--snippets'>
               <p>'{this.props.snippet}'</p>
             </div>
-            <button className='c-details--rating' onClick={this.toggleFlag}>
-              <Icon icon='flag' width='20' height='20'/>
-              {this.state.showFlag && this.renderFlag()}
-            </button>
+            <div ref={node => { this.node = node; }}>
+              <button className='c-details--rating' onClick={this.toggleFlag}>
+                <Icon icon='flag' width='20' height='20'/>
+              </button>
+              <div>
+                {this.state.showFlag && this.renderFlag()}
+              </div>
+            </div>
           </div>
         </Container>
       </div>
@@ -47,8 +68,13 @@ class DocumentItem extends Component {
 
   renderFlag = () => {
     return (
-      <div className='flagDropdown'>
-        <h3>Report the document:</h3>
+      <div className='c-flagDropdown'>
+        <div className='c-flagDropdown--header'>
+          <h3>Report the document:</h3>
+          <div onClick={this.toggleFlag}>
+            <Icon icon='close' width='20' height='20'/>
+          </div>
+        </div>
       </div>
     )
   }
