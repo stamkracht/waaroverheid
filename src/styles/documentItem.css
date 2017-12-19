@@ -123,11 +123,11 @@
   overflow: auto;
 }
 
-.flagDropdown {
+.c-flagDropdown {
   position: absolute;
   z-index: 1000;
-  right: 0;
-  top: 110%;
+  right: 10px;
+  top: 97%;
   padding: 10px;
   background: white;
   border-radius: 5px;
@@ -141,6 +141,12 @@
   white-space: nowrap;
 }
 
-.flagDropdown h3 {
+.c-flagDropdown h3 {
   font-weight: lighter;
+  line-height: 30px;
+}
+
+.c-flagDropdown .c-flagDropdown--header {
+  display: flex;
+  justify-content: space-between;
 }
