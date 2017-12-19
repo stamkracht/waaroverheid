@@ -24,3 +24,8 @@
 .c-button .c-button--text.center {
   text-align: center;
 }
+
+.c-app .c-button--text.left {
+  padding-left: 0;
+  min-width: 150px;
+}
