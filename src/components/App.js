@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import '../styles/app.css'
 import Filters from './Filters'
 import Drawer from './Drawer'
+import Button from './Button'
 
 class App extends Component {
 
@@ -17,7 +18,10 @@ class App extends Component {
     return (
       <div className="c-app">
         <Filters onSearch={this.onSearch} />
-        <Drawer />
+        <div className='c-alerts'>
+          <Button shadow={true} text='Sign up for alerts' icon='mail' textAlign='left'/>
+        </div>
+        <Drawer numberDoc={10}/>
       </div>
     )
   }
