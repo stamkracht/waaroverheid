@@ -79,7 +79,12 @@ class DocumentItem extends Component {
   }
 
   renderTags = () => {
+<<<<<<< HEAD
     return Array.apply(null, new Array(this.numTags)).map((e, i) => {
+=======
+    let numTags = Math.floor((Math.random() * 10) + 1);
+    return Array.apply(null, new Array(numTags)).map((e, i) => {
+>>>>>>> 30b6679495487eef609b523e820dbce8c7198556
       return <div key={i}><Button shadow={true} text={`Tag ${i+1}`} /></div>
     })
   }
