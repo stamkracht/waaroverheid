@@ -30,8 +30,7 @@ class Drawer extends React.Component {
           <span className='c-drawer--text'> {`${this.props.numberDoc} ${this.props.numberDoc === 1 ? 'document found in ' : 'documents found in '} ${this.props.area}`} </span>
         </div>
       )
-    }
-    else {
+    } else {
       return (
         <div>
           <h1 className='c-drawer--title'> {`${this.props.numberDoc} ${this.props.numberDoc === 1 ? 'document found in ' : 'documents found in '} ${this.props.area}`} </h1>
@@ -60,16 +59,14 @@ class Drawer extends React.Component {
   }
 
   renderDocuments = () => {
-    return (
-      <Documents />
-    )
+    return <Documents num={this.props.numberDoc} />
   }
 
   render() {
     return (
       <div className={`${this.state.activeDrawer ? 'c-drawer active' : 'c-drawer'}`}>
         {this.renderHeader()}
-        {this.state.activeDrawer && this.renderDocuments()}
+        {this.state.activeDrawer && <Documents />}
       </div>
     )
   }

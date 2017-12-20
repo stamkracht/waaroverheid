@@ -22,14 +22,14 @@ class ListItem extends React.Component {
 
   render() {
     return (
-        <li>
-          <Checkbox
-            id={this.props.id}
-            label={this.props.label}
-            active={this.state.checked}
-            onChange={this.handleChange} />
-          <Badge active={this.state.checked} />
-        </li>
+      <li>
+        <Checkbox
+          id={this.props.id}
+          label={this.props.label}
+          active={this.state.checked}
+          onChange={this.handleChange} />
+        <Badge active={this.state.checked} />
+      </li>
     )
   }
 }
