@@ -102,15 +102,15 @@ class DocumentItem extends Component {
 
   render() {
     return (
-        <div className='c-documents--item'>
-          <Container shadow={true}>
-            {this.renderDocumentItem()}
-            <button className='c-documents--dropdown' onClick={this.toggleDropdown}>
-              <Icon icon='arrow' />
-            </button>
-          </Container>
-            {this.state.show && this.renderDetails()}
-        </div>
+      <div className='c-documents--item'>
+        <Container shadow={true}>
+          {this.renderDocumentItem()}
+          <button className='c-documents--dropdown' onClick={this.toggleDropdown}>
+            <Icon icon='arrow' />
+          </button>
+        </Container>
+        {this.state.showDetails && this.renderDetails()}
+      </div>
     )
   }
 }

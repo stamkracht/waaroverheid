@@ -21,7 +21,7 @@ class App extends Component {
         <div className='c-alerts'>
           <Button shadow={true} text='Sign up for alerts' icon='mail' textAlign='left'/>
         </div>
-        <Drawer numberDoc={10}/>
+        <Drawer numberDoc={10} />
       </div>
     )
   }
