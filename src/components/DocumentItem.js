@@ -9,35 +9,33 @@ class DocumentItem extends Component {
   constructor(props) {
     super(props)
 
-      this.toggleFlag = this.toggleFlag.bind(this);
+      this.toggleFlagMenu = this.toggleFlagMenu.bind(this);
       this.handleOutsideClick = this.handleOutsideClick.bind(this);
 
     this.state = {
-      show: false,
-      showFlag: false,
+      showDetails: false,
+      showFlagMenu: false,
     }
   }
 
   toggleDropdown = () => {
-    this.setState({show: !this.state.show})
+    this.setState({showDetails: !this.state.showDetails})
   }
 
-  toggleFlag() {
-    if (!this.state.showFlag) {
-    document.addEventListener('click', this.handleOutsideClick, false);
-  } else {
-    document.removeEventListener('click', this.handleOutsideClick, false);
-  }
-
-    this.setState({showFlag: !this.state.showFlag})
+  toggleFlagMenu() {
+    this.setState({showFlagMenu: !this.state.showFlagMenu}, () => {
+      if (this.state.showFlagMenu) {
+        document.addEventListener('click', this.handleOutsideClick, false);
+      } else {
+        document.removeEventListener('click', this.handleOutsideClick, false);
+      }
+    })
   }
 
   handleOutsideClick(e) {
-    if (this.node.contains(e.target)) {
-      return;
+    if (!this.node.contains(e.target)) {
+      this.toggleFlagMenu();
     }
-
-    this.toggleFlag();
   }
 
   renderDetails = () => {
@@ -53,11 +51,11 @@ class DocumentItem extends Component {
               <p>'{this.props.snippet}'</p>
             </div>
             <div ref={node => { this.node = node; }}>
-              <button className='c-details--rating' onClick={this.toggleFlag}>
+              <button className='c-details--rating' onClick={this.toggleFlagMenu}>
                 <Icon icon='flag' width='20' height='20'/>
               </button>
               <div>
-                {this.state.showFlag && this.renderFlag()}
+                {this.state.showFlagMenu && this.renderFlagMenu()}
               </div>
             </div>
           </div>
@@ -66,12 +64,12 @@ class DocumentItem extends Component {
     )
   }
 
-  renderFlag = () => {
+  renderFlagMenu = () => {
     return (
       <div className='c-flagDropdown'>
         <div className='c-flagDropdown--header'>
           <h3>Report the document:</h3>
-          <div onClick={this.toggleFlag}>
+          <div onClick={this.toggleFlagMenu}>
             <Icon icon='close' width='20' height='20'/>
           </div>
         </div>
