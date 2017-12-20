@@ -9,8 +9,9 @@ class DocumentItem extends Component {
   constructor(props) {
     super(props)
 
-      this.toggleFlagMenu = this.toggleFlagMenu.bind(this);
-      this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.toggleFlagMenu = this.toggleFlagMenu.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.numTags = Math.floor((Math.random() * 10) + 1);
 
     this.state = {
       showDetails: false,
@@ -78,12 +79,10 @@ class DocumentItem extends Component {
   }
 
   renderTags = () => {
-    let tags = ['Tag 1', 'Tag 2', 'Tag 3']
-    return tags.map((tag, id) => {
-      return <div key={id}><Button shadow={true} text={tag} /></div>
+    return Array.apply(null, new Array(this.numTags)).map((e, i) => {
+      return <div key={i}><Button shadow={true} text={`Tag ${i+1}`} /></div>
     })
   }
-
 
   renderDocumentItem = () => {
     return (
