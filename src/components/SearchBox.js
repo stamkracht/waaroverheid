@@ -31,8 +31,6 @@ class SearchBox extends React.Component {
 }
 
 SearchBox.defaultProps = {
-  text: 'Search',
-  textAlign: 'left',
   icon: 'search',
   iconPosition: 'right',
   shadow: true,

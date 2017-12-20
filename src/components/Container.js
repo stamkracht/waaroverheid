@@ -14,10 +14,6 @@ class Container extends React.Component {
 }
 
 Container.defaultProps = {
-  text: 'Default',
-  icon: '',
-  iconPosition: 'right',
-  textAlign: 'center',
   shadow: false,
 }
 
