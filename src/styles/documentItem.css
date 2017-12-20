@@ -15,6 +15,15 @@
 
 .c-documents .c-documents--text {
   margin: 15px 190px 15px 80px;
+@media (max-width: 768px) {
+  .c-documents .c-documents--text {
+    width: 100%;
+  }
+
+  .c-documents .c-documents--tag {
+    width: 100%;
+    padding-top: 0px;
+  }
 }
 
 .c-documents--text h3 {
