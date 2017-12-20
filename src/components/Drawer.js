@@ -16,6 +16,16 @@ class Drawer extends React.Component {
     }
   }
 
+  componentWillMount() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this))
+  }
+
+  handleKeyDown(event) {
+    if ( event.keyCode === 27 ) {
+      this.setState({activeDrawer: false})
+    }
+  }
+
   handleOnClick() {
     this.setState({
       activeDrawer: !this.state.activeDrawer,

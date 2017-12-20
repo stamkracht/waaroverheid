@@ -1,0 +1,10 @@
+.c-zoomControls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.c-zoomControls > .c-container {
+  display: block;
+}
