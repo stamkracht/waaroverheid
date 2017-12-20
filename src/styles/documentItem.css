@@ -6,6 +6,7 @@
 
 .c-documents--content {
   cursor: pointer;
+  position: relative;
 }
 
 .c-documents--content .icon {
@@ -14,7 +15,11 @@
 }
 
 .c-documents .c-documents--text {
-  margin: 15px 190px 15px 80px;
+  padding: 15px 15px 15px 70px;
+  width: 50%;
+  display: inline-block;
+}
+
 @media (max-width: 768px) {
   .c-documents .c-documents--text {
     width: 100%;
@@ -37,11 +42,14 @@
 }
 
 .c-documents--tag {
-  width: 100%;
-  padding-right: 65px;
-  position: absolute;
-  text-align: right;
-  top: 42%;
+  width: 45%;
+  padding-right: 45px;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .c-documents--tag div {
@@ -71,6 +79,7 @@
     height: 50px;
     border: none;
     outline: none;
+    background: transparent;
 }
 
 .c-details .c-container {
