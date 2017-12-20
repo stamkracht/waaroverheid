@@ -95,7 +95,7 @@ class DocumentItem extends Component {
         <div className='c-documents--tag'>
           {this.renderTags()}
         </div>
-    </div>
+      </div>
     )
   }
 
