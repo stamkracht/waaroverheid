@@ -27,3 +27,7 @@
   max-height: calc(75vh - 250px);
   overflow: auto;
 }
+
+.filtersContainer .c-button--text.left {
+  padding-left: 35px;
+}
