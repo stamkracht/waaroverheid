@@ -33,3 +33,15 @@
 .c-documents input {
   width: calc(100% - 60px);
 }
+
+@media (max-width: 670px) {
+  .outerContainer {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .c-documents {
+    padding-top: 15px;
+  }
+}

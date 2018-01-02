@@ -30,3 +30,47 @@
   padding-left: 0;
   min-width: 150px;
 }
+
+@media (max-width: 670px) {
+
+  .c-zoomControls .c-button {
+    padding: 5px;
+  }
+
+  .c-zoomControls > .c-container {
+    font-size: small;
+    margin: 5px 15px;
+  }
+
+  .c-zoomControls .c-container:first-child {
+    margin-top: 15px;
+  }
+
+  .c-button .c-button--text {
+    min-width: 0px;
+  }
+
+  .c-app .c-button--text.left {
+    min-width: 135px;
+    font-size: small;
+  }
+
+  .c-alerts .icon {
+    padding: 5px;
+  }
+
+  .c-alerts .c-button {
+    padding: 5px;
+  }
+
+  .c-filters .c-button {
+    padding: 5px;
+    min-width: 100px;
+    font-size: small;
+  }
+
+  .c-filters .icon.right {
+    visibility: hidden;
+  }
+
+}
