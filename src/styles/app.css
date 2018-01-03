@@ -28,8 +28,3 @@
   right: 0px;
   text-align: left;
 }
-
-@keyframes logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
