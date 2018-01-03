@@ -28,7 +28,7 @@ class Map extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.getFeature(nextProps.level, nextProps.code)
+    this.getFeatures(nextProps.level, nextProps.code)
   }
 
   getFeatures(level=this.props.level, code) {
