@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-.c-app .c-button--text.left {
+.c-alert .c-button--text.left {
   padding-left: 0;
   min-width: 150px;
 }
@@ -40,6 +40,7 @@
   .c-zoomControls > .c-container {
     font-size: small;
     margin: 5px 15px;
+    text-align: center;
   }
 
   .c-zoomControls .c-container:first-child {
@@ -54,16 +55,16 @@
     min-width: 0px;
   }
 
-  .c-app .c-button--text.left {
+  .c-alert .c-button--text.left {
     min-width: 135px;
     font-size: small;
   }
 
-  .c-alerts .icon {
+  .c-alert .icon {
     padding: 5px;
   }
 
-  .c-alerts .c-button {
+  .c-alert .c-button {
     padding: 5px;
   }
 
@@ -71,6 +72,7 @@
     padding: 5px;
     min-width: 100px;
     font-size: small;
+    text-align: center;
   }
 
   .c-filters .c-button .icon.right {
