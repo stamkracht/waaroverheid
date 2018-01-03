@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
+import hash from 'object-hash'
 import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet'
 
 import '../styles/map.css'
+
 
 class Map extends Component {
 
   constructor(props) {
     super(props)
+
+    this.apiUrl = 'https://waaroverheid.cleverdon.hum.uva.nl/municipal/'
+    this.levels = {
+      'PR': { zoom: 8, sub: 'municipalities' },
+      'GM': { zoom: 12, sub: 'districts' },
+      'WK': { zoom: 15, sub: 'neighborhoods' },
+      'BU': { zoom: 18, sub: '' },
+    }
 
     this.state = {
       geo: {},
@@ -14,7 +24,19 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    fetch('https://waaroverheid.cleverdon.hum.uva.nl/municipal/GM0344/districts', {
+    this.getFeatures(this.props.level, 'GM0344')
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getFeature(nextProps.level, nextProps.code)
+  }
+
+  getFeatures(level=this.props.level, code) {
+    let url = `${this.apiUrl}${code}`
+    if ( !!this.levels[level].sub ) {
+      url += `/${this.levels[level].sub}`
+    }
+    fetch(url, {
       method: 'GET',
     })
       .then(d => d.json())
@@ -26,6 +48,14 @@ class Map extends Component {
 
   handleOnClick = (e) => {
     e.target._map.fitBounds(e.target.getBounds())
+    let props = e.target.feature.properties
+    if ( this.props.level === 'GM' ) {
+      this.props.setZoomLevel('WK', props['WK_CODE'])
+    } else if ( this.props.level === 'WK' ) {
+      this.props.setZoomLevel('BU', props['BU_CODE'])
+    } else if ( this.props.level === 'BU' ) {
+      this.props.setZoomLevel('GM', props['GM_CODE'])
+    }
   }
 
   onEachFeature = (feature, layer) => {
@@ -39,22 +69,11 @@ class Map extends Component {
     })
   }
 
-  getZoomLevel(level=this.props.level) {
-    if ( level === 'BU' ) {
-      return 18
-    } else if ( level === 'WK' ) {
-      return 15
-    } else if ( level === 'GM' ) {
-      return 12
-    } else {
-      return 8
-    }
-  }
-
   renderFeatures() {
     if ( Object.keys(this.state.geo).length > 0 ) {
       return (
         <GeoJSON className={'feature'}
+          key={hash(this.state.geo)}
           data={this.state.geo}
           onEachFeature={this.onEachFeature} />
       )
@@ -63,11 +82,12 @@ class Map extends Component {
 
   render() {
     let position = [52.0885, 5.1175]
+    let zoom = this.levels[this.props.level].zoom
     return (
       <div className="c-map">
         <LeafletMap
           center={position}
-          zoom={this.getZoomLevel()}
+          zoom={12}
           zoomControl={false}
           dragging={false}
           tap={false}
@@ -91,6 +111,8 @@ class Map extends Component {
 
 Map.defaultProps = {
   level: 'GM',
+  code: 'WK0344',
+  setZoomLevel: undefined,
 }
 
 export default Map
