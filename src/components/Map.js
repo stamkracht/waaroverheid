@@ -23,10 +23,11 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    let url = `${this.apiUrl}${this.props.level}0344/`
-    url += this.levels[this.props.level].sub
+    this.fetchPolygons()
+  }
 
-    fetch(url, {
+  fetchPolygons(level=this.props.level) {
+    fetch(`${this.apiUrl}${level}0344/${this.levels[level].sub}`, {
       method: 'GET',
     })
       .then(d => d.json())
