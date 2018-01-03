@@ -3,10 +3,19 @@ import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet'
 
 import '../styles/map.css'
 
+
 class Map extends Component {
 
   constructor(props) {
     super(props)
+
+    this.apiUrl = 'https://waaroverheid.cleverdon.hum.uva.nl/municipal/'
+    this.levels = {
+      'PR': { zoom: 8, sub: 'municipalities' },
+      'GM': { zoom: 12, sub: 'districts' },
+      'WK': { zoom: 15, sub: 'neighborhoods' },
+      'BU': { zoom: 18, sub: '' },
+    }
 
     this.state = {
       geo: {},
@@ -14,7 +23,10 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    fetch('https://waaroverheid.cleverdon.hum.uva.nl/municipal/GM0344/districts', {
+    let url = `${this.apiUrl}${this.props.level}0344/`
+    url += this.levels[this.props.level].sub
+
+    fetch(url, {
       method: 'GET',
     })
       .then(d => d.json())
@@ -39,18 +51,6 @@ class Map extends Component {
     })
   }
 
-  getZoomLevel(level=this.props.level) {
-    if ( level === 'BU' ) {
-      return 18
-    } else if ( level === 'WK' ) {
-      return 15
-    } else if ( level === 'GM' ) {
-      return 12
-    } else {
-      return 8
-    }
-  }
-
   renderFeatures() {
     if ( Object.keys(this.state.geo).length > 0 ) {
       return (
@@ -63,11 +63,12 @@ class Map extends Component {
 
   render() {
     let position = [52.0885, 5.1175]
+    let zoom = this.levels[this.props.level].zoom
     return (
       <div className="c-map">
         <LeafletMap
           center={position}
-          zoom={this.getZoomLevel()}
+          zoom={zoom}
           zoomControl={false}
           dragging={false}
           tap={false}
