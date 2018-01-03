@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import Map from './Map'
 import ZoomControls from './ZoomControls'
@@ -6,7 +6,7 @@ import Alert from './Alert'
 import Filters from './Filters'
 import Drawer from './Drawer'
 
-class App extends Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props)
@@ -23,15 +23,15 @@ class App extends Component {
     this.setState({filters: false})
   }
 
-  setZoomLevel(level) {
+  setZoomLevel = (level) => {
     this.setState({level})
   }
 
   render() {
     return (
-      <div className="c-app">
+      <div className='c-app'>
         <Map level={this.state.level} />
-        <ZoomControls setZoomLevel={this.setZoomLevel.bind(this)} />
+        <ZoomControls setZoomLevel={this.setZoomLevel} />
         <Filters onSearch={this.onSearch} />
         <Alert />
         <Drawer numberDoc={10} />
