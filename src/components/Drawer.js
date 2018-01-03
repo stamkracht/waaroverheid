@@ -2,6 +2,7 @@ import React from 'react'
 
 import Documents from './Documents'
 import Icon from './Icon'
+import { classNames } from '../utilities/class'
 
 import '../styles/drawer.css'
 import '../styles/button.css'
@@ -57,7 +58,7 @@ class Drawer extends React.Component {
 
   renderHamburger() {
     return (
-      <div className={`${this.state.activeDrawer ? 'c-hamburger active' : 'c-hamburger'}`}>
+      <div className={classNames('c-hamburger', {'active': this.state.activeDrawer})}>
         <span className='line' />
         <span className='line' />
         <span className='line' />
@@ -80,7 +81,7 @@ class Drawer extends React.Component {
 
   render() {
     return (
-      <div className={`${this.state.activeDrawer ? 'c-drawer active' : 'c-drawer'}`}>
+      <div className={classNames('c-drawer', {'active': this.state.activeDrawer})}>
         {this.renderHeader()}
         {this.state.activeDrawer && <Documents />}
       </div>
