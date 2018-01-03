@@ -24,11 +24,19 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    this.fetchPolygons()
+    this.getFeatures(this.props.level, 'GM0344')
   }
 
-  fetchPolygons(level=this.props.level) {
-    fetch(`${this.apiUrl}${level}0344/${this.levels[level].sub}`, {
+  componentWillReceiveProps(nextProps) {
+    this.getFeature(nextProps.level, nextProps.code)
+  }
+
+  getFeatures(level=this.props.level, code) {
+    let url = `${this.apiUrl}${code}`
+    if ( !!this.levels[level].sub ) {
+      url += `/${this.levels[level].sub}`
+    }
+    fetch(url, {
       method: 'GET',
     })
       .then(d => d.json())
