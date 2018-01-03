@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 
-import '../styles/app.css'
-
 import Map from './Map'
 import ZoomControls from './ZoomControls'
+import Alert from './Alert'
 import Filters from './Filters'
 import Drawer from './Drawer'
-import Button from './Button'
 
 class App extends Component {
 
@@ -35,9 +33,7 @@ class App extends Component {
         <Map level={this.state.level} />
         <ZoomControls setZoomLevel={this.setZoomLevel.bind(this)} />
         <Filters onSearch={this.onSearch} />
-        <div className='c-alerts'>
-          <Button shadow={true} text='Sign up for alerts' icon='mail' textAlign='left'/>
-        </div>
+        <Alert />
         <Drawer numberDoc={10} />
       </div>
     )
