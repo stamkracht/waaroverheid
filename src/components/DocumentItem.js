@@ -26,9 +26,9 @@ class DocumentItem extends Component {
   toggleFlagMenu() {
     this.setState({showFlagMenu: !this.state.showFlagMenu}, () => {
       if (this.state.showFlagMenu) {
-        document.addEventListener('click', this.handleOutsideClick, false)
+        document.addEventListener('mousedown', this.handleOutsideClick, false)
       } else {
-        document.removeEventListener('click', this.handleOutsideClick, false)
+        document.removeEventListener('mousedown', this.handleOutsideClick, false)
       }
     })
   }
