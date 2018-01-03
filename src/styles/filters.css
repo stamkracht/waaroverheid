@@ -30,6 +30,36 @@
   overflow: auto;
 }
 
+.filtersHeader {
+  display: none;
+}
+
 .filtersContainer .c-button--text.left {
   padding-left: 35px;
+}
+
+@media (max-width: 670px) {
+
+  .filtersDropdown {
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    min-height: none;
+    opacity: 1;
+  }
+
+  .filtersDropdown .filtersHeader {
+    display: block;
+  }
+
+  .filtersHeader .icon.right {
+    height: fit-content;
+  }
+
+  .filtersContainer {
+    max-height: calc(75vh - 160px);
+  }
 }

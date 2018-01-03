@@ -22,3 +22,15 @@
   outline: 0;
   border: none;
 }
+
+@media (max-width: 670px) {
+
+  .c-searchBox {
+    width: 80vw;
+  }
+
+  .filtersDropdown > .c-container {
+    margin-top: 45px;
+  }
+
+}

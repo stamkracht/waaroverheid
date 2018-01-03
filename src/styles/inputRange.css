@@ -19,3 +19,12 @@
   background: #ed6000;
   border: 1px solid #ed6000;
 }
+
+@media (max-width: 670px) {
+
+  .input-range {
+    width: 80vw;
+    margin: 15px auto 40px auto;
+  }
+
+}

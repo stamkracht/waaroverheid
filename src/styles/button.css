@@ -46,6 +46,10 @@
     margin-top: 15px;
   }
 
+  .c-zoomControls .c-button.hovering:hover {
+    box-shadow: none;
+  }
+
   .c-button .c-button--text {
     min-width: 0px;
   }
@@ -69,8 +73,8 @@
     font-size: small;
   }
 
-  .c-filters .icon.right {
-    visibility: hidden;
+  .c-filters .c-button .icon.right {
+    display: none;
   }
 
 }
