@@ -86,7 +86,7 @@ class Map extends Component {
   }
 
   render() {
-    let position = [52.0885, 5.1175]
+    let position = [52.08425313826753, 5.082550048828126]
     return (
       <div className="c-map">
         <LeafletMap
