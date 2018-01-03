@@ -82,7 +82,6 @@ class Map extends Component {
 
   render() {
     let position = [52.0885, 5.1175]
-    let zoom = this.levels[this.props.level].zoom
     return (
       <div className="c-map">
         <LeafletMap
