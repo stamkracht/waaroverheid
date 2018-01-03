@@ -48,6 +48,14 @@ class Map extends Component {
 
   handleOnClick = (e) => {
     e.target._map.fitBounds(e.target.getBounds())
+    let props = e.target.feature.properties
+    if ( this.props.level === 'GM' ) {
+      this.props.setZoomLevel('WK', props['WK_CODE'])
+    } else if ( this.props.level === 'WK' ) {
+      this.props.setZoomLevel('BU', props['BU_CODE'])
+    } else if ( this.props.level === 'BU' ) {
+      this.props.setZoomLevel('GM', props['GM_CODE'])
+    }
   }
 
   onEachFeature = (feature, layer) => {
