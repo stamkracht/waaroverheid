@@ -13,6 +13,7 @@ class App extends React.Component {
 
     this.state = {
       level: 'GM',
+      code: '',
     }
   }
 
@@ -23,14 +24,16 @@ class App extends React.Component {
     this.setState({filters: false})
   }
 
-  setZoomLevel = (level) => {
-    this.setState({level})
+  setZoomLevel = (level, code) => {
+    this.setState({level, code})
   }
 
   render() {
     return (
       <div className='c-app'>
-        <Map level={this.state.level} />
+        <Map level={this.state.level}
+          code={this.state.code}
+          setZoomLevel={this.setZoomLevel} />
         <ZoomControls setZoomLevel={this.setZoomLevel} />
         <Filters onSearch={this.onSearch} />
         <Alert />
