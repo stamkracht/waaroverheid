@@ -34,6 +34,12 @@ class Drawer extends React.Component {
     })
   }
 
+  handleOnTouchMove(event) {
+    this.setState({
+      activeDrawer: !this.state.activeDrawer,
+    })
+  }
+
   renderHeaderContent() {
     let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 ? 's' : ''} found in ${this.props.area}`
     if ( this.state.activeDrawer === false ) {
@@ -68,7 +74,9 @@ class Drawer extends React.Component {
 
   renderHeader() {
     return (
-      <div className='c-drawer--header' onClick={this.handleOnClick.bind(this)}>
+      <div className='c-drawer--header'
+        onTouchMove={this.handleOnTouchMove.bind(this)}
+        onClick={this.handleOnClick.bind(this)}>
         {this.renderHeaderContent()}
         {this.renderHamburger()}
       </div>
