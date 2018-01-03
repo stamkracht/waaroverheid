@@ -87,7 +87,7 @@ class Map extends Component {
       <div className="c-map">
         <LeafletMap
           center={position}
-          zoom={zoom}
+          zoom={12}
           zoomControl={false}
           dragging={false}
           tap={false}
@@ -111,6 +111,8 @@ class Map extends Component {
 
 Map.defaultProps = {
   level: 'GM',
+  code: 'WK0344',
+  setZoomLevel: undefined,
 }
 
 export default Map
