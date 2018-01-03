@@ -34,7 +34,7 @@ class DocumentItem extends Component {
   }
 
   handleOutsideClick(e) {
-    if (!this.node.contains(e.target)) {
+    if (!this.flagMenu.contains(e.target)) {
       this.toggleFlagMenu();
     }
   }
@@ -51,7 +51,7 @@ class DocumentItem extends Component {
             <div className='c-details--snippets'>
               <p>'{this.props.snippet}'</p>
             </div>
-            <div ref={node => { this.node = node; }}>
+            <div ref={node => { this.flagMenu = node; }}>
               <button className='c-details--rating' onClick={this.toggleFlagMenu}>
                 <Icon icon='flag' width='20' height='20'/>
               </button>
