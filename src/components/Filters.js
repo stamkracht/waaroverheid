@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Button from './Button'
 import InputRange from 'react-input-range'
@@ -77,7 +76,7 @@ class Filters extends React.Component {
 }
 
 Filters.defaultProps = {
-  onSearch: PropTypes.func,
+  onSearch: undefined,
 }
 
 export default Filters

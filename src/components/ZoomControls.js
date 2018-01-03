@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Button from './Button'
 import '../styles/zoomControls.css'
@@ -19,7 +18,7 @@ class ZoomControls extends React.Component {
 }
 
 ZoomControls.defaultProps = {
-  setZoomLevel: PropTypes.func,
+  setZoomLevel: undefined,
 }
 
 export default ZoomControls
