@@ -14,7 +14,7 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    fetch('https://waaroverheid.cleverdon.hum.uva.nl/municipal/06/neighborhoods', {
+    fetch('https://waaroverheid.cleverdon.hum.uva.nl/municipal/GM0344/districts', {
       method: 'GET',
     })
       .then(d => d.json())
@@ -30,8 +30,8 @@ class Map extends Component {
 
   onEachFeature = (feature, layer) => {
     let tooltip = `
-      <h1>${feature.properties['NAAM']}</h1>
-      <h1>#${feature.properties['KODE']}</h1>
+      <h1>${feature.properties['GM_NAAM']}</h1>
+      <h1>#${feature.properties['GM_CODE']}</h1>
     `
     layer.bindTooltip(tooltip, {className: 'c-tooltip'})
     layer.on({
