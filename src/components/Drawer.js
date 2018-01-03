@@ -1,10 +1,12 @@
 import React from 'react'
 
+import Documents from './Documents'
 import Icon from './Icon'
+import { classNames } from '../utilities/class'
 
 import '../styles/drawer.css'
 import '../styles/button.css'
-import Documents from './Documents'
+
 
 class Drawer extends React.Component {
 
@@ -33,17 +35,22 @@ class Drawer extends React.Component {
   }
 
   renderHeaderContent() {
-    if(this.state.activeDrawer === false) {
+    let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 ? 's' : ''} found in ${this.props.area}`
+    if ( this.state.activeDrawer === false ) {
       return (
         <div>
           <Icon icon='file' iconPosition='left' />
-          <span className='c-drawer--text'> {`${this.props.numberDoc} ${this.props.numberDoc === 1 ? 'document found in ' : 'documents found in '} ${this.props.area}`} </span>
+          <span className='c-drawer--text'>
+            {text}
+          </span>
         </div>
       )
     } else {
       return (
         <div>
-          <h1 className='c-drawer--title'> {`${this.props.numberDoc} ${this.props.numberDoc === 1 ? 'document found in ' : 'documents found in '} ${this.props.area}`} </h1>
+          <h1 className='c-drawer--title'>
+            {text}
+          </h1>
         </div>
       )
     }
@@ -51,7 +58,7 @@ class Drawer extends React.Component {
 
   renderHamburger() {
     return (
-      <div className={`${this.state.activeDrawer ? 'c-hamburger active' : 'c-hamburger'}`}>
+      <div className={classNames('c-hamburger', {'active': this.state.activeDrawer})}>
         <span className='line' />
         <span className='line' />
         <span className='line' />
@@ -74,7 +81,7 @@ class Drawer extends React.Component {
 
   render() {
     return (
-      <div className={`${this.state.activeDrawer ? 'c-drawer active' : 'c-drawer'}`}>
+      <div className={classNames('c-drawer', {'active': this.state.activeDrawer})}>
         {this.renderHeader()}
         {this.state.activeDrawer && <Documents />}
       </div>
