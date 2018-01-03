@@ -14,7 +14,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      level: 15,
+      level: 'GM',
     }
   }
 
@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="c-app">
-        <Map zoom={this.state.level} />
+        <Map level={this.state.level} />
         <ZoomControls setZoomLevel={this.setZoomLevel.bind(this)} />
         <Filters onSearch={this.onSearch} />
         <div className='c-alerts'>

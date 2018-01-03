@@ -39,6 +39,18 @@ class Map extends Component {
     })
   }
 
+  getZoomLevel(level=this.props.level) {
+    if ( level === 'BU' ) {
+      return 18
+    } else if ( level === 'WK' ) {
+      return 15
+    } else if ( level === 'GM' ) {
+      return 12
+    } else {
+      return 8
+    }
+  }
+
   renderFeatures() {
     if ( Object.keys(this.state.geo).length > 0 ) {
       return (
@@ -55,7 +67,7 @@ class Map extends Component {
       <div className="c-map">
         <LeafletMap
           center={position}
-          zoom={this.props.zoom}
+          zoom={this.getZoomLevel()}
           zoomControl={false}
           dragging={false}
           tap={false}
@@ -78,7 +90,7 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
-  zoom: 15,
+  level: 'GM',
 }
 
 export default Map
