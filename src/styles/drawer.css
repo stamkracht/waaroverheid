@@ -29,6 +29,10 @@
   margin-left: 35px;
   font-size: large;
   font-weight: lighter;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 70vw;
 }
 
 .c-drawer .icon {
@@ -75,4 +79,36 @@
 
 .c-drawer .c-drawer--title {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+
+  .c-drawer .c-drawer--text {
+    font-size: medium;
+  }
+
+  .c-drawer--title {
+    font-size: large;
+    padding: 0px 40px;
+  }
+
+  .c-hamburger.active {
+    top: 13px;
+    right: 12px;
+  }
+
+  .c-hamburger {
+    top: 12px;
+    right: 16px;
+  }
+
+  .c-hamburger .line {
+    width: 26px;
+    height: 3px;
+  }
+
+  .c-hamburger.active .line {
+    margin: 10px auto;
+  }
+
 }

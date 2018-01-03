@@ -22,7 +22,7 @@
 
 @media (max-width: 900px) {
   .c-documents .c-documents--text {
-    width: 100%;
+    width: 92%;
   }
 
   .c-documents .c-documents--tag {
@@ -127,6 +127,7 @@
   -o-transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
   transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
   transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1), -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+  background: white;
 }
 
 .c-details .icon {
@@ -166,4 +167,22 @@
 .c-flagDropdown .c-flagDropdown--header {
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .c-documents .c-button {
+    font-size: smaller;
+  }
+
+  .c-documents--text h2 {
+    font-size: larger;
+  }
+
+  .c-documents--text h3 {
+    font-size: small;
+  }
+
+  .c-details h3, p  {
+    font-size: small;
+  }
 }

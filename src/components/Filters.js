@@ -4,6 +4,7 @@ import Button from './Button'
 import InputRange from 'react-input-range'
 import '../styles/filters.css'
 import SearchBox from './SearchBox'
+import Icon from './Icon'
 import FilterList from './FilterList'
 import 'react-input-range/lib/css/index.css'
 import '../styles/inputRange.css'
@@ -15,7 +16,7 @@ class Filters extends React.Component {
     super(props)
 
     this.state = {
-      show: false,
+      showFilters: false,
       value: { min: 2, max: 10 },
     }
   }
@@ -28,12 +29,12 @@ class Filters extends React.Component {
     }
   }
 
-  toggleShow = () => {
-    this.setState({show: !this.state.show})
-  }
-
   handleOnChange = (value) => {
     this.setState({ value })
+  }
+
+  toggleShowFilters = () => {
+    this.setState({showFilters: !this.state.showFilters})
   }
 
   renderFilters = () => {
@@ -44,6 +45,9 @@ class Filters extends React.Component {
 
     return (
       <div className='filtersDropdown'>
+        <div className='filtersHeader' onClick={this.toggleShowFilters}>
+          <Icon icon='close' width='20' height='20'/>
+        </div>
         <SearchBox onSubmit={this.props.onSearch}/>
         <InputRange
           formatLabel={this.setLabel}
@@ -67,9 +71,9 @@ class Filters extends React.Component {
     return (
       <div className='c-filters'>
         <div className='buttonContainer'>
-          <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleShow} />
+          <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleShowFilters} />
         </div>
-        {this.state.show && this.renderFilters()}
+        {this.state.showFilters && this.renderFilters()}
       </div>
     )
   }
