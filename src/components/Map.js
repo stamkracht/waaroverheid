@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import hash from 'object-hash'
 import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet'
 
 import '../styles/map.css'
@@ -56,6 +57,7 @@ class Map extends Component {
     if ( Object.keys(this.state.geo).length > 0 ) {
       return (
         <GeoJSON className={'feature'}
+          key={hash(this.state.geo)}
           data={this.state.geo}
           onEachFeature={this.onEachFeature} />
       )
