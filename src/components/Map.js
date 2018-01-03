@@ -31,6 +31,11 @@ class Map extends Component {
     this.getFeatures(nextProps.level, nextProps.code)
   }
 
+  componentDidUpdate() {
+    let element = this.featureNode.leafletElement
+    element._map.fitBounds(element.getBounds())
+  }
+
   getFeatures(level=this.props.level, code) {
     let url = `${this.apiUrl}${code}`
     if ( !!this.levels[level].sub ) {
@@ -47,7 +52,6 @@ class Map extends Component {
   }
 
   handleOnClick = (e) => {
-    e.target._map.fitBounds(e.target.getBounds())
     let props = e.target.feature.properties
     if ( this.props.level === 'GM' ) {
       this.props.setZoomLevel('WK', props['WK_CODE'])
@@ -73,6 +77,7 @@ class Map extends Component {
     if ( Object.keys(this.state.geo).length > 0 ) {
       return (
         <GeoJSON className={'feature'}
+          ref={(node) => { this.featureNode = node }}
           key={hash(this.state.geo)}
           data={this.state.geo}
           onEachFeature={this.onEachFeature} />
