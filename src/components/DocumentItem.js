@@ -9,9 +9,9 @@ class DocumentItem extends Component {
   constructor(props) {
     super(props)
 
-    this.toggleFlagMenu = this.toggleFlagMenu.bind(this);
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
-    this.numTags = Math.floor((Math.random() * 10) + 1);
+    this.toggleFlagMenu = this.toggleFlagMenu.bind(this)
+    this.handleOutsideClick = this.handleOutsideClick.bind(this)
+    this.numTags = Math.floor((Math.random() * 10) + 1)
 
     this.state = {
       showDetails: false,
@@ -26,16 +26,16 @@ class DocumentItem extends Component {
   toggleFlagMenu() {
     this.setState({showFlagMenu: !this.state.showFlagMenu}, () => {
       if (this.state.showFlagMenu) {
-        document.addEventListener('click', this.handleOutsideClick, false);
+        document.addEventListener('click', this.handleOutsideClick, false)
       } else {
-        document.removeEventListener('click', this.handleOutsideClick, false);
+        document.removeEventListener('click', this.handleOutsideClick, false)
       }
     })
   }
 
   handleOutsideClick(e) {
     if (!this.flagMenu.contains(e.target)) {
-      this.toggleFlagMenu();
+      this.toggleFlagMenu()
     }
   }
 
@@ -51,7 +51,7 @@ class DocumentItem extends Component {
             <div className='c-details--snippets'>
               <p>'{this.props.snippet}'</p>
             </div>
-            <div ref={node => { this.flagMenu = node; }}>
+            <div ref={node => { this.flagMenu = node }}>
               <button className='c-details--rating' onClick={this.toggleFlagMenu}>
                 <Icon icon='flag' width='20' height='20'/>
               </button>
@@ -80,7 +80,11 @@ class DocumentItem extends Component {
 
   renderTags = () => {
     return Array.apply(null, new Array(this.numTags)).map((e, i) => {
-      return <div key={i}><Button shadow={true} text={`Tag ${i+1}`} /></div>
+      return (
+        <div key={i}>
+          <Button shadow={true} text={`Tag ${i+1}`} />
+        </div>
+      )
     })
   }
 
