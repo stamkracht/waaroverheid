@@ -29,8 +29,17 @@
     width: 80vw;
   }
 
-  .filtersDropdown > .c-container {
+  .filtersHeader + .c-container {
     margin-top: 45px;
   }
+
+}
+
+@media (max-height: 360px) {
+
+  .filtersHeader + .c-container {
+    margin-top: 25px;
+  }
+
 
 }

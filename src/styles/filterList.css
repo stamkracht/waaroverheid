@@ -7,9 +7,10 @@
 
 .c-filterList ul {
   display: block;
-  width: 85%;
+  width: 100%;
   left: 0;
-  padding-left: 28px;
+  padding-left: 29px;
+  padding-right: 29px;
   margin-top: 5px;
   list-style: none;
 }
