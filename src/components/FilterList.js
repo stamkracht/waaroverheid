@@ -32,6 +32,7 @@ class FilterList extends React.Component {
           icon='arrow'
           iconPosition='left'
           textAlign='left'
+          shadow={false}
           hovering={false}
           pointRight={this.state.pointRight}
           onClick={this.toggleDropdown}/>

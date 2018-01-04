@@ -5,7 +5,6 @@ import Icon from './Icon'
 import { classNames } from '../utilities/class'
 
 import '../styles/drawer.css'
-import '../styles/button.css'
 
 
 class Drawer extends React.Component {

@@ -61,7 +61,7 @@ class Filters extends React.Component {
           <FilterList text={'Veggies'} filters={veggies} />
           <FilterList text={'Spices'} filters={spices} />
         </div>
-        <Button text='Apply' shadow={true} onClick={this.props.onSearch}  />
+        <Button text='Apply' onClick={this.props.onSearch}  />
       </div>
     )
   }
@@ -71,7 +71,7 @@ class Filters extends React.Component {
     return (
       <div className='c-filters'>
         <div className='buttonContainer'>
-          <Button text='Filters' icon='arrow' shadow={true} onClick={this.toggleShowFilters} />
+          <Button text='Filters' icon='arrow' onClick={this.toggleShowFilters} />
         </div>
         {this.state.showFilters && this.renderFilters()}
       </div>
