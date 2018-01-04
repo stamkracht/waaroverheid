@@ -5,8 +5,11 @@ import '../styles/zoomControls.css'
 
 class ZoomControls extends React.Component {
 
+
+
   renderButton(label, level) {
-    if ( level === 'GM' || this.props.level === 'BU' || level === this.props.level ) {
+    if ( (this.props.level === 'WK' && level === 'GM')
+        || (this.props.level === 'BU' && (level === 'WK' || level === 'GM' ) ) ) {
       return (
         <Button text={label} shadow={true}
           onClick={() => this.props.setZoomLevel(level)}>
