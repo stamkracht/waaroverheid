@@ -16,6 +16,12 @@ class ZoomControls extends React.Component {
   render() {
     return (
       <div className='c-zoomControls'>
+        <Button
+          text='Kies gemeente'
+          icon='arrow'
+          iconPosition='right'
+          textAlign='center'
+          pointRight={true} />
         {this.renderButton('Gemeente', 'GM')}
         {this.renderButton('Wijk', 'WK')}
         {this.renderButton('Buurt', 'BU')}
