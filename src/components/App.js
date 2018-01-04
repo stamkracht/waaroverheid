@@ -54,7 +54,9 @@ class App extends React.Component {
           level={this.state.level}
           code={this.state.code}
           setZoomLevel={this.setZoomLevel} />
-        <ZoomControls setZoomLevel={this.setZoomLevel} />
+        <ZoomControls
+          level={this.state.level}
+          setZoomLevel={this.setZoomLevel} />
         <Filters onSearch={this.onSearch} />
         <Alert />
         <Drawer numberDoc={10} />

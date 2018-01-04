@@ -18,6 +18,7 @@ class ZoomControls extends React.Component {
 
 ZoomControls.defaultProps = {
   setZoomLevel: undefined,
+  level: 'GM',
 }
 
 export default ZoomControls
