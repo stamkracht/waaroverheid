@@ -30,3 +30,7 @@
   top: 0;
   right: 0;
 }
+
+.c-filterList .icon {
+  top: -4px;
+}
