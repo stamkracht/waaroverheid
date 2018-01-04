@@ -5,12 +5,22 @@ import '../styles/zoomControls.css'
 
 class ZoomControls extends React.Component {
 
+  renderButton(label, level) {
+    if ( level === 'GM' || this.props.level === 'BU' || level === this.props.level ) {
+      return (
+        <Button text={label} shadow={true}
+          onClick={() => this.props.setZoomLevel(level)}>
+        </Button>
+      )
+    }
+  }
+
   render() {
     return (
       <div className='c-zoomControls'>
-        <Button text='Gemeente' onClick={() => this.props.setZoomLevel('GM')} shadow={true} />
-        <Button text='Wijk' onClick={() => this.props.setZoomLevel('WK')} shadow={true} />
-        <Button text='Buurt' onClick={() => this.props.setZoomLevel('BU')} shadow={true} />
+        {this.renderButton('Gemeente', 'GM')}
+        {this.renderButton('Wijk', 'WK')}
+        {this.renderButton('Buurt', 'BU')}
       </div>
     )
   }
