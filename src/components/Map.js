@@ -7,48 +7,11 @@ import '../styles/map.css'
 
 class Map extends Component {
 
-  constructor(props) {
-    super(props)
-
-    this.apiUrl = 'https://waaroverheid.cleverdon.hum.uva.nl/municipal/'
-    this.levels = {
-      'PR': { zoom: 8, sub: 'municipalities' },
-      'GM': { zoom: 12, sub: 'districts' },
-      'WK': { zoom: 15, sub: 'neighborhoods' },
-      'BU': { zoom: 18, sub: '' },
-    }
-
-    this.state = {
-      geo: {},
-    }
-  }
-
-  componentDidMount() {
-    this.getFeatures(this.props.level, 'GM0344')
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.getFeatures(nextProps.level, nextProps.code)
-  }
-
   componentDidUpdate() {
-    let element = this.featureNode.leafletElement
-    element._map.fitBounds(element.getBounds())
-  }
-
-  getFeatures(level=this.props.level, code) {
-    let url = `${this.apiUrl}${code}`
-    if ( !!this.levels[level].sub ) {
-      url += `/${this.levels[level].sub}`
+    if ( !!this.featureNode ) {
+      let element = this.featureNode.leafletElement
+      element._map.fitBounds(element.getBounds())
     }
-    fetch(url, {
-      method: 'GET',
-    })
-      .then(d => d.json())
-      .then(geo => {
-        this.setState({geo})
-      })
-      .catch(err => console.log(err))
   }
 
   handleOnClick = (e) => {
@@ -74,12 +37,12 @@ class Map extends Component {
   }
 
   renderFeatures() {
-    if ( Object.keys(this.state.geo).length > 0 ) {
+    if ( Object.keys(this.props.geo).length > 0 ) {
       return (
         <GeoJSON className={'feature'}
           ref={(node) => { this.featureNode = node }}
-          key={hash(this.state.geo)}
-          data={this.state.geo}
+          key={hash(this.props.geo)}
+          data={this.props.geo}
           onEachFeature={this.onEachFeature} />
       )
     }
@@ -114,8 +77,8 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
+  geo: {},
   level: 'GM',
-  code: 'WK0344',
   setZoomLevel: undefined,
 }
 
