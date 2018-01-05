@@ -14,12 +14,12 @@ class DocumentItem extends Component {
     this.numTags = Math.floor((Math.random() * 10) + 1)
 
     this.state = {
-      showDetails: false,
+      active: true,
     }
   }
 
-  toggleDropdown = () => {
-    this.setState({showDetails: !this.state.showDetails})
+  toggleDocument() {
+    this.setState({active: !this.state.active})
   }
 
   toggleReporting = () => {
@@ -39,7 +39,7 @@ class DocumentItem extends Component {
   }
 
   renderDetails = () => {
-    if ( this.state.showDetails ) {
+    if ( this.state.active ) {
       return (
         <div className='c-details'>
           <Container shadow={true}>
@@ -71,7 +71,8 @@ class DocumentItem extends Component {
 
   renderDocumentItem = () => {
     return (
-      <div className='c-documents--content' onClick={this.toggleDropdown}>
+      <div className='c-documents--content'
+        onClick={this.toggleDocument.bind(this)}>
         <Icon icon='file' iconPosition='left' width='50' height='50'/>
         <div className='c-documents--text'>
           <h2>{this.props.fileTitle}</h2>
@@ -89,10 +90,12 @@ class DocumentItem extends Component {
       <div className='c-documents--item'>
         <Container shadow={true}>
           {this.renderDocumentItem()}
-          <button className='c-documents--dropdown' onClick={this.toggleDropdown}>
+          <button className='c-documents--dropdown'
+            onClick={this.toggleDocument.bind(this)}>
             <Icon icon='arrow' />
           </button>
         </Container>
+        {this.renderDetails()}
       </div>
     )
   }
