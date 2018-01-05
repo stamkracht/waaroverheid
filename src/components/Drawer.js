@@ -13,7 +13,7 @@ class Drawer extends React.Component {
     super(props)
 
     this.state = {
-      activeDrawer: false,
+      active: false,
     }
   }
 
@@ -23,19 +23,19 @@ class Drawer extends React.Component {
 
   handleKeyDown(event) {
     if ( event.keyCode === 27 ) {
-      this.setState({activeDrawer: false})
+      this.setState({active: false})
     }
   }
 
   handleOnClick() {
     this.setState({
-      activeDrawer: !this.state.activeDrawer,
+      active: !this.state.active,
     })
   }
 
   renderHeaderContent() {
     let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 ? 's' : ''} found in ${this.props.area}`
-    if ( this.state.activeDrawer === false ) {
+    if ( this.state.active === false ) {
       return (
         <div>
           <Icon icon='file' iconPosition='left' />
@@ -57,7 +57,7 @@ class Drawer extends React.Component {
 
   renderHamburger() {
     return (
-      <div className={classNames('c-hamburger', {'active': this.state.activeDrawer})}>
+      <div className={classNames('c-hamburger', {'active': this.state.active})}>
         <span className='line' />
         <span className='line' />
         <span className='line' />
@@ -80,9 +80,9 @@ class Drawer extends React.Component {
 
   render() {
     return (
-      <div className={classNames('c-drawer', {'active': this.state.activeDrawer})}>
+      <div className={classNames('c-drawer', {'active': this.state.active})}>
         {this.renderHeader()}
-        {this.state.activeDrawer && <Documents />}
+        {this.state.active && <Documents />}
       </div>
     )
   }
