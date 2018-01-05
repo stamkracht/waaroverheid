@@ -28,11 +28,11 @@ class Reporting extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside, false)
+    document.addEventListener('mouseup', this.handleClickOutside, false)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside, false)
+    document.removeEventListener('mouseup', this.handleClickOutside, false)
   }
 
   handleClickOutside(e) {
