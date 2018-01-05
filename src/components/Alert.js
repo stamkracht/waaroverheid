@@ -10,7 +10,7 @@ class Alert extends React.Component {
   render() {
     return (
       <div className='c-alert'>
-        <Button shadow={true} text='Sign up for alerts' icon='mail' textAlign='left'/>
+        <Button text='Sign up for alerts' icon='mail' textAlign='left'/>
       </div>
     )
   }

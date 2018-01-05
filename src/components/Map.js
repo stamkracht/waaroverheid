@@ -26,10 +26,23 @@ class Map extends Component {
   }
 
   onEachFeature = (feature, layer) => {
-    let tooltip = `
-      <h1>${feature.properties['GM_NAAM']}</h1>
-      <h1>#${feature.properties['GM_CODE']}</h1>
-    `
+    let tooltip
+    if ( this.props.level === 'GM' ) {
+      tooltip = `
+        <h1>${feature.properties['WK_NAAM']}</h1>
+        <h1>#${feature.properties['WK_CODE']}</h1>
+      `
+    } else if ( this.props.level === 'WK' ) {
+      tooltip = `
+        <h1>${feature.properties['BU_NAAM']}</h1>
+        <h1>#${feature.properties['BU_CODE']}</h1>
+      `
+    } else if ( this.props.level === 'BU' ) {
+      tooltip = `
+        <h1>${feature.properties['BU_NAAM']}</h1>
+        <h1>#${feature.properties['BU_CODE']}</h1>
+      `
+    }
     layer.bindTooltip(tooltip, {className: 'c-tooltip'})
     layer.on({
       click: this.handleOnClick,

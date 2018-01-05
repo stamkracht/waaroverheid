@@ -35,6 +35,7 @@ Button.defaultProps = {
   icon: '',
   iconPosition: 'right',
   textAlign: 'center',
+  shadow: true,
   hovering: true,
   onClick: undefined,
 }

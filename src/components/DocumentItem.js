@@ -82,7 +82,7 @@ class DocumentItem extends Component {
     return Array.apply(null, new Array(this.numTags)).map((e, i) => {
       return (
         <div key={i}>
-          <Button shadow={true} text={`Tag ${i+1}`} />
+          <Button text={`Tag ${i+1}`} />
         </div>
       )
     })
