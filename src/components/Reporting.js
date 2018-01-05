@@ -49,6 +49,12 @@ class Reporting extends React.Component {
     this.setState({active: false})
   }
 
+  renderOptions() {
+    return this.options.map((option, i) => {
+      return <h4 key={i}>- {option}</h4>
+    })
+  }
+
   renderReporting() {
     if ( this.state.active ) {
       return (
@@ -59,6 +65,7 @@ class Reporting extends React.Component {
               <Icon icon='close' width='20' height='20'/>
             </div>
           </div>
+          {this.renderOptions()}
         </div>
       )
     }

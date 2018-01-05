@@ -2,6 +2,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
+  user-select: none;
 }
 
 .c-documents .c-reporting .c-button {
@@ -27,8 +28,13 @@
 }
 
 .c-documents .c-reporting .c-dropdown h3 {
-  font-weight: lighter;
+  font-weight: normal;
   line-height: 30px;
+}
+
+.c-documents .c-reporting .c-dropdown h4 {
+  font-weight: lighter;
+  margin: 5px;
 }
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--header {
