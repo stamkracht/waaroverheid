@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Icon from './Icon'
+import Button from './Button'
 
 import '../styles/reporting.css'
 
@@ -32,10 +33,13 @@ class Reporting extends React.Component {
 
   render() {
     return (
-      <div className='c-reporting' ref={node => { this.flagMenu = node }}>
-        <button className='c-details--rating' onClick={this.toggleReporting}>
-          <Icon icon='flag' width='20' height='20'/>
-        </button>
+      <div className='c-reporting'>
+        <Button
+          text=''
+          icon='flag'
+          shadow={false}
+          hovering={false}
+          onClick={this.openReporting.bind(this)} />
         {this.renderReporting()}
       </div>
     )
