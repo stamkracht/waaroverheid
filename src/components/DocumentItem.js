@@ -74,6 +74,17 @@ class DocumentItem extends Component {
             <Icon icon='close' width='20' height='20'/>
           </div>
         </div>
+        <div className='c-flagDropdown--content'>
+          <div className='select'>
+            <select>
+              <option value='Reason1'>Reason 1</option>
+              <option value='Reason2'>Reason 2</option>
+              <option value='Reason3'>Reason 3</option>
+            </select>
+            <div class="select--arrow"></div>
+          </div>
+          <textarea type='text' ref='query' name='name' placeholder='Enter some text'></textarea>
+        </div>
       </div>
     )
   }

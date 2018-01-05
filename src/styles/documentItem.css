@@ -167,3 +167,68 @@
   display: flex;
   justify-content: space-between;
 }
+
+.c-flagDropdown .c-flagDropdown--content {
+  margin: 5px;
+}
+
+.c-flagDropdown--content select {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 5px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #eeeeee;
+  color: black;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: smaller;
+  font-weight: lighter;
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.select .select--arrow {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0 5px;
+  border-color: black transparent transparent transparent;
+}
+
+.c-flagDropdown textarea {
+  width: 100%;
+  display: block;
+  font-size: smaller;
+  font-weight: lighter;
+  border-color: #dddddd;
+}
+
+@media (max-width: 768px) {
+  .c-documents .c-button {
+    font-size: smaller;
+  }
+
+  .c-documents--text h2 {
+    font-size: larger;
+  }
+
+  .c-documents--text h3 {
+    font-size: small;
+  }
+
+  .c-details h3, p  {
+    font-size: small;
+  }
+}
