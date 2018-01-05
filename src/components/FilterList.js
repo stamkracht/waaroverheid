@@ -14,7 +14,7 @@ class FilterList extends React.Component {
     }
   }
 
-  toggleDropdown = () => {
+  toggleDropdown() {
     this.setState({pointRight: !this.state.pointRight})
   }
 
@@ -35,7 +35,8 @@ class FilterList extends React.Component {
           shadow={false}
           hovering={false}
           pointRight={this.state.pointRight}
-          onClick={this.toggleDropdown}/>
+          onClick={this.toggleDropdown.bind(this)}>
+        </Button>
         <ul>
           {!this.state.pointRight && this.renderItems()}
         </ul>
