@@ -32,12 +32,6 @@ class DocumentItem extends Component {
     })
   }
 
-  handleOutsideClick(e) {
-    if (!this.flagMenu.contains(e.target)) {
-      this.toggleReporting()
-    }
-  }
-
   renderDetails = () => {
     if ( this.state.active ) {
       return (
