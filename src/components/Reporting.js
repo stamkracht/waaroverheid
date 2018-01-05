@@ -11,6 +11,15 @@ class Reporting extends React.Component {
   constructor(props) {
     super(props)
 
+    this.options = [
+      'Invalid',
+      'Incorrect',
+      'Irrational',
+      'Irrelevant',
+      'Inappropriate',
+      'All of the above',
+    ]
+
     this.state = {
       active: false,
     }
