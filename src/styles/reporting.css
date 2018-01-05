@@ -1,11 +1,21 @@
-.c-reporting .c-dropdown {
+.c-documents .c-reporting {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.c-documents .c-reporting .c-button {
+  padding: 0;
+  background: #eeeeee;
+}
+
+.c-documents .c-reporting .c-dropdown {
   position: absolute;
   z-index: 1000;
   right: 10px;
   top: 97%;
   padding: 10px;
   background: white;
-  border-radius: 5px;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
   -webkit-transition: -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
@@ -16,12 +26,12 @@
   white-space: nowrap;
 }
 
-.c-reporting .c-dropdown h3 {
+.c-documents .c-reporting .c-dropdown h3 {
   font-weight: lighter;
   line-height: 30px;
 }
 
-.c-reporting .c-dropdown .c-dropdown--header {
+.c-documents .c-reporting .c-dropdown .c-dropdown--header {
   display: flex;
   justify-content: space-between;
 }
