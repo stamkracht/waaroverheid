@@ -9,13 +9,12 @@ class DocumentItem extends Component {
   constructor(props) {
     super(props)
 
-    this.toggleFlagMenu = this.toggleFlagMenu.bind(this)
     this.handleOutsideClick = this.handleOutsideClick.bind(this)
     this.numTags = Math.floor((Math.random() * 10) + 1)
 
     this.state = {
       showDetails: false,
-      showFlagMenu: false,
+      showReporting: false,
     }
   }
 
@@ -23,9 +22,9 @@ class DocumentItem extends Component {
     this.setState({showDetails: !this.state.showDetails})
   }
 
-  toggleFlagMenu() {
-    this.setState({showFlagMenu: !this.state.showFlagMenu}, () => {
-      if (this.state.showFlagMenu) {
+  toggleReporting = () => {
+    this.setState({showReporting: !this.state.showReporting}, () => {
+      if (this.state.showReporting) {
         document.addEventListener('mousedown', this.handleOutsideClick, false)
       } else {
         document.removeEventListener('mousedown', this.handleOutsideClick, false)
@@ -35,7 +34,7 @@ class DocumentItem extends Component {
 
   handleOutsideClick(e) {
     if (!this.flagMenu.contains(e.target)) {
-      this.toggleFlagMenu()
+      this.toggleReporting()
     }
   }
 
@@ -52,11 +51,11 @@ class DocumentItem extends Component {
               <p>'{this.props.snippet}'</p>
             </div>
             <div ref={node => { this.flagMenu = node }}>
-              <button className='c-details--rating' onClick={this.toggleFlagMenu}>
+              <button className='c-details--rating' onClick={this.toggleReporting}>
                 <Icon icon='flag' width='20' height='20'/>
               </button>
               <div>
-                {this.state.showFlagMenu && this.renderFlagMenu()}
+                {this.state.showReporting && this.renderReporting()}
               </div>
             </div>
           </div>
@@ -65,12 +64,12 @@ class DocumentItem extends Component {
     )
   }
 
-  renderFlagMenu = () => {
+  renderReporting = () => {
     return (
       <div className='c-flagDropdown'>
         <div className='c-flagDropdown--header'>
           <h3>Report the document:</h3>
-          <div onClick={this.toggleFlagMenu}>
+          <div onClick={this.toggleReporting}>
             <Icon icon='close' width='20' height='20'/>
           </div>
         </div>
