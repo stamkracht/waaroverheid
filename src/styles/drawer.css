@@ -20,6 +20,7 @@
   min-height: 30px;
   padding: 10px;
   cursor: pointer;
+  user-select: none;
 }
 
 .c-drawer .c-drawer--text {
