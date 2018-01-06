@@ -81,7 +81,7 @@ class DocumentItem extends Component {
               <option value='Reason2'>Reason 2</option>
               <option value='Reason3'>Reason 3</option>
             </select>
-            <div class="select--arrow"></div>
+            <div className='select--arrow'></div>
           </div>
           <textarea type='text' ref='query' name='name' placeholder='Enter some text'></textarea>
         </div>
