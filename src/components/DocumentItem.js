@@ -14,7 +14,7 @@ class DocumentItem extends Component {
     this.numTags = Math.floor((Math.random() * 10) + 1)
 
     this.state = {
-      active: true,
+      active: false,
     }
   }
 
