@@ -51,7 +51,7 @@ class Reporting extends React.Component {
 
   renderOptions() {
     return this.options.map((option, i) => {
-      return <h4 key={i}>- {option}</h4>
+      return <option key={i} value={option}>{option}</option>
     })
   }
 
@@ -65,7 +65,13 @@ class Reporting extends React.Component {
               <Icon icon='close' width='20' height='20'/>
             </div>
           </div>
-          {this.renderOptions()}
+          <div className='c-dropdown--select'>
+            <select>
+              {this.renderOptions()}
+            </select>
+            <div className='select--arrow'></div>
+          </div>
+          <textarea placeholder='Other reason' />
         </div>
       )
     }
