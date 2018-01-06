@@ -17,13 +17,8 @@
   top: 97%;
   padding: 10px;
   background: white;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-  -webkit-transition: -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-  transition: -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-  -o-transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
   transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1), -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
   white-space: nowrap;
 }
 
@@ -54,8 +49,7 @@
   border-radius: 0;
   background: #eeeeee;
   color: black;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  appearance: none;
   font-size: smaller;
   font-weight: lighter;
 }
