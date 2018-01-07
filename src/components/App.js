@@ -3,6 +3,7 @@ import React from 'react'
 import Map from './Map'
 import MapService from '../services/MapService'
 import ZoomControls from './ZoomControls'
+import Municipalities from './Municipalities'
 import Alert from './Alert'
 import Filters from './Filters'
 import Drawer from './Drawer'
@@ -48,6 +49,12 @@ class App extends React.Component {
     })
   }
 
+  renderMunicipalities() {
+    if ( !this.state.code ) {
+      return <Municipalities list={this.state.municipalities} />
+    }
+  }
+
   renderMap() {
     if ( this.state.code ) {
       return (
@@ -70,6 +77,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='c-app'>
+        {this.renderMunicipalities()}
         {this.renderMap()}
       </div>
     )
