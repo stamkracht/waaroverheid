@@ -51,19 +51,29 @@ class App extends React.Component {
     })
   }
 
+  renderMap() {
+    if ( this.state.code ) {
+      return (
+        <div>
+          <Map geo={this.state.geo}
+            level={this.state.level}
+            code={this.state.code}
+            setZoomLevel={this.setZoomLevel} />
+          <ZoomControls
+            level={this.state.level}
+            setZoomLevel={this.setZoomLevel} />
+          <Filters onSearch={this.onSearch} />
+          <Alert />
+          <Drawer numberDoc={10} />
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div className='c-app'>
-        <Map geo={this.state.geo}
-          level={this.state.level}
-          code={this.state.code}
-          setZoomLevel={this.setZoomLevel} />
-        <ZoomControls
-          level={this.state.level}
-          setZoomLevel={this.setZoomLevel} />
-        <Filters onSearch={this.onSearch} />
-        <Alert />
-        <Drawer numberDoc={10} />
+        {this.renderMap()}
       </div>
     )
   }
