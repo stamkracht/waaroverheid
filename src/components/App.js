@@ -13,6 +13,7 @@ class App extends React.Component {
     super(props)
 
     this.state = {
+      municipalities: [],
       level: 'GM',
       code: 'GM0344',
       geo: {},
@@ -22,6 +23,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.MapService.getMunicipalities().then((municipalities) => {
+      this.setState({municipalities})
+    })
     this.MapService.getFeatures(this.state.level, this.state.code).then((geo) => {
       this.setState({geo})
     })
