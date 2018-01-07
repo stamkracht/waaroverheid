@@ -4,8 +4,8 @@ import React from 'react'
 class Municipalities extends React.Component {
 
   renderList() {
-    return this.props.list.map((item, i) => {
-      return <div key={i}>{item}</div>
+    return this.props.list.map(item => {
+      return <div key={item.code}>{item.name}</div>
     })
   }
 
