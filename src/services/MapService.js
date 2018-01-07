@@ -11,6 +11,17 @@ class MapService {
     }
   }
 
+  getMunicipalities() {
+    return new Promise((resolve, reject) => {
+      fetch(`${this.apiUrl}municipal`, {
+        method: 'GET',
+      })
+        .then(d => d.json())
+        .then(res => resolve(res['municipalities']))
+        .catch(err => reject(err))
+    })
+  }
+
   getFeatures(level, code) {
     let url = `${this.apiUrl}municipal/${code}`
     if ( !!this.levels[level].sub ) {
