@@ -1,7 +1,7 @@
 class MapService {
 
   constructor() {
-    this.apiUrl = 'https://waaroverheid.cleverdon.hum.uva.nl/municipal/'
+    this.apiUrl = 'https://api.waaroverheid.nl/'
 
     this.levels = {
       'PR': { zoom: 8, sub: 'municipalities' },
@@ -12,7 +12,7 @@ class MapService {
   }
 
   getFeatures(level, code) {
-    let url = `${this.apiUrl}${code}`
+    let url = `${this.apiUrl}municipal/${code}`
     if ( !!this.levels[level].sub ) {
       url += `/${this.levels[level].sub}`
     }
