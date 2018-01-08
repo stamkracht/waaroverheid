@@ -6,6 +6,12 @@ import '../styles/searchBox.css'
 
 class SearchBox extends React.Component {
 
+  handleKeyUp = (event) => {
+    if ( !!this.props.onType ) {
+      this.props.onType(this.refs.query.value)
+    }
+  }
+
   handleKeyPress = (event) => {
     if(event.charCode === 13) {
       this.props.onSubmit(this.refs.query.value)
@@ -25,6 +31,7 @@ class SearchBox extends React.Component {
             ref='query'
             name='name'
             placeholder={this.props.placeholder}
+            onKeyUp={this.handleKeyUp}
             onKeyPress={this.handleKeyPress} />
           <div onClick={this.handleClick}>
             <Icon icon={this.props.icon}
@@ -42,6 +49,7 @@ SearchBox.defaultProps = {
   placeholder: 'Search',
   shadow: true,
   onSubmit: undefined,
+  onType: undefined,
 }
 
 export default SearchBox
