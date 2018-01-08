@@ -21,7 +21,8 @@ class Municipalities extends React.Component {
     return this.props.list.map(item => {
       return (
         <Container shadow={true} key={item.code}>
-          <div className='c-municipality' key={item.code}>
+          <div className='c-municipality'
+            onClick={() => this.props.select(item.code)}>
             <h4>{item.name}</h4>
           </div>
         </Container>
@@ -42,6 +43,7 @@ class Municipalities extends React.Component {
 Municipalities.defaultProps = {
   list: [],
   filter: undefined,
+  select: undefined,
 }
 
 export default Municipalities

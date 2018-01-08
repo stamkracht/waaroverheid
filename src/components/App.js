@@ -31,13 +31,6 @@ class App extends React.Component {
     })
   }
 
-  filterMunicipalities(q) {
-    let municipalities = this.allMunicipalities.filter(item => {
-      return item.name.toLowerCase().indexOf(q) >= 0
-    })
-    this.setState({municipalities})
-  }
-
   onSearch = (filters) => {
     console.log('Search query - ' + filters.query)
     console.log('Search range - from ' + filters.rangeMin + ' to ' + filters.rangeMax)
@@ -58,11 +51,23 @@ class App extends React.Component {
     })
   }
 
+  selectmunicipality(code) {
+    this.setState({code})
+  }
+
+  filterMunicipalities(q) {
+    let municipalities = this.allMunicipalities.filter(item => {
+      return item.name.toLowerCase().indexOf(q) >= 0
+    })
+    this.setState({municipalities})
+  }
+
   renderMunicipalities() {
     if ( !this.state.code ) {
       return (
         <Municipalities
           list={this.state.municipalities}
+          select={this.selectmunicipality.bind(this)}
           filter={this.filterMunicipalities.bind(this)}>
         </Municipalities>
       )

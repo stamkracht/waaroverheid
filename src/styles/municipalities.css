@@ -20,8 +20,12 @@
 }
 
 .c-municipalities .c-municipality {
-  margin-bottom: 10px;
-  padding: 0 10px;
   text-align: left;
+  cursor: pointer;
+  padding: 15px;
   width: 100%;
+}
+
+.c-municipalities .c-municipality h4 {
+  margin: 0;
 }
