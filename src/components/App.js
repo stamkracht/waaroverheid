@@ -60,6 +60,10 @@ class App extends React.Component {
     let municipalities = this.allMunicipalities.filter(item => {
       let name = item.name.toLowerCase()
       return name.indexOf(q) >= 0 || levenshtein(name, q) <= 2
+    }).sort(function(a, b){
+      if ( a.name < b.name ) { return -1 }
+      if ( a.name > b.name ) { return 1 }
+      return 0
     })
     this.setState({municipalities})
   }
