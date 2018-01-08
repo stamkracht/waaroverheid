@@ -12,7 +12,7 @@ class Municipalities extends React.Component {
   }
 
   handleOnSubmit() {
-    if ( this.props.list.length === 1 ) {
+    if ( this.props.list.length > 0) {
       this.props.select(this.props.list[0].code)
     }
   }
