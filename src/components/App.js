@@ -76,17 +76,20 @@ class App extends React.Component {
     }
   }
 
-  renderMap() {
+  renderControls() {
+    if ( this.state.code ) {
+      return (
+        <ZoomControls
+          level={this.state.level}
+          setZoomLevel={this.setZoomLevel} />
+      )
+    }
+  }
+
+  renderDocuments() {
     if ( this.state.code ) {
       return (
         <div>
-          <Map geo={this.state.geo}
-            level={this.state.level}
-            code={this.state.code}
-            setZoomLevel={this.setZoomLevel} />
-          <ZoomControls
-            level={this.state.level}
-            setZoomLevel={this.setZoomLevel} />
           <Filters onSearch={this.onSearch} />
           <Alert />
           <Drawer numberDoc={10} />
@@ -98,8 +101,13 @@ class App extends React.Component {
   render() {
     return (
       <div className='c-app'>
+        <Map geo={this.state.geo}
+          level={this.state.level}
+          code={this.state.code}
+          setZoomLevel={this.setZoomLevel} />
         {this.renderMunicipalities()}
-        {this.renderMap()}
+        {this.renderControls()}
+        {this.renderDocuments()}
       </div>
     )
   }
