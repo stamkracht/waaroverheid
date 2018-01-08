@@ -1,4 +1,5 @@
 import React from 'react'
+import levenshtein from 'js-levenshtein'
 
 import Map from './Map'
 import MapService from '../services/MapService'
@@ -57,7 +58,8 @@ class App extends React.Component {
 
   filterMunicipalities(q) {
     let municipalities = this.allMunicipalities.filter(item => {
-      return item.name.toLowerCase().indexOf(q) >= 0
+      let name = item.name.toLowerCase()
+      return name.indexOf(q) >= 0 || levenshtein(name, q) <= 2
     })
     this.setState({municipalities})
   }
