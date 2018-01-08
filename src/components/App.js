@@ -3,6 +3,7 @@ import React from 'react'
 import Map from './Map'
 import MapService from '../services/MapService'
 import ZoomControls from './ZoomControls'
+import Municipalities from './Municipalities'
 import Alert from './Alert'
 import Filters from './Filters'
 import Drawer from './Drawer'
@@ -14,20 +15,19 @@ class App extends React.Component {
 
     this.state = {
       municipalities: [],
-      level: 'GM',
-      code: 'GM0344',
+      level: '',
+      code: '',
       geo: {},
     }
 
     this.MapService = new MapService()
+    this.allMunicipalities = []
   }
 
   componentDidMount() {
     this.MapService.getMunicipalities().then((municipalities) => {
+      this.allMunicipalities = municipalities
       this.setState({municipalities})
-    })
-    this.MapService.getFeatures(this.state.level, this.state.code).then((geo) => {
-      this.setState({geo})
     })
   }
 
@@ -51,19 +51,53 @@ class App extends React.Component {
     })
   }
 
+  selectmunicipality(code) {
+    this.setState({code})
+  }
+
+  filterMunicipalities(q) {
+    let municipalities = this.allMunicipalities.filter(item => {
+      return item.name.toLowerCase().indexOf(q) >= 0
+    })
+    this.setState({municipalities})
+  }
+
+  renderMunicipalities() {
+    if ( !this.state.code ) {
+      return (
+        <Municipalities
+          list={this.state.municipalities}
+          select={this.selectmunicipality.bind(this)}
+          filter={this.filterMunicipalities.bind(this)}>
+        </Municipalities>
+      )
+    }
+  }
+
+  renderMap() {
+    if ( this.state.code ) {
+      return (
+        <div>
+          <Map geo={this.state.geo}
+            level={this.state.level}
+            code={this.state.code}
+            setZoomLevel={this.setZoomLevel} />
+          <ZoomControls
+            level={this.state.level}
+            setZoomLevel={this.setZoomLevel} />
+          <Filters onSearch={this.onSearch} />
+          <Alert />
+          <Drawer numberDoc={10} />
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div className='c-app'>
-        <Map geo={this.state.geo}
-          level={this.state.level}
-          code={this.state.code}
-          setZoomLevel={this.setZoomLevel} />
-        <ZoomControls
-          level={this.state.level}
-          setZoomLevel={this.setZoomLevel} />
-        <Filters onSearch={this.onSearch} />
-        <Alert />
-        <Drawer numberDoc={10} />
+        {this.renderMunicipalities()}
+        {this.renderMap()}
       </div>
     )
   }

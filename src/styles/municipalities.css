@@ -1,0 +1,31 @@
+.c-municipalities {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 85%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.c-municipalities .c-container {
+  width: 100%;
+}
+
+.c-municipalities .c-searchBox {
+  width: auto;
+}
+
+.c-municipalities .c-municipality {
+  text-align: left;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+}
+
+.c-municipalities .c-municipality h4 {
+  margin: 0;
+}
