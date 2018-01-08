@@ -21,12 +21,21 @@ class App extends React.Component {
     }
 
     this.MapService = new MapService()
+    this.allMunicipalities = []
   }
 
   componentDidMount() {
     this.MapService.getMunicipalities().then((municipalities) => {
+      this.allMunicipalities = municipalities
       this.setState({municipalities})
     })
+  }
+
+  filterMunicipalities(q) {
+    let municipalities = this.allMunicipalities.filter(item => {
+      return item.name.toLowerCase().indexOf(q) >= 0
+    })
+    this.setState({municipalities})
   }
 
   onSearch = (filters) => {
@@ -51,7 +60,12 @@ class App extends React.Component {
 
   renderMunicipalities() {
     if ( !this.state.code ) {
-      return <Municipalities list={this.state.municipalities} />
+      return (
+        <Municipalities
+          list={this.state.municipalities}
+          filter={this.filterMunicipalities.bind(this)}>
+        </Municipalities>
+      )
     }
   }
 

@@ -7,9 +7,13 @@ import '../styles/municipalities.css'
 
 class Municipalities extends React.Component {
 
+  handleOnType(q) {
+    this.props.filter(q)
+  }
+
   renderSearch() {
     return (
-      <SearchBox />
+      <SearchBox onType={this.handleOnType.bind(this)} />
     )
   }
 
@@ -37,6 +41,7 @@ class Municipalities extends React.Component {
 
 Municipalities.defaultProps = {
   list: [],
+  filter: undefined,
 }
 
 export default Municipalities
