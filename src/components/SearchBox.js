@@ -6,6 +6,10 @@ import '../styles/searchBox.css'
 
 class SearchBox extends React.Component {
 
+  componentDidMount() {
+    this.refs.query.focus()
+  }
+
   handleKeyUp = (event) => {
     if ( !!this.props.onType ) {
       this.props.onType(this.refs.query.value)
