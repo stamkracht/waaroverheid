@@ -25,11 +25,11 @@
 .c-documents .c-reporting .c-dropdown .c-dropdown--header {
   display: flex;
   justify-content: space-between;
+}
 
-  h3 {
-    font-weight: normal;
-    line-height: 30px;
-  }
+.c-documents .c-reporting .c-dropdown .c-dropdown--header h3 {
+  font-weight: normal;
+  line-height: 30px;
 }
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--select {
