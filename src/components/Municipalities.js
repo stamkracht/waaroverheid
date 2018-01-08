@@ -1,10 +1,17 @@
 import React from 'react'
 
 import Container from './Container'
+import SearchBox from './SearchBox'
 import '../styles/municipalities.css'
 
 
 class Municipalities extends React.Component {
+
+  renderSearch() {
+    return (
+      <SearchBox />
+    )
+  }
 
   renderList() {
     return this.props.list.map(item => {
@@ -21,6 +28,7 @@ class Municipalities extends React.Component {
   render() {
     return (
       <div className='c-municipalities'>
+        {this.renderSearch()}
         {this.renderList()}
       </div>
     )

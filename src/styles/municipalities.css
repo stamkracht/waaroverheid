@@ -14,6 +14,10 @@
   width: 100%;
 }
 
+.c-municipalities .c-searchBox {
+  width: auto;
+}
+
 .c-municipalities .c-municipality {
   margin-bottom: 10px;
   padding: 0 10px;
