@@ -52,8 +52,11 @@ class App extends React.Component {
     })
   }
 
-  selectmunicipality(code) {
-    this.setState({code})
+  selectMunicipality(code) {
+    let level = code.slice(0, 2)
+    this.MapService.getFeatures(level, code).then((geo) => {
+      this.setState({geo, level, code})
+    })
   }
 
   filterMunicipalities(q) {
@@ -73,7 +76,7 @@ class App extends React.Component {
       return (
         <Municipalities
           list={this.state.municipalities}
-          select={this.selectmunicipality.bind(this)}
+          select={this.selectMunicipality.bind(this)}
           filter={this.filterMunicipalities.bind(this)}>
         </Municipalities>
       )
