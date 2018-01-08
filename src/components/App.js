@@ -40,16 +40,20 @@ class App extends React.Component {
   }
 
   setZoomLevel = (level, code) => {
-    if ( !code && level === 'GM' ) {
-      code = `GM${this.state.code.match(/[0-9]{4}/g)[0]}`
-    } else if ( !code && level === 'WK' ) {
-      code = `WK${this.state.code.match(/[0-9]{6}/g)[0]}`
-    } else if ( !code && level === 'BU' ) {
-      code = `BU${this.state.code.match(/[0-9]{8}/g)[0]}`
+    if ( !code ) {
+      this.setState({code, municpalities: this.allMunicipalities})
+    } else {
+      if ( !code && level === 'GM' ) {
+        code = `GM${this.state.code.match(/[0-9]{4}/g)[0]}`
+      } else if ( !code && level === 'WK' ) {
+        code = `WK${this.state.code.match(/[0-9]{6}/g)[0]}`
+      } else if ( !code && level === 'BU' ) {
+        code = `BU${this.state.code.match(/[0-9]{8}/g)[0]}`
+      }
+      this.MapService.getFeatures(level, code).then((geo) => {
+        this.setState({geo, level, code})
+      })
     }
-    this.MapService.getFeatures(level, code).then((geo) => {
-      this.setState({geo, level, code})
-    })
   }
 
   selectMunicipality(code) {

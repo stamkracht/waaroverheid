@@ -21,7 +21,8 @@ class ZoomControls extends React.Component {
           icon='arrow'
           iconPosition='right'
           textAlign='center'
-          pointRight={true} />
+          pointRight={true}
+          onClick={() => this.props.setZoomLevel()} />
         {this.renderButton('Gemeente', 'GM')}
         {this.renderButton('Wijk', 'WK')}
         {this.renderButton('Buurt', 'BU')}
