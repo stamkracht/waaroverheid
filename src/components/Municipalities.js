@@ -11,9 +11,18 @@ class Municipalities extends React.Component {
     this.props.filter(q)
   }
 
+  handleOnSubmit() {
+    if ( this.props.list.length === 1 ) {
+      this.props.select(this.props.list[0].code)
+    }
+  }
+
   renderSearch() {
     return (
-      <SearchBox onType={this.handleOnType.bind(this)} />
+      <SearchBox
+        onType={this.handleOnType.bind(this)}
+        onSubmit={this.handleOnSubmit.bind(this)}>
+      </SearchBox>
     )
   }
 
