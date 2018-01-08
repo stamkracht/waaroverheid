@@ -32,6 +32,7 @@ class SearchBox extends React.Component {
             type='text'
             ref='query'
             name='name'
+            autoComplete='off'
             placeholder={this.props.placeholder}
             onKeyUp={this.handleKeyUp}
             onKeyPress={this.handleKeyPress} />
