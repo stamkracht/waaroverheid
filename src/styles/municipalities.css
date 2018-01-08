@@ -1,0 +1,22 @@
+.c-municipalities {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 85%;
+  margin: 0 auto;
+}
+
+.c-municipalities .c-container {
+  width: 100%;
+}
+
+.c-municipalities .c-municipality {
+  margin-bottom: 10px;
+  padding: 0 10px;
+  text-align: left;
+  width: 100%;
+}
