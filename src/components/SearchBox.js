@@ -13,13 +13,15 @@ class SearchBox extends React.Component {
   }
 
   handleKeyPress = (event) => {
-    if(event.charCode === 13) {
+    if ( event.charCode === 13 && !!this.props.onSubmit ) {
       this.props.onSubmit(this.refs.query.value)
     }
   }
 
   handleClick = () => {
-   this.props.onSubmit(this.refs.query.value)
+    if ( !!this.props.onSubmit ) {
+      this.props.onSubmit(this.refs.query.value)
+    }
   }
 
   render() {
