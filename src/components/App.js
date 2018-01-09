@@ -27,8 +27,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.MapService.getMunicipalities().then((municipalities) => {
-      this.allMunicipalities = municipalities
-      this.setState({municipalities})
+      this.allMunicipalities = municipalities.sort(function(a, b){
+        if ( a.name < b.name ) { return -1 }
+        if ( a.name > b.name ) { return 1 }
+        return 0
+      })
+      this.setState({municipalities: this.allMunicipalities})
     })
   }
 
@@ -46,7 +50,7 @@ class App extends React.Component {
 
   selectArea(code) {
     if ( !code ) {
-      this.setState({code, municpalities: this.allMunicipalities})
+      this.setState({code, municipalities: this.allMunicipalities})
     } else {
       this.MapService.getFeatures(code).then((geo) => {
         this.setState({geo, code})
