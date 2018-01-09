@@ -39,7 +39,7 @@ class App extends React.Component {
     this.setState({filters: false})
   }
 
-  setZoomLevel = (level, code) => {
+  setZoomLevel(level, code) {
     if ( !code ) {
       this.setState({code, municpalities: this.allMunicipalities})
     } else {
@@ -92,7 +92,7 @@ class App extends React.Component {
       return (
         <ZoomControls
           level={this.state.level}
-          setZoomLevel={this.setZoomLevel} />
+          setZoomLevel={this.setZoomLevel.bind(this)} />
       )
     }
   }
@@ -115,7 +115,7 @@ class App extends React.Component {
         <Map geo={this.state.geo}
           level={this.state.level}
           code={this.state.code}
-          setZoomLevel={this.setZoomLevel} />
+          setZoomLevel={this.setZoomLevel.bind(this)} />
         {this.renderMunicipalities()}
         {this.renderControls()}
         {this.renderDocuments()}
