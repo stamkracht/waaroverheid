@@ -29,7 +29,7 @@ class Map extends Component {
 
   onEachFeature = (feature, layer) => {
     let name, code
-    if ( this.props.code.slice(0, 2) === 'GM' ) {
+    if ( this.props.code.indexOf('GM') === 0 ) {
       name = feature.properties['WK_NAAM']
       code = feature.properties['WK_CODE']
     } else {
@@ -37,9 +37,9 @@ class Map extends Component {
       code = feature.properties['BU_CODE']
     }
     let tooltip = `
-        <h1>${name}</h1>
-        <h1>#${code}</h1>
-      `
+      <h1>${name}</h1>
+      <h1>#${code}</h1>
+    `
     layer.setStyle({
       'className': classNames('c-feature', {
         'active': this.props.code.indexOf('BU') === 0,
