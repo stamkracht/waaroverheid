@@ -41,9 +41,6 @@ class App extends React.Component {
   }
 
   onSearch = (filters) => {
-    console.log('Search query - ' + filters.query)
-    console.log('Search range - from ' + filters.rangeMin + ' to ' + filters.rangeMax)
-    console.log('Search types - ' + filters.types)
     this.setState({filters: false})
   }
 
