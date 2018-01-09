@@ -16,7 +16,7 @@ class Filters extends React.Component {
     super(props)
 
     this.state = {
-      showFilters: false,
+      active: false,
       value: { min: 2, max: 10 },
     }
   }
@@ -30,7 +30,7 @@ class Filters extends React.Component {
   }
 
   handleOnSubmit() {
-    this.setState({showFilters: false})
+    this.setState({active: false})
     this.props.submit()
   }
 
@@ -38,8 +38,8 @@ class Filters extends React.Component {
     this.setState({ value })
   }
 
-  toggleShowFilters = () => {
-    this.setState({showFilters: !this.state.showFilters})
+  toggleFilters() {
+    this.setState({active: !this.state.active})
   }
 
   renderFilters = () => {
@@ -50,7 +50,8 @@ class Filters extends React.Component {
 
     return (
       <div className='filtersDropdown'>
-        <div className='filtersHeader' onClick={this.toggleShowFilters}>
+        <div className='filtersHeader'
+          onClick={this.toggleFilters.bind(this)}>
           <Icon icon='close' width='20' height='20'/>
         </div>
         <SearchBox onSubmit={this.handleOnSubmit.bind(this)}/>
@@ -76,9 +77,10 @@ class Filters extends React.Component {
     return (
       <div className='c-filters'>
         <div className='buttonContainer'>
-          <Button text='Filters' icon='arrow' onClick={this.toggleShowFilters} />
+          <Button text='Filters' icon='arrow'
+            onClick={this.toggleFilters.bind(this)} />
         </div>
-        {this.state.showFilters && this.renderFilters()}
+        {this.state.active && this.renderFilters()}
       </div>
     )
   }
