@@ -6,10 +6,25 @@ import '../styles/zoomControls.css'
 
 class ZoomControls extends React.Component {
 
-  renderButton(label, level) {
-    if ( (this.props.level === 'WK' && level === 'GM')
-        || (this.props.level === 'BU' && (level === 'WK' || level === 'GM' ) ) ) {
-      return <Button text={label} onClick={() => this.props.setZoomLevel(level)} />
+  renderMunicipalityButton() {
+    if ( this.props.level === 'WK' || this.props.level === 'BU' ) {
+      return (
+        <Button
+          text={'Gemeente'}
+          onClick={() => this.props.setZoomLevel('GM')}>
+        </Button>
+      )
+    }
+  }
+
+  renderDistrictButton() {
+    if ( this.props.level === 'BU' ) {
+      return (
+        <Button
+          text={'Wijk'}
+          onClick={() => this.props.setZoomLevel('WK')}>
+        </Button>
+      )
     }
   }
 
@@ -23,9 +38,8 @@ class ZoomControls extends React.Component {
           textAlign='center'
           pointRight={true}
           onClick={() => this.props.setZoomLevel()} />
-        {this.renderButton('Gemeente', 'GM')}
-        {this.renderButton('Wijk', 'WK')}
-        {this.renderButton('Buurt', 'BU')}
+        {this.renderMunicipalityButton()}
+        {this.renderDistrictButton()}
       </div>
     )
   }
