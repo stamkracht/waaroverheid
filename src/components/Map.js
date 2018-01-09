@@ -45,7 +45,10 @@ class Map extends Component {
         'active': this.props.code.indexOf('BU') === 0,
       }),
     })
-    layer.bindTooltip(tooltip, {'className': 'c-tooltip'})
+    layer.bindTooltip(tooltip, {
+      'className': 'c-tooltip',
+      permanent: this.props.code.indexOf('BU') === 0,
+    })
     layer.on({
       click: this.handleOnClick,
     })
