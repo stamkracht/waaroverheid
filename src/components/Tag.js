@@ -11,8 +11,8 @@ class Tag extends React.Component {
     return (
       <div className='c-tags'>
       <Container shadow={true}>
-          <span>Text</span>
-          <Icon icon='close' width='15'/>
+          <div className='c-tags--text'>Text</div>
+          <Icon icon='close' width='15' height='12'/>
       </Container>
       </div>
     )
