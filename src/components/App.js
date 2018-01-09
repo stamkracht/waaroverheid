@@ -22,12 +22,21 @@ class App extends React.Component {
 
     this.MapService = new MapService()
     this.allMunicipalities = []
+    this.getUserLocation()
   }
 
   componentDidMount() {
     this.MapService.getMunicipalities().then((municipalities) => {
       this.allMunicipalities = municipalities
       this.setState({municipalities})
+    })
+  }
+
+  getUserLocation() {
+    this.MapService.getUserLocation().then(code => {
+      this.MapService.getFeatures(code).then((geo) => {
+        this.setState({geo, code})
+      })
     })
   }
 
