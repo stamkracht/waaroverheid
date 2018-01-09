@@ -36,12 +36,10 @@ class App extends React.Component {
     })
   }
 
-  getUserLocation() {
-    this.MapService.getUserLocation().then(code => {
-      this.MapService.getFeatures(code).then((geo) => {
-        this.setState({geo, code})
-      })
-    })
+  async getUserLocation() {
+    let code = await this.MapService.getUserLocation()
+    let geo = await this.MapService.getFeatures(code)
+    this.setState({geo, code})
   }
 
   onSearch = (filters) => {
