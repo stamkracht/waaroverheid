@@ -29,6 +29,11 @@ class Filters extends React.Component {
     }
   }
 
+  handleOnSubmit() {
+    this.setState({showFilters: false})
+    this.props.submit()
+  }
+
   handleOnChange = (value) => {
     this.setState({ value })
   }
@@ -48,7 +53,7 @@ class Filters extends React.Component {
         <div className='filtersHeader' onClick={this.toggleShowFilters}>
           <Icon icon='close' width='20' height='20'/>
         </div>
-        <SearchBox onSubmit={this.props.onSearch}/>
+        <SearchBox onSubmit={this.handleOnSubmit.bind(this)}/>
         <InputRange
           formatLabel={this.setLabel}
           maxValue={20}
@@ -61,13 +66,13 @@ class Filters extends React.Component {
           <FilterList text={'Veggies'} filters={veggies} />
           <FilterList text={'Spices'} filters={spices} />
         </div>
-        <Button text='Apply' onClick={this.props.onSearch}  />
+        <Button text='Search'
+          onClick={() => this.handleOnSubmit()} />
       </div>
     )
   }
 
   render() {
-
     return (
       <div className='c-filters'>
         <div className='buttonContainer'>
@@ -80,7 +85,7 @@ class Filters extends React.Component {
 }
 
 Filters.defaultProps = {
-  onSearch: undefined,
+  submit: undefined,
 }
 
 export default Filters

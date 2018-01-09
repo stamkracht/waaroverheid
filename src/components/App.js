@@ -42,7 +42,7 @@ class App extends React.Component {
     this.setState({geo, code})
   }
 
-  onSearch = (filters) => {
+  handleOnFilter(filters) {
     this.setState({filters: false})
   }
 
@@ -100,7 +100,7 @@ class App extends React.Component {
     if ( this.state.code ) {
       return (
         <div>
-          <Filters onSearch={this.onSearch} />
+          <Filters submit={this.handleOnFilter.bind(this)} />
           <Alert />
           <Drawer numberDoc={10} />
         </div>
