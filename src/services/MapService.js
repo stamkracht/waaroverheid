@@ -4,10 +4,9 @@ class MapService {
     this.apiUrl = 'https://api.waaroverheid.nl/'
 
     this.levels = {
-      'PR': { zoom: 8, sub: 'municipalities' },
-      'GM': { zoom: 12, sub: 'districts' },
-      'WK': { zoom: 15, sub: 'neighborhoods' },
-      'BU': { zoom: 18, sub: '' },
+      'GM': 'districts',
+      'WK': 'neighborhoods',
+      'BU': '',
     }
   }
 
@@ -22,12 +21,11 @@ class MapService {
     })
   }
 
-  getFeatures(level, code) {
+  getFeatures(code) {
     let url = `${this.apiUrl}municipal/${code}`
-    if ( !!this.levels[level].sub ) {
-      url += `/${this.levels[level].sub}`
+    if ( !!this.levels[code.slice(0, 2)] ) {
+      url += `/${this.levels[code.slice(0, 2)]}`
     }
-
     return new Promise((resolve, reject) => {
       fetch(url, {
         method: 'GET',

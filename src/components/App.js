@@ -16,7 +16,6 @@ class App extends React.Component {
 
     this.state = {
       municipalities: [],
-      level: '',
       code: '',
       geo: {},
     }
@@ -39,27 +38,19 @@ class App extends React.Component {
     this.setState({filters: false})
   }
 
-  setZoomLevel(level, code) {
+  selectArea(code) {
     if ( !code ) {
       this.setState({code, municpalities: this.allMunicipalities})
     } else {
-      if ( !code && level === 'GM' ) {
-        code = `GM${this.state.code.match(/[0-9]{4}/g)[0]}`
-      } else if ( !code && level === 'WK' ) {
-        code = `WK${this.state.code.match(/[0-9]{6}/g)[0]}`
-      } else if ( !code && level === 'BU' ) {
-        code = `BU${this.state.code.match(/[0-9]{8}/g)[0]}`
-      }
-      this.MapService.getFeatures(level, code).then((geo) => {
-        this.setState({geo, level, code})
+      this.MapService.getFeatures(code).then((geo) => {
+        this.setState({geo, code})
       })
     }
   }
 
   selectMunicipality(code) {
-    let level = code.slice(0, 2)
-    this.MapService.getFeatures(level, code).then((geo) => {
-      this.setState({geo, level, code})
+    this.MapService.getFeatures(code).then((geo) => {
+      this.setState({geo, code})
     })
   }
 
@@ -91,8 +82,8 @@ class App extends React.Component {
     if ( this.state.code ) {
       return (
         <ZoomControls
-          level={this.state.level}
-          setZoomLevel={this.setZoomLevel.bind(this)} />
+          code={this.state.code}
+          setZoomLevel={this.selectArea.bind(this)} />
       )
     }
   }
@@ -113,9 +104,8 @@ class App extends React.Component {
     return (
       <div className='c-app'>
         <Map geo={this.state.geo}
-          level={this.state.level}
           code={this.state.code}
-          setZoomLevel={this.setZoomLevel.bind(this)} />
+          select={this.selectArea.bind(this)} />
         {this.renderMunicipalities()}
         {this.renderControls()}
         {this.renderDocuments()}
