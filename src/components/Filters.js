@@ -19,11 +19,18 @@ class Filters extends React.Component {
     this.state = {
       active: false,
       value: { min: 2, max: 10 },
+      filters: {
+        search: '',
+      },
     }
   }
 
   setLabel = (value, type) => {
-    return type === 'min' ? 'From' : 'To'
+    if ( type === 'min' ) {
+      return 'From'
+    } else if ( type === 'max' ) {
+      return 'To'
+    }
   }
 
   handleOnSubmit() {
