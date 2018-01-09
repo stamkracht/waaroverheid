@@ -22,25 +22,33 @@ class App extends React.Component {
 
     this.MapService = new MapService()
     this.allMunicipalities = []
+    this.getUserLocation()
   }
 
   componentDidMount() {
     this.MapService.getMunicipalities().then((municipalities) => {
-      this.allMunicipalities = municipalities
-      this.setState({municipalities})
+      this.allMunicipalities = municipalities.sort(function(a, b){
+        if ( a.name < b.name ) { return -1 }
+        if ( a.name > b.name ) { return 1 }
+        return 0
+      })
+      this.setState({municipalities: this.allMunicipalities})
     })
   }
 
+  async getUserLocation() {
+    let code = await this.MapService.getUserLocation()
+    let geo = await this.MapService.getFeatures(code)
+    this.setState({geo, code})
+  }
+
   onSearch = (filters) => {
-    console.log('Search query - ' + filters.query)
-    console.log('Search range - from ' + filters.rangeMin + ' to ' + filters.rangeMax)
-    console.log('Search types - ' + filters.types)
     this.setState({filters: false})
   }
 
   selectArea(code) {
     if ( !code ) {
-      this.setState({code, municpalities: this.allMunicipalities})
+      this.setState({code, municipalities: this.allMunicipalities})
     } else {
       this.MapService.getFeatures(code).then((geo) => {
         this.setState({geo, code})

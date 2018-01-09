@@ -1,6 +1,10 @@
+import LocationService from '../services/LocationService'
+
 class MapService {
 
   constructor() {
+    this.LocationService = new LocationService()
+
     this.apiUrl = 'https://api.waaroverheid.nl/'
 
     this.levels = {
@@ -8,6 +12,27 @@ class MapService {
       'WK': 'neighborhoods',
       'BU': '',
     }
+  }
+
+  getUserLocation() {
+    return new Promise((resolve, reject) => {
+      this.LocationService.getCoords().then(coords => {
+        this.getPolygon(coords.latitude, coords.longitude).then(res => {
+          resolve(res.properties['BU_CODE'])
+        })
+      })
+    })
+  }
+
+  getPolygon(latitude, longitude) {
+    return new Promise((resolve, reject) => {
+      fetch(`${this.apiUrl}localize?lat=${latitude}&lon=${longitude}`, {
+        method: 'GET',
+      })
+        .then(d => d.json())
+        .then(res => resolve(res))
+        .catch(err => reject(err))
+    })
   }
 
   getMunicipalities() {
