@@ -42,8 +42,8 @@ class App extends React.Component {
     this.setState({geo, code})
   }
 
-  handleOnFilter(filters) {
-    this.setState({filters: false})
+  handleOnSubmitFilters(filters) {
+    console.log('filters', filters)
   }
 
   selectArea(code) {
@@ -100,7 +100,7 @@ class App extends React.Component {
     if ( this.state.code ) {
       return (
         <div>
-          <Filters submit={this.handleOnFilter.bind(this)} />
+          <Filters submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert />
           <Drawer numberDoc={10} />
         </div>

@@ -2,12 +2,16 @@ import React from 'react'
 
 import Container from './Container'
 import Icon from './Icon'
+import { isMobile } from '../utilities/device'
 import '../styles/searchBox.css'
+
 
 class SearchBox extends React.Component {
 
   componentDidMount() {
-    this.refs.query.focus()
+    if ( !isMobile() ) {
+      this.refs.query.focus()
+    }
   }
 
   handleKeyUp = (event) => {
