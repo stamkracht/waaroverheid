@@ -20,7 +20,7 @@ class FilterList extends React.Component {
 
   renderItems() {
     return this.props.filters.map((item, id) => {
-      return <ListItem key={id} id={`${item}-${id}`} label={item} />
+      return <ListItem key={id} id={`${item}-${id}`} label={item} badge={true}/>
     })
   }
 
