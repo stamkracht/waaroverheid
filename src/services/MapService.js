@@ -1,4 +1,5 @@
 import LocationService from '../services/LocationService'
+import { isMobile } from '../utilities/device'
 
 class MapService {
 
@@ -18,15 +19,25 @@ class MapService {
     return new Promise((resolve, reject) => {
       this.LocationService.getCoords().then(coords => {
         this.getPolygon(coords.latitude, coords.longitude).then(res => {
-          resolve(res.properties['BU_CODE'])
+          if ( isMobile() ) {
+            resolve(res.properties['BU_CODE'])
+          } else {
+            resolve(res.properties['GM_CODE'])
+          }
         })
       })
     })
   }
 
   getPolygon(latitude, longitude) {
+    let url = `${this.apiUrl}localize?lat=${latitude}&lon=${longitude}`
+    if ( isMobile() ) {
+      url += `&type=neighborhood`
+    } else {
+      url += `&type=municipality`
+    }
     return new Promise((resolve, reject) => {
-      fetch(`${this.apiUrl}localize?lat=${latitude}&lon=${longitude}`, {
+      fetch(url, {
         method: 'GET',
       })
         .then(d => d.json())
