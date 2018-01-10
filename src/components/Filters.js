@@ -42,6 +42,10 @@ class Filters extends React.Component {
     this.setState({value})
   }
 
+  handleOnType(search) {
+    this.setState({filters: {...this.state.filters, search}})
+  }
+
   toggleFilters() {
     this.setState({active: !this.state.active})
   }
@@ -58,7 +62,9 @@ class Filters extends React.Component {
           onClick={this.toggleFilters.bind(this)}>
           <Icon icon='close' width='20' height='20'/>
         </div>
-        <SearchBox onSubmit={this.handleOnSubmit.bind(this)}/>
+        <SearchBox
+          onType={this.handleOnType.bind(this)}
+          onSubmit={this.handleOnSubmit.bind(this)}/>
         <InputRange
           formatLabel={this.setLabel}
           maxValue={20}
