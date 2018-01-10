@@ -72,14 +72,14 @@
 }
 
 .c-documents .c-documents--dropdown {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    border: none;
-    outline: none;
-    background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 .c-details .c-container {
@@ -114,30 +114,8 @@
 
 .c-documentList {
   padding: 1px;
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - 300px);
   overflow: auto;
-}
-
-@media (max-width: 768px) {
-  .c-documents .c-button {
-    font-size: smaller;
-  }
-
-  .c-documents--text h2 {
-    font-size: larger;
-  }
-
-  .c-documents--text h3 {
-    font-size: small;
-  }
-
-  .c-details h3, p  {
-    font-size: small;
-  }
-}
-
-.c-flagDropdown .c-flagDropdown--content {
-  margin: 5px;
 }
 
 @media (max-width: 768px) {

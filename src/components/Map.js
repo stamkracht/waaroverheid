@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import hash from 'object-hash'
 import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet'
+import { classNames } from '../utilities/class'
 
 import '../styles/map.css'
 
@@ -16,34 +17,38 @@ class Map extends Component {
 
   handleOnClick = (e) => {
     let props = e.target.feature.properties
-    if ( this.props.level === 'GM' ) {
-      this.props.setZoomLevel('WK', props['WK_CODE'])
-    } else if ( this.props.level === 'WK' ) {
-      this.props.setZoomLevel('BU', props['BU_CODE'])
-    } else if ( this.props.level === 'BU' ) {
-      this.props.setZoomLevel('GM', props['GM_CODE'])
+    let level = this.props.code.slice(0, 2)
+    if ( level === 'GM' ) {
+      this.props.select(props['WK_CODE'])
+    } else if ( level === 'WK' ) {
+      this.props.select(props['BU_CODE'])
+    } else if ( level === 'BU' ) {
+      this.props.select(props['GM_CODE'])
     }
   }
 
   onEachFeature = (feature, layer) => {
-    let tooltip
-    if ( this.props.level === 'GM' ) {
-      tooltip = `
-        <h1>${feature.properties['WK_NAAM']}</h1>
-        <h1>#${feature.properties['WK_CODE']}</h1>
-      `
-    } else if ( this.props.level === 'WK' ) {
-      tooltip = `
-        <h1>${feature.properties['BU_NAAM']}</h1>
-        <h1>#${feature.properties['BU_CODE']}</h1>
-      `
-    } else if ( this.props.level === 'BU' ) {
-      tooltip = `
-        <h1>${feature.properties['BU_NAAM']}</h1>
-        <h1>#${feature.properties['BU_CODE']}</h1>
-      `
+    let name, code
+    if ( this.props.code.indexOf('GM') === 0 ) {
+      name = feature.properties['WK_NAAM']
+      code = feature.properties['WK_CODE']
+    } else {
+      name = feature.properties['BU_NAAM']
+      code = feature.properties['BU_CODE']
     }
-    layer.bindTooltip(tooltip, {className: 'c-tooltip'})
+    let tooltip = `
+      <h1>${name}</h1>
+      <h1>#${code}</h1>
+    `
+    layer.setStyle({
+      'className': classNames('c-feature', {
+        'active': this.props.code.indexOf('BU') === 0,
+      }),
+    })
+    layer.bindTooltip(tooltip, {
+      'className': 'c-tooltip',
+      permanent: this.props.code.indexOf('BU') === 0,
+    })
     layer.on({
       click: this.handleOnClick,
     })
@@ -91,8 +96,8 @@ class Map extends Component {
 
 Map.defaultProps = {
   geo: {},
-  level: 'GM',
-  setZoomLevel: undefined,
+  code: '',
+  select: undefined,
 }
 
 export default Map

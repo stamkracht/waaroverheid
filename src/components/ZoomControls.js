@@ -6,10 +6,29 @@ import '../styles/zoomControls.css'
 
 class ZoomControls extends React.Component {
 
-  renderButton(label, level) {
-    if ( (this.props.level === 'WK' && level === 'GM')
-        || (this.props.level === 'BU' && (level === 'WK' || level === 'GM' ) ) ) {
-      return <Button text={label} onClick={() => this.props.setZoomLevel(level)} />
+  renderMunicipalityButton() {
+    let level = this.props.code.slice(0, 2)
+    if ( level === 'WK' || level === 'BU' ) {
+      let code = `GM${this.props.code.match(/[0-9]{4}/g)[0]}`
+      return (
+        <Button
+          text={'Gemeente'}
+          onClick={() => this.props.setZoomLevel(code)}>
+        </Button>
+      )
+    }
+  }
+
+  renderDistrictButton() {
+    let level = this.props.code.slice(0, 2)
+    if ( level === 'BU' ) {
+      let code = `WK${this.props.code.match(/[0-9]{6}/g)[0]}`
+      return (
+        <Button
+          text={'Wijk'}
+          onClick={() => this.props.setZoomLevel(code)}>
+        </Button>
+      )
     }
   }
 
@@ -21,10 +40,10 @@ class ZoomControls extends React.Component {
           icon='arrow'
           iconPosition='right'
           textAlign='center'
-          pointRight={true} />
-        {this.renderButton('Gemeente', 'GM')}
-        {this.renderButton('Wijk', 'WK')}
-        {this.renderButton('Buurt', 'BU')}
+          pointRight={true}
+          onClick={() => this.props.setZoomLevel()} />
+        {this.renderMunicipalityButton()}
+        {this.renderDistrictButton()}
       </div>
     )
   }
@@ -32,7 +51,7 @@ class ZoomControls extends React.Component {
 
 ZoomControls.defaultProps = {
   setZoomLevel: undefined,
-  level: 'GM',
+  code: '',
 }
 
 export default ZoomControls

@@ -11,7 +11,7 @@
   opacity: 0.75;
 }
 
-.c-map .leaflet-container .feature {
+.c-map .leaflet-container .c-feature {
   pointer-events: auto;
   cursor: pointer;
   fill: #ed6000;
@@ -21,7 +21,8 @@
   stroke-opacity: 1;
 }
 
-.c-map .leaflet-container .feature:hover {
+.c-map .leaflet-container .c-feature:hover,
+.c-map .leaflet-container .c-feature.active {
   fill-opacity: 0.5;
 }
 
