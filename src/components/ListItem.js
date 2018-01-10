@@ -10,7 +10,7 @@ class ListItem extends React.Component {
     super(props)
 
     this.state = {
-      checked: false,
+      checked: this.props.checked,
     }
   }
 
@@ -35,6 +35,7 @@ class ListItem extends React.Component {
 }
 
 ListItem.defaultProps = {
+  checked: false,
   id: Math.round(Math.random()*1000),
   label: 'this is a label',
   onChange: undefined,
