@@ -20,13 +20,14 @@ class FilterList extends React.Component {
 
   renderItems() {
     if ( this.state.active ) {
-      return this.props.list.map((item, id) => {
+      return this.props.list.map((item, i) => {
         return (
           <ListItem
-            key={id}
-            id={`${item}-${id}`}
-            label={item}
-            onChange={(checked) => this.props.onChange(item, checked)} />
+            key={i}
+            id={`${item.name}-${i}`}
+            label={item.name}
+            checked={item.active}
+            onChange={checked => item.active = checked} />
         )
       })
     }
@@ -58,7 +59,6 @@ FilterList.defaultProps = {
   active: false,
   text: 'Label',
   list: [],
-  onChange: undefined,
 }
 
 export default FilterList
