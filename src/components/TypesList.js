@@ -1,10 +1,10 @@
 import React from 'react'
 
 import Button from './Button'
-import '../styles/filterList.css'
+import '../styles/typesList.css'
 import ListItem from './ListItem'
 
-class FilterList extends React.Component {
+class TypesList extends React.Component {
 
   constructor(props) {
     super(props)
@@ -35,7 +35,7 @@ class FilterList extends React.Component {
 
   render() {
     return (
-      <div className='c-filterList'>
+      <div className='c-typesList'>
         <Button
           text={this.props.text}
           icon='arrow'
@@ -55,10 +55,10 @@ class FilterList extends React.Component {
 
 }
 
-FilterList.defaultProps = {
+TypesList.defaultProps = {
   active: false,
   text: 'Label',
   list: [],
 }
 
-export default FilterList
+export default TypesList

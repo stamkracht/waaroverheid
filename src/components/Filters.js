@@ -4,7 +4,7 @@ import Icon from './Icon'
 import Button from './Button'
 import SearchBox from './SearchBox'
 import InputRange from 'react-input-range'
-import FilterList from './FilterList'
+import TypesList from './TypesList'
 
 import 'react-input-range/lib/css/index.css'
 import '../styles/filters.css'
@@ -51,7 +51,7 @@ class Filters extends React.Component {
 
   renderTypes() {
     return this.props.service.filters.types.map((types, i) => {
-      return <FilterList key={i} text={types.name} list={types.items} />
+      return <TypesList key={i} text={types.name} list={types.items} />
     })
   }
 

@@ -26,7 +26,7 @@
   box-shadow: 0 0px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
-.filtersContainer {
+.typesContainer {
   max-height: calc(75vh - 250px);
   overflow: auto;
 }
@@ -35,7 +35,7 @@
   display: none;
 }
 
-.filtersContainer .c-button--text.left {
+.typesContainer .c-button--text.left {
   padding-left: 35px;
 }
 
@@ -60,7 +60,7 @@
     height: fit-content;
   }
 
-  .filtersContainer {
+  .typesContainer {
     max-height: calc(75vh - 160px);
   }
 }

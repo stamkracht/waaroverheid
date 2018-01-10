@@ -2,7 +2,7 @@ import React from 'react'
 
 import Checkbox from './Checkbox'
 import Badge from './Badge'
-import '../styles/filterList.css'
+import '../styles/typesList.css'
 
 class ListItem extends React.Component {
 
