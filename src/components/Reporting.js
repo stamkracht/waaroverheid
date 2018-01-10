@@ -2,6 +2,7 @@ import React from 'react'
 
 import Icon from './Icon'
 import Button from './Button'
+import ListItem from './ListItem'
 
 import '../styles/reporting.css'
 
@@ -50,8 +51,8 @@ class Reporting extends React.Component {
   }
 
   renderOptions() {
-    return this.options.map((option, i) => {
-      return <option key={i} value={option}>{option}</option>
+    return this.options.map((option, id) => {
+      return <ListItem key={id} id={`${id}-${option}`} label={option} badge={false} />
     })
   }
 
@@ -66,10 +67,9 @@ class Reporting extends React.Component {
             </div>
           </div>
           <div className='c-dropdown--select'>
-            <select>
+            <ul>
               {this.renderOptions()}
-            </select>
-            <div className='select--arrow'></div>
+            </ul>
           </div>
           <textarea placeholder='Other reason' />
         </div>
@@ -90,6 +90,11 @@ class Reporting extends React.Component {
       </div>
     )
   }
+}
+
+Reporting.defaultProps = {
+  label: 'this is a label',
+  id: Math.round(Math.random()*1000),
 }
 
 export default Reporting
