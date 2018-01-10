@@ -18,14 +18,7 @@ class Filters extends React.Component {
 
     this.state = {
       active: false,
-      filters: {
-        search: '',
-        range: {
-          min: 2,
-          max: 10,
-        },
-        checks: [],
-      },
+      range: this.props.service.filters.range,
     }
   }
 
@@ -43,33 +36,26 @@ class Filters extends React.Component {
 
   handleOnSubmit() {
     this.setState({active: false})
-    this.props.submit(this.state.filters)
+    this.props.submit()
   }
 
   handleOnType(search) {
-    this.setState({filters: {...this.state.filters, search}})
+    this.props.service.filters.search = search
   }
 
   handleOnChangeRange(range) {
-    this.setState({filters: {...this.state.filters, range}})
+    this.setState({range}, () => {
+      this.props.service.filters.range = range
+    })
   }
 
-  handleOnChangeFilters(item, active) {
-    let checks = this.state.filters.checks.slice()
-    if ( active ) {
-      checks.push(item)
-    } else {
-      checks = checks.filter(check => check !== item)
-    }
-    this.setState({filters: {...this.state.filters, checks}})
+  renderTypes() {
+    return this.props.service.filters.types.map((types, i) => {
+      return <FilterList key={i} text={types.name} list={types.items} />
+    })
   }
 
   renderFilters = () => {
-    let types = ['Type 1', 'Type 2', 'Type 3']
-    let parties = ['P1', 'P2', 'P3', 'P4', 'P5']
-    let veggies = ['Tomato', 'Potato', 'Zucchini', 'Bambini', 'Paprika']
-    let spices = ['Scary', 'Sporty', 'Ginger', 'Posh', 'Baby']
-
     return (
       <div className='filtersDropdown'>
         <div className='filtersHeader'
@@ -82,26 +68,11 @@ class Filters extends React.Component {
         <InputRange
           minValue={0}
           maxValue={20}
-          value={this.state.filters.range}
+          value={this.state.range}
           onChange={this.handleOnChangeRange.bind(this)}
           formatLabel={this.setLabel} />
-        <div className="filtersContainer">
-          <FilterList
-            text={'Soorten'}
-            list={types}
-            onChange={this.handleOnChangeFilters.bind(this)}/>
-          <FilterList
-            text={'Partijen'}
-            list={parties}
-            onChange={this.handleOnChangeFilters.bind(this)}/>
-          <FilterList
-            text={'Veggies'}
-            list={veggies}
-            onChange={this.handleOnChangeFilters.bind(this)}/>
-          <FilterList
-            text={'Spices'}
-            list={spices}
-            onChange={this.handleOnChangeFilters.bind(this)}/>
+        <div className='typesContainer'>
+          {this.renderTypes()}
         </div>
         <Button text='Search'
           onClick={() => this.handleOnSubmit()} />
@@ -123,6 +94,7 @@ class Filters extends React.Component {
 }
 
 Filters.defaultProps = {
+  service: {},
   submit: undefined,
 }
 
