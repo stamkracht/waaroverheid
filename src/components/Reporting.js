@@ -42,7 +42,9 @@ class Reporting extends React.Component {
   }
 
   handleOnChange(option, checked) {
-    this.setState({options: {...this.state.options, option: checked}})
+    let updatedOption = {}
+    updatedOption[option] = checked
+    this.setState({options: {...this.state.options, ...updatedOption}})
   }
 
   openReporting() {
