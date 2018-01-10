@@ -8,6 +8,7 @@ import Municipalities from './Municipalities'
 import Alert from './Alert'
 import Filters from './Filters'
 import Drawer from './Drawer'
+import DocumentService from '../services/DocumentService'
 
 class App extends React.Component {
 
@@ -23,6 +24,8 @@ class App extends React.Component {
     this.MapService = new MapService()
     this.allMunicipalities = []
     this.getUserLocation()
+
+    this.DocumentService = new DocumentService()
   }
 
   componentDidMount() {
