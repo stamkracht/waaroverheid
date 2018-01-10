@@ -16,10 +16,25 @@ class Button extends React.Component {
     }
   }
 
+  getClassName() {
+    if(this.props.hovering && this.props.disabled) {
+        return 'c-button hovering disabled'
+      }
+    else if(this.props.hovering && !this.props.disabled) {
+        return 'c-button hovering'
+      }
+    else if(!this.props.hovering && this.props.disabled) {
+        return 'c-button disabled'
+      }
+    else {
+        return 'c-button'
+      }
+    }
+
   render() {
     return (
       <Container shadow={this.props.shadow}>
-        <div className={`${this.props.hovering ? 'c-button hovering' : 'c-button'}`} onClick={this.props.onClick}>
+        <div className={this.getClassName()} onClick={this.props.onClick}>
 
           {this.renderText()}
 
@@ -38,6 +53,7 @@ Button.defaultProps = {
   shadow: true,
   hovering: true,
   onClick: undefined,
+  disabled: false,
 }
 
 export default Button
