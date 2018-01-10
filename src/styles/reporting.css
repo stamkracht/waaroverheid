@@ -43,25 +43,30 @@
   margin: 5px;
 }
 
-.c-documents .c-reporting .c-dropdown textarea {
-  width: 100%;
+.c-documents .c-reporting .c-dropdown .c-textarea {
   display: block;
-  font-size: smaller;
+  width: 100%;
+  min-height: 50px;
+  padding: 5px;
+  font-size: 14px;
   font-weight: lighter;
-  border-color: #dddddd;
+  border: 1px solid #ddd;
+  outline: none;
+  resize: none;
 }
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--footer {
   text-align: center;
-  margin: 10px;
+  margin: 10px 0;
 }
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container {
-  width: auto;
+  width: 100%;
 }
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .c-button {
   padding: 7px 10px 7px 10px;
+  width: 100%;
 }
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .icon {

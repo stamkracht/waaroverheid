@@ -69,6 +69,14 @@ class Reporting extends React.Component {
     })
   }
 
+  renderTextArea() {
+    if ( Object.keys(this.state.options).some(option => this.state.options[option]) ) {
+      return (
+        <textarea className='c-textarea' placeholder='Why?' />
+      )
+    }
+  }
+
   renderReporting() {
     if ( this.state.active ) {
       return (
@@ -84,7 +92,7 @@ class Reporting extends React.Component {
               {this.renderOptions()}
             </ul>
           </div>
-          <textarea placeholder='Other reason' />
+          {this.renderTextArea()}
           <div className='c-dropdown--footer'>
             <Button text='Submit' shadow={true} hovering={true} textAlign='center' disabled={true} />
           </div>
