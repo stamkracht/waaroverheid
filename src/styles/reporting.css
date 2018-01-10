@@ -27,43 +27,20 @@
   justify-content: space-between;
 }
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--header h3 {
-  font-weight: normal;
-  line-height: 30px;
+.c-documents .c-reporting .c-dropdown .c-dropdown--header  h3 {
+    font-weight: normal;
+    line-height: 30px;
+    margin: 5px 5px 5px 0px;
 }
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--select {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 15px;
-  width: 100%;
+.c-documents .c-reporting .c-dropdown ul {
+  list-style: none;
+  -webkit-padding-start: 0px;
+  -webkit-margin-before: 0.5em;
 }
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--select select {
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  padding: 10px 5px;
-  outline: 0;
-  border: 0;
-  border-radius: 0;
-  background: #eeeeee;
-  color: black;
-  appearance: none;
-  font-size: smaller;
-  font-weight: lighter;
-}
-
-.select--arrow {
-  position: absolute;
-  top: 13px;
-  right: 13px;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  border-style: solid;
-  border-width: 8px 5px 0 5px;
-  border-color: black transparent transparent transparent;
+.c-documents .c-reporting .c-dropdown ul li {
+  margin: 5px;
 }
 
 .c-documents .c-reporting .c-dropdown textarea {
@@ -72,4 +49,21 @@
   font-size: smaller;
   font-weight: lighter;
   border-color: #dddddd;
+}
+
+.c-documents .c-reporting .c-dropdown .c-dropdown--footer {
+  text-align: center;
+  margin: 10px;
+}
+
+.c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container {
+  width: auto;
+}
+
+.c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .c-button {
+  padding: 7px 10px 7px 10px;
+}
+
+.c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .icon {
+  position: absolute;
 }

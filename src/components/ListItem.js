@@ -28,7 +28,7 @@ class ListItem extends React.Component {
           label={this.props.label}
           active={this.state.checked}
           onChange={this.handleChange} />
-        <Badge active={this.state.checked} />
+          {this.props.badge && <Badge active={this.state.checked} />}
       </li>
     )
   }
@@ -39,6 +39,7 @@ ListItem.defaultProps = {
   id: Math.round(Math.random()*1000),
   label: 'this is a label',
   onChange: undefined,
+  badge: false,
 }
 
 export default ListItem

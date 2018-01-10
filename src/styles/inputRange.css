@@ -5,6 +5,7 @@
 
 .input-range__label {
   color: #333;
+  font-family: sans-serif;
 }
 
 .input-range__track {

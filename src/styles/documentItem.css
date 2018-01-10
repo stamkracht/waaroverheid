@@ -2,11 +2,16 @@
   margin-bottom: 30px;
   text-align: left;
   width: 100%;
+  border: 2px solid transparent;
 }
 
-.c-documents--content {
+.c-documents .c-documents--content {
   cursor: pointer;
   position: relative;
+}
+
+.c-documents--item:hover {
+  border: 2px solid #ed6000;
 }
 
 .c-documents--content .icon {

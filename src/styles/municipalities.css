@@ -28,8 +28,13 @@
   cursor: pointer;
   padding: 15px;
   width: 100%;
+  border: 2px solid transparent;
 }
 
 .c-municipalities .c-municipality h4 {
   margin: 0;
+}
+
+.c-municipality:hover {
+  border: 2px solid #ed6000;
 }
