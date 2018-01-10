@@ -35,7 +35,7 @@ class Filters extends React.Component {
 
   handleOnSubmit() {
     this.setState({active: false})
-    this.props.submit()
+    this.props.submit(this.state.filters)
   }
 
   handleOnChange(value) {
