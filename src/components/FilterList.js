@@ -19,7 +19,7 @@ class FilterList extends React.Component {
   }
 
   renderItems() {
-    return this.props.filters.map((item, id) => {
+    return this.props.list.map((item, id) => {
       return (
         <ListItem
           key={id}
@@ -54,7 +54,8 @@ class FilterList extends React.Component {
 
 FilterList.defaultProps = {
   text: 'Label',
-  filters: [],
+  list: [],
+  onChange: undefined,
 }
 
 export default FilterList

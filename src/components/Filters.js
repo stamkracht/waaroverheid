@@ -88,19 +88,19 @@ class Filters extends React.Component {
         <div className="filtersContainer">
           <FilterList
             text={'Soorten'}
-            filters={types}
+            list={types}
             onChange={this.handleOnChangeFilters.bind(this)}/>
           <FilterList
             text={'Partijen'}
-            filters={parties}
+            list={parties}
             onChange={this.handleOnChangeFilters.bind(this)}/>
           <FilterList
             text={'Veggies'}
-            filters={veggies}
+            list={veggies}
             onChange={this.handleOnChangeFilters.bind(this)}/>
           <FilterList
             text={'Spices'}
-            filters={spices}
+            list={spices}
             onChange={this.handleOnChangeFilters.bind(this)}/>
         </div>
         <Button text='Search'
