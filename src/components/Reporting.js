@@ -72,6 +72,9 @@ class Reporting extends React.Component {
             </ul>
           </div>
           <textarea placeholder='Other reason' />
+          <div className='c-dropdown--footer'>
+            <Button text='Submit' shadow={true} hovering={true} textAlign='center'/>
+          </div>
         </div>
       )
     }
