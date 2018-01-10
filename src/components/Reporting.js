@@ -12,14 +12,25 @@ class Reporting extends React.Component {
   constructor(props) {
     super(props)
 
-    this.options = [
-      'Invalid',
-      'Incorrect',
-      'Irrational',
-      'Irrelevant',
-      'Inappropriate',
-      'All of the above',
-    ]
+    this.options = [{
+      name: 'Invalid',
+      checked: false,
+    }, {
+      name: 'Incorrect',
+      checked: false,
+    }, {
+      name: 'Irrational',
+      checked: false,
+    }, {
+      name: 'Irrelevant',
+      checked: false,
+    }, {
+      name: 'Inappropriate',
+      checked: false,
+    }, {
+      name: 'All of the above',
+      checked: false,
+    }]
 
     this.state = {
       active: false,
@@ -55,9 +66,10 @@ class Reporting extends React.Component {
       return (
         <ListItem
           key={i}
-          id={`${option}-${i}`}
-          label={option}
-          badge={false} />
+          id={`${option.name}-${i}`}
+          label={option.name}
+          badge={false}
+          onChange={checked => option.checked = checked} />
       )
     })
   }
