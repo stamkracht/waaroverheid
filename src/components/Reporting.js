@@ -51,8 +51,14 @@ class Reporting extends React.Component {
   }
 
   renderOptions() {
-    return this.options.map((option, id) => {
-      return <ListItem key={id} id={`${id}-${option}`} label={option} badge={false} />
+    return this.options.map((option, i) => {
+      return (
+        <ListItem
+          key={i}
+          id={`${option}-${i}`}
+          label={option}
+          badge={false} />
+      )
     })
   }
 
