@@ -51,7 +51,14 @@ class Filters extends React.Component {
 
   renderTypes() {
     return this.props.service.filters.types.map((types, i) => {
-      return <TypesList key={i} text={types.name} list={types.items} />
+      let active = !!types.items.find(item => item.active)
+      return (
+        <TypesList
+          key={i}
+          active={active}
+          text={types.name}
+          list={types.items} />
+      )
     })
   }
 
