@@ -45,8 +45,8 @@ class App extends React.Component {
     this.setState({geo, code})
   }
 
-  handleOnSubmitFilters(filters) {
-    console.log('filters', filters)
+  handleOnSubmitFilters() {
+    console.log(this.DocumentService.filters)
   }
 
   selectArea(code) {
@@ -103,7 +103,9 @@ class App extends React.Component {
     if ( this.state.code ) {
       return (
         <div>
-          <Filters submit={this.handleOnSubmitFilters.bind(this)} />
+          <Filters
+            service={this.DocumentService}
+            submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert />
           <Drawer numberDoc={10} />
         </div>
