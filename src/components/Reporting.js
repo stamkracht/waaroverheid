@@ -12,28 +12,16 @@ class Reporting extends React.Component {
   constructor(props) {
     super(props)
 
-    this.options = [{
-      name: 'Invalid',
-      checked: false,
-    }, {
-      name: 'Incorrect',
-      checked: false,
-    }, {
-      name: 'Irrational',
-      checked: false,
-    }, {
-      name: 'Irrelevant',
-      checked: false,
-    }, {
-      name: 'Inappropriate',
-      checked: false,
-    }, {
-      name: 'All of the above',
-      checked: false,
-    }]
-
     this.state = {
       active: false,
+      options: {
+        'Invalid': false,
+        'Incorrect': false,
+        'Irrational': false,
+        'Irrelevant': false,
+        'Inappropriate': false,
+        'All of the above': false,
+      },
     }
 
     this.handleClickOutside = this.handleClickOutside.bind(this)
@@ -53,6 +41,10 @@ class Reporting extends React.Component {
     }
   }
 
+  handleOnChange(option, checked) {
+    this.setState({options: {...this.state.options, option: checked}})
+  }
+
   openReporting() {
     this.setState({active: true})
   }
@@ -62,14 +54,15 @@ class Reporting extends React.Component {
   }
 
   renderOptions() {
-    return this.options.map((option, i) => {
+    return Object.keys(this.state.options).map((option, i) => {
       return (
         <ListItem
           key={i}
-          id={`${option.name}-${i}`}
-          label={option.name}
+          id={`${option}-${i}`}
+          label={option}
           badge={false}
-          onChange={checked => option.checked = checked} />
+          checked={this.state.options[option]}
+          onChange={(checked) => this.handleOnChange(option, checked)} />
       )
     })
   }
