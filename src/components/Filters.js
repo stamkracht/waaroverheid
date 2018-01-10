@@ -24,6 +24,7 @@ class Filters extends React.Component {
           min: 2,
           max: 10,
         },
+        checks: [],
       },
     }
   }
@@ -53,6 +54,16 @@ class Filters extends React.Component {
     this.setState({filters: {...this.state.filters, range}})
   }
 
+  handleOnChangeFilters(item, active) {
+    let checks = this.state.filters.checks.slice()
+    if ( active ) {
+      checks.push(item)
+    } else {
+      checks = checks.filter(check => check !== item)
+    }
+    this.setState({filters: {...this.state.filters, checks}})
+  }
+
   renderFilters = () => {
     let types = ['Type 1', 'Type 2', 'Type 3']
     let parties = ['P1', 'P2', 'P3', 'P4', 'P5']
@@ -75,10 +86,22 @@ class Filters extends React.Component {
           onChange={this.handleOnChangeRange.bind(this)}
           formatLabel={this.setLabel} />
         <div className="filtersContainer">
-          <FilterList text={'Soorten'} filters={types} />
-          <FilterList text={'Partijen'} filters={parties} />
-          <FilterList text={'Veggies'} filters={veggies} />
-          <FilterList text={'Spices'} filters={spices} />
+          <FilterList
+            text={'Soorten'}
+            filters={types}
+            onChange={this.handleOnChangeFilters.bind(this)}/>
+          <FilterList
+            text={'Partijen'}
+            filters={parties}
+            onChange={this.handleOnChangeFilters.bind(this)}/>
+          <FilterList
+            text={'Veggies'}
+            filters={veggies}
+            onChange={this.handleOnChangeFilters.bind(this)}/>
+          <FilterList
+            text={'Spices'}
+            filters={spices}
+            onChange={this.handleOnChangeFilters.bind(this)}/>
         </div>
         <Button text='Search'
           onClick={() => this.handleOnSubmit()} />
