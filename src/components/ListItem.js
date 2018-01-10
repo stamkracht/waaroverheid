@@ -17,7 +17,7 @@ class ListItem extends React.Component {
   handleChange = () => {
     this.setState({
       checked: !this.state.checked,
-    })
+    }, () => this.props.onChange(this.state.checked))
   }
 
   render() {
@@ -35,8 +35,9 @@ class ListItem extends React.Component {
 }
 
 ListItem.defaultProps = {
-  label: 'this is a label',
   id: Math.round(Math.random()*1000),
+  label: 'this is a label',
+  onChange: undefined,
 }
 
 export default ListItem
