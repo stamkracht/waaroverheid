@@ -18,11 +18,18 @@ class Filters extends React.Component {
 
     this.state = {
       active: false,
-      value: { min: 2, max: 10 },
       filters: {
         search: '',
+        range: {
+          min: 2,
+          max: 10,
+        },
       },
     }
+  }
+
+  toggleFilters() {
+    this.setState({active: !this.state.active})
   }
 
   setLabel = (value, type) => {
@@ -38,16 +45,12 @@ class Filters extends React.Component {
     this.props.submit(this.state.filters)
   }
 
-  handleOnChange(value) {
-    this.setState({value})
-  }
-
   handleOnType(search) {
     this.setState({filters: {...this.state.filters, search}})
   }
 
-  toggleFilters() {
-    this.setState({active: !this.state.active})
+  handleOnChangeRange(range) {
+    this.setState({filters: {...this.state.filters, range}})
   }
 
   renderFilters = () => {
@@ -66,11 +69,11 @@ class Filters extends React.Component {
           onType={this.handleOnType.bind(this)}
           onSubmit={this.handleOnSubmit.bind(this)}/>
         <InputRange
-          formatLabel={this.setLabel}
-          maxValue={20}
           minValue={0}
-          value={this.state.value}
-          onChange={this.handleOnChange.bind(this)} />
+          maxValue={20}
+          value={this.state.filters.range}
+          onChange={this.handleOnChangeRange.bind(this)}
+          formatLabel={this.setLabel} />
         <div className="filtersContainer">
           <FilterList text={'Soorten'} filters={types} />
           <FilterList text={'Partijen'} filters={parties} />
