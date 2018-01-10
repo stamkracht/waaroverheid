@@ -15,10 +15,16 @@ class Drawer extends React.Component {
     this.state = {
       active: false,
     }
+
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
   componentWillMount() {
-    document.addEventListener('keydown', this.handleKeyDown.bind(this))
+    document.addEventListener('keydown', this.handleKeyDown, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown, false)
   }
 
   handleKeyDown(event) {
