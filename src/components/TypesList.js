@@ -27,6 +27,7 @@ class TypesList extends React.Component {
             id={`${item.name}-${i}`}
             label={item.name}
             checked={item.active}
+            badge={'9'}
             onChange={checked => item.active = checked} />
         )
       })

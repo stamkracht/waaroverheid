@@ -20,6 +20,16 @@ class ListItem extends React.Component {
     }, () => this.props.onChange(this.state.checked))
   }
 
+  renderBadge() {
+    if ( !!this.props.badge ) {
+      return (
+        <Badge
+          num={this.props.badge}
+          active={this.state.checked} />
+      )
+    }
+  }
+
   render() {
     return (
       <li>
@@ -28,7 +38,7 @@ class ListItem extends React.Component {
           label={this.props.label}
           active={this.state.checked}
           onChange={this.handleChange} />
-          {this.props.badge && <Badge active={this.state.checked} />}
+          {this.renderBadge()}
       </li>
     )
   }
@@ -39,7 +49,7 @@ ListItem.defaultProps = {
   id: Math.round(Math.random()*1000),
   label: 'this is a label',
   onChange: undefined,
-  badge: false,
+  badge: undefined,
 }
 
 export default ListItem
