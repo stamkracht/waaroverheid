@@ -10,24 +10,26 @@ class FilterList extends React.Component {
     super(props)
 
     this.state = {
-      pointRight: true,
+      active: this.props.active,
     }
   }
 
   toggleDropdown() {
-    this.setState({pointRight: !this.state.pointRight})
+    this.setState({active: !this.state.active})
   }
 
   renderItems() {
-    return this.props.list.map((item, id) => {
-      return (
-        <ListItem
-          key={id}
-          id={`${item}-${id}`}
-          label={item}
-          onChange={(checked) => this.props.onChange(item, checked)} />
-      )
-    })
+    if ( this.state.active ) {
+      return this.props.list.map((item, id) => {
+        return (
+          <ListItem
+            key={id}
+            id={`${item}-${id}`}
+            label={item}
+            onChange={(checked) => this.props.onChange(item, checked)} />
+        )
+      })
+    }
   }
 
   render() {
@@ -40,11 +42,11 @@ class FilterList extends React.Component {
           textAlign='left'
           shadow={false}
           hovering={false}
-          pointRight={this.state.pointRight}
+          pointRight={this.state.active}
           onClick={this.toggleDropdown.bind(this)}>
         </Button>
         <ul>
-          {!this.state.pointRight && this.renderItems()}
+          {this.renderItems()}
         </ul>
       </div>
     )
@@ -53,6 +55,7 @@ class FilterList extends React.Component {
 }
 
 FilterList.defaultProps = {
+  active: false,
   text: 'Label',
   list: [],
   onChange: undefined,
