@@ -55,8 +55,8 @@ class ZoomControls extends React.Component {
           text='Kies gemeente'
           icon='arrow'
           iconPosition='right'
+          iconDirection='right'
           textAlign='center'
-          pointRight={true}
           onClick={() => this.props.setZoomLevel()} />
         {this.renderMunicipalityButton()}
         {this.renderDistrictButton()}

@@ -23,6 +23,10 @@
   cursor: pointer;
 }
 
-.icon.pointRight {
+.icon.direction-left {
+  transform: rotate(90deg);
+}
+
+.icon.direction-right {
   transform: rotate(-90deg);
 }

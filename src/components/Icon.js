@@ -47,7 +47,7 @@ class Icon extends React.Component {
 
   render() {
     return (
-      <div className={`${this.props.pointRight ? `icon pointRight ${this.props.iconPosition}` : `icon ${this.props.iconPosition}`}`}>
+      <div className={`icon ${this.props.iconPosition} direction-${this.props.iconDirection}`}>
         {this.renderIcon()}
       </div>
     )
@@ -59,7 +59,7 @@ Icon.defaultProps = {
   height: 30,
   icon: 'file',
   iconPosition: 'right',
-  pointRight: false,
+  iconDirection: '',
 }
 
 export default Icon

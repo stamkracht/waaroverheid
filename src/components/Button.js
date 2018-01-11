@@ -25,7 +25,7 @@ class Button extends React.Component {
         <Icon
           icon={this.props.icon}
           iconPosition={this.props.iconPosition}
-          pointRight={this.props.pointRight} />
+          iconDirection={this.props.iconDirection} />
       )
     }
   }
@@ -52,6 +52,7 @@ Button.defaultProps = {
   text: 'Button',
   icon: '',
   iconPosition: 'right',
+  iconDirection: '',
   textAlign: 'center',
   flat: false,
   onClick: undefined,
