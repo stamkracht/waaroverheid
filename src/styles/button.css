@@ -8,16 +8,25 @@
   border: none;
   outline: none;
   box-shadow: 0 0 0 2px transparent, 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  transition: background 3.5s ease-out;
+  background: linear-gradient(to right, #ed6000 50%, white 50%);
+  background-position: right bottom;
+  background-size: 200% 100%;
 }
 
 .c-button:hover,
-.c-button.active {
+.c-button.active,
+.c-button.loading {
   box-shadow: 0 0 0 2px #ed6000, 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
 .c-button.flat {
   border: none;
   box-shadow: none;
+}
+
+.c-button.loading {
+  background-position: left bottom;
 }
 
 .c-button .c-button--text {

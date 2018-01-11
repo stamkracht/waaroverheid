@@ -33,6 +33,7 @@ class Municipalities extends React.Component {
             icon='arrow'
             iconPosition='right'
             pointRight={true}
+            loading={this.props.loading}
             onClick={this.handleOnClick.bind(this)} />
         </div>
       </div>
@@ -73,6 +74,7 @@ class Municipalities extends React.Component {
 }
 
 Municipalities.defaultProps = {
+  loading: false,
   list: [],
   filter: undefined,
   select: undefined,
