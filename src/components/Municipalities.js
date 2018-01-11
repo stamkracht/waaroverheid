@@ -1,11 +1,16 @@
 import React from 'react'
 
+import Button from './Button'
 import Container from './Container'
 import SearchBox from './SearchBox'
 import '../styles/municipalities.css'
 
 
 class Municipalities extends React.Component {
+
+  handleOnClick() {
+    this.props.showLocation()
+  }
 
   handleOnType(q) {
     this.props.filter(q)
@@ -15,6 +20,25 @@ class Municipalities extends React.Component {
     if ( this.props.list.length > 0) {
       this.props.select(this.props.list[0].code)
     }
+  }
+
+  renderHeader() {
+    return (
+      <div className='c-municipalities--header'>
+        <h1>WaarOverheid</h1>
+        <div className='c-button--wrapper'>
+          <Button
+            text='Show my location'
+            textAlign='center'
+            shadow={true}
+            hovering={true}
+            icon='arrow'
+            iconPosition='right'
+            pointRight={true}
+            onClick={this.handleOnClick.bind(this)} />
+        </div>
+      </div>
+    )
   }
 
   renderSearch() {
@@ -42,6 +66,7 @@ class Municipalities extends React.Component {
   render() {
     return (
       <div className='c-municipalities'>
+        {this.renderHeader()}
         {this.renderSearch()}
         {this.renderList()}
       </div>
@@ -53,6 +78,7 @@ Municipalities.defaultProps = {
   list: [],
   filter: undefined,
   select: undefined,
+  showLocation: undefined,
 }
 
 export default Municipalities

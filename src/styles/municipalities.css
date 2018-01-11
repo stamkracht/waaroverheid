@@ -14,6 +14,13 @@
   text-align: left;
 }
 
+.c-municipalities .c-municipalities--header h1 {
+  display: inline-block;
+}
+.c-municipalities .c-municipalities--header .c-button--wrapper {
+  float: right;
+}
+
 .c-municipalities .c-container {
   width: 100%;
   margin: 15px 0;
