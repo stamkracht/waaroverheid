@@ -107,7 +107,7 @@ class App extends React.Component {
             service={this.DocumentService}
             submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert />
-          <Drawer numberDoc={10} />
+          <Drawer numberDoc={10} area={this.state.code} />
         </div>
       )
     }
