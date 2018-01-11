@@ -3,12 +3,17 @@
   display: inline-block;
   position: relative;
   background: white;
-  padding: 10px;
+  padding: 8px;
   user-select: none;
 }
 
-.c-button.hovering:hover {
+.c-button.hovering {
+  border: 2px solid transparent;
+}
+.c-button.hovering:hover,
+.c-button.hovering.active {
   box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  border: 2px solid #ed6000;
 }
 
 .c-button .c-button--text {

@@ -32,6 +32,7 @@ class Button extends React.Component {
     let classes = classNames('c-button', {
       'hovering': this.props.hovering,
       'disabled': this.props.disabled,
+      'active': this.props.active,
     })
     return (
       <Container shadow={this.props.shadow}>
@@ -53,6 +54,7 @@ Button.defaultProps = {
   hovering: true,
   onClick: undefined,
   disabled: false,
+  active: false,
 }
 
 export default Button
