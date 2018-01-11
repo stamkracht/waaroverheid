@@ -4,3 +4,53 @@
   right: 0px;
   text-align: left;
 }
+
+.react-responsive-modal-modal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.react-responsive-modal-modal .c-alert--header {
+  -webkit-margin-before: 1px;
+  -webkit-margin-after: 20px;
+  padding-right: 30px;
+}
+
+.react-responsive-modal-close-icon {
+  order: 1;
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.react-responsive-modal-modal .c-alert--content {
+  order: 2;
+  width: 100%;
+}
+
+.react-responsive-modal-modal .c-alert--content input {
+  width: 100%;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 14px;
+  border: none;
+  font-weight: lighter;
+  padding: 7px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1), -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+}
+
+.react-responsive-modal-modal .c-alert--content input:focus {
+  outline: 0;
+  border: none;
+}
+
+.react-responsive-modal-modal .c-alert--footer {
+  order: 99;
+  margin: auto;
+}
+
+.react-responsive-modal-modal .c-alert--footer .c-container .c-button {
+  background: #eeeeee;
+}
