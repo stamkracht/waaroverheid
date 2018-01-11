@@ -41,6 +41,7 @@ class Alert extends React.Component {
         <Modal open={this.state.open} onClose={this.onCloseModal} little>
           <h2 className='c-alert--header'>Sign up for alerts</h2>
           <div className='c-alert--content'>
+            <h3>Receive alerts for documents corresponding to these filters:</h3>
             <input placeholder='Type in your email address' ref='email' />
             {this.state.result === 'invalid' && <p>Please insert a valid email address!</p>}
           </div>

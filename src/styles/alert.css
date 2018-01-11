@@ -53,6 +53,10 @@
   color: red;
 }
 
+.react-responsive-modal-modal .c-alert--content h3 {
+  font-weight: lighter;
+}
+
 .react-responsive-modal-modal .c-alert--footer {
   order: 99;
   margin: auto;
