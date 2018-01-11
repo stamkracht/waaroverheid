@@ -40,10 +40,9 @@ class TypesList extends React.Component {
         <Button
           text={this.props.text}
           icon='arrow'
+          flat={true}
           iconPosition='left'
           textAlign='left'
-          shadow={false}
-          hovering={false}
           pointRight={this.state.active}
           onClick={this.toggleDropdown.bind(this)}>
         </Button>

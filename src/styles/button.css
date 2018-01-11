@@ -5,15 +5,19 @@
   background: white;
   padding: 8px;
   user-select: none;
+  border: 2px solid transparent;
+  outline: none;
 }
 
-.c-button.hovering {
-  border: 2px solid transparent;
-}
-.c-button.hovering:hover,
-.c-button.hovering.active {
+.c-button:hover,
+.c-button.active {
   box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
   border: 2px solid #ed6000;
+}
+
+.c-button.flat {
+  border: none;
+  box-shadow: none;
 }
 
 .c-button .c-button--text {

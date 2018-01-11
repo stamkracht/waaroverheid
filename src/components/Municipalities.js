@@ -30,8 +30,6 @@ class Municipalities extends React.Component {
           <Button
             text='Show my location'
             textAlign='center'
-            shadow={true}
-            hovering={true}
             icon='arrow'
             iconPosition='right'
             pointRight={true}

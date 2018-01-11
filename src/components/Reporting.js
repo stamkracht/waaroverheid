@@ -83,8 +83,6 @@ class Reporting extends React.Component {
       <div className='c-dropdown--footer'>
         <Button
           text='Submit'
-          shadow={true}
-          hovering={true}
           textAlign='center'
           disabled={disabled} />
       </div>
@@ -119,8 +117,7 @@ class Reporting extends React.Component {
         <Button
           text=''
           icon='flag'
-          shadow={false}
-          hovering={false}
+          flat={true}
           onClick={this.openReporting.bind(this)} />
         {this.renderReportingMenu()}
       </div>

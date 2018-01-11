@@ -30,12 +30,12 @@ class Button extends React.Component {
 
   render() {
     let classes = classNames('c-button', {
-      'hovering': this.props.hovering,
       'disabled': this.props.disabled,
       'active': this.props.active,
+      'flat': this.props.flat,
     })
     return (
-      <Container shadow={this.props.shadow}>
+      <Container shadow={!this.props.flat}>
         <div className={classes} onClick={this.props.onClick}>
           {this.renderText()}
           {this.renderIcon()}
@@ -50,8 +50,7 @@ Button.defaultProps = {
   icon: '',
   iconPosition: 'right',
   textAlign: 'center',
-  shadow: true,
-  hovering: true,
+  flat: false,
   onClick: undefined,
   disabled: false,
   active: false,
