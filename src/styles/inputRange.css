@@ -8,6 +8,14 @@
   font-family: sans-serif;
 }
 
+.input-range__label.input-range__label--min {
+  left: 10px;
+}
+
+.input-range__label.input-range__label--max {
+  right: 10px;
+}
+
 .input-range__track {
   background: #999;
 }

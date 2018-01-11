@@ -26,6 +26,14 @@
   margin-top: 0;
 }
 
+.c-typesList .c-container .c-button {
+  padding: 5px;
+}
+
+.c-typesList .c-container .c-button .icon {
+  padding: 5px;
+}
+
 .c-typesList .c-badge {
   position: absolute;
   top: 0;
