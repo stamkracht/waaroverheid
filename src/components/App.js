@@ -24,7 +24,6 @@ class App extends React.Component {
 
     this.MapService = new MapService()
     this.allMunicipalities = []
-    this.getUserLocation()
 
     this.DocumentService = new DocumentService()
 
@@ -50,7 +49,7 @@ class App extends React.Component {
     })
   }
 
-  async getUserLocation() {
+  async showUserLocation() {
     let code = await this.MapService.getUserLocation()
     let geo = await this.MapService.getFeatures(code)
     this.setState({geo, code})
@@ -105,9 +104,9 @@ class App extends React.Component {
       return (
         <Municipalities
           list={this.state.municipalities}
+          filter={this.filterMunicipalities.bind(this)}
           select={this.selectMunicipality.bind(this)}
-          filter={this.filterMunicipalities.bind(this)}>
-        </Municipalities>
+          showLocation={this.showUserLocation.bind(this)} />
       )
     }
   }
