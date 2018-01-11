@@ -30,9 +30,8 @@ class Municipalities extends React.Component {
           <Button
             text='Show my location'
             textAlign='center'
-            icon='arrow'
+            icon='location'
             iconPosition='right'
-            pointRight={true}
             loading={this.props.loading}
             onClick={this.handleOnClick.bind(this)} />
         </div>

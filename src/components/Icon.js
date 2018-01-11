@@ -8,6 +8,7 @@ import AlertIcon from './icons/AlertIcon'
 import LikeIcon from './icons/LikeIcon'
 import DislikeIcon from './icons/DislikeIcon'
 import FlagIcon from './icons/FlagIcon'
+import LocationIcon from './icons/LocationIcon'
 import MailIcon from './icons/MailIcon'
 import CloseIcon from './icons/CloseIcon'
 
@@ -30,6 +31,8 @@ class Icon extends React.Component {
         return <LikeIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'dislike' ) {
         return <DislikeIcon width={this.props.width} height={this.props.height} color={this.props.color} />
+      }  else if ( this.props.icon === 'location' ) {
+        return <LocationIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'mail' ) {
         return <MailIcon width={this.props.width} height={this.props.height} color={this.props.color} />
       }  else if ( this.props.icon === 'flag' ) {
