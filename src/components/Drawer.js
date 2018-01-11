@@ -9,39 +9,13 @@ import '../styles/drawer.css'
 
 class Drawer extends React.Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      active: false,
-    }
-
-    this.handleKeyDown = this.handleKeyDown.bind(this)
-  }
-
-  componentWillMount() {
-    document.addEventListener('keydown', this.handleKeyDown, false)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown, false)
-  }
-
-  handleKeyDown(event) {
-    if ( event.keyCode === 27 ) {
-      this.setState({active: false})
-    }
-  }
-
   handleOnClick() {
-    this.setState({
-      active: !this.state.active,
-    })
+    this.props.toggle()
   }
 
   renderHeaderContent() {
     let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 ? 's' : ''} found in ${this.props.area}`
-    if ( this.state.active === false ) {
+    if ( !this.props.active ) {
       return (
         <div>
           <Icon icon='file' iconPosition='left' />
@@ -63,7 +37,7 @@ class Drawer extends React.Component {
 
   renderHamburger() {
     return (
-      <div className={classNames('c-hamburger', {'active': this.state.active})}>
+      <div className={classNames('c-hamburger', {'active': this.props.active})}>
         <span className='line' />
         <span className='line' />
         <span className='line' />
@@ -86,17 +60,19 @@ class Drawer extends React.Component {
 
   render() {
     return (
-      <div className={classNames('c-drawer', {'active': this.state.active})}>
+      <div className={classNames('c-drawer', {'active': this.props.active})}>
         {this.renderHeader()}
-        {this.state.active && <Documents />}
+        {this.props.active && <Documents />}
       </div>
     )
   }
 }
 
 Drawer.defaultProps = {
+  active: false,
   numberDoc: 0,
   area: 'selected area',
+  toggle: undefined,
 }
 
 export default Drawer

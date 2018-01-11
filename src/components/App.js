@@ -16,6 +16,7 @@ class App extends React.Component {
     super(props)
 
     this.state = {
+      drawerActive: false,
       municipalities: [],
       code: '',
       geo: {},
@@ -26,6 +27,16 @@ class App extends React.Component {
     this.getUserLocation()
 
     this.DocumentService = new DocumentService()
+
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+  }
+
+  componentWillMount() {
+    document.addEventListener('keydown', this.handleKeyDown, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown, false)
   }
 
   componentDidMount() {
@@ -43,6 +54,18 @@ class App extends React.Component {
     let code = await this.MapService.getUserLocation()
     let geo = await this.MapService.getFeatures(code)
     this.setState({geo, code})
+  }
+
+  handleKeyDown(event) {
+    if ( event.keyCode === 27 && this.state.drawerActive ) {
+      this.setState({drawerActive: false})
+    }
+  }
+
+  toggleDrawer() {
+    this.setState({
+      drawerActive: !this.state.drawerActive,
+    })
   }
 
   handleOnSubmitFilters() {
@@ -107,7 +130,11 @@ class App extends React.Component {
             service={this.DocumentService}
             submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert />
-          <Drawer numberDoc={10} area={this.state.code} />
+          <Drawer
+            numberDoc={10}
+            area={this.state.code}
+            active={this.state.drawerActive}
+            toggle={this.toggleDrawer.bind(this) }/>
         </div>
       )
     }
