@@ -3,16 +3,16 @@
   display: inline-block;
   position: relative;
   background: white;
-  padding: 8px;
+  padding: 10px;
   user-select: none;
-  border: 2px solid transparent;
+  border: none;
   outline: none;
+  box-shadow: 0 0 0 2px transparent, 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
 .c-button:hover,
 .c-button.active {
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
-  border: 2px solid #ed6000;
+  box-shadow: 0 0 0 2px #ed6000, 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
 }
 
 .c-button.flat {
