@@ -77,6 +77,20 @@ class Reporting extends React.Component {
     }
   }
 
+  renderSubmitButton() {
+    let disabled =  !Object.keys(this.state.options).some(option => this.state.options[option])
+    return (
+      <div className='c-dropdown--footer'>
+        <Button
+          text='Submit'
+          shadow={true}
+          hovering={true}
+          textAlign='center'
+          disabled={disabled} />
+      </div>
+    )
+  }
+
   renderReportingMenu() {
     if ( this.state.active ) {
       return (
@@ -93,9 +107,7 @@ class Reporting extends React.Component {
             </ul>
           </div>
           {this.renderTextArea()}
-          <div className='c-dropdown--footer'>
-            <Button text='Submit' shadow={true} hovering={true} textAlign='center' disabled={true} />
-          </div>
+          {this.renderSubmitButton()}
         </div>
       )
     }
