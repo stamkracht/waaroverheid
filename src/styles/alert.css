@@ -47,7 +47,7 @@
 }
 
 .react-responsive-modal-modal .c-alert--content p {
-  padding: 5px;
+  padding: 7px 0;
   width: auto;
   margin: 0;
   color: red;
@@ -55,6 +55,7 @@
 
 .react-responsive-modal-modal .c-alert--content h3 {
   font-weight: lighter;
+  -webkit-margin-before: 5px;
 }
 
 .react-responsive-modal-modal .c-alert--footer {
@@ -64,4 +65,27 @@
 
 .react-responsive-modal-modal .c-alert--footer .c-container .c-button {
   background: #eeeeee;
+}
+
+@media (max-width: 767px) {
+
+  .react-responsive-modal-modal .c-alert--header {
+    -webkit-margin-before: 6px;
+    -webkit-margin-after: 10px;
+    font-size: medium;
+  }
+
+  .react-responsive-modal-modal .c-alert--content h3 {
+    font-size: small;
+  }
+
+  .react-responsive-modal-modal .c-alert--content input {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .react-responsive-modal-modal .c-alert--footer .c-container .c-button .c-button--text {
+    line-height: 20px;
+  }
+
 }
