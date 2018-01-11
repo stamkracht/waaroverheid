@@ -8,11 +8,12 @@ class ZoomControls extends React.Component {
 
   renderMunicipalityButton() {
     let level = this.props.code.slice(0, 2)
-    if ( level === 'WK' || level === 'BU' ) {
+    if ( level === 'GM' || level === 'WK' || level === 'BU' ) {
       let code = `GM${this.props.code.match(/[0-9]{4}/g)[0]}`
       return (
         <Button
           text={'Gemeente'}
+          active={level === 'GM'}
           onClick={() => this.props.setZoomLevel(code)}>
         </Button>
       )
@@ -21,11 +22,12 @@ class ZoomControls extends React.Component {
 
   renderDistrictButton() {
     let level = this.props.code.slice(0, 2)
-    if ( level === 'BU' ) {
+    if ( level === 'WK' || level === 'BU' ) {
       let code = `WK${this.props.code.match(/[0-9]{6}/g)[0]}`
       return (
         <Button
           text={'Wijk'}
+          active={level === 'WK'}
           onClick={() => this.props.setZoomLevel(code)}>
         </Button>
       )
