@@ -16,6 +16,7 @@ class App extends React.Component {
     super(props)
 
     this.state = {
+      loadingLocation: false,
       drawerActive: false,
       municipalities: [],
       code: '',
@@ -50,9 +51,10 @@ class App extends React.Component {
   }
 
   async showUserLocation() {
+    await this.setState({loadingLocation: true})
     let code = await this.MapService.getUserLocation()
     let geo = await this.MapService.getFeatures(code)
-    this.setState({geo, code})
+    this.setState({loadingLocation: false, geo, code})
   }
 
   handleKeyDown(event) {
@@ -103,6 +105,7 @@ class App extends React.Component {
     if ( !this.state.code ) {
       return (
         <Municipalities
+          loading={this.state.loadingLocation}
           list={this.state.municipalities}
           filter={this.filterMunicipalities.bind(this)}
           select={this.selectMunicipality.bind(this)}
