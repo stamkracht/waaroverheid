@@ -113,7 +113,7 @@ class App extends React.Component {
   }
 
   renderControls() {
-    if ( this.state.code ) {
+    if ( this.state.code && !this.state.drawerActive ) {
       return (
         <ZoomControls
           code={this.state.code}
@@ -122,20 +122,27 @@ class App extends React.Component {
     }
   }
 
-  renderDocuments() {
-    if ( this.state.code ) {
+  renderFilters() {
+    if ( this.state.code && !this.state.drawerActive ) {
       return (
         <div>
           <Filters
             service={this.DocumentService}
             submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert />
-          <Drawer
-            numberDoc={10}
-            area={this.state.code}
-            active={this.state.drawerActive}
-            toggle={this.toggleDrawer.bind(this) }/>
         </div>
+      )
+    }
+  }
+
+  renderDocuments() {
+    if ( this.state.code ) {
+      return (
+        <Drawer
+          numberDoc={10}
+          area={this.state.code}
+          active={this.state.drawerActive}
+          toggle={this.toggleDrawer.bind(this) }/>
       )
     }
   }
@@ -148,6 +155,7 @@ class App extends React.Component {
           select={this.selectArea.bind(this)} />
         {this.renderMunicipalities()}
         {this.renderControls()}
+        {this.renderFilters()}
         {this.renderDocuments()}
       </div>
     )
