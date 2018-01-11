@@ -24,6 +24,14 @@ class Reporting extends React.Component {
       },
     }
 
+    this.placeholder = [
+      'Why?',
+      'Waarom?',
+      'Por qué?',
+      'Perché?',
+      'blah bla bla',
+    ][Math.random()*5|0]
+
     this.handleClickOutside = this.handleClickOutside.bind(this)
   }
 
@@ -72,7 +80,7 @@ class Reporting extends React.Component {
   renderTextArea() {
     if ( Object.keys(this.state.options).some(option => this.state.options[option]) ) {
       return (
-        <textarea className='c-textarea' placeholder='Why?' />
+        <textarea className='c-textarea' placeholder={this.placeholder} />
       )
     }
   }
