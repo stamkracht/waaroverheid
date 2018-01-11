@@ -34,6 +34,20 @@ class ZoomControls extends React.Component {
     }
   }
 
+  renderNeighborhoodButton() {
+    let level = this.props.code.slice(0, 2)
+    if ( level === 'BU' ) {
+      let code = `BU${this.props.code.match(/[0-9]{8}/g)[0]}`
+      return (
+        <Button
+          text={'Buurt'}
+          active={level === 'BU'}
+          onClick={() => this.props.setZoomLevel(code)}>
+        </Button>
+      )
+    }
+  }
+
   render() {
     return (
       <div className='c-zoomControls'>
@@ -46,6 +60,7 @@ class ZoomControls extends React.Component {
           onClick={() => this.props.setZoomLevel()} />
         {this.renderMunicipalityButton()}
         {this.renderDistrictButton()}
+        {this.renderNeighborhoodButton()}
       </div>
     )
   }
