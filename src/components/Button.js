@@ -2,23 +2,12 @@ import React from 'react'
 
 import Container from './Container'
 import Icon from './Icon'
+import { classNames } from '../utilities/class'
 
 import '../styles/button.css'
 
 
 class Button extends React.Component {
-
-  getClassName() {
-    if ( this.props.hovering && this.props.disabled ) {
-      return 'c-button hovering disabled'
-    } else if ( this.props.hovering && !this.props.disabled ) {
-      return 'c-button hovering'
-    } else if ( !this.props.hovering && this.props.disabled ) {
-      return 'c-button disabled'
-    } else {
-      return 'c-button'
-    }
-  }
 
   renderText() {
     if ( this.props.text ) {
@@ -40,9 +29,13 @@ class Button extends React.Component {
   }
 
   render() {
+    let classes = classNames('c-button', {
+      'hovering': this.props.hovering,
+      'disabled': this.props.disabled,
+    })
     return (
       <Container shadow={this.props.shadow}>
-        <div className={this.getClassName()} onClick={this.props.onClick}>
+        <div className={classes} onClick={this.props.onClick}>
           {this.renderText()}
           {this.renderIcon()}
         </div>
