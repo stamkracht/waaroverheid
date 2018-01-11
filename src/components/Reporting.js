@@ -77,7 +77,7 @@ class Reporting extends React.Component {
     }
   }
 
-  renderReporting() {
+  renderReportingMenu() {
     if ( this.state.active ) {
       return (
         <div className='c-dropdown' ref={node => { this.dropdown = node }}>
@@ -110,7 +110,7 @@ class Reporting extends React.Component {
           shadow={false}
           hovering={false}
           onClick={this.openReporting.bind(this)} />
-        {this.renderReporting()}
+        {this.renderReportingMenu()}
       </div>
     )
   }
