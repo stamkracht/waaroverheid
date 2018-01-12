@@ -1,7 +1,6 @@
 .c-typesList {
   height: auto;
   width: 100%;
-  margin-right: 115px;
   text-align: left;
 }
 
@@ -41,10 +40,6 @@
 }
 
 @media (max-width: 670px) {
-
-  .c-typesList .icon {
-    top: -5px;
-  }
 
   .c-typesList .icon.direction-right {
     top: 0px;
