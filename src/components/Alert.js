@@ -1,7 +1,7 @@
 import React from 'react'
 import 'react-responsive-modal/lib/react-responsive-modal.css'
 import Modal from 'react-responsive-modal/lib/css'
-
+import Tag from './Tag'
 import Button from './Button'
 import { validate } from '../utilities/email.js'
 
@@ -16,6 +16,7 @@ class Alert extends React.Component {
     this.state = {
       active: false,
       result: '',
+      update: false,
     }
   }
 
@@ -29,7 +30,7 @@ class Alert extends React.Component {
   }
 
   handleClick() {
-    if ( validate(this.refs.email.value) )  {
+    if (validate(this.refs.email.value))  {
       this.setState({result: 'valid'})
     } else {
       this.setState({result: 'invalid'})
@@ -54,10 +55,30 @@ class Alert extends React.Component {
     )
   }
 
+  renderTags() {
+    return this.props.service.filters.types.map((types, i) => {
+      return types.items.map((item, i) => {
+        if(item.active)
+          return (
+            <Tag key={i}
+                text={item.name}
+                onClick={ () => {
+                  item.active = !item.active;
+                  this.setState({update: !this.state.update})
+                } }
+            />
+          )
+      })
+    })
+  }
+
   renderModalContent() {
     return (
       <div className='c-alert--content'>
         <h3>Receive alerts for documents corresponding to these filters:</h3>
+        <div className='c-selectedFilters'>
+          {this.renderTags()}
+        </div>
         <input placeholder='Type in your email address' ref='email' />
         {this.state.result === 'invalid' && <p>Please insert a valid email address!</p>}
       </div>
@@ -96,6 +117,10 @@ class Alert extends React.Component {
       </div>
     )
   }
+}
+
+Alert.defaultProps = {
+  service: {},
 }
 
 export default Alert

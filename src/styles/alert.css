@@ -56,6 +56,7 @@
 .react-responsive-modal-modal .c-alert--content h3 {
   font-weight: lighter;
   -webkit-margin-before: 5px;
+  -webkit-margin-after: 5px;
 }
 
 .react-responsive-modal-modal .c-alert--footer {
@@ -67,6 +68,13 @@
   background: #eeeeee;
   font-size: small;
 }
+
+  .react-responsive-modal-modal .c-alert--content .c-selectedFilters {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
 @media (max-width: 767px) {
 
