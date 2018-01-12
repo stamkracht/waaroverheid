@@ -43,7 +43,7 @@ class TypesList extends React.Component {
           flat={true}
           iconPosition='left'
           textAlign='left'
-          iconDirection={this.state.active ? 'right' : 'down'}
+          iconDirection={this.state.active ? 'down' : 'right'}
           onClick={this.toggleDropdown.bind(this)}>
         </Button>
         <ul>
