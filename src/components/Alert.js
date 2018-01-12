@@ -77,7 +77,7 @@ class Alert extends React.Component {
   renderModalContent() {
     return (
       <div className='c-alert--content'>
-        <h3>Receive alerts for documents corresponding to these filters:</h3>
+        <h3>Receive alerts for documents in {this.props.area} corresponding to these filters:</h3>
         <div className='c-selectedFilters'>
           {this.renderTags()}
         </div>
@@ -123,6 +123,7 @@ class Alert extends React.Component {
 
 Alert.defaultProps = {
   service: {},
+  area: 'selected area'
 }
 
 export default Alert

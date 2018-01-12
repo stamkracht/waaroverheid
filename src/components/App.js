@@ -133,7 +133,9 @@ class App extends React.Component {
           <Filters
             service={this.DocumentService}
             submit={this.handleOnSubmitFilters.bind(this)} />
-          <Alert service={this.DocumentService} />
+          <Alert
+            service={this.DocumentService}
+            area={this.state.code} />
         </div>
       )
     }
