@@ -29,6 +29,7 @@
 .typesContainer {
   max-height: calc(75vh - 250px);
   overflow: auto;
+  padding: 0 25px;
 }
 
 .filtersHeader {
@@ -62,5 +63,8 @@
 
   .typesContainer {
     max-height: calc(75vh - 160px);
+    width: 80vw;
+    margin: 0 auto;
+    padding: 0;
   }
 }
