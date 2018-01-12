@@ -15,7 +15,7 @@ class Alert extends React.Component {
 
     this.state = {
       active: false,
-      result: '',
+      validEmail: false,
       update: false,
     }
   }
@@ -26,15 +26,10 @@ class Alert extends React.Component {
 
   onCloseModal() {
     this.setState({active: false})
-    this.setState({result: ''})
   }
 
   handleClick() {
-    if (validate(this.refs.email.value))  {
-      this.setState({result: 'valid'})
-    } else {
-      this.setState({result: 'invalid'})
-    }
+    this.setState({validEmail: validate(this.emailInput.value)})
   }
 
   renderModalButton() {
@@ -58,18 +53,25 @@ class Alert extends React.Component {
   renderTags() {
     return this.props.service.filters.types.map((types, i) => {
       return types.items.map((item, i) => {
-        if(item.active)
+        if(item.active) {
           return (
             <Tag key={i}
-                text={item.name}
-                onClick={ () => {
-                  item.active = !item.active;
-                  this.setState({update: !this.state.update})
-                } }
+              text={item.name}
+              onClick={ () => {
+                item.active = !item.active;
+                this.setState({update: !this.state.update})
+              } }
             />
           )
+        }
       })
     })
+  }
+
+  renderEmailError() {
+    if(!!this.emailInput && this.emailInput.value && !this.state.validEmail) {
+      return <p>Please insert a valid email address!</p>
+    }
   }
 
   renderModalContent() {
@@ -79,8 +81,8 @@ class Alert extends React.Component {
         <div className='c-selectedFilters'>
           {this.renderTags()}
         </div>
-        <input placeholder='Type in your email address' ref='email' />
-        {this.state.result === 'invalid' && <p>Please insert a valid email address!</p>}
+        <input placeholder='Type in your email address' ref={node => {this.emailInput = node}} />
+        {this.renderEmailError()}
       </div>
     )
   }
