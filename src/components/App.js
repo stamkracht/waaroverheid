@@ -55,7 +55,8 @@ class App extends React.Component {
     await this.setState({loadingLocation: true})
     let code = await this.MapService.getUserLocation()
     let geo = await this.MapService.getFeatures(code)
-    this.setState({loadingLocation: false, geo, code})
+    let adjacent = await this.MapService.getAdjacentFeatures(code)
+    this.setState({loadingLocation: false, geo, adjacent, code})
   }
 
   handleKeyDown(event) {
