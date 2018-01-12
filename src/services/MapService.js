@@ -71,6 +71,18 @@ class MapService {
         .catch(err => reject(err))
     })
   }
+
+  getAdjacentFeatures(code) {
+    let url = `${this.apiUrl}municipal/${code}/adjacent`
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'GET',
+      })
+        .then(d => d.json())
+        .then(geo => resolve(geo))
+        .catch(err => reject(err))
+    })
+  }
 }
 
 export default MapService
