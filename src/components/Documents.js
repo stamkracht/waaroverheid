@@ -16,6 +16,11 @@ class Documents extends Component {
     }
   }
 
+  handleOnClick(item) {
+    item.active = !item.active;
+    this.setState({update: !this.state.update})
+  }
+
   renderDocumentItems() {
     return Array.apply(null, new Array(10)).map((e, i) => <DocumentItem key={i} fileTitle={`Document number ${i+1}`} />
     )
@@ -26,11 +31,10 @@ class Documents extends Component {
       return types.items.map((item, i) => {
         if(item.active) {
           return (
-            <Tag key={i} text={item.name} onClick={ () => {
-              item.active = !item.active;
-              this.setState({update: !this.state.update})
-              }
-            } />
+            <Tag key={i}
+              text={item.name}
+              onClick={() => this.handleOnClick(item)}
+            />
           )
         }
         return false

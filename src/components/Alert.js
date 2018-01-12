@@ -50,6 +50,11 @@ class Alert extends React.Component {
     )
   }
 
+  handleOnClick(item) {
+    item.active = !item.active;
+    this.setState({update: !this.state.update})
+  }
+
   renderTags() {
     return this.props.service.filters.types.map((types, i) => {
       return types.items.map((item, i) => {
@@ -57,10 +62,7 @@ class Alert extends React.Component {
           return (
             <Tag key={i}
               text={item.name}
-              onClick={ () => {
-                item.active = !item.active;
-                this.setState({update: !this.state.update})
-              } }
+              onClick={() => this.handleOnClick(item)}
             />
           )
         }
