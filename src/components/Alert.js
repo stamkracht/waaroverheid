@@ -64,6 +64,7 @@ class Alert extends React.Component {
             />
           )
         }
+        return false
       })
     })
   }

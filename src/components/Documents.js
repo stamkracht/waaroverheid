@@ -24,14 +24,16 @@ class Documents extends Component {
   renderTags() {
     return this.props.service.filters.types.map((types, i) => {
       return types.items.map((item, i) => {
-        if(item.active)
-        return (
-          <Tag key={i} text={item.name} onClick={ () => {
-            item.active = !item.active;
-            this.setState({update: !this.state.update})
-            }
-          } />
-        )
+        if(item.active) {
+          return (
+            <Tag key={i} text={item.name} onClick={ () => {
+              item.active = !item.active;
+              this.setState({update: !this.state.update})
+              }
+            } />
+          )
+        }
+        return false
       })
     })
   }
