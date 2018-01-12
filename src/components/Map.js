@@ -27,7 +27,12 @@ class Map extends Component {
     }
   }
 
-  onEachFeature = (feature, layer) => {
+  handleOnClickAdjacent = (e) => {
+    let props = e.target.feature.properties
+    this.props.select(props[`${this.props.code.slice(0, 2)}_CODE`])
+  }
+
+  onEachFeature(feature, layer) {
     let name, code
     if ( this.props.code.indexOf('GM') === 0 ) {
       name = feature.properties['WK_NAAM']
@@ -54,14 +59,42 @@ class Map extends Component {
     })
   }
 
-  renderFeatures() {
+  onEachAdjacentFeature(feature, layer) {
+    let tooltip = `
+      <h1>${feature.properties[`${this.props.code.slice(0, 2)}_NAAM`]}</h1>
+      <h1>#${feature.properties[`${this.props.code.slice(0, 2)}_CODE`]}</h1>
+    `
+    layer.setStyle({
+      'className': 'c-feature adjacent',
+    })
+    layer.bindTooltip(tooltip, {
+      'className': 'c-tooltip',
+      permanent: this.props.code.indexOf('BU') === 0,
+    })
+    layer.on({
+      click: this.handleOnClickAdjacent,
+    })
+  }
+
+  renderSelectedArea() {
     if ( Object.keys(this.props.geo).length > 0 ) {
       return (
         <GeoJSON className={'feature'}
           ref={(node) => { this.featureNode = node }}
           key={hash(this.props.geo)}
           data={this.props.geo}
-          onEachFeature={this.onEachFeature} />
+          onEachFeature={this.onEachFeature.bind(this)} />
+      )
+    }
+  }
+
+  renderAdjacentArea() {
+    if ( Object.keys(this.props.adjacent).length > 0 ) {
+      return (
+        <GeoJSON className={'feature'}
+          key={hash(this.props.adjacent)}
+          data={this.props.adjacent}
+          onEachFeature={this.onEachAdjacentFeature.bind(this)} />
       )
     }
   }
@@ -87,7 +120,8 @@ class Map extends Component {
             attributoin='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png'
           />
-          {this.renderFeatures()}
+          {this.renderSelectedArea()}
+          {this.renderAdjacentArea()}
         </LeafletMap>
       </div>
     )
@@ -95,9 +129,10 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
-  geo: {},
   code: '',
   select: undefined,
+  geo: {},
+  adjacent: {},
 }
 
 export default Map
