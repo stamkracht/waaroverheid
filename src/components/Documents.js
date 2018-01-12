@@ -7,19 +7,34 @@ import SearchBox from './SearchBox'
 import Tag from './Tag'
 
 class Documents extends Component {
+
   constructor(props) {
     super(props)
 
-  this.numFilters = Math.floor((Math.random() * 10) + 1);
-
+    this.state = {
+      update: false,
+    }
   }
 
   renderDocumentItems() {
-    return Array.apply(null, new Array(10)).map((e, i) => {
-      return <DocumentItem key={i} fileTitle={`Document number ${i+1}`} />
-    })
+    return Array.apply(null, new Array(10)).map((e, i) => <DocumentItem key={i} fileTitle={`Document number ${i+1}`} />
+    )
   }
 
+  renderTags() {
+    return this.props.service.filters.types.map((types, i) => {
+      return types.items.map((item, i) => {
+        if(item.active)
+        return (
+          <Tag key={i} text={item.name} onClick={ () => {
+            item.active = !item.active;
+            this.setState({update: !this.state.update})
+            }
+          } />
+        )
+      })
+    })
+  }
 
   render() {
     return (
@@ -27,7 +42,7 @@ class Documents extends Component {
       <Container>
         <div className='c-documents'>
           <div className='c-selectedFilters'>
-            <Tag />
+            {this.renderTags()}
           </div>
           <SearchBox />
           <div className='c-documentList'>
