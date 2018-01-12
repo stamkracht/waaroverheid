@@ -4,7 +4,7 @@ class LocationService {
     this.coords = {}
 
     this.options = {
-      enableHighAccuracy: true,
+      enableHighAccuracy: false,
       timeout: 5000,
       maximumAge: 0,
     }
