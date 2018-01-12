@@ -23,7 +23,7 @@ class Map extends Component {
     } else if ( level === 'WK' ) {
       this.props.select(props['BU_CODE'])
     } else if ( level === 'BU' ) {
-      this.props.select(props['GM_CODE'])
+      this.props.openDrawer()
     }
   }
 
@@ -147,9 +147,10 @@ class Map extends Component {
 
 Map.defaultProps = {
   code: '',
-  select: undefined,
   geo: {},
   adjacent: {},
+  select: undefined,
+  openDrawer: undefined,
 }
 
 export default Map

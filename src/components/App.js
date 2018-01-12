@@ -157,7 +157,8 @@ class App extends React.Component {
           geo={this.state.geo}
           adjacent={this.state.adjacent}
           code={this.state.code}
-          select={this.selectArea.bind(this)} />
+          select={this.selectArea.bind(this)}
+          openDrawer={this.toggleDrawer.bind(this)} />
         {this.renderMunicipalities()}
         {this.renderControls()}
         {this.renderFilters()}
