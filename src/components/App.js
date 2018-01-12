@@ -21,6 +21,7 @@ class App extends React.Component {
       municipalities: [],
       code: '',
       geo: {},
+      adjacent: {},
     }
 
     this.MapService = new MapService()
@@ -73,20 +74,20 @@ class App extends React.Component {
     console.log(this.DocumentService.filters)
   }
 
-  selectArea(code) {
+  async selectArea(code) {
     if ( !code ) {
       this.setState({code, municipalities: this.allMunicipalities})
     } else {
-      this.MapService.getFeatures(code).then((geo) => {
-        this.setState({geo, code})
-      })
+      let geo = await this.MapService.getFeatures(code)
+      let adjacent = await this.MapService.getAdjacentFeatures(code)
+      this.setState({code, geo, adjacent})
     }
   }
 
-  selectMunicipality(code) {
-    this.MapService.getFeatures(code).then((geo) => {
-      this.setState({geo, code})
-    })
+  async selectMunicipality(code) {
+    let geo = await this.MapService.getFeatures(code)
+    let adjacent = await this.MapService.getAdjacentFeatures(code)
+    this.setState({code, geo, adjacent})
   }
 
   filterMunicipalities(q) {
@@ -152,9 +153,12 @@ class App extends React.Component {
   render() {
     return (
       <div className='c-app'>
-        <Map geo={this.state.geo}
+        <Map
+          geo={this.state.geo}
+          adjacent={this.state.adjacent}
           code={this.state.code}
-          select={this.selectArea.bind(this)} />
+          select={this.selectArea.bind(this)}
+          openDrawer={this.toggleDrawer.bind(this)} />
         {this.renderMunicipalities()}
         {this.renderControls()}
         {this.renderFilters()}

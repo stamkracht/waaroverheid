@@ -23,11 +23,22 @@ class Map extends Component {
     } else if ( level === 'WK' ) {
       this.props.select(props['BU_CODE'])
     } else if ( level === 'BU' ) {
+      this.props.openDrawer()
+    }
+  }
+
+  handleOnClickAdjacent = (e) => {
+    let props = e.target.feature.properties
+    if ( !!props['BU_CODE'] ) {
+      this.props.select(props['BU_CODE'])
+    } else if ( !!props['WK_CODE'] ) {
+      this.props.select(props['WK_CODE'])
+    } else if ( !!props['GM_CODE'] ) {
       this.props.select(props['GM_CODE'])
     }
   }
 
-  onEachFeature = (feature, layer) => {
+  onEachFeature(feature, layer) {
     let name, code
     if ( this.props.code.indexOf('GM') === 0 ) {
       name = feature.properties['WK_NAAM']
@@ -54,14 +65,52 @@ class Map extends Component {
     })
   }
 
-  renderFeatures() {
+  onEachAdjacentFeature(feature, layer) {
+    let name, code
+    if ( !!feature.properties['BU_CODE'] ) {
+      name = feature.properties['BU_NAAM']
+      code = feature.properties['BU_CODE']
+    } else if ( !!feature.properties['WK_CODE'] ) {
+      name = feature.properties['WK_NAAM']
+      code = feature.properties['WK_CODE']
+    } else if ( !!feature.properties['GM_CODE'] ) {
+      name = feature.properties['GM_NAAM']
+      code = feature.properties['GM_CODE']
+    }
+    let tooltip = `
+      <h1>${name}</h1>
+      <h1>#${code}</h1>
+    `
+    layer.setStyle({
+      'className': 'c-feature adjacent',
+    })
+    layer.bindTooltip(tooltip, {
+      'className': 'c-tooltip adjacent',
+    })
+    layer.on({
+      click: this.handleOnClickAdjacent,
+    })
+  }
+
+  renderSelectedArea() {
     if ( Object.keys(this.props.geo).length > 0 ) {
       return (
         <GeoJSON className={'feature'}
           ref={(node) => { this.featureNode = node }}
           key={hash(this.props.geo)}
           data={this.props.geo}
-          onEachFeature={this.onEachFeature} />
+          onEachFeature={this.onEachFeature.bind(this)} />
+      )
+    }
+  }
+
+  renderAdjacentArea() {
+    if ( Object.keys(this.props.adjacent).length > 0 ) {
+      return (
+        <GeoJSON className={'feature'}
+          key={hash(this.props.adjacent)}
+          data={this.props.adjacent}
+          onEachFeature={this.onEachAdjacentFeature.bind(this)} />
       )
     }
   }
@@ -87,7 +136,8 @@ class Map extends Component {
             attributoin='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png'
           />
-          {this.renderFeatures()}
+          {this.renderSelectedArea()}
+          {this.renderAdjacentArea()}
         </LeafletMap>
       </div>
     )
@@ -95,9 +145,11 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
-  geo: {},
   code: '',
+  geo: {},
+  adjacent: {},
   select: undefined,
+  openDrawer: undefined,
 }
 
 export default Map

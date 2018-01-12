@@ -21,9 +21,18 @@
   stroke-opacity: 1;
 }
 
+.c-map .leaflet-container .c-feature.adjacent {
+  stroke-dasharray: 10 25;
+  fill-opacity: 0;
+}
+
 .c-map .leaflet-container .c-feature:hover,
 .c-map .leaflet-container .c-feature.active {
   fill-opacity: 0.5;
+}
+
+.c-map .leaflet-container .c-feature.adjacent:hover {
+  fill-opacity: 0.25;
 }
 
 /* Tooltip */
