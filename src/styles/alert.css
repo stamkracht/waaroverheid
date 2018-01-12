@@ -65,6 +65,7 @@
 
 .react-responsive-modal-modal .c-alert--footer .c-container .c-button {
   background: #eeeeee;
+  font-size: small;
 }
 
 @media (max-width: 767px) {
