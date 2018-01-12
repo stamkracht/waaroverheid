@@ -29,7 +29,13 @@ class Map extends Component {
 
   handleOnClickAdjacent = (e) => {
     let props = e.target.feature.properties
-    this.props.select(props[`${this.props.code.slice(0, 2)}_CODE`])
+    if ( !!props['BU_CODE'] ) {
+      this.props.select(props['BU_CODE'])
+    } else if ( !!props['WK_CODE'] ) {
+      this.props.select(props['WK_CODE'])
+    } else if ( !!props['GM_CODE'] ) {
+      this.props.select(props['GM_CODE'])
+    }
   }
 
   onEachFeature(feature, layer) {
@@ -60,9 +66,20 @@ class Map extends Component {
   }
 
   onEachAdjacentFeature(feature, layer) {
+    let name, code
+    if ( !!feature.properties['BU_CODE'] ) {
+      name = feature.properties['BU_NAAM']
+      code = feature.properties['BU_CODE']
+    } else if ( !!feature.properties['WK_CODE'] ) {
+      name = feature.properties['WK_NAAM']
+      code = feature.properties['WK_CODE']
+    } else if ( !!feature.properties['GM_CODE'] ) {
+      name = feature.properties['GM_NAAM']
+      code = feature.properties['GM_CODE']
+    }
     let tooltip = `
-      <h1>${feature.properties[`${this.props.code.slice(0, 2)}_NAAM`]}</h1>
-      <h1>#${feature.properties[`${this.props.code.slice(0, 2)}_CODE`]}</h1>
+      <h1>${name}</h1>
+      <h1>#${code}</h1>
     `
     layer.setStyle({
       'className': 'c-feature adjacent',
