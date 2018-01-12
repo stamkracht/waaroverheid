@@ -55,14 +55,16 @@ class Drawer extends React.Component {
   }
 
   renderDocuments = () => {
-    return <Documents num={this.props.numberDoc} />
+    if(this.props.active) {
+      return <Documents service={this.props.service} num={this.props.numberDoc} />
+    }
   }
 
   render() {
     return (
       <div className={classNames('c-drawer', {'active': this.props.active})}>
         {this.renderHeader()}
-        {this.props.active && <Documents />}
+        {this.renderDocuments()}
       </div>
     )
   }
@@ -73,6 +75,7 @@ Drawer.defaultProps = {
   numberDoc: 0,
   area: 'selected area',
   toggle: undefined,
+  service: {},
 }
 
 export default Drawer

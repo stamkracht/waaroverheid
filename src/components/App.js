@@ -146,7 +146,9 @@ class App extends React.Component {
           numberDoc={10}
           area={this.state.code}
           active={this.state.drawerActive}
-          toggle={this.toggleDrawer.bind(this) }/>
+          toggle={this.toggleDrawer.bind(this)}
+          service={this.DocumentService}
+          />
       )
     }
   }
