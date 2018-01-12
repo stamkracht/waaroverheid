@@ -2,16 +2,15 @@
   height: auto;
   width: 100%;
   text-align: left;
+  position: relative;
 }
 
 .c-typesList ul {
   display: block;
   width: 100%;
   left: 0;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-top: 5px;
   list-style: none;
+  padding: 45px 0 0 0;
 }
 
 .c-typesList li {
@@ -23,6 +22,9 @@
 .c-typesList .c-container {
   margin-bottom: 0;
   margin-top: 0;
+  position: absolute;
+  top: 0;
+  left: -25px;
 }
 
 .c-typesList .c-container .c-button {
