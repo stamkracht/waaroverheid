@@ -7,7 +7,7 @@
   user-select: none;
   border: none;
   outline: none;
-  box-shadow: 0 0 0 2px transparent, 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 0 0 2px transparent;
   transition: background 3.5s ease-out;
   background: linear-gradient(to right, #ed6000 50%, white 50%);
   background-position: right bottom;
@@ -17,7 +17,7 @@
 .c-button:hover,
 .c-button.active,
 .c-button.loading {
-  box-shadow: 0 0 0 2px #ed6000, 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 0 0 2px #ed6000;
 }
 
 .c-button.flat {
