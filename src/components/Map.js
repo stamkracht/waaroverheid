@@ -85,8 +85,7 @@ class Map extends Component {
       'className': 'c-feature adjacent',
     })
     layer.bindTooltip(tooltip, {
-      'className': 'c-tooltip',
-      permanent: this.props.code.indexOf('BU') === 0,
+      'className': 'c-tooltip adjacent',
     })
     layer.on({
       click: this.handleOnClickAdjacent,
