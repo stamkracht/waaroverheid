@@ -28,8 +28,35 @@ class Alert extends React.Component {
     this.setState({active: false})
   }
 
-  handleClick() {
+  handleSubmit() {
     this.setState({validEmail: validate(this.emailInput.value)})
+  }
+
+  handleTags(item) {
+    item.active = !item.active;
+    this.setState({update: !this.state.update})
+  }
+
+  renderEmailError() {
+    if(!!this.emailInput && this.emailInput.value && !this.state.validEmail) {
+      return <p>Please insert a valid email address!</p>
+    }
+  }
+
+  renderTags() {
+    return this.props.service.filters.types.map((types, i) => {
+      return types.items.map((item, i) => {
+        if(item.active) {
+          return (
+            <Tag key={i}
+              text={item.name}
+              onClick={() => this.handleTags(item)}
+            />
+          )
+        }
+        return false
+      })
+    })
   }
 
   renderModalButton() {
@@ -50,32 +77,6 @@ class Alert extends React.Component {
     )
   }
 
-  handleOnClick(item) {
-    item.active = !item.active;
-    this.setState({update: !this.state.update})
-  }
-
-  renderTags() {
-    return this.props.service.filters.types.map((types, i) => {
-      return types.items.map((item, i) => {
-        if(item.active) {
-          return (
-            <Tag key={i}
-              text={item.name}
-              onClick={() => this.handleOnClick(item)}
-            />
-          )
-        }
-        return false
-      })
-    })
-  }
-
-  renderEmailError() {
-    if(!!this.emailInput && this.emailInput.value && !this.state.validEmail) {
-      return <p>Please insert a valid email address!</p>
-    }
-  }
 
   renderModalContent() {
     return (
@@ -98,7 +99,7 @@ class Alert extends React.Component {
           shadow={true}
           hovering={true}
           textAlign='center'
-          onClick={this.handleClick.bind(this)} />
+          onClick={this.handleSubmit.bind(this)} />
       </div>
     )
   }
