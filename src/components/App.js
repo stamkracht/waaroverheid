@@ -157,7 +157,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='c-app'>
+      <div>
         <Map
           geo={this.state.geo}
           adjacent={this.state.adjacent}
