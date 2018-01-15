@@ -66,13 +66,13 @@
 
 .react-responsive-modal-modal .c-alert--footer .c-container .c-button {
   background: #eeeeee;
-  font-size: small;
+  font-size: medium;
 }
 
   .react-responsive-modal-modal .c-alert--content .c-selectedFilters {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
   }
 
@@ -95,6 +95,7 @@
 
   .react-responsive-modal-modal .c-alert--footer .c-container .c-button .c-button--text {
     line-height: 20px;
+    font-size: small;
   }
 
 }

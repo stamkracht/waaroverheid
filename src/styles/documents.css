@@ -26,24 +26,12 @@
   width: 100%;
 }
 
-@media (max-width: 670px) {
-  .outerContainer {
-    padding: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .c-documents {
-    padding-top: 15px;
-  }
-}
-
 .c-selectedFilters {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 10px 0;
+  padding: 0 0 10px 0;
 }
 
 .c-tags .c-container {
@@ -64,4 +52,19 @@
   padding: 2px 0 0 0;
   position: relative;
   display: inline-block;
+}
+
+@media (max-width: 670px) {
+  .outerContainer {
+    padding: 5px 10px 10px 10px;
+  }
+
+  .c-tags .c-container {
+    padding: 4px;
+  }
+
+  .c-tags .c-tags--text {
+    font-size: small;
+    line-height: 20px;
+  }
 }

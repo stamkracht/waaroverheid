@@ -119,13 +119,13 @@
 
 .c-documentList {
   padding: 1px;
-  max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 200px);
   overflow: auto;
 }
 
 @media (max-width: 768px) {
   .c-documents .c-button {
-    font-size: smaller;
+    font-size: small;
   }
 
   .c-documents--text h2 {
