@@ -54,10 +54,17 @@ class DocumentItem extends Component {
   }
 
   renderTags = () => {
+    let maxTags = this.numTags;
     return Array.apply(null, new Array(this.numTags)).map((e, i) => {
+      if(!this.state.active) {
+        maxTags = 3;
+      }
       return (
-        <div key={i}>
-          <Button text={`Tag ${i+1}`} />
+        <div>
+          {i < maxTags &&
+          <div key={i}>
+            <Button text={`Tag ${i+1}`} />
+          </div>}
         </div>
       )
     })
