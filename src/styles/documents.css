@@ -27,11 +27,16 @@
 }
 
 .c-selectedFilters {
+  position: relative;
   width: 100%;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: 0 0 10px 0;
+  overflow-x: auto;
+}
+
+.c-tags {
+  flex: 0 0 auto;
 }
 
 .c-tags .c-container {
