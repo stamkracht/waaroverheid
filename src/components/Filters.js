@@ -5,6 +5,7 @@ import Button from './Button'
 import SearchBox from './SearchBox'
 import InputRange from 'react-input-range'
 import TypesList from './TypesList'
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
 import 'react-input-range/lib/css/index.css'
 import '../styles/filters.css'
@@ -72,12 +73,7 @@ class Filters extends React.Component {
         <SearchBox
           onType={this.handleOnType.bind(this)}
           onSubmit={this.handleOnSubmit.bind(this)}/>
-        <InputRange
-          minValue={0}
-          maxValue={20}
-          value={this.state.range}
-          onChange={this.handleOnChangeRange.bind(this)}
-          formatLabel={this.setLabel} />
+        <DateRangePicker/>
         <div className='typesContainer'>
           {this.renderTypes()}
         </div>

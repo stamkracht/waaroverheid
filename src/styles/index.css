@@ -1,6 +1,6 @@
+@import url(../../node_modules/react-dates/lib/css/_datepicker.css);
 * {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
   margin: 0;
