@@ -30,7 +30,6 @@
   position: relative;
   width: 100%;
   display: flex;
-<<<<<<< HEAD
   flex-wrap: nowrap;
   padding: 0 0 10px 0;
   overflow-x: auto;
@@ -38,11 +37,6 @@
 
 .c-tags {
   flex: 0 0 auto;
-=======
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0 0 10px 0;
->>>>>>> 96be4c37dfabb05357a0deabd24ef62339c287cb
 }
 
 .c-tags .c-container {
