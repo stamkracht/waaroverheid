@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Container from './Container'
 import '../styles/documents.css'
 import DocumentItem from './DocumentItem'
-import SearchBox from './SearchBox'
 import Tag from './Tag'
 
 class Documents extends Component {
@@ -50,7 +49,6 @@ class Documents extends Component {
           <div className='c-selectedFilters'>
             {this.renderTags()}
           </div>
-          <SearchBox />
           <div className='c-documentList'>
             {this.renderDocumentItems()}
           </div>
