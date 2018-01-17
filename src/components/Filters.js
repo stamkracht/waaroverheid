@@ -3,13 +3,13 @@ import React from 'react'
 import Icon from './Icon'
 import Button from './Button'
 import SearchBox from './SearchBox'
-import InputRange from 'react-input-range'
 import TypesList from './TypesList'
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 
 import 'react-input-range/lib/css/index.css'
 import '../styles/filters.css'
 import '../styles/inputRange.css'
+import '../styles/date-range-picker.css'
 
 
 class Filters extends React.Component {
@@ -44,9 +44,9 @@ class Filters extends React.Component {
     this.props.service.filters.search = search
   }
 
-  handleOnChangeRange(range) {
-    this.setState({range}, () => {
-      this.props.service.filters.range = range
+  handleOnChangeRange({startDate, endDate}) {
+    this.setState({startDate, endDate}, () => {
+      this.props.service.filters.range = {startDate, endDate}
     })
   }
 
@@ -63,6 +63,20 @@ class Filters extends React.Component {
     })
   }
 
+  renderDatePicker() {
+    return (
+        <DateRangePicker
+          noBorder={true}
+          startDate={this.state.startDate}
+          startDateId="startDate"
+          endDate={this.state.endDate}
+          endDateId="endDate"
+          onDatesChange={({ startDate, endDate }) => this.handleOnChangeRange({ startDate, endDate })}
+          focusedInput={this.state.focusedInput}
+          onFocusChange={focusedInput => this.setState({ focusedInput })}
+        />);
+  }
+
   renderFilters = () => {
     return (
       <div className='filtersDropdown'>
@@ -73,7 +87,7 @@ class Filters extends React.Component {
         <SearchBox
           onType={this.handleOnType.bind(this)}
           onSubmit={this.handleOnSubmit.bind(this)}/>
-        <DateRangePicker/>
+        {this.renderDatePicker()}
         <div className='typesContainer'>
           {this.renderTypes()}
         </div>

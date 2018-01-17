@@ -1,0 +1,18 @@
+.DateRangePicker {
+  margin: 15px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); }
+  .DateRangePicker > div {
+    display: flex; }
+  .DateRangePicker .DateRangePickerInput {
+    flex: 1;
+    display: flex;
+    align-items: center; }
+    .DateRangePicker .DateRangePickerInput .DateInput {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1; }
+      .DateRangePicker .DateRangePickerInput .DateInput input,
+      .DateRangePicker .DateRangePickerInput .DateInput input::placeholder {
+        font-family: sans-serif;
+        text-align: center; }
