@@ -91,8 +91,10 @@ class Filters extends React.Component {
         <div className='typesContainer'>
           {this.renderTypes()}
         </div>
-        <Button text='Search'
-          onClick={() => this.handleOnSubmit()} />
+        <div className='filtersFooter'>
+          <Button text='Search'
+            onClick={() => this.handleOnSubmit()} />
+        </div>
       </div>
     )
   }
