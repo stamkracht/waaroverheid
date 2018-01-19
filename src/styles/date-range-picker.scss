@@ -1,5 +1,5 @@
 .DateRangePicker {
-    margin: 15px;  
+    margin: 15px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 
     &>div {
@@ -19,7 +19,53 @@
             input::placeholder {
                 font-family: sans-serif;
                 text-align: center;
+                font-size: 14px;
             }
-        }
+            &_input__focused {
+              border-bottom: 2px solid #ed6000;
+            }
+          }
+      }
+}
+
+.CalendarDay {
+  &__hovered {
+    &_span {
+      background: #ed6000;
+      color: #fff;
+      border: 1px solid #dc5b03;
+
+      &:hover {
+        background: #ed6000b5;
+        border: 1px solid #dc5b038c;
+        color: #fff;
+      }
     }
+  }
+  &__selected {
+    background: #ed6000;
+    border: 1px solid #dc5b03;
+    &:hover {
+      background: #ed6000b5;
+      border: 1px solid #dc5b038c;
+      color: #fff;
+    }
+    &_span {
+      background: #ed6000;
+      border: 1px solid #dc5b03;
+
+      &:hover {
+        background: #ed6000b5;
+        border: 1px solid #dc5b038c;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight {
+  border-right: 33px solid #ed6000;
+  &:hover {
+    border-right: 33px solid #ed6000b5;
+  }
 }
