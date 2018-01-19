@@ -74,6 +74,7 @@ class Filters extends React.Component {
           onDatesChange={({ startDate, endDate }) => this.handleOnChangeRange({ startDate, endDate })}
           focusedInput={this.state.focusedInput}
           onFocusChange={focusedInput => this.setState({ focusedInput })}
+          small={true}
         />);
   }
 
