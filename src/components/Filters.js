@@ -4,7 +4,7 @@ import Icon from './Icon'
 import Button from './Button'
 import SearchBox from './SearchBox'
 import TypesList from './TypesList'
-import { DateRangePicker } from 'react-dates';
+import Chart from './Chart'
 
 import 'react-input-range/lib/css/index.css'
 import '../styles/filters.css'
@@ -64,18 +64,39 @@ class Filters extends React.Component {
   }
 
   renderDatePicker() {
+    const chartData = [
+        {
+  "count": 626,
+  "time": 1325376000000
+  },
+    {
+  "count": 602,
+  "time": 1356998400000
+  },
+    {
+  "count": 732,
+  "time": 1388534400000
+  },
+    {
+  "count": 597,
+  "time": 1420070400000
+  },
+    {
+  "count": 690,
+  "time": 1451606400000
+  },
+    {
+  "count": 585,
+  "time": 1483228800000
+  },
+    {
+  "count": 47,
+  "time": 1514764800000
+  }
+    ]
     return (
-        <DateRangePicker
-          noBorder={true}
-          startDate={this.state.startDate}
-          startDateId="startDate"
-          endDate={this.state.endDate}
-          endDateId="endDate"
-          onDatesChange={({ startDate, endDate }) => this.handleOnChangeRange({ startDate, endDate })}
-          focusedInput={this.state.focusedInput}
-          onFocusChange={focusedInput => this.setState({ focusedInput })}
-          small={true}
-        />);
+      <Chart chartData={chartData}/>
+        )
   }
 
   renderFilters = () => {
