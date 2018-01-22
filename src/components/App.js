@@ -22,6 +22,7 @@ class App extends React.Component {
       code: '',
       geo: {},
       adjacent: {},
+      name: '',
     }
 
     this.MapService = new MapService()
@@ -53,10 +54,12 @@ class App extends React.Component {
 
   async showUserLocation() {
     await this.setState({loadingLocation: true})
-    let code = await this.MapService.getUserLocation()
+    let code_name = await this.MapService.getUserLocation()
+    let code = code_name[0]
+    let name = code_name[1]
     let geo = await this.MapService.getFeatures(code)
     let adjacent = await this.MapService.getAdjacentFeatures(code)
-    this.setState({loadingLocation: false, geo, adjacent, code})
+    this.setState({loadingLocation: false, geo, adjacent, code, name})
   }
 
   handleKeyDown(event) {
@@ -75,20 +78,20 @@ class App extends React.Component {
     console.log(this.DocumentService.filters)
   }
 
-  async selectArea(code) {
+  async selectArea(code, name) {
     if ( !code ) {
       this.setState({code, municipalities: this.allMunicipalities})
     } else {
       let geo = await this.MapService.getFeatures(code)
       let adjacent = await this.MapService.getAdjacentFeatures(code)
-      this.setState({code, geo, adjacent})
+      this.setState({code, geo, adjacent, name})
     }
   }
 
-  async selectMunicipality(code) {
+  async selectMunicipality(code, name) {
     let geo = await this.MapService.getFeatures(code)
     let adjacent = await this.MapService.getAdjacentFeatures(code)
-    this.setState({code, geo, adjacent})
+    this.setState({code, geo, adjacent, name})
   }
 
   filterMunicipalities(q) {
@@ -135,7 +138,7 @@ class App extends React.Component {
             submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert
             service={this.DocumentService}
-            area={this.state.code} />
+            area={this.state.name} />
         </div>
       )
     }
@@ -146,7 +149,7 @@ class App extends React.Component {
       return (
         <Drawer
           numberDoc={10}
-          area={this.state.code}
+          area={this.state.name}
           active={this.state.drawerActive}
           toggle={this.toggleDrawer.bind(this)}
           service={this.DocumentService}

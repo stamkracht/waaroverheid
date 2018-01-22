@@ -20,9 +20,9 @@ class MapService {
       this.LocationService.getCoords().then(coords => {
         this.getPolygon(coords.latitude, coords.longitude).then(res => {
           if ( isMobile() ) {
-            resolve(res.properties['BU_CODE'])
+            resolve([res.properties['BU_CODE'], res.properties['BU_NAAM']])
           } else {
-            resolve(res.properties['GM_CODE'])
+            resolve([res.properties['GM_CODE'], res.properties['GM_NAAM']])
           }
         })
       })

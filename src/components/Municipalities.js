@@ -53,7 +53,7 @@ class Municipalities extends React.Component {
       return (
         <Container shadow={true} key={item.code}>
           <div className='c-municipality'
-            onClick={() => this.props.select(item.code)}>
+            onClick={() => this.props.select(item.code, item.name)}>
             <h4>{item.name}</h4>
           </div>
         </Container>

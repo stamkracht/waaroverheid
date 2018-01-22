@@ -19,9 +19,9 @@ class Map extends Component {
     let props = e.target.feature.properties
     let level = this.props.code.slice(0, 2)
     if ( level === 'GM' ) {
-      this.props.select(props['WK_CODE'])
+      this.props.select(props['WK_CODE'], props['WK_NAAM'])
     } else if ( level === 'WK' ) {
-      this.props.select(props['BU_CODE'])
+      this.props.select(props['BU_CODE'], props['BU_NAAM'])
     } else if ( level === 'BU' ) {
       this.props.openDrawer()
     }
@@ -30,11 +30,11 @@ class Map extends Component {
   handleOnClickAdjacent = (e) => {
     let props = e.target.feature.properties
     if ( !!props['BU_CODE'] ) {
-      this.props.select(props['BU_CODE'])
+      this.props.select(props['BU_CODE'], props['BU_NAAM'])
     } else if ( !!props['WK_CODE'] ) {
-      this.props.select(props['WK_CODE'])
+      this.props.select(props['WK_CODE'], props['WK_NAAM'])
     } else if ( !!props['GM_CODE'] ) {
-      this.props.select(props['GM_CODE'])
+      this.props.select(props['GM_CODE'], props['GM_NAAM'])
     }
   }
 
