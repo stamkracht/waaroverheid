@@ -79,7 +79,7 @@ class App extends React.Component {
   }
 
   async handleOnSubmitFilters() {
-    let {facets, meta: {total: documentsCount}, events: documents} = await SearchService.search(this.state.code);          
+    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code);          
     this.setState({facets, documentsCount, documents});
   }
 
@@ -89,7 +89,7 @@ class App extends React.Component {
     } else {
       let geo = await this.MapService.getFeatures(code)
       let adjacent = await this.MapService.getAdjacentFeatures(code)
-      let {facets, meta: {total: documentsCount}, events: documents} = await SearchService.search(code);          
+      let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(code);          
       this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
     }
   }
@@ -97,7 +97,7 @@ class App extends React.Component {
   async selectMunicipality(code, name) {
     let geo = await this.MapService.getFeatures(code)
     let adjacent = await this.MapService.getAdjacentFeatures(code)
-    let {facets, meta: {total: documentsCount}, events: documents} = await SearchService.search(code);          
+    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(code);          
     this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
   }
 
