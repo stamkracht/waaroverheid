@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 
 import Container from './Container'
 import Icon from './Icon'
 import Button from './Button'
 import Reporting from './Reporting'
+
 import '../styles/documentItem.css'
 
 class DocumentItem extends Component {
@@ -33,17 +35,16 @@ class DocumentItem extends Component {
   }
 
   renderDetails = () => {
-    if ( this.state.active ) {
+    if ( this.state.active && this.props.document.description) {
       return (
         <div className='c-details'>
           <Container shadow={true}>
             <div className='c-details--content'>
               <div className='c-details--text'>
-                <h3>{this.props.docDetails}</h3>
-                <h3>{this.props.docDetails}</h3>
+                <h3>{this.props.document.description}</h3>                
               </div>
               <div className='c-details--snippets'>
-                <p>'{this.props.snippet}'</p>
+                <p>{this.props.document.snippet}</p>
               </div>
               <Reporting />
             </div>
@@ -60,9 +61,9 @@ class DocumentItem extends Component {
         maxTags = 3;
       }
       return (
-        <div>
+        <div key={i}>
           {i < maxTags &&
-          <div key={i}>
+          <div>
             <Button text={`Tag ${i+1}`} />
           </div>}
         </div>
@@ -76,8 +77,8 @@ class DocumentItem extends Component {
         onClick={this.toggleDocument.bind(this)}>
         <Icon icon='file' iconPosition='left' width='50' height='50'/>
         <div className='c-documents--text'>
-          <h2>{this.props.fileTitle}</h2>
-          <h3>{this.props.fileDate}, {this.props.fileType}</h3>
+          <h2>{this.props.document.name}</h2>
+          <h3>{moment(this.props.document.start_date).format('DD-MM-YYYY')}</h3>
         </div>
         <div className='c-documents--tag'>
           {this.renderTags()}
@@ -91,10 +92,10 @@ class DocumentItem extends Component {
       <div className='c-documents--item'>
         <Container shadow={true}>
           {this.renderDocumentItem()}
-          <button className='c-documents--dropdown'
+          {this.props.document.description ? <button className='c-documents--dropdown'
             onClick={this.toggleDocument.bind(this)}>
             <Icon icon='arrow' />
-          </button>
+          </button> : ''}
         </Container>
         {this.renderDetails()}
       </div>
@@ -103,12 +104,7 @@ class DocumentItem extends Component {
 }
 
 DocumentItem.defaultProps = {
-  fileTitle: 'Document title',
-  fileDate: 'Document date',
-  fileType: 'Document type',
-  tags: [],
-  docDetails: 'Document details',
-  snippet: 'Snippet'
+  document: {}
 }
 
 export default DocumentItem

@@ -56,7 +56,11 @@ class Drawer extends React.Component {
 
   renderDocuments = () => {
     if(this.props.active) {
-      return <Documents service={this.props.service} num={this.props.numberDoc} />
+      return <Documents 
+        service={this.props.service}
+        num={this.props.numberDoc} 
+        facets={this.props.facets} 
+        documents={this.props.documents}/>
     }
   }
 
@@ -76,6 +80,8 @@ Drawer.defaultProps = {
   area: 'selected area',
   toggle: undefined,
   service: {},
+  documents: [],
+  facets: {} 
 }
 
 export default Drawer

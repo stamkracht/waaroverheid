@@ -24,7 +24,9 @@ class App extends React.Component {
       geo: {},
       adjacent: {},
       name: '',
-      facets: {}
+      facets: {},
+      documentsCount: 0,
+      documents: []
     }
 
     this.MapService = new MapService()
@@ -77,8 +79,8 @@ class App extends React.Component {
   }
 
   async handleOnSubmitFilters() {
-    let {facets} = await SearchService.search(this.state.code);          
-    this.setState({facets});
+    let {facets, meta: {total: documentsCount}, events: documents} = await SearchService.search(this.state.code);          
+    this.setState({facets, documentsCount, documents});
   }
 
   async selectArea(code, name) {
@@ -87,16 +89,16 @@ class App extends React.Component {
     } else {
       let geo = await this.MapService.getFeatures(code)
       let adjacent = await this.MapService.getAdjacentFeatures(code)
-      let {facets} = await SearchService.search(code);          
-      this.setState({code, geo, adjacent, name, facets})
+      let {facets, meta: {total: documentsCount}, events: documents} = await SearchService.search(code);          
+      this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
     }
   }
 
   async selectMunicipality(code, name) {
     let geo = await this.MapService.getFeatures(code)
     let adjacent = await this.MapService.getAdjacentFeatures(code)
-    let {facets} = await SearchService.search(code);          
-    this.setState({code, geo, adjacent, name, facets})
+    let {facets, meta: {total: documentsCount}, events: documents} = await SearchService.search(code);          
+    this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
   }
 
   filterMunicipalities(q) {
@@ -153,11 +155,13 @@ class App extends React.Component {
     if ( this.state.code ) {
       return (
         <Drawer
-          numberDoc={10}
+          numberDoc={this.state.documentsCount}
           area={this.state.name}
           active={this.state.drawerActive}
           toggle={this.toggleDrawer.bind(this)}
           service={this.DocumentService}
+          facets={this.state.facets}
+          documents={this.state.documents}
           />
       )
     }

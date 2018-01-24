@@ -21,23 +21,17 @@ class Documents extends Component {
   }
 
   renderDocumentItems() {
-    return Array.apply(null, new Array(10)).map((e, i) => <DocumentItem key={i} fileTitle={`Document number ${i+1}`} />
-    )
+    return this.props.documents.map((document, i) => <DocumentItem key={i} document={document} />)
   }
 
   renderTags() {
-    return this.props.service.filters.types.map((types, i) => {
-      return types.items.map((item, i) => {
-        if(item.active) {
+    return this.props.facets.types.buckets.concat(this.props.facets.classification.buckets).map((type, i) => {
           return (
             <Tag key={i}
-              text={item.name}
-              onClick={() => this.handleOnClick(item)}
+              text={type.key}
+              onClick={() => this.handleOnClick(type)}
             />
-          )
-        }
-        return false
-      })
+          )        
     })
   }
 
@@ -61,6 +55,10 @@ class Documents extends Component {
 
 Documents.defaultProps = {
   num: 0,
+  facets: {
+    types: { buckets: [] },
+    classification: { buckets: [] }
+  }
 }
 
 export default Documents
