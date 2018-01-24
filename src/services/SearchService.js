@@ -20,7 +20,7 @@ const SearchService = (function () {
     },
     sort: '_score',
     order: 'desc',
-    query: 'overlast',
+    query: '',
     filters: {}
   };
 
