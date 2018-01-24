@@ -21,18 +21,18 @@ class Chart extends React.Component {
       <ResponsiveContainer width='90%' height={200}>
         <BarChart data = {this.props.chartData} maxBarSize={20}>
           <XAxis
-            dataKey = 'time'
-            domain = {['auto', 'auto']}
-            name = 'Time'
-            tickFormatter = {(time) => moment(time).format('YY')}
-            type = 'number'
+            dataKey='key'
+            domain={['auto', 'auto']}
+            name='Time'
+            tickFormatter={(time) => moment(time).format('YY')}
+            type='number'
           />
-          <YAxis dataKey = 'count' name = 'Count' />
+          <YAxis dataKey='doc_count' name='Number of Documents' />
           <CartesianGrid strokeDasharray="3 3"/>
           <Tooltip labelFormatter = {(time) => moment(time).format('MM-YY')}/>
           <ReferenceLine y={0} stroke='#000'/>
-          <Brush dataKey='time' height={30} stroke="#ed6000"/>
-          <Bar dataKey = "count" fill="#ed6000" name = 'Values'/>
+          <Brush dataKey='key' tickFormatter={(time) => moment(time).format('YY')} height={30} stroke="#ed6000" onChange={(indexes) => this.props.handleBrushChange(indexes, this.props.chartData)} data={this.props.chartData}/>
+          <Bar dataKey= "doc_count" fill="#ed6000" name='Documents'/>
         </BarChart>
       </ResponsiveContainer>
     )
@@ -42,10 +42,11 @@ class Chart extends React.Component {
 Chart.propTypes = {
   chartData: PropTypes.arrayOf(
     PropTypes.shape({
-      time: PropTypes.number,
-      value: PropTypes.number
+      key: PropTypes.number,
+      doc_count: PropTypes.number
     })
-  ).isRequired
+  ).isRequired,
+  handleBrushChange: PropTypes.func.isRequired
 }
 
 export default Chart

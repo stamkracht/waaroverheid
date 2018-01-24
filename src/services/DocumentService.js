@@ -2,12 +2,11 @@ class DocumentService {
 
   constructor() {
     this.filters = {
-      search: '',
-      range: {
-        min: 2,
-        max: 10,
-      },
-      types: [],
+        start_date: {
+          from: 2,
+          to: 10,
+        },
+        types: [],
     }
 
     this.getTypes()

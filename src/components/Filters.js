@@ -5,6 +5,8 @@ import Button from './Button'
 import SearchBox from './SearchBox'
 import TypesList from './TypesList'
 import Chart from './Chart'
+import FiltersService from '../services/FiltersService'
+import SearchService from '../services/SearchService'
 
 import 'react-input-range/lib/css/index.css'
 import '../styles/filters.css'
@@ -18,21 +20,12 @@ class Filters extends React.Component {
     super(props)
 
     this.state = {
-      active: false,
-      range: this.props.service.filters.range,
+      active: false    
     }
   }
 
   toggleFilters() {
-    this.setState({active: !this.state.active})
-  }
-
-  setLabel = (value, type) => {
-    if ( type === 'min' ) {
-      return 'From'
-    } else if ( type === 'max' ) {
-      return 'To'
-    }
+    this.setState({active: !this.state.active});
   }
 
   handleOnSubmit() {
@@ -40,63 +33,38 @@ class Filters extends React.Component {
     this.props.submit()
   }
 
-  handleOnType(search) {
-    this.props.service.filters.search = search
+  handleOnType(query) {
+    SearchService.setParams({query});    
   }
 
-  handleOnChangeRange({startDate, endDate}) {
-    this.setState({startDate, endDate}, () => {
-      this.props.service.filters.range = {startDate, endDate}
-    })
+  handleBrushChange({startIndex, endIndex}, chartData) {  
+    const startDate = {start_date: {
+      from: chartData[startIndex].key_as_string,
+      to: chartData[endIndex].key_as_string,
+    }};
+    
+    FiltersService.set(startDate);
   }
 
   renderTypes() {
-    return this.props.service.filters.types.map((types, i) => {
-      let active = !!types.items.find(item => item.active)
-      return (
-        <TypesList
-          key={i}
-          active={active}
-          text={types.name}
-          list={types.items} />
-      )
-    })
+    return ['Classification', 'Types']
+      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length)      
+      .map((item, i) => {
+        return (
+          <TypesList
+            key={i}
+            text={item}
+            list={this.props.facets[item.toLowerCase()].buckets} />
+        )  
+    });
   }
 
   renderDatePicker() {
-    const chartData = [
-        {
-  "count": 626,
-  "time": 1325376000000
-  },
-    {
-  "count": 602,
-  "time": 1356998400000
-  },
-    {
-  "count": 732,
-  "time": 1388534400000
-  },
-    {
-  "count": 597,
-  "time": 1420070400000
-  },
-    {
-  "count": 690,
-  "time": 1451606400000
-  },
-    {
-  "count": 585,
-  "time": 1483228800000
-  },
-    {
-  "count": 47,
-  "time": 1514764800000
-  }
-    ]
     return (
-      <Chart chartData={chartData}/>
-        )
+      <Chart 
+        chartData={this.props.facets.start_date.buckets} 
+        handleBrushChange={this.handleBrushChange.bind(this)}/>
+    )
   }
 
   renderFilters = () => {
@@ -135,7 +103,7 @@ class Filters extends React.Component {
 }
 
 Filters.defaultProps = {
-  service: {},
+  facets: {start_date: {buckets: []}},
   submit: undefined,
 }
 

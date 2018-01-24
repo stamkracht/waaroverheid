@@ -3,7 +3,7 @@ import React from 'react'
 import Button from './Button'
 import '../styles/typesList.css'
 import ListItem from './ListItem'
-
+import FiltersService from '../services/FiltersService'
 class TypesList extends React.Component {
 
   constructor(props) {
@@ -18,17 +18,35 @@ class TypesList extends React.Component {
     this.setState({active: !this.state.active})
   }
 
+  handleChange(checked, item) {
+    item.active = checked;
+    const checkedItems = {};
+    checkedItems[this.props.text.toLowerCase()] = {
+      terms: this.props.list
+      .filter(item => item.active)
+      .map(item => item.key)
+    };
+
+    return FiltersService.set(checkedItems)
+  }
+
   renderItems() {
     if ( this.state.active ) {
-      return this.props.list.map((item, i) => {
+      return this.props.list
+      .sort((a,b) => {
+        if (a.key < b.key) { return -1; } 
+        if (a.key > b.key) { return 1; }
+        return 0;
+      })
+      .map((item, i) => {
         return (
           <ListItem
             key={i}
-            id={`${item.name}-${i}`}
-            label={item.name}
+            id={`${item.key}-${i}`}
+            label={item.key}
             checked={item.active}
-            badge={'9'}
-            onChange={checked => item.active = checked} />
+            badge={item.doc_count}
+            onChange={checked => this.handleChange(checked, item)} />
         )
       })
     }
@@ -58,7 +76,7 @@ class TypesList extends React.Component {
 TypesList.defaultProps = {
   active: false,
   text: 'Label',
-  list: [],
+  list: []
 }
 
 export default TypesList

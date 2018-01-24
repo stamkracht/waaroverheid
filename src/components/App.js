@@ -9,6 +9,7 @@ import Alert from './Alert'
 import Filters from './Filters'
 import Drawer from './Drawer'
 import DocumentService from '../services/DocumentService'
+import SearchService from '../services/SearchService'
 
 class App extends React.Component {
 
@@ -23,6 +24,7 @@ class App extends React.Component {
       geo: {},
       adjacent: {},
       name: '',
+      facets: {}
     }
 
     this.MapService = new MapService()
@@ -74,8 +76,9 @@ class App extends React.Component {
     })
   }
 
-  handleOnSubmitFilters() {
-    console.log(this.DocumentService.filters)
+  async handleOnSubmitFilters() {
+    let {facets} = await SearchService.search(this.state.code);          
+    this.setState({facets});
   }
 
   async selectArea(code, name) {
@@ -84,14 +87,16 @@ class App extends React.Component {
     } else {
       let geo = await this.MapService.getFeatures(code)
       let adjacent = await this.MapService.getAdjacentFeatures(code)
-      this.setState({code, geo, adjacent, name})
+      let {facets} = await SearchService.search(code);          
+      this.setState({code, geo, adjacent, name, facets})
     }
   }
 
   async selectMunicipality(code, name) {
     let geo = await this.MapService.getFeatures(code)
     let adjacent = await this.MapService.getAdjacentFeatures(code)
-    this.setState({code, geo, adjacent, name})
+    let {facets} = await SearchService.search(code);          
+    this.setState({code, geo, adjacent, name, facets})
   }
 
   filterMunicipalities(q) {
@@ -134,7 +139,7 @@ class App extends React.Component {
       return (
         <div>
           <Filters
-            service={this.DocumentService}
+            facets={this.state.facets}
             submit={this.handleOnSubmitFilters.bind(this)} />
           <Alert
             service={this.DocumentService}
