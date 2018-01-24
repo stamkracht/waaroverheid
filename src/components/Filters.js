@@ -60,11 +60,11 @@ class Filters extends React.Component {
   }
 
   renderDatePicker() {
-    return (
+    return this.props.facets.start_date.buckets.length ? (
       <Chart 
         chartData={this.props.facets.start_date.buckets} 
         handleBrushChange={this.handleBrushChange.bind(this)}/>
-    )
+    ) : '';
   }
 
   renderFilters = () => {

@@ -81,7 +81,10 @@ Drawer.defaultProps = {
   toggle: undefined,
   service: {},
   documents: [],
-  facets: {} 
+  facets: {
+    types: { buckets: [] },
+    classification: { buckets: [] }
+  }
 }
 
 export default Drawer

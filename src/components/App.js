@@ -137,7 +137,7 @@ class App extends React.Component {
   }
 
   renderFilters() {
-    if ( this.state.code && !this.state.drawerActive ) {
+    if ( this.state.code && !this.state.drawerActive && this.state.documentsCount) {
       return (
         <div>
           <Filters
