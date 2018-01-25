@@ -14,7 +14,7 @@ class Drawer extends React.Component {
   }
 
   renderHeaderContent() {
-    let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 ? 's' : ''} found in ${this.props.area}`
+    let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 || this.props.numberDoc === 0 ? 's' : ''} found in ${this.props.area}`
     if ( !this.props.active ) {
       return (
         <div>
@@ -56,12 +56,34 @@ class Drawer extends React.Component {
 
   renderDocuments = () => {
     if(this.props.active) {
+<<<<<<< Updated upstream
       return <Documents 
         service={this.props.service}
         num={this.props.numberDoc} 
         facets={this.props.facets} 
         documents={this.props.documents}
         filters={this.props.filters}/>
+=======
+      if(this.props.numberDoc === 0) {
+        return (
+          <div className='c-emptyContent'>
+            <h2>No documents to show</h2>
+            <ul>
+            <li><h3>Try navigating to a different municipality</h3></li>
+            <li><h3>Sign up for alerts</h3></li>
+            </ul>
+          </div>
+        )
+      }
+      else {
+        return <Documents
+          service={this.props.service}
+          num={this.props.numberDoc}
+          facets={this.props.facets}
+          documents={this.props.documents}
+          filters={this.props.filters}/>
+      }
+>>>>>>> Stashed changes
     }
   }
 
