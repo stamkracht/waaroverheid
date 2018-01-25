@@ -15,12 +15,10 @@ class Reporting extends React.Component {
     this.state = {
       active: false,
       options: {
-        'Invalid': false,
-        'Incorrect': false,
-        'Irrational': false,
+        'Privacy sensitive': false,
         'Irrelevant': false,
-        'Inappropriate': false,
         'All of the above': false,
+        'Other': false,
       },
     }
 
