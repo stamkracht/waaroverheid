@@ -54,8 +54,14 @@
   left: 30px;
   text-align: left;
   line-height: 1;
-  width: 150px;
+  width: 280px;
   padding: 5px;
   cursor: pointer;
   user-select: none;
+}
+
+@media (max-width: 425px) {
+  .c-checkbox span {
+    width: 204px;
+  }
 }
