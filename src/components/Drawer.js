@@ -52,7 +52,7 @@ class Drawer extends React.Component {
         {this.renderHamburger()}
       </div>
     )
-  }
+  } 
 
   renderDocuments = () => {
     if(this.props.active) {
