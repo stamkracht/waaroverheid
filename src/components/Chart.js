@@ -6,6 +6,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   BarChart,
+  Label,
   Tooltip,
   XAxis,
   YAxis,
@@ -21,13 +22,17 @@ class Chart extends React.Component {
       <ResponsiveContainer width='90%' height={200}>
         <BarChart data = {this.props.chartData} maxBarSize={20}>
           <XAxis
+            height={40}
             dataKey='key'
             domain={['auto', 'auto']}
             name='Time'
             tickFormatter={(time) => moment(time).format('YY')}
-            type='number'
-          />
-          <YAxis dataKey='doc_count' name='Number of Documents' />
+            type='number'>
+            <Label value="Date of publication" offset={5} height={50} position="insideBottom" />
+          </XAxis>
+          <YAxis dataKey='doc_count' name='Number of Documents'>
+            <Label value='Documents' offset={15} angle={-90} position='insideLeft' style={{textAnchor: 'middle'}} />
+          </YAxis>
           <CartesianGrid strokeDasharray="3 3"/>
           <Tooltip labelFormatter = {(time) => moment(time).format('MM-YY')}/>
           <ReferenceLine y={0} stroke='#000'/>
