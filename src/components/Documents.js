@@ -25,15 +25,16 @@ class Documents extends Component {
   }
 
   renderTags() {
-    return Object.keys(this.props.filters).map(filterName =>
-      this.props.filters[filterName].map(tag => {
+    return Object.keys(this.props.filters).map(filterName => {
+      return this.props.filters[filterName].terms.map((tag, i) => {
           return (
-            <Tag key={tag.key}
-              text={tag.key}
+            <Tag key={i}
+              text={tag}
               onClick={() => this.handleOnClick(tag)}
             />
           )
-        }))
+        })
+      });
   }
 
   render() {

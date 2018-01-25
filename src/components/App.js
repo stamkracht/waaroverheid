@@ -160,7 +160,7 @@ class App extends React.Component {
           service={this.DocumentService}
           facets={this.state.facets}
           documents={this.state.documents}
-          appliedFilters={this.state.filters}
+          filters={this.state.filters}
           />
       )
     }

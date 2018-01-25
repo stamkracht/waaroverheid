@@ -60,8 +60,8 @@ class Drawer extends React.Component {
         service={this.props.service}
         num={this.props.numberDoc} 
         facets={this.props.facets} 
-        documents={this.props.documents}/>
-          filters={this.props.filters}/>
+        documents={this.props.documents}
+        filters={this.props.filters}/>
     }
   }
 
@@ -85,7 +85,8 @@ Drawer.defaultProps = {
   facets: {
     types: { buckets: [] },
     classification: { buckets: [] }
-  }
+  },
+  filters: {}
 }
 
 export default Drawer
