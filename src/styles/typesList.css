@@ -3,6 +3,7 @@
   width: 100%;
   text-align: left;
   position: relative;
+  overflow: auto;
 }
 
 .c-typesList ul {
@@ -10,7 +11,7 @@
   width: 100%;
   left: 0;
   list-style: none;
-  padding: 45px 0 0 0;
+  padding: 25px 0 0 0;
 }
 
 .c-typesList li {
@@ -24,11 +25,12 @@
   margin-top: 0;
   position: absolute;
   top: 0;
-  left: -25px;
+  left: -24px;
 }
 
 .c-typesList .c-container .c-button {
   padding: 5px;
+  min-width: auto;
 }
 
 .c-typesList .c-container .c-button .icon {
@@ -46,5 +48,9 @@
 
   .c-typesList .icon.direction-right {
     top: 0px;
+  }
+
+  .c-typesList li {
+    font-size: small;
   }
 }

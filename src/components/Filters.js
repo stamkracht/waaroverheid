@@ -30,7 +30,7 @@ class Filters extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    //We receive new facets so lets reset the chosen filters    
+    //We receive new facets so lets reset the chosen filters
     if(nextProps.facets) {
       FiltersService.reset();
     }
@@ -46,35 +46,35 @@ class Filters extends React.Component {
   }
 
   handleOnType(query) {
-    this.setState({query})    
+    this.setState({query})
   }
 
-  handleBrushChange({startIndex, endIndex}, chartData) {  
+  handleBrushChange({startIndex, endIndex}, chartData) {
     const startDate = {start_date: {
       from: chartData[startIndex].key_as_string,
       to: chartData[endIndex].key_as_string,
     }};
-    
+
     FiltersService.set(startDate);
   }
 
   renderTypes() {
     return ['Classification', 'Types']
-      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length > 1)      
+      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length > 1)
       .map((item, i) => {
         return (
           <TypesList
             key={i}
             text={item}
             list={this.props.facets[item.toLowerCase()].buckets} />
-        )  
+        )
     });
   }
 
   renderDatePicker() {
     return this.props.facets.start_date.buckets.length ? (
-      <Chart 
-        chartData={this.props.facets.start_date.buckets} 
+      <Chart
+        chartData={this.props.facets.start_date.buckets}
         handleBrushChange={this.handleBrushChange.bind(this)}/>
     ) : '';
   }
@@ -89,9 +89,11 @@ class Filters extends React.Component {
         <SearchBox
           onType={this.handleOnType.bind(this)}
           onSubmit={this.handleOnSubmit.bind(this)}/>
-        {this.renderDatePicker()}
-        <div className='typesContainer'>
-          {this.renderTypes()}
+        <div className='scrollableDiv'>
+          {this.renderDatePicker()}
+          <div className='typesContainer'>
+            {this.renderTypes()}
+          </div>
         </div>
         <div className='filtersFooter'>
           <Button text='Search'
