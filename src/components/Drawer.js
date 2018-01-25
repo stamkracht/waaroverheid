@@ -61,6 +61,7 @@ class Drawer extends React.Component {
         num={this.props.numberDoc} 
         facets={this.props.facets} 
         documents={this.props.documents}/>
+          filters={this.props.filters}/>
     }
   }
 

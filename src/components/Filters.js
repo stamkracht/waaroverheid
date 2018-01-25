@@ -42,7 +42,7 @@ class Filters extends React.Component {
 
   handleOnSubmit() {
     this.setState({active: false})
-    this.props.submit(this.state.query)
+    this.props.submit(this.state.query, Object.assign({}, FiltersService.get()))
   }
 
   handleOnType(query) {

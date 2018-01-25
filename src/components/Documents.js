@@ -25,14 +25,15 @@ class Documents extends Component {
   }
 
   renderTags() {
-    return this.props.facets.types.buckets.concat(this.props.facets.classification.buckets).map((type, i) => {
+    return Object.keys(this.props.filters).map(filterName =>
+      this.props.filters[filterName].map(tag => {
           return (
-            <Tag key={i}
-              text={type.key}
-              onClick={() => this.handleOnClick(type)}
+            <Tag key={tag.key}
+              text={tag.key}
+              onClick={() => this.handleOnClick(tag)}
             />
-          )        
-    })
+          )
+        }))
   }
 
   render() {
@@ -58,7 +59,8 @@ Documents.defaultProps = {
   facets: {
     types: { buckets: [] },
     classification: { buckets: [] }
-  }
+  },
+  filters: {},
 }
 
 export default Documents

@@ -26,7 +26,8 @@ class App extends React.Component {
       name: '',
       facets: {},
       documentsCount: 0,
-      documents: []
+      documents: [],
+      filters: {},
     }
 
     this.MapService = new MapService()
@@ -78,18 +79,18 @@ class App extends React.Component {
     })
   }
 
-  async handleOnSubmitSearch(query) {
-    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code, query);          
-    this.setState({facets, documentsCount, documents});
+  async handleOnSubmitSearch(query, filters) {
+    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code, query);
+    this.setState({facets, documentsCount, documents, filters});
   }
 
   async selectArea(code, name) {
-    if ( !code ) {      
+    if ( !code ) {
       this.setState({code, municipalities: this.allMunicipalities})
     } else {
       let geo = await this.MapService.getFeatures(code)
       let adjacent = await this.MapService.getAdjacentFeatures(code)
-      let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(code);          
+      let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(code);
       this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
     }
   }
@@ -97,7 +98,7 @@ class App extends React.Component {
   async selectMunicipality(code, name) {
     let geo = await this.MapService.getFeatures(code)
     let adjacent = await this.MapService.getAdjacentFeatures(code)
-    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(code);          
+    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(code);
     this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
   }
 
@@ -143,9 +144,6 @@ class App extends React.Component {
           <Filters
             facets={this.state.facets}
             submit={this.handleOnSubmitSearch.bind(this)} />
-          <Alert
-            service={this.DocumentService}
-            area={this.state.name} />
         </div>
       )
     }
@@ -162,7 +160,19 @@ class App extends React.Component {
           service={this.DocumentService}
           facets={this.state.facets}
           documents={this.state.documents}
+          appliedFilters={this.state.filters}
           />
+      )
+    }
+  }
+
+  renderAlert() {
+    if ( this.state.code ) {
+      return (
+        <Alert
+          service={this.DocumentService}
+          area={this.state.name}
+        />
       )
     }
   }
@@ -179,6 +189,7 @@ class App extends React.Component {
         {this.renderMunicipalities()}
         {this.renderControls()}
         {this.renderFilters()}
+        {this.renderAlert()}
         {this.renderDocuments()}
       </div>
     )
