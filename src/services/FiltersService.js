@@ -12,7 +12,7 @@ const FiltersService = (function () {
   }
 
   function get() {
-    return ['start_date', 'classification', 'types']
+    return Object.keys(FILTERS)
       .filter(name => FILTERS[name])
       .reduce((memo, name) => {
         const filter = {};

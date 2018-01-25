@@ -20,14 +20,13 @@ const SearchService = (function () {
     },
     sort: '_score',
     order: 'desc',
-    query: '',
-    filters: {}
+    query: ''
   };
 
-  function search(code) {
+  function search(code, query) {
     return fetch(`${apiUrl}v0/${parseCode(code)}/search`, {
       method: 'POST',
-      body: handleData(code),
+      body: handleData(code, query),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
@@ -57,19 +56,17 @@ const SearchService = (function () {
         return {districts: {terms: [code]}}; 
       case 'bu': 
         return {neighborhoods: {terms: [code]}};    
-      default: 
-        delete PARAMS.filters.districts;
-        delete PARAMS.filters.neighborhoods;
+      default:       
         return {};
     }
   }
 
-  function handleData(code) {
+  function handleData(code, query = '') {
     const levels = getLevelCode(code); 
-
-    PARAMS.filters = Object.assign(PARAMS.filters, levels, FilterService.get());
-
-    return JSON.stringify(PARAMS);
+    const params = Object.assign({}, PARAMS);
+    params.query = query;
+    params.filters = Object.assign({}, levels, FilterService.get());    
+    return JSON.stringify(params);
   }
 
   function setParams(params) {

@@ -20,7 +20,19 @@ class Filters extends React.Component {
     super(props)
 
     this.state = {
-      active: false    
+      active: false,
+      query: ''
+    }
+  }
+
+  componentWillUnmount() {
+    FiltersService.reset();
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    //We receive new facets so lets reset the chosen filters    
+    if(nextProps.facets) {
+      FiltersService.reset();
     }
   }
 
@@ -30,11 +42,11 @@ class Filters extends React.Component {
 
   handleOnSubmit() {
     this.setState({active: false})
-    this.props.submit()
+    this.props.submit(this.state.query)
   }
 
   handleOnType(query) {
-    SearchService.setParams({query});    
+    this.setState({query})    
   }
 
   handleBrushChange({startIndex, endIndex}, chartData) {  
@@ -48,7 +60,7 @@ class Filters extends React.Component {
 
   renderTypes() {
     return ['Classification', 'Types']
-      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length)      
+      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length > 1)      
       .map((item, i) => {
         return (
           <TypesList

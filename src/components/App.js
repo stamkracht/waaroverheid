@@ -78,13 +78,13 @@ class App extends React.Component {
     })
   }
 
-  async handleOnSubmitFilters() {
-    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code);          
+  async handleOnSubmitSearch(query) {
+    let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code, query);          
     this.setState({facets, documentsCount, documents});
   }
 
   async selectArea(code, name) {
-    if ( !code ) {
+    if ( !code ) {      
       this.setState({code, municipalities: this.allMunicipalities})
     } else {
       let geo = await this.MapService.getFeatures(code)
@@ -142,7 +142,7 @@ class App extends React.Component {
         <div>
           <Filters
             facets={this.state.facets}
-            submit={this.handleOnSubmitFilters.bind(this)} />
+            submit={this.handleOnSubmitSearch.bind(this)} />
           <Alert
             service={this.DocumentService}
             area={this.state.name} />

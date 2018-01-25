@@ -59,8 +59,8 @@ SearchBox.defaultProps = {
   iconPosition: 'right',
   placeholder: 'Search',
   shadow: true,
-  onSubmit: undefined,
-  onType: undefined,
+  onSubmit: () => {},
+  onType: () => {},
 }
 
 export default SearchBox
