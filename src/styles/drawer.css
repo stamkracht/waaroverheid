@@ -36,6 +36,12 @@
   width: 70vw;
 }
 
+.c-emptyContent {
+  margin: auto;
+  text-align: left;
+  width: auto;
+}
+
 .c-hamburger {
   position: absolute;
   right: 20px;
