@@ -6,6 +6,8 @@ const FiltersService = (function () {
     types: null
   };
 
+  let APPLIED_FILTERS = {};
+
   function set(filters) {
     FILTERS = Object.assign(FILTERS, filters);
     console.log(get())
@@ -22,11 +24,16 @@ const FiltersService = (function () {
   }
 
   function reset() {
+    APPLIED_FILTERS = get();
     FILTERS = {
       start_date: null,
       classification: null,
       types: null
     };  
+  }
+
+  function getAppliedFilters() {
+    return APPLIED_FILTERS;
   }
 
   return {
