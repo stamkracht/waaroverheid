@@ -26,11 +26,12 @@
 @media (max-width: 670px) {
 
   .c-searchBox {
-    width: 80vw;
+    width: 100%;
   }
 
   .filtersHeader + .c-container {
-    margin-top: 45px;
+    margin: 45px auto 15px auto;
+    width: 80vw;
   }
 
 }
