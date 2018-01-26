@@ -35,16 +35,16 @@ class DocumentItem extends Component {
   }
 
   renderDetails = () => {
-    if ( this.state.active && this.props.document.description) {
+    if (this.state.active && this.props.document.description) {
       return (
         <div className='c-details'>
           <Container shadow={true}>
             <div className='c-details--content'>
               <div className='c-details--text'>
-                <h3>{this.props.document.description}</h3>                
+                <h3>{this.props.document.description}</h3>
               </div>
               <div className='c-details--snippets'>
-                <p>{this.props.document.snippet}</p>
+              {this.renderSnippets()}
               </div>
               <Reporting />
             </div>
@@ -53,6 +53,22 @@ class DocumentItem extends Component {
       )
     }
   }
+
+  renderSnippets = () => {
+     if(this.props.document.sources) {
+       return this.props.document.sources.map((source, i) => {
+         const note = source.note ? <p key={i}>{source.note}</p> : ''
+         const snippets = source.snippets ? source.snippets.map((snippet, j) => <p key={j}>{snippet}&#8230;</p>) : ''
+           return (
+             <div key={i}>
+               {note}
+               {snippets}
+             </div>
+           )
+         }
+       )
+     }
+   }
 
   renderTags = () => {
     let maxTags = this.numTags;
