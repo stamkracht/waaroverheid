@@ -62,7 +62,7 @@ class DocumentItem extends Component {
          const snippets = isArray(source.snippets) ? source.snippets.map((snippet, j) => <p key={j}>{snippet}&#8230;</p>) : ''
          return (
           <div key={i}>
-            {note}
+            {snippets ? note : ''}
             <div className='snippets'>
               {snippets}
             </div>
