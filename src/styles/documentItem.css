@@ -98,13 +98,14 @@
 
 .c-details .c-details--text {
   margin-bottom: 10px;
+  padding-right: 34px;
 }
 
 .c-details .c-details--snippets {
   margin-bottom: 10px;
   font-style: italic;
   font-weight: lighter;
-  padding-right: 52px;
+  padding-right: 34px;
 }
 
 .c-details h3, p {
