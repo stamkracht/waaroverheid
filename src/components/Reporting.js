@@ -17,6 +17,7 @@ class Reporting extends React.Component {
       options: {
         'Privacy sensitive': false,
         'Irrelevant': false,
+        'Incorrect': false,
         'All of the above': false,
         'Other': false,
       },

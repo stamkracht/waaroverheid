@@ -108,7 +108,13 @@
   padding-right: 34px;
 }
 
-.c-details h3, p {
+.source__title {
+  display: inline-block;
+  margin: 5px 5px;
+  font-style: normal;
+}
+
+.c-details h3, p, a {
   margin: 5px;
   font-weight: normal;
 }
@@ -120,8 +126,16 @@
 
 .c-documentList {
   padding: 1px;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 170px);
   overflow: auto;
+}
+
+.snippets {
+  margin-left: 5px;
+}
+
+.snippets p {
+  display: inline;
 }
 
 @media (max-width: 768px) {
@@ -137,7 +151,7 @@
     font-size: small;
   }
 
-  .c-details h3, p  {
+  .c-details h3, p, a  {
     font-size: small;
   }
 }

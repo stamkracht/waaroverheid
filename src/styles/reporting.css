@@ -40,7 +40,12 @@
 }
 
 .c-documents .c-reporting .c-dropdown ul li {
+  font-size: normal;
   margin: 5px;
+}
+
+.c-documents .c-reporting .c-dropdown ul li span {
+  width: fit-content;
 }
 
 .c-documents .c-reporting .c-dropdown .c-textarea {
@@ -71,4 +76,15 @@
 
 .c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .icon {
   position: absolute;
+}
+
+@media (max-width: 768px) {
+  .c-documents .c-reporting .c-dropdown ul li {
+    font-size: small;
+  }
+
+  .c-documents .c-reporting .c-dropdown .c-textarea {
+    font-size: small;
+  }
+  
 }

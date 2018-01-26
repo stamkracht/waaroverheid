@@ -58,14 +58,15 @@ class DocumentItem extends Component {
   renderSnippets = () => {
      if(this.props.document.sources) {
        return this.props.document.sources.map((source, i) => {
-         const note = source.note ? <p key={i}>{source.note}</p> : ''
+         const note = source.note ? <a className='source__title' href={source.url} key={i}>{source.note}</a> : ''
          const snippets = isArray(source.snippets) ? source.snippets.map((snippet, j) => <p key={j}>{snippet}&#8230;</p>) : ''
-          
          return (
           <div key={i}>
             {note}
-            {snippets}
-          </div>)      
+            <div className='snippets'>
+              {snippets}
+            </div>
+          </div>)
          }
        )
      }
