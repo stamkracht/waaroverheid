@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import * as isArray from 'lodash/isArray';
 
 import Container from './Container'
 import Icon from './Icon'
@@ -58,13 +59,13 @@ class DocumentItem extends Component {
      if(this.props.document.sources) {
        return this.props.document.sources.map((source, i) => {
          const note = source.note ? <p key={i}>{source.note}</p> : ''
-         const snippets = source.snippets ? source.snippets.map((snippet, j) => <p key={j}>{snippet}&#8230;</p>) : ''
-           return (
-             <div key={i}>
-               {note}
-               {snippets}
-             </div>
-           )
+         const snippets = isArray(source.snippets) ? source.snippets.map((snippet, j) => <p key={j}>{snippet}&#8230;</p>) : ''
+          
+         return (
+          <div key={i}>
+            {note}
+            {snippets}
+          </div>)      
          }
        )
      }
