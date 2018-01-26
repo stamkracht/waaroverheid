@@ -26,7 +26,7 @@ class Chart extends React.Component {
             dataKey='key'
             domain={['auto', 'auto']}
             name='Time'
-            tickFormatter={(time) => moment(time).format('YY')}
+            tickFormatter={(time) => moment(time).format(`MMM 'YY`)}
             type='number'>
             <Label value="Date of publication" offset={5} height={50} position="insideBottom" />
           </XAxis>
@@ -34,9 +34,9 @@ class Chart extends React.Component {
             <Label value='Documents' offset={15} angle={-90} position='insideLeft' style={{textAnchor: 'middle'}} />
           </YAxis>
           <CartesianGrid strokeDasharray="3 3"/>
-          <Tooltip labelFormatter = {(time) => moment(time).format('MM-YY')}/>
+          <Tooltip labelFormatter = {(time) => moment(time).format(`MMM 'YY`)}/>
           <ReferenceLine y={0} stroke='#000'/>
-          <Brush dataKey='key' tickFormatter={(time) => moment(time).format('YY')} height={30} stroke="#ed6000" onChange={(indexes) => this.props.handleBrushChange(indexes, this.props.chartData)} data={this.props.chartData}/>
+          <Brush dataKey='key' tickFormatter={(time) => moment(time).format(`MMM 'YY`)} height={30} stroke="#ed6000" onChange={(indexes) => this.props.handleBrushChange(indexes, this.props.chartData)} data={this.props.chartData}/>
           <Bar dataKey= "doc_count" fill="#ed6000" name='Documents'/>
         </BarChart>
       </ResponsiveContainer>
