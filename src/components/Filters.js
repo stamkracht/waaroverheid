@@ -59,8 +59,8 @@ class Filters extends React.Component {
   }
 
   renderTypes() {
-    return ['Classification', 'Types']
-      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length > 1)
+    return ['Classification']
+      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length)
       .map((item, i) => {
         return (
           <TypesList

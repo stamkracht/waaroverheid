@@ -3,7 +3,6 @@ const FiltersService = (function () {
   let FILTERS = {
     start_date: null,
     classification: null,
-    types: null
   };
 
   let APPLIED_FILTERS = {};
@@ -28,8 +27,7 @@ const FiltersService = (function () {
     FILTERS = {
       start_date: null,
       classification: null,
-      types: null
-    };  
+    };
   }
 
   function getAppliedFilters() {

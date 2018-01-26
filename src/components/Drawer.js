@@ -96,7 +96,6 @@ Drawer.defaultProps = {
   service: {},
   documents: [],
   facets: {
-    types: { buckets: [] },
     classification: { buckets: [] }
   },
   filters: {}

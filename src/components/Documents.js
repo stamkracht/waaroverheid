@@ -58,7 +58,6 @@ class Documents extends Component {
 Documents.defaultProps = {
   num: 0,
   facets: {
-    types: { buckets: [] },
     classification: { buckets: [] }
   },
   filters: {},
