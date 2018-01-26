@@ -75,7 +75,7 @@ class DocumentItem extends Component {
  renderTags = () => {
      let maxTags = this.state.active ? this.props.document.toponyms.length : 3;
      let toponyms = this.props.document.toponyms.slice(0,maxTags);
-     return toponyms.map((tag, i) =>  (<div><Button key={i} text={tag} /></div>))
+     return toponyms.map((tag, i) =>  (<div key={i}><Button text={tag} /></div>))
   }
 
 

@@ -6,7 +6,6 @@ import SearchBox from './SearchBox'
 import TypesList from './TypesList'
 import Chart from './Chart'
 import FiltersService from '../services/FiltersService'
-import SearchService from '../services/SearchService'
 
 import 'react-input-range/lib/css/index.css'
 import '../styles/filters.css'
