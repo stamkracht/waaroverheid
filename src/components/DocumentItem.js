@@ -71,22 +71,12 @@ class DocumentItem extends Component {
      }
    }
 
-  renderTags = () => {
-    let maxTags = this.numTags;
-    return Array.apply(null, new Array(this.numTags)).map((e, i) => {
-      if(!this.state.active) {
-        maxTags = 3;
-      }
-      return (
-        <div key={i}>
-          {i < maxTags &&
-          <div>
-            <Button text={`Tag ${i+1}`} />
-          </div>}
-        </div>
-      )
-    })
+ renderTags = () => {
+     let maxTags = this.state.active ? this.props.document.toponyms.length : 3;
+     let toponyms = this.props.document.toponyms.slice(0,maxTags);
+     return toponyms.map((tag, i) =>  (<div><Button key={i} text={tag} /></div>))
   }
+
 
   renderDocumentItem = () => {
     return (
