@@ -13,7 +13,8 @@ class Municipalities extends React.Component {
   }
 
   handleOnType(q) {
-    this.props.filter(q)
+    let query = q.toLowerCase()
+    this.props.filter(query)
   }
 
   handleOnSubmit() {
