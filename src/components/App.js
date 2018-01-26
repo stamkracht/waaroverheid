@@ -10,6 +10,7 @@ import Filters from './Filters'
 import Drawer from './Drawer'
 import DocumentService from '../services/DocumentService'
 import SearchService from '../services/SearchService'
+import FiltersService from '../services/FiltersService'
 
 class App extends React.Component {
 
@@ -114,6 +115,14 @@ class App extends React.Component {
     this.setState({municipalities})
   }
 
+  updateFilters(key, filterName) {
+    const filters = Object.assign({}, this.state.filters)
+    filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key)
+    FiltersService.set(filters)
+    this.setState({filters})
+    this.handleOnSubmitSearch('', filters)
+  }
+
   renderMunicipalities() {
     if ( !this.state.code ) {
       return (
@@ -161,6 +170,7 @@ class App extends React.Component {
           facets={this.state.facets}
           documents={this.state.documents}
           filters={this.state.filters}
+          updateFilters={this.updateFilters.bind(this)}
           />
       )
     }
@@ -172,6 +182,8 @@ class App extends React.Component {
         <Alert
           service={this.DocumentService}
           area={this.state.name}
+          filters={this.state.filters}
+          updateFilters={this.updateFilters.bind(this)}
         />
       )
     }

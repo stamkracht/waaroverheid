@@ -44,19 +44,16 @@ class Alert extends React.Component {
   }
 
   renderTags() {
-    return this.props.service.filters.types.map((types, i) => {
-      return types.items.map((item, i) => {
-        if(item.active) {
+    return Object.keys(this.props.filters).map(filterName => {
+      return this.props.filters[filterName].terms.map((tag, i) => {
           return (
             <Tag key={i}
-              text={item.name}
-              onClick={() => this.handleTags(item)}
+              text={tag}
+              onClick={() => this.props.updateFilters(tag, filterName)}
             />
           )
-        }
-        return false
-      })
-    })
+        })
+      });
   }
 
   renderModalButton() {
@@ -81,7 +78,7 @@ class Alert extends React.Component {
   renderModalContent() {
     return (
       <div className='c-alert--content'>
-        <h3>Receive alerts for documents in {this.props.area} corresponding to these filters:</h3>
+        <h3>Receive alerts for documents in {this.props.area}{Object.getOwnPropertyNames(this.props.filters).length === 0 ? '.' : ' corresponding to these filters:'}</h3>
         <div className='c-selectedFilters'>
           {this.renderTags()}
         </div>
@@ -127,7 +124,9 @@ class Alert extends React.Component {
 
 Alert.defaultProps = {
   service: {},
-  area: 'selected area'
+  area: 'selected area',
+  filters: {},
+  updateFilters: () => {},
 }
 
 export default Alert

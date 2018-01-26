@@ -52,7 +52,7 @@ class Drawer extends React.Component {
         {this.renderHamburger()}
       </div>
     )
-  } 
+  }
 
   renderDocuments = () => {
     if(this.props.active) {
@@ -73,7 +73,8 @@ class Drawer extends React.Component {
           num={this.props.numberDoc}
           facets={this.props.facets}
           documents={this.props.documents}
-          filters={this.props.filters}/>
+          filters={this.props.filters}
+          updateFilters={this.props.updateFilters}/>
       }
     }
   }
@@ -98,7 +99,8 @@ Drawer.defaultProps = {
   facets: {
     classification: { buckets: [] }
   },
-  filters: {}
+  filters: {},
+  updateFilters: () => {},
 }
 
 export default Drawer

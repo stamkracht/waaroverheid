@@ -7,19 +7,6 @@ import Tag from './Tag'
 
 class Documents extends Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      update: false,
-    }
-  }
-
-  handleOnClick(item) {
-    item.active = !item.active;
-    this.setState({update: !this.state.update})
-  }
-
   renderDocumentItems() {
     return this.props.documents.map((document, i) => <DocumentItem key={i} document={document} />)
   }
@@ -30,7 +17,7 @@ class Documents extends Component {
           return (
             <Tag key={i}
               text={tag}
-              onClick={() => this.handleOnClick(tag)}
+              onClick={() => this.props.updateFilters(tag, filterName)}
             />
           )
         })
@@ -61,6 +48,7 @@ Documents.defaultProps = {
     classification: { buckets: [] }
   },
   filters: {},
+  updateFilters: () => {},
 }
 
 export default Documents
