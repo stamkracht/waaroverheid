@@ -36,7 +36,7 @@ class DocumentItem extends Component {
   }
 
   renderDetails = () => {
-    if (this.state.active && this.props.document.description) {
+    if (this.state.active) {
       return (
         <div className='c-details'>
           <Container shadow={true}>
@@ -100,10 +100,10 @@ class DocumentItem extends Component {
       <div className='c-documents--item'>
         <Container shadow={true}>
           {this.renderDocumentItem()}
-          {this.props.document.description ? <button className='c-documents--dropdown'
+          <button className='c-documents--dropdown'
             onClick={this.toggleDocument.bind(this)}>
             <Icon icon='arrow' />
-          </button> : ''}
+          </button>
         </Container>
         {this.renderDetails()}
       </div>
