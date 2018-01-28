@@ -47,9 +47,10 @@ class Map extends Component {
       name = feature.properties['BU_NAAM']
       code = feature.properties['BU_CODE']
     }
+    let docCount = this.props.counts[code]
     let tooltip = `
       <h1>${name}</h1>
-      <h1>#${code}</h1>
+      <h1># ${docCount}</h1>
     `
     layer.setStyle({
       'className': classNames('c-feature', {
@@ -79,7 +80,6 @@ class Map extends Component {
     }
     let tooltip = `
       <h1>${name}</h1>
-      <h1>#${code}</h1>
     `
     layer.setStyle({
       'className': 'c-feature adjacent',
