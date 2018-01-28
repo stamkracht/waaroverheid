@@ -1,3 +1,6 @@
+import * as keyBy from 'lodash/keyBy';
+import * as mapValues from 'lodash/mapValues';
+
 import LocationService from '../services/LocationService'
 import { isMobile } from '../utilities/device'
 
@@ -82,6 +85,16 @@ class MapService {
         .then(geo => resolve(geo))
         .catch(err => reject(err))
     })
+  }
+
+  getAreaCounts(facets) {
+    let buckets = [];
+    if (!!facets.districts) {
+      buckets = facets.districts.buckets;
+    } else if (!!facets.neighborhoods) {
+      buckets = facets.neighborhoods.buckets;
+    }
+    return mapValues(keyBy(buckets, 'key'), 'doc_count')
   }
 }
 

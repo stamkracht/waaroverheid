@@ -148,6 +148,7 @@ Map.defaultProps = {
   code: '',
   geo: {},
   adjacent: {},
+  counts: {},
   select: undefined,
   openDrawer: undefined,
 }
