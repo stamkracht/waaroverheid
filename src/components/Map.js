@@ -47,7 +47,7 @@ class Map extends Component {
       name = feature.properties['BU_NAAM']
       code = feature.properties['BU_CODE']
     }
-    let docCount = this.props.counts[code]
+    let docCount = this.props.counts.byCode[code]
     let tooltip = `
       <h1>${name}</h1>
       <h1># ${docCount}</h1>
@@ -148,7 +148,10 @@ Map.defaultProps = {
   code: '',
   geo: {},
   adjacent: {},
-  counts: {},
+  counts: {
+    byCode: {},
+    maxCount: 0
+  },
   select: undefined,
   openDrawer: undefined,
 }

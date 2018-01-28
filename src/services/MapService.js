@@ -1,5 +1,6 @@
 import * as keyBy from 'lodash/keyBy';
 import * as mapValues from 'lodash/mapValues';
+import * as maxBy from 'lodash/maxBy';
 
 import LocationService from '../services/LocationService'
 import { isMobile } from '../utilities/device'
@@ -87,14 +88,33 @@ class MapService {
     })
   }
 
-  getAreaCounts(facets) {
+  getAreaCounts(facets, selectedCode) {
     let buckets = [];
     if (!!facets.districts) {
       buckets = facets.districts.buckets;
     } else if (!!facets.neighborhoods) {
       buckets = facets.neighborhoods.buckets;
     }
-    return mapValues(keyBy(buckets, 'key'), 'doc_count')
+
+    let inArea = buckets;
+    if (selectedCode.slice(0,2) === 'WK') {
+      // filter counts if a district is selected
+      inArea = buckets.filter(function(areaCount){
+        return areaCount.key.slice(2,8) === selectedCode.slice(2,8)
+      });
+    }
+
+    const maxValue = maxBy(inArea, 'doc_count');
+    let maxCount = 0;
+    if (!!maxValue) {
+      maxCount = maxValue.doc_count;
+    }
+    const counts = mapValues(keyBy(inArea, 'key'), 'doc_count');
+
+    return {
+      byCode: counts,
+      maxCount: maxCount
+    }
   }
 }
 
