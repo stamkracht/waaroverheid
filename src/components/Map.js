@@ -39,7 +39,11 @@ class Map extends Component {
   }
 
   getOpacity(docCount) {
+    if (this.props.counts.maxCount > 0) {
       return docCount / this.props.counts.maxCount
+    } else {
+      return 0.2
+    }
   }
 
   onEachFeature(feature, layer) {
@@ -52,6 +56,10 @@ class Map extends Component {
       code = feature.properties['BU_CODE']
     }
     let docCount = this.props.counts.byCode[code]
+    if (!docCount) {
+      docCount = 0
+    }
+
     let tooltip = `
       <h1>${name}</h1>
       <h1># ${docCount}</h1>

@@ -93,7 +93,7 @@ class MapService {
     let maxCount = 0;
     let counts = {};
 
-    if (!!selectedCode) {
+    if (!!selectedCode && !!facets) {
       if (!!facets.districts) {
         buckets = facets.districts.buckets;
       } else if (!!facets.neighborhoods) {
