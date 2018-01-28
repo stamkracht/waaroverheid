@@ -196,7 +196,11 @@ class App extends React.Component {
           geo={this.state.geo}
           adjacent={this.state.adjacent}
           code={this.state.code}
-          counts={this.MapService.getAreaCounts(this.state.facets, this.state.code)}
+          counts={this.MapService.getAreaCounts(
+              this.state.facets,
+              this.state.code,
+              this.state.documentsCount
+          )}
           select={this.selectArea.bind(this)}
           openDrawer={this.toggleDrawer.bind(this)} />
         {this.renderMunicipalities()}

@@ -88,28 +88,37 @@ class MapService {
     })
   }
 
-  getAreaCounts(facets, selectedCode) {
+  getAreaCounts(facets, selectedCode, totalCount) {
     let buckets = [];
-    if (!!facets.districts) {
-      buckets = facets.districts.buckets;
-    } else if (!!facets.neighborhoods) {
-      buckets = facets.neighborhoods.buckets;
-    }
-
-    let inArea = buckets;
-    if (selectedCode.slice(0,2) === 'WK') {
-      // filter counts if a district is selected
-      inArea = buckets.filter(function(areaCount){
-        return areaCount.key.slice(2,8) === selectedCode.slice(2,8)
-      });
-    }
-
-    const maxValue = maxBy(inArea, 'doc_count');
     let maxCount = 0;
-    if (!!maxValue) {
-      maxCount = maxValue.doc_count;
+    let counts = {};
+
+    if (!!selectedCode) {
+      if (!!facets.districts) {
+        buckets = facets.districts.buckets;
+      } else if (!!facets.neighborhoods) {
+        buckets = facets.neighborhoods.buckets;
+      }
+
+      let inArea = buckets;
+      if (selectedCode.slice(0,2) === 'WK') {
+        // filter counts if a district is selected
+        inArea = buckets.filter(function(areaCount){
+          return areaCount.key.slice(2,8) === selectedCode.slice(2,8)
+        });
+      }
+
+      const maxValue = maxBy(inArea, 'doc_count');
+      if (!!maxValue) {
+        maxCount = maxValue.doc_count;
+      }
+      counts = mapValues(keyBy(inArea, 'key'), 'doc_count');
+
+      if (selectedCode.slice(0,2) === 'BU') {
+        counts[selectedCode] = totalCount;
+        maxCount = totalCount;
+      }
     }
-    const counts = mapValues(keyBy(inArea, 'key'), 'doc_count');
 
     return {
       byCode: counts,

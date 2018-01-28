@@ -38,6 +38,10 @@ class Map extends Component {
     }
   }
 
+  getOpacity(docCount) {
+      return docCount / this.props.counts.maxCount
+  }
+
   onEachFeature(feature, layer) {
     let name, code
     if ( this.props.code.indexOf('GM') === 0 ) {
@@ -56,6 +60,7 @@ class Map extends Component {
       'className': classNames('c-feature', {
         'active': this.props.code.indexOf('BU') === 0,
       }),
+      'fillOpacity': this.getOpacity(docCount)
     })
     layer.bindTooltip(tooltip, {
       'className': 'c-tooltip',
