@@ -13,9 +13,6 @@ const SearchService = (function () {
         },
         classification: {
             size: 100
-        },
-        districts: {
-            size: 100
         }
     },
     sort: '_score',
@@ -38,7 +35,7 @@ const SearchService = (function () {
     const level = code.slice(0,2).toLowerCase();
 
     switch(level) {
-      case 'gm': 
+      case 'gm':
         return code.toLowerCase();
       case 'wk':
       case 'bu':
@@ -48,24 +45,39 @@ const SearchService = (function () {
     }
   }
 
-  function getLevelCode(code) {
+  function getAreaFilter(code) {
     const level = code.slice(0,2).toLowerCase();
-    
+
     switch(level) {
       case 'wk':
-        return {districts: {terms: [code]}}; 
-      case 'bu': 
-        return {neighborhoods: {terms: [code]}};    
-      default:       
+        return {districts: {terms: [code]}};
+      case 'bu':
+        return {neighborhoods: {terms: [code]}};
+      default:
+        return {};
+    }
+  }
+
+  function getAreaFacet(code) {
+    const level = code.slice(0,2).toLowerCase();
+
+    switch(level) {
+      case 'gm':
+        return {districts: {size: 100}};
+      case 'wk':
+        return {neighborhoods: {size: 500}};
+      default:
         return {};
     }
   }
 
   function handleData(code, query = '') {
-    const levels = getLevelCode(code); 
+    const areaFilter = getAreaFilter(code);
+    const areaFacet = getAreaFacet(code);
     const params = Object.assign({}, PARAMS);
     params.query = query;
-    params.filters = Object.assign({}, levels, FilterService.get());    
+    params.facets = Object.assign({}, params.facets, areaFacet);
+    params.filters = Object.assign({}, areaFilter, FilterService.get());
     return JSON.stringify(params);
   }
 
