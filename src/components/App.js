@@ -31,8 +31,7 @@ class App extends React.Component {
       documents: [],
       filters: {},
       page: 1,
-      query: '',
-      hasMoreDocs: true,
+      hasMoreDocs: true
     }
 
     this.MapService = new MapService()
