@@ -31,8 +31,12 @@ class App extends React.Component {
       documents: [],
       filters: {},
       page: 1,
+<<<<<<< Updated upstream
       query: '',
       hasMoreDocs: true,
+=======
+      hasMoreDocs: true
+>>>>>>> Stashed changes
     }
 
     this.MapService = new MapService()
