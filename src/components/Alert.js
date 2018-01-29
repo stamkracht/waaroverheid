@@ -43,6 +43,15 @@ class Alert extends React.Component {
     }
   }
 
+  renderQuery() {
+    if(this.props.query) {
+      return (
+        <Tag key={'query'} text={this.props.query} onClick={() => this.props.resetQuery()}
+/>
+      )
+    }
+  }
+
   renderTags() {
     return Object.keys(this.props.filters).map(filterName => {
       return this.props.filters[filterName].terms.map((tag, i) => {
@@ -80,6 +89,7 @@ class Alert extends React.Component {
       <div className='c-alert--content'>
         <h3>Receive alerts for documents in {this.props.area}{Object.getOwnPropertyNames(this.props.filters).length === 0 ? '.' : ' corresponding to these filters:'}</h3>
         <div className='c-selectedFilters'>
+          {this.renderQuery()}
           {this.renderTags()}
         </div>
         <input placeholder='Type in your email address' ref={node => {this.emailInput = node}} />
@@ -127,6 +137,8 @@ Alert.defaultProps = {
   area: 'selected area',
   filters: {},
   updateFilters: () => {},
+  query: '',
+  resetQuery: () => {},
 }
 
 export default Alert

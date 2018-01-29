@@ -11,6 +11,14 @@ class Documents extends Component {
     return this.props.documents.map((document, i) => <DocumentItem key={i} document={document} />)
   }
 
+  renderQuery() {
+    if(this.props.query) {
+      return (
+        <Tag key={'query'} text={this.props.query} onClick={() => this.props.resetQuery()}/>
+      )
+    }
+  }
+
   renderTags() {
     return Object.keys(this.props.filters).map(filterName => {
       return this.props.filters[filterName].terms.map((tag, i) => {
@@ -30,6 +38,7 @@ class Documents extends Component {
       <Container>
         <div className='c-documents'>
           <div className='c-selectedFilters'>
+            {this.renderQuery()}
             {this.renderTags()}
           </div>
           <div className='c-documentList'>
@@ -49,6 +58,8 @@ Documents.defaultProps = {
   },
   filters: {},
   updateFilters: () => {},
+  query: '',
+  resetQuery: () => {},
 }
 
 export default Documents

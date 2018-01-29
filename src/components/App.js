@@ -25,6 +25,7 @@ class App extends React.Component {
       geo: {},
       adjacent: {},
       name: '',
+      query: '',
       facets: {},
       documentsCount: 0,
       documents: [],
@@ -115,6 +116,11 @@ class App extends React.Component {
     this.setState({municipalities})
   }
 
+  resetQuery() {
+    this.setState({query: ''})
+    this.handleOnSubmitSearch('', this.state.filters)
+  }
+
   updateFilters(key, filterName) {
     const filters = Object.assign({}, this.state.filters)
     filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key)
@@ -171,6 +177,8 @@ class App extends React.Component {
           documents={this.state.documents}
           filters={this.state.filters}
           updateFilters={this.updateFilters.bind(this)}
+          query={this.state.query}
+          resetQuery={this.resetQuery.bind(this)}
           />
       )
     }
@@ -184,6 +192,8 @@ class App extends React.Component {
           area={this.state.name}
           filters={this.state.filters}
           updateFilters={this.updateFilters.bind(this)}
+          query={this.state.query}
+          resetQuery={this.resetQuery.bind(this)}
         />
       )
     }
