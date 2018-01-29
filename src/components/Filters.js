@@ -25,13 +25,13 @@ class Filters extends React.Component {
   }
 
   componentWillUnmount() {
-    FiltersService.reset();
+    //FiltersService.reset();
   }
 
   componentWillUpdate(nextProps, nextState) {
     //We receive new facets so lets reset the chosen filters
     if(nextProps.facets) {
-      FiltersService.reset();
+      //FiltersService.reset();
     }
   }
 
