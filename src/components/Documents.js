@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import InfiniteScroll from 'react-infinite-scroller';
 
 import Container from './Container'
 import '../styles/documents.css'
 import DocumentItem from './DocumentItem'
 import Tag from './Tag'
 
+
 class Documents extends Component {
+
+  constructor (props) {
+    super(props);
+  }
 
   renderDocumentItems() {
     return this.props.documents.map((document, i) => <DocumentItem key={i} document={document} />)
@@ -44,6 +50,7 @@ class Documents extends Component {
   }
 
   render() {
+    const loader = <div key={0}>Loading...</div>;
     return (
       <div className='outerContainer'>
       <Container>
@@ -53,7 +60,15 @@ class Documents extends Component {
             {this.renderTags()}
           </div>
           <div className='c-documentList'>
-            {this.renderDocumentItems()}
+            <InfiniteScroll
+              useWindow={false}
+              hasMore={this.props.hasMoreDocs}
+              pageStart={2}
+              initialLoad={true}
+              loader={loader}
+              loadMore={this.props.getMoreDocuments}>
+              {this.renderDocumentItems()}
+            </InfiniteScroll>
           </div>
         </div>
       </Container>
@@ -69,6 +84,8 @@ Documents.defaultProps = {
   },
   filters: {},
   updateFilters: () => {},
+  getMoreDocuments: () => {},
+  hasMoreDocs: false
   query: '',
   resetQuery: () => {},
 }

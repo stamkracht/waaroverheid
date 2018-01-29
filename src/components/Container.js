@@ -14,7 +14,7 @@ class Container extends React.Component {
 }
 
 Container.defaultProps = {
-  shadow: false,
+  shadow: false  
 }
 
 export default Container

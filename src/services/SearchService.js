@@ -20,10 +20,10 @@ const SearchService = (function () {
     query: ''
   };
 
-  function search(code, query) {
+  function search(code, query = '', page = 1) {
     return fetch(`${apiUrl}v0/${parseCode(code)}/search`, {
       method: 'POST',
-      body: handleData(code, query),
+      body: handleData(code, query, page),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
@@ -71,10 +71,28 @@ const SearchService = (function () {
     }
   }
 
-  function handleData(code, query = '') {
+  function getPage(page) {
+    switch(page) {
+      case 1:
+        PARAMS.from = 0;
+        PARAMS.size = 2;
+        break;
+      case 2:
+        PARAMS.from = 2;
+        PARAMS.size = 5;
+        break;
+      default: 
+        PARAMS.from += 5;   
+        break;   
+    }     
+    return [PARAMS.from, PARAMS.size]
+  }
+
+  function handleData(code, query, page) {
     const areaFilter = getAreaFilter(code);
     const areaFacet = getAreaFacet(code);
     const params = Object.assign({}, PARAMS);
+    [params.from, params.size] = getPage(page);
     params.query = query;
     params.facets = Object.assign({}, params.facets, areaFacet);
     params.filters = Object.assign({}, areaFilter, FilterService.get());

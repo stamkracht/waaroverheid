@@ -74,6 +74,9 @@ class Drawer extends React.Component {
           facets={this.props.facets}
           documents={this.props.documents}
           filters={this.props.filters}
+          getMoreDocuments={this.props.getMoreDocuments}
+          hasMoreDocs={this.props.hasMoreDocs}
+          updateFilters={this.props.updateFilters}/>
           updateFilters={this.props.updateFilters}
           resetQuery={this.props.resetQuery}
           query={this.props.query}/>
@@ -85,6 +88,7 @@ class Drawer extends React.Component {
     return (
       <div className={classNames('c-drawer', {'active': this.props.active})}>
         {this.renderHeader()}
+
         {this.renderDocuments()}
       </div>
     )
@@ -103,6 +107,7 @@ Drawer.defaultProps = {
   },
   filters: {},
   updateFilters: () => {},
+  getMoreDocuments: () => {}
   resetQuery: () => {},
 }
 
