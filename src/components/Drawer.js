@@ -76,7 +76,6 @@ class Drawer extends React.Component {
           filters={this.props.filters}
           getMoreDocuments={this.props.getMoreDocuments}
           hasMoreDocs={this.props.hasMoreDocs}
-          updateFilters={this.props.updateFilters}/>
           updateFilters={this.props.updateFilters}
           resetQuery={this.props.resetQuery}
           query={this.props.query}/>
@@ -107,7 +106,7 @@ Drawer.defaultProps = {
   },
   filters: {},
   updateFilters: () => {},
-  getMoreDocuments: () => {}
+  getMoreDocuments: () => {},
   resetQuery: () => {},
 }
 

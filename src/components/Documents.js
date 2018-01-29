@@ -85,7 +85,7 @@ Documents.defaultProps = {
   filters: {},
   updateFilters: () => {},
   getMoreDocuments: () => {},
-  hasMoreDocs: false
+  hasMoreDocs: false,
   query: '',
   resetQuery: () => {},
 }
