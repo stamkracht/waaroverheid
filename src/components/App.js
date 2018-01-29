@@ -81,6 +81,11 @@ class App extends React.Component {
     })
   }
 
+  sliceFilters() {
+    let filtersSliced = this.state.filters['classification']
+    return filtersSliced
+  }
+
   async handleOnSubmitSearch(query, filters) {
     let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code, query);
     this.setState({query, facets, documentsCount, documents, filters})
@@ -194,7 +199,7 @@ class App extends React.Component {
         <Alert
           service={this.DocumentService}
           area={this.state.name}
-          filters={this.state.filters}
+          filters={this.sliceFilters()}
           updateFilters={this.updateFilters.bind(this)}
           query={this.state.query}
           resetQuery={this.resetQuery.bind(this)}

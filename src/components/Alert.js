@@ -54,11 +54,11 @@ class Alert extends React.Component {
 
   renderTags() {
     return Object.keys(this.props.filters).map(filterName => {
-      return this.props.filters[filterName].terms.map((tag, i) => {
+      return this.props.filters.terms.map((tag, i) => {
           return (
             <Tag key={i}
               text={tag}
-              onClick={() => this.props.updateFilters(tag, filterName)}
+              onClick={() => this.props.updateFilters(tag, 'classification')}
             />
           )
         })
