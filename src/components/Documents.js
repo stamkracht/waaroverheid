@@ -21,7 +21,17 @@ class Documents extends Component {
 
   renderTags() {
     return Object.keys(this.props.filters).map(filterName => {
-      return this.props.filters[filterName].terms.map((tag, i) => {
+      if(this.props.filters[filterName].from) {
+          return [
+            (<Tag key={'from'}
+              text={`Vanaf: ${this.props.filters[filterName].from.slice(0, 10)}`}
+            />),
+            (<Tag key={'to'}
+              text={`Tot: ${this.props.filters[filterName].to.slice(0, 10)}`}
+            />)
+          ]
+      } else {
+        return this.props.filters[filterName].terms.map((tag, i) => {
           return (
             <Tag key={i}
               text={tag}
@@ -29,7 +39,8 @@ class Documents extends Component {
             />
           )
         })
-      });
+      }
+    });
   }
 
   render() {

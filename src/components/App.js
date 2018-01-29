@@ -83,7 +83,7 @@ class App extends React.Component {
 
   async handleOnSubmitSearch(query, filters) {
     let {facets, meta: {total: documentsCount}=0, events: documents} = await SearchService.search(this.state.code, query);
-    this.setState({facets, documentsCount, documents, filters});
+    this.setState({query, facets, documentsCount, documents, filters})
   }
 
   async selectArea(code, name) {
@@ -123,10 +123,14 @@ class App extends React.Component {
 
   updateFilters(key, filterName) {
     const filters = Object.assign({}, this.state.filters)
+    const query = this.state.query
     filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key)
+    if(!filters[filterName].terms.length) {
+      delete filters[filterName]
+    }
     FiltersService.set(filters)
     this.setState({filters})
-    this.handleOnSubmitSearch('', filters)
+    this.handleOnSubmitSearch(query, filters)
   }
 
   renderMunicipalities() {

@@ -74,7 +74,9 @@ class Drawer extends React.Component {
           facets={this.props.facets}
           documents={this.props.documents}
           filters={this.props.filters}
-          updateFilters={this.props.updateFilters}/>
+          updateFilters={this.props.updateFilters}
+          resetQuery={this.props.resetQuery}
+          query={this.props.query}/>
       }
     }
   }
@@ -101,6 +103,7 @@ Drawer.defaultProps = {
   },
   filters: {},
   updateFilters: () => {},
+  resetQuery: () => {},
 }
 
 export default Drawer
