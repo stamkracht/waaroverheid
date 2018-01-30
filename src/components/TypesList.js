@@ -21,7 +21,7 @@ class TypesList extends React.Component {
   handleChange(checked, item) {
     item.active = checked;
     const checkedItems = {};
-    checkedItems[this.props.text.toLowerCase()] = {
+    checkedItems[this.props.facet] = {
       terms: this.props.list
       .filter(item => item.active)
       .map(item => item.key)
@@ -34,7 +34,7 @@ class TypesList extends React.Component {
     if ( this.state.active ) {
       return this.props.list
       .sort((a,b) => {
-        if (a.key < b.key) { return -1; } 
+        if (a.key < b.key) { return -1; }
         if (a.key > b.key) { return 1; }
         return 0;
       })

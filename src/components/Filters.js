@@ -63,7 +63,8 @@ class Filters extends React.Component {
       .map((item, i) => {
         return (
           <TypesList
-            key={i}
+            key={item}
+            facet={item}
             text={'Soorten'}
             list={this.props.facets[item].buckets} />
         )
