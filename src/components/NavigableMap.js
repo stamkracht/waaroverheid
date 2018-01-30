@@ -40,7 +40,7 @@ class NavigableMap extends Component {
 
   getOpacity(docCount) {
     if (this.props.counts.maxCount > 0) {
-      return docCount / this.props.counts.maxCount
+      return 0.8 * (docCount / this.props.counts.maxCount)
     } else {
       return 0.2
     }
