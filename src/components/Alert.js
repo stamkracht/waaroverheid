@@ -70,7 +70,7 @@ class Alert extends React.Component {
       <Button
         text='Meldingen'
         icon='mail'
-        textAlign='left'
+        textAlign='center'
         onClick={this.onOpenModal.bind(this)} />
     )
   }
