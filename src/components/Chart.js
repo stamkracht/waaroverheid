@@ -16,12 +16,10 @@ import {
   ReferenceLine
 } from 'recharts'
 
-class Chart extends React.Component {
-
-  render() {
+const Chart = ({chartData, handleBrushChange}) => {
     return (
       <ResponsiveContainer width='90%' height={200}>
-        <BarChart data = {this.props.chartData} maxBarSize={20}>
+        <BarChart data = {chartData} maxBarSize={20}>
           <XAxis
             height={40}
             dataKey='key'
@@ -37,13 +35,19 @@ class Chart extends React.Component {
           <CartesianGrid strokeDasharray="3 3"/>
           <Tooltip labelFormatter = {(time) => moment(time).format(`MMM 'YY`)}/>
           <ReferenceLine y={0} stroke='#000'/>
-          <Brush dataKey='key' tickFormatter={(time) => moment(time).format(`MMM 'YY`)} height={30} stroke="#ed6000" onChange={(indexes) => this.props.handleBrushChange(indexes, this.props.chartData)} data={this.props.chartData}/>
+          <Brush 
+            dataKey='key' 
+            tickFormatter={(time) => moment(time).format(`MMM 'YY`)} 
+            height={30} 
+            stroke="#ed6000"
+            onChange={(indexes) => handleBrushChange(indexes, chartData)} 
+            data={chartData}/>
           <Bar dataKey= "doc_count" fill="#ed6000" name='Documenten'/>
         </BarChart>
       </ResponsiveContainer>
     )
   }
-}
+
 
 Chart.propTypes = {
   chartData: PropTypes.arrayOf(

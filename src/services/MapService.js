@@ -29,25 +29,20 @@ class MapService {
             resolve([res.properties['GM_CODE'], res.properties['GM_NAAM']])
           }
         })
+        .catch(e => e);
       })
     })
   }
 
   getPolygon(latitude, longitude) {
     let url = `${this.apiUrl}localize?lat=${latitude}&lon=${longitude}`
-    if ( isMobile() ) {
-      url += `&type=neighborhood`
-    } else {
-      url += `&type=municipality`
-    }
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'GET',
-      })
-        .then(d => d.json())
-        .then(res => resolve(res))
-        .catch(err => reject(err))
-    })
+    url = isMobile() ? `${url}&type=neighborhood` : `${url}&type=municipality`
+    
+    return fetch(url)
+        .then(res => res.status === 200 ? 
+          res.json()
+          :
+          Promise.reject(res))
   }
 
   async getMunicipalities() {

@@ -2,16 +2,12 @@ import React from 'react'
 
 import '../styles/badge.css'
 
-class Badge extends React.Component {
-
-  render() {
-
-    return (
-      <div className={`${this.props.active ? 'c-badge active' : 'c-badge'}`}>
-        {this.props.num}
-      </div>
-    )
-  }
+const Badge = ({active, num}) => {
+  return (
+    <div className={`${active ? 'c-badge active' : 'c-badge'}`}>
+      {num}
+    </div>
+  )
 }
 
 Badge.defaultProps = {

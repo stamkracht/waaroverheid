@@ -52,12 +52,12 @@ class MunicipalitiesContainer extends React.Component {
   }
 
   async showUserLocation() {
-    await this.setState({loadingLocation: true});
-    let [code, name] = await this.MapService.getUserLocation();
-    const geo = await this.MapService.getFeatures(code);
-    this.cacheNames(geo);
-    const adjacent = await this.MapService.getAdjacentFeatures(code);
-    this.setState({loadingLocation: false, geo, adjacent, code, name})
+      await this.setState({loadingLocation: true});
+      let [code, name] = await this.MapService.getUserLocation();
+      const geo = await this.MapService.getFeatures(code);
+      this.cacheNames(geo);
+      const adjacent = await this.MapService.getAdjacentFeatures(code);
+      this.setState({loadingLocation: false, geo, adjacent, code, name})
   }
 
   filterMunicipalities(q) {

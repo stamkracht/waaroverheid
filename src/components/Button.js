@@ -6,46 +6,44 @@ import { classNames } from '../utilities/class'
 
 import '../styles/button.css'
 
+const Text = ({text, textAlign, loading}) => (
+  <div className={`c-button--text ${textAlign}`}>
+    {loading ? 'Laden...' : text}
+  </div>
+);
+ 
+const Button = ({
+  text,
+  icon,
+  iconPosition,
+  iconDirection,
+  textAlign,
+  flat,
+  onClick,
+  disabled,
+  loading,
+  active,
+}) => {
+  let classes = classNames('c-button', {
+    disabled,
+    loading,
+    active,
+    flat,
+  });
 
-class Button extends React.Component {
-
-  renderText() {
-    if ( this.props.text ) {
-      return (
-        <div className={`c-button--text ${this.props.textAlign}`}>
-          {this.props.loading ? 'Laden..' : this.props.text}
-        </div>
-      )
-    }
-  }
-
-  renderIcon() {
-    if ( !this.props.loading ) {
-      return (
-        <Icon
-          icon={this.props.icon}
-          iconPosition={this.props.iconPosition}
-          iconDirection={this.props.iconDirection} />
-      )
-    }
-  }
-
-  render() {
-    let classes = classNames('c-button', {
-      'disabled': this.props.disabled,
-      'loading': this.props.loading,
-      'active': this.props.active,
-      'flat': this.props.flat,
-    })
-    return (
-      <Container shadow={!this.props.flat}>
-        <div className={classes} onClick={this.props.onClick}>
-          {this.renderText()}
-          {this.renderIcon()}
-        </div>
-      </Container>
-    )
-  }
+  return (
+    <Container shadow={!flat}>
+      <div className={classes} onClick={onClick}>
+        {text && <Text
+          loading={loading}
+          textAlign={textAlign}
+          text={text}/>}
+       {!loading && <Icon
+          icon={icon}
+          iconPosition={iconPosition}
+          iconDirection={iconDirection} />}
+      </div>
+    </Container>) 
 }
 
 Button.defaultProps = {
