@@ -63,7 +63,7 @@ class Documents extends Component {
             <InfiniteScroll
               useWindow={false}
               hasMore={this.props.hasMoreDocs}
-              pageStart={2}
+              pageStart={1}
               initialLoad={true}
               loader={loader}
               loadMore={this.props.getMoreDocuments}>

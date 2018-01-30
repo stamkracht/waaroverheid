@@ -89,8 +89,10 @@ class App extends React.Component {
   }
 
   async handleOnSubmitSearch(query, filters) {
-    let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, query);
-    this.setState({query, facets, documentsCount, documents, filters})
+    const {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, query);
+    const page = 1;
+    const hasMoreDocs = true;
+    this.setState({query, facets, documentsCount, documents, filters, page, hasMoreDocs})
   }
 
   async selectArea(code, name) {
@@ -98,10 +100,11 @@ class App extends React.Component {
       FiltersService.reset();
       this.setState({code, municipalities: this.allMunicipalities, filters: {}})
     } else {
-      let geo = await this.MapService.getFeatures(code)
-      let adjacent = await this.MapService.getAdjacentFeatures(code)
+      const geo = await this.MapService.getFeatures(code);
+      const adjacent = await this.MapService.getAdjacentFeatures(code);
       let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
-      this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
+      const hasMoreDocs = true;
+      this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
     }
   }
 
@@ -109,15 +112,16 @@ class App extends React.Component {
     const filters = Object.assign({}, this.state.filters);
     FiltersService.set(filters);
     let {meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, this.state.query, page);
-    const hasMoreDocs = Math.ceil(documentsCount/2) >= page;
+    const hasMoreDocs = (page - 1) * 5 < documentsCount;
     this.setState({documentsCount, documents: [...this.state.documents.concat(documents)], page, hasMoreDocs})
   }
 
   async selectMunicipality(code, name) {
-    let geo = await this.MapService.getFeatures(code)
-    let adjacent = await this.MapService.getAdjacentFeatures(code)
+    const geo = await this.MapService.getFeatures(code);
+    const adjacent = await this.MapService.getAdjacentFeatures(code);
     let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
-    this.setState({code, geo, adjacent, name, facets, documentsCount, documents})
+    const hasMoreDocs = true;
+    this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
   }
 
   filterMunicipalities(q) {

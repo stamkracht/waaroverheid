@@ -79,10 +79,11 @@ const SearchService = (function () {
         break;
       case 2:
         PARAMS.from = 2;
-        PARAMS.size = 5;
+        PARAMS.size = 3;
         break;
       default:
-        PARAMS.from += 5;
+        PARAMS.from += PARAMS.size;
+        PARAMS.size = 5;
         break;
     }
     return [PARAMS.from, PARAMS.size]
