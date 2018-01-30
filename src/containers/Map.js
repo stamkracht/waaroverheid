@@ -1,5 +1,4 @@
 import React from 'react'
-import levenshtein from 'js-levenshtein'
 
 import NavigableMap from '../components/NavigableMap'
 import MapService from '../services/MapService'
@@ -32,9 +31,9 @@ class App extends React.Component {
       filters: {},
       page: 1,
       hasMoreDocs: true
-    }
+    };
 
-    this.MapService = new MapService();    
+    this.MapService = new MapService();
 
     this.DocumentService = new DocumentService();
 
@@ -42,7 +41,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    document.addEventListener('keydown', this.handleKeyDown, false)
+    document.addEventListener('keydown', this.handleKeyDown, false);
     this.selectArea(this.state.code)
   }
 
@@ -105,7 +104,7 @@ class App extends React.Component {
   }
 
   sliceFilters() {
-    let filtersSliced = this.state.filters['classification']
+    let filtersSliced = this.state.filters['classification'];
     return filtersSliced
   }
 
@@ -118,7 +117,7 @@ class App extends React.Component {
 
   handleRouting(code) {
     let {municipality, district, neighborhood} = this.props.match.params;
-    let url = ''
+    let url = '';
 
     switch(code.slice(0,2)) {
       case 'GM':
@@ -134,14 +133,14 @@ class App extends React.Component {
         url = `/${municipality}/${district}/${neighborhood}`;
         break;
     }
-   
+
     this.props.history.push(url);
   }
-  
+
   async selectArea(code, name) {
-    if(!code) { return; } 
+    if(!code) { return; }
     this.handleRouting(code);
-    const geo = await this.MapService.getFeatures(code);    
+    const geo = await this.MapService.getFeatures(code);
     this.cacheNames(geo);
     const adjacent = await this.MapService.getAdjacentFeatures(code);
     let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
@@ -149,7 +148,7 @@ class App extends React.Component {
     if ( !name ) {
       name = this.state.namesByCode.get(code);
     }
-    this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})    
+    this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
   }
 
   async getMoreDocuments(page) {
@@ -189,7 +188,7 @@ class App extends React.Component {
         delete filters[filterName]
       }
     }
-    
+
     FiltersService.reset();
     FiltersService.set(filters);
     this.setState({filters}, () => this.handleOnSubmitSearch(query, filters));

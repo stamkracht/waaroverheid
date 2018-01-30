@@ -85,16 +85,13 @@ class NavigableMap extends Component {
   }
 
   onEachAdjacentFeature(feature, layer) {
-    let name, code;
+    let name;
     if ( !!feature.properties['BU_CODE'] ) {
-      name = feature.properties['BU_NAAM'];
-      code = feature.properties['BU_CODE']
+      name = feature.properties['BU_NAAM']
     } else if ( !!feature.properties['WK_CODE'] ) {
-      name = feature.properties['WK_NAAM'];
-      code = feature.properties['WK_CODE']
+      name = feature.properties['WK_NAAM']
     } else if ( !!feature.properties['GM_CODE'] ) {
-      name = feature.properties['GM_NAAM'];
-      code = feature.properties['GM_CODE']
+      name = feature.properties['GM_NAAM']
     }
     let tooltip = `
       <h1>${name}</h1>
