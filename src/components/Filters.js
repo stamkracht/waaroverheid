@@ -58,14 +58,14 @@ class Filters extends React.Component {
   }
 
   renderTypes() {
-    return ['Classification']
-      .filter(item => this.props.facets[item.toLowerCase()] && this.props.facets[item.toLowerCase()].buckets.length)
+    return ['classification']
+      .filter(item => this.props.facets[item] && this.props.facets[item].buckets.length)
       .map((item, i) => {
         return (
           <TypesList
             key={i}
-            text={item}
-            list={this.props.facets[item.toLowerCase()].buckets} />
+            text={'Soorten'}
+            list={this.props.facets[item].buckets} />
         )
     });
   }
@@ -95,7 +95,7 @@ class Filters extends React.Component {
           </div>
         </div>
         <div className='filtersFooter'>
-          <Button text='Search'
+          <Button text='Zoeken'
             onClick={() => this.handleOnSubmit()} />
         </div>
       </div>

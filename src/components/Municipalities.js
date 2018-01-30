@@ -29,7 +29,7 @@ class Municipalities extends React.Component {
         <h1>WaarOverheid</h1>
         <div className='c-button--wrapper'>
           <Button
-            text='Show my location'
+            text='Gebruik mijn locatie'
             textAlign='center'
             icon='location'
             iconPosition='right'

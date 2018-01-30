@@ -14,7 +14,7 @@ class Drawer extends React.Component {
   }
 
   renderHeaderContent() {
-    let text = `${this.props.numberDoc} document${this.props.numberDoc > 1 || this.props.numberDoc === 0 ? 's' : ''} found in ${this.props.area}`
+    let text = `${this.props.numberDoc} document${this.props.numberDoc === 1 ? '' : 'en'} gevonden in ${this.props.area}`
     if ( !this.props.active ) {
       return (
         <div>
@@ -59,10 +59,10 @@ class Drawer extends React.Component {
       if(this.props.numberDoc === 0) {
         return (
           <div className='c-emptyContent'>
-            <h2>No documents to show</h2>
+            <h2>Geen documenten gevonden</h2>
             <ul>
-            <li><h3>Try navigating to a different municipality</h3></li>
-            <li><h3>Sign up for alerts</h3></li>
+            <li><h3>Probeer een andere gemeente of wijk</h3></li>
+            <li><h3>Meld u aan voor meldingen</h3></li>
             </ul>
           </div>
         )
@@ -97,7 +97,7 @@ class Drawer extends React.Component {
 Drawer.defaultProps = {
   active: false,
   numberDoc: 0,
-  area: 'selected area',
+  area: 'geselecteerd gebied',
   toggle: undefined,
   service: {},
   documents: [],

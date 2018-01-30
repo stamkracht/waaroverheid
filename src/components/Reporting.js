@@ -15,11 +15,10 @@ class Reporting extends React.Component {
     this.state = {
       active: false,
       options: {
-        'Privacy sensitive': false,
         'Irrelevant': false,
-        'Incorrect': false,
-        'All of the above': false,
-        'Other': false,
+        'Onjuiste locatie': false,
+        'Privacygevoelig': false,
+        'Overig': false,
       },
     }
 
@@ -28,7 +27,6 @@ class Reporting extends React.Component {
       'Waarom?',
       'Por qué?',
       'Perché?',
-      'blah bla bla',
     ][Math.random()*5|0]
 
     this.handleClickOutside = this.handleClickOutside.bind(this)
@@ -89,7 +87,7 @@ class Reporting extends React.Component {
     return (
       <div className='c-dropdown--footer'>
         <Button
-          text='Submit'
+          text='Verzenden'
           textAlign='center'
           disabled={disabled} />
       </div>

@@ -68,7 +68,7 @@ class Alert extends React.Component {
   renderModalButton() {
     return (
       <Button
-        text='Sign up for alerts'
+        text='Meldingen'
         icon='mail'
         textAlign='left'
         onClick={this.onOpenModal.bind(this)} />
@@ -78,7 +78,7 @@ class Alert extends React.Component {
   renderModalHeader() {
     return (
       <h2 className='c-alert--header'>
-        Sign up for alerts
+        Meld u aan voor meldingen
       </h2>
     )
   }
@@ -87,12 +87,12 @@ class Alert extends React.Component {
   renderModalContent() {
     return (
       <div className='c-alert--content'>
-        <h3>Receive alerts for documents in {this.props.area}{Object.getOwnPropertyNames(this.props.filters).length === 0 ? '.' : ' corresponding to these filters:'}</h3>
+        <h3>Ontvang een e-mail bij nieuwe zoekresultaten in {this.props.area}{Object.getOwnPropertyNames(this.props.filters).length === 0 ? '.' : ' met toepassing van deze filters:'}</h3>
         <div className='c-selectedFilters'>
           {this.renderQuery()}
           {this.renderTags()}
         </div>
-        <input placeholder='Type in your email address' ref={node => {this.emailInput = node}} />
+        <input placeholder='Typ uw e-mail adres' ref={node => {this.emailInput = node}} />
         {this.renderEmailError()}
       </div>
     )
@@ -102,7 +102,7 @@ class Alert extends React.Component {
     return (
       <div className='c-alert--footer'>
         <Button
-          text='Submit'
+          text='Verzenden'
           shadow={true}
           hovering={true}
           textAlign='center'
@@ -134,7 +134,7 @@ class Alert extends React.Component {
 
 Alert.defaultProps = {
   service: {},
-  area: 'selected area',
+  area: 'geselecteerd gebied',
   filters: {},
   updateFilters: () => {},
   query: '',

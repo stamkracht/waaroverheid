@@ -57,7 +57,7 @@ class SearchBox extends React.Component {
 SearchBox.defaultProps = {
   icon: 'search',
   iconPosition: 'right',
-  placeholder: 'Search',
+  placeholder: 'Zoeken',
   shadow: true,
   onSubmit: () => {},
   onType: () => {},

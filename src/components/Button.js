@@ -13,7 +13,7 @@ class Button extends React.Component {
     if ( this.props.text ) {
       return (
         <div className={`c-button--text ${this.props.textAlign}`}>
-          {this.props.loading ? 'Loading..' : this.props.text}
+          {this.props.loading ? 'Laden..' : this.props.text}
         </div>
       )
     }
