@@ -1,10 +1,11 @@
 const FiltersService = (function () {
 
-  let FILTERS = {
+  const BASE_FILTERS = {
     start_date: null,
     classification: null,
+    types: {terms: ['events']}
   };
-
+  let FILTERS = Object.assign({}, BASE_FILTERS);
   let APPLIED_FILTERS = {};
 
   function set(filters) {
@@ -24,10 +25,7 @@ const FiltersService = (function () {
 
   function reset() {
     APPLIED_FILTERS = get();
-    FILTERS = {
-      start_date: null,
-      classification: null,
-    };
+    FILTERS = Object.assign({}, BASE_FILTERS);
   }
 
   function getAppliedFilters() {
