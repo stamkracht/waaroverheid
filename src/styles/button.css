@@ -31,7 +31,8 @@
 .c-button .c-button--text {
   display: inline-block;
   min-width: 200px;
-  line-height: 30px; }
+  line-height: 30px;
+  font-size: 17px; }
 
 .c-button .c-button--text.left {
   text-align: left;
@@ -64,15 +65,13 @@
   .c-zoomControls .c-button.hovering:hover {
     box-shadow: none; }
   .c-button .c-button--text {
-    min-width: 0px; }
-  .c-alert .c-button--text.left {
-    min-width: 135px;
-    font-size: small; }
+    min-width: auto;
+    font-size: 15px; }
   .c-alert .icon {
-    padding: 5px; }
+    padding: 5px 15px 5px 5px; }
   .c-alert .c-button {
-    padding: 5px;
-    min-width: 115px; }
+    padding: 5px 5px 5px 20px;
+    min-width: 150px; }
   .c-filters .c-button {
     padding: 5px;
     min-width: 100px;

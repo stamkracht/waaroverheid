@@ -7,18 +7,21 @@
   text-align: left;
   height: 50px;
   background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: all 0.3s ease-in-out; }
+  box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+  transition: all 0.3s ease-in-out;
+}
 
 .c-drawer.active {
-  height: 101%; }
+  height: 101%;
+}
 
 .c-drawer .c-drawer--header {
   min-height: 30px;
   padding: 10px;
   cursor: pointer;
-  user-select: none; }
+  user-select: none;
+}
 
 .c-drawer .c-drawer--text {
   display: inline-block;
@@ -30,61 +33,85 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 70vw; }
+  width: 70vw;
+}
 
 .c-emptyContent {
   margin: 50px 50px;
-  text-align: left; }
+  text-align: left;
+}
 
 .c-hamburger {
   position: absolute;
   right: 20px;
-  top: 10px; }
+  top: 10px;
+}
 
-.c-hamburger .line {
+.c-hamburger .line{
   width: 40px;
   height: 5px;
   background-color: #333333;
   display: block;
   margin: 4px auto;
-  transition: all 0.3s ease-in-out; }
+  transition: all 0.3s ease-in-out;
+}
 
-.c-hamburger:hover {
-  cursor: pointer; }
+.c-hamburger:hover{
+  cursor: pointer;
+}
 
-.c-hamburger.active .line:nth-child(2) {
-  opacity: 0; }
+.c-hamburger.active .line:nth-child(2){
+  opacity: 0;
+}
 
-.c-hamburger.active .line:nth-child(1) {
+.c-hamburger.active .line:nth-child(1){
   transform: translateY(13px) rotate(45deg);
-  margin: 5px auto; }
+  margin: 5px auto;
+}
 
-.c-hamburger.active .line:nth-child(3) {
+.c-hamburger.active .line:nth-child(3){
   transform: translateY(-13px) rotate(-45deg);
-  margin: 10px auto; }
+  margin: 10px auto;
+}
 
 .c-hamburger.active {
   right: 20px;
-  top: 25px; }
+  top: 25px;
+}
 
 .c-drawer .c-drawer--title {
   text-align: center;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+}
 
 @media (max-width: 768px) {
+
   .c-drawer .c-drawer--text {
-    font-size: 16px; }
+    font-size: 16px;
+  }
+
   .c-drawer--title {
     font-size: large;
-    padding: 0px 40px; }
+    padding: 0px 40px;
+  }
+
   .c-hamburger.active {
     top: 13px;
-    right: 12px; }
+    right: 12px;
+  }
+
   .c-hamburger {
     top: 12px;
-    right: 16px; }
+    right: 16px;
+  }
+
   .c-hamburger .line {
     width: 26px;
-    height: 3px; }
+    height: 3px;
+  }
+
   .c-hamburger.active .line {
-    margin: 10px auto; } }
+    margin: 10px auto;
+  }
+
+}

@@ -74,7 +74,7 @@ class TypesList extends React.Component {
 }
 
 TypesList.defaultProps = {
-  active: false,
+  active: true,
   text: 'Label',
   list: []
 }

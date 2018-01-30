@@ -3,7 +3,8 @@
   display: block;
   width: 370px;
   height: 50px;
-  text-align: left; }
+  text-align: left;
+}
 
 .c-searchBox input {
   width: 100%;
@@ -13,20 +14,33 @@
   font-size: 16px;
   padding: 10px 40px 10px 10px;
   border: none;
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
 .c-searchBox:hover input,
 .c-searchBox input:focus {
   outline: 0;
-  border: none; }
+  border: none;
+}
 
 @media (max-width: 670px) {
+
   .c-searchBox {
-    width: 100%; }
+    width: 100%;
+  }
+
   .filtersHeader + .c-container {
     margin: 45px auto 15px auto;
-    width: 80vw; } }
+    width: 80vw;
+  }
+
+}
 
 @media (max-height: 360px) {
+
   .filtersHeader + .c-container {
-    margin-top: 25px; } }
+    margin-top: 25px;
+  }
+
+
+}

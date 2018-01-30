@@ -3,42 +3,54 @@
   width: 100%;
   text-align: left;
   position: relative;
-  overflow: auto; }
+  overflow: auto;
+}
 
 .c-typesList ul {
   display: block;
   width: 100%;
   left: 0;
   list-style: none;
-  padding: 25px 0 0 0; }
+  padding: 25px 0 0 0;
+}
 
 .c-typesList li {
   position: relative;
   margin-bottom: 10px;
-  text-align: left; }
+  text-align: left;
+}
 
 .c-typesList .c-container {
   margin-bottom: 0;
   margin-top: 0;
   position: absolute;
   top: 0;
-  left: -24px; }
+  left: -24px;
+}
 
 .c-typesList .c-container .c-button {
   padding: 5px;
-  min-width: auto; }
+  min-width: auto;
+}
 
 .c-typesList .c-container .c-button .icon {
-  padding: 5px; }
+  padding: 5px;
+}
 
 .c-typesList .c-badge {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 13px; }
+  font-size: 13px;
+}
 
 @media (max-width: 670px) {
+
   .c-typesList .icon.direction-right {
-    top: 0px; }
+    top: 0px;
+  }
+
   .c-typesList li {
-    font-size: 15px; } }
+    font-size: 15px;
+  }
+}
