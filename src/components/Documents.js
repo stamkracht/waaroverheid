@@ -25,53 +25,36 @@ class Documents extends Component {
     }
   }
 
-  renderStartDateTag(filter) {
+  renderStartDateTag({from, to}) {
+    if(!from || !to) return
     return (
-      <Tag key={'from'}
-          text={`Vanaf: ${this.props.filters[filterName].from.slice(0, 10)}`}
-      />,
-      <Tag key={'to'}
-        text={`Tot: ${this.props.filters[filterName].to.slice(0, 10)}`}
-      />);
+      <Tag key={'start_date'}
+          text={`Vanaf: ${from.slice(0, 10)}, Tot: ${to.slice(0, 10)}`}
+          onClick={() => this.props.updateFilters({to, from}, 'start_date')}/>
+    )
+  }
+
+  renderClassificationTag({terms = []}) {
+    return terms.map((tag, i) => {
+		    return (
+		        <Tag key={i}
+              text={tag}
+              onClick={() => this.props.updateFilters(tag, 'classification')}/>
+        )
+    })
   }
 
   renderTags() {
-    return ['classification', 'start_date']
+    return ['start_date', 'classification']
       .filter(filter => this.props.filters[filter])
       .map(filter => {
-
         switch(filter) {
           case 'start_date':
             return this.renderStartDateTag(this.props.filters[filter]);
           case 'classification':
             return this.renderClassificationTag(this.props.filters[filter])
-          
         }
-
       })
-
-
-    return Object.keys(this.props.filters).map(filterName => {
-      if(this.props.filters[filterName].from) {
-          return [
-            (<Tag key={'from'}
-              text={`Vanaf: ${this.props.filters[filterName].from.slice(0, 10)}`}
-            />),
-            (<Tag key={'to'}
-              text={`Tot: ${this.props.filters[filterName].to.slice(0, 10)}`}
-            />)
-          ]
-      } else {
-        return this.props.filters[filterName].terms.map((tag, i) => {
-          return (
-            <Tag key={i}
-              text={tag}
-              onClick={() => this.props.updateFilters(tag, filterName)}
-            />
-          )
-        })
-      }
-    });
   }
 
   render() {

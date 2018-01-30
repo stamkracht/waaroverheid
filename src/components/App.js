@@ -176,9 +176,14 @@ class App extends React.Component {
   updateFilters(key, filterName) {
     const filters = Object.assign({}, this.state.filters);
     const query = this.state.query;
-    filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key);
-    if(!filters[filterName].terms.length) {
-      delete filters[filterName]
+    if(filterName === 'start_date') {
+      delete filters.start_date
+    }
+    if(filterName === 'classification') {
+      filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key);
+      if(!filters[filterName].terms.length) {
+        delete filters[filterName]
+      }
     }
     FiltersService.set(filters);
     this.setState({filters});
