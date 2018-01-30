@@ -15,10 +15,12 @@ class MunicipalitiesContainer extends React.Component {
     }
 
     this.MapService = new MapService();
+    this.allMunicipalities = [];
   }
   
   async componentDidMount() {
     const municipalities = await this.MapService.getMunicipalities()
+    this.allMunicipalities = municipalities;
     this.setState({municipalities})
   }
 
