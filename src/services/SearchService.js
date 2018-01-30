@@ -81,10 +81,10 @@ const SearchService = (function () {
         PARAMS.from = 2;
         PARAMS.size = 5;
         break;
-      default: 
-        PARAMS.from += 5;   
-        break;   
-    }     
+      default:
+        PARAMS.from += 5;
+        break;
+    }
     return [PARAMS.from, PARAMS.size]
   }
 
@@ -94,7 +94,13 @@ const SearchService = (function () {
     const params = Object.assign({}, PARAMS);
     [params.from, params.size] = getPage(page);
     params.query = query;
-    params.facets = Object.assign({}, params.facets, areaFacet);
+    if (page <= 1) {
+      // add districts or neighborhood facet on initial search
+      params.facets = Object.assign({}, params.facets, areaFacet);
+    } else {
+      // no need for facets on subsequent pages
+      delete params.facets
+    }
     params.filters = Object.assign({}, areaFilter, FilterService.get());
     return JSON.stringify(params);
   }

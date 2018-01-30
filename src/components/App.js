@@ -31,7 +31,7 @@ class App extends React.Component {
       documents: [],
       filters: {},
       page: 1,
-      hasMoreDocs: true,
+      hasMoreDocs: true
     }
 
     this.MapService = new MapService()
@@ -108,9 +108,9 @@ class App extends React.Component {
   async getMoreDocuments(page) {
     const filters = Object.assign({}, this.state.filters);
     FiltersService.set(filters);
-    let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, this.state.query, page);
+    let {meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, this.state.query, page);
     const hasMoreDocs = Math.ceil(documentsCount/2) >= page;
-    this.setState({facets, documentsCount, documents: [...this.state.documents.concat(documents)], page, hasMoreDocs})
+    this.setState({documentsCount, documents: [...this.state.documents.concat(documents)], page, hasMoreDocs})
   }
 
   async selectMunicipality(code, name) {
