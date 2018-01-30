@@ -49,10 +49,13 @@
     max-height: none;
     min-height: none;
     opacity: 1; }
+
   .filtersDropdown .filtersHeader {
     display: block; }
+
   .filtersHeader .icon.right {
     height: fit-content; }
+
   .typesContainer {
     max-height: calc(75vh - 160px);
     width: 80vw;

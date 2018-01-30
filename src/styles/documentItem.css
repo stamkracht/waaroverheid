@@ -23,10 +23,10 @@
 @media (max-width: 900px) {
   .c-documents .c-documents--text {
     width: 92%; }
+
   .c-documents .c-documents--tag {
     width: 100%;
     padding-top: 0px; } }
-
 .c-documents--text h3 {
   font-weight: lighter;
   margin: 5px 0; }
@@ -119,9 +119,12 @@
 @media (max-width: 768px) {
   .c-documents .c-button {
     font-size: small; }
+
   .c-documents--text h2 {
     font-size: larger; }
+
   .c-documents--text h3 {
     font-size: 15px; }
+
   .c-details h3, p, a {
     font-size: 14px; } }

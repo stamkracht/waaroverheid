@@ -13,7 +13,7 @@
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: 200% 100%;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent; }
 
 .c-button:hover,
@@ -56,24 +56,31 @@
   .c-zoomControls .c-button {
     padding: 5px;
     min-width: 170px; }
+
   .c-zoomControls > .c-container {
     font-size: small;
     margin: 5px 15px;
     text-align: center; }
+
   .c-zoomControls .c-button.hovering:hover {
     box-shadow: none; }
+
   .c-button .c-button--text {
     min-width: auto;
     font-size: 15px; }
+
   .c-alert .icon {
     padding: 5px 15px 5px 5px; }
+
   .c-alert .c-button {
     padding: 5px 5px 5px 20px;
     min-width: 150px; }
+
   .c-filters .c-button {
     padding: 5px;
     min-width: 100px;
     font-size: 14px;
     text-align: center; }
+
   .c-filters .c-button .icon.right {
     display: none; } }

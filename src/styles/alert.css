@@ -71,11 +71,14 @@
     -webkit-margin-before: 6px;
     -webkit-margin-after: 10px;
     font-size: 16px; }
+
   .react-responsive-modal-modal .c-alert--content h3 {
     font-size: 14px; }
+
   .react-responsive-modal-modal .c-alert--content input {
     font-size: 14px;
     line-height: 20px; }
+
   .react-responsive-modal-modal .c-alert--footer .c-container .c-button .c-button--text {
     line-height: 20px;
     font-size: 14px; } }

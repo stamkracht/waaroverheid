@@ -74,17 +74,22 @@
 @media (max-width: 768px) {
   .c-drawer .c-drawer--text {
     font-size: 16px; }
+
   .c-drawer--title {
     font-size: large;
     padding: 0px 40px; }
+
   .c-hamburger.active {
     top: 13px;
     right: 12px; }
+
   .c-hamburger {
     top: 12px;
     right: 16px; }
+
   .c-hamburger .line {
     width: 26px;
     height: 3px; }
+
   .c-hamburger.active .line {
     margin: 10px auto; } }

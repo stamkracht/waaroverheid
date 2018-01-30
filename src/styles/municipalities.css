@@ -32,10 +32,10 @@
 @media (max-width: 670px) {
   .c-municipalities .c-municipalities--header .c-button--wrapper .c-container .c-button .c-button--text {
     padding-right: 40px; }
+
   .c-municipalities .c-container {
     width: 100%;
     margin: 7px 0; } }
-
 .c-municipalities .c-searchBox {
   width: auto; }
 

@@ -53,8 +53,10 @@
 @media (max-width: 670px) {
   .outerContainer {
     padding: 5px 10px 10px 10px; }
+
   .c-tags .c-container {
     padding: 4px; }
+
   .c-tags .c-tags--text {
     font-size: 15px;
     line-height: 20px; } }
