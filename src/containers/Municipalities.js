@@ -10,24 +10,24 @@ class MunicipalitiesContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {    
-      municipalities: [],    
-    }
+    this.state = {
+      municipalities: [],
+    };
 
     this.MapService = new MapService();
     this.allMunicipalities = [];
   }
-  
+
   async componentDidMount() {
-    const municipalities = await this.MapService.getMunicipalities()
+    const municipalities = await this.MapService.getMunicipalities();
     this.allMunicipalities = municipalities;
     this.setState({municipalities})
   }
 
   cacheNames(geoResponse) {
     if (geoResponse.properties) {
-      ['GM', 'WK', 'BU']
-      .map(prefix => {
+      // eslint-disable-next-line
+      ['GM', 'WK', 'BU'].map(prefix => {
         const name = geoResponse.properties[`${prefix}_NAAM`];
         const code = geoResponse.properties[`${prefix}_CODE`];
         if (name) {
@@ -35,11 +35,10 @@ class MunicipalitiesContainer extends React.Component {
         }
       });
     } else {
-      geoResponse.features
-      .map(
-        feature => {
-          ['GM', 'WK', 'BU']
-          .map(prefix => {
+      // eslint-disable-next-line
+      geoResponse.features.map(feature => {
+          // eslint-disable-next-line
+          ['GM', 'WK', 'BU'].map(prefix => {
             const name = feature.properties[`${prefix}_NAAM`];
             const code = feature.properties[`${prefix}_CODE`];
             if (name) {
@@ -77,7 +76,7 @@ class MunicipalitiesContainer extends React.Component {
         <Municipalities
           loading={this.state.loadingLocation}
           list={this.state.municipalities}
-          filter={this.filterMunicipalities.bind(this)}        
+          filter={this.filterMunicipalities.bind(this)}
           showLocation={this.showUserLocation.bind(this)} />
       )
   }
