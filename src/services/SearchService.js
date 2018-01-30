@@ -1,5 +1,5 @@
 import apiUrl from './ApiUrl';
-import FilterService from './FiltersService';
+import FiltersService from './FiltersService';
 
 const SearchService = (function () {
 
@@ -102,7 +102,7 @@ const SearchService = (function () {
       // no need for facets on subsequent pages
       delete params.facets
     }
-    params.filters = Object.assign({}, areaFilter, FilterService.get());
+    params.filters = Object.assign({}, areaFilter, FiltersService.get());
     return JSON.stringify(params);
   }
 

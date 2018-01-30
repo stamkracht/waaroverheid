@@ -179,15 +179,17 @@ class App extends React.Component {
     if(filterName === 'start_date') {
       delete filters.start_date
     }
+
     if(filterName === 'classification') {
       filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key);
       if(!filters[filterName].terms.length) {
         delete filters[filterName]
       }
     }
+    
+    FiltersService.reset();
     FiltersService.set(filters);
-    this.setState({filters});
-    this.handleOnSubmitSearch(query, filters)
+    this.setState({filters}, () => this.handleOnSubmitSearch(query, filters));
   }
 
   renderMunicipalities() {
