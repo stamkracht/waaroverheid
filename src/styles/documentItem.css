@@ -103,9 +103,8 @@
 
 .c-documentList {
   padding: 1px;
-  height: calc(100vh - 170px);
-  overflow: auto;
-}
+  max-height: calc(100vh - 170px);
+  overflow: auto; }
 
 .snippets {
   margin-left: 5px; }

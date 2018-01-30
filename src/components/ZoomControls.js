@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 import Button from './Button'
 import '../styles/zoomControls.css'
@@ -11,11 +12,13 @@ class ZoomControls extends React.Component {
     if ( level === 'GM' || level === 'WK' || level === 'BU' ) {
       const code = `GM${this.props.code.match(/[0-9]{4}/g)[0]}`;
       return (
-        <Button
-          text={'Gemeente'}
-          active={level === 'GM'}
-          onClick={() => this.props.setZoomLevel(code)}>
-        </Button>
+        <Link to={`/${this.props.municipality}`} replace>        
+          <Button
+            text={'Gemeente'}
+            active={level === 'GM'}
+            onClick={() => this.props.setZoomLevel(code)}>
+          </Button>
+        </Link>
       )
     }
   }
@@ -25,11 +28,13 @@ class ZoomControls extends React.Component {
     if ( level === 'WK' || level === 'BU' ) {
       const code = `WK${this.props.code.match(/[0-9]{6}/g)[0]}`;
       return (
-        <Button
-          text={'Wijk'}
-          active={level === 'WK'}
-          onClick={() => this.props.setZoomLevel(code)}>
-        </Button>
+        <Link to={`/${this.props.municipality}/${this.props.district}`} replace>                
+          <Button
+            text={'Wijk'}
+            active={level === 'WK'}
+            onClick={() => this.props.setZoomLevel(code)}>
+          </Button>
+        </Link>
       )
     }
   }
@@ -39,11 +44,13 @@ class ZoomControls extends React.Component {
     if ( level === 'BU' ) {
       const code = `BU${this.props.code.match(/[0-9]{8}/g)[0]}`;
       return (
-        <Button
-          text={'Buurt'}
-          active={level === 'BU'}
-          onClick={() => this.props.setZoomLevel(code)}>
-        </Button>
+        <Link to={`/${this.props.municipality}/${this.props.district}/${this.props.neighborhood}`} replace>                        
+          <Button
+            text={'Buurt'}
+            active={level === 'BU'}
+            onClick={() => this.props.setZoomLevel(code)}>
+          </Button>
+        </Link>
       )
     }
   }
@@ -51,13 +58,15 @@ class ZoomControls extends React.Component {
   render() {
     return (
       <div className='c-zoomControls'>
-        <Button
-          text='Kies gemeente'
-          icon='arrow'
-          iconPosition='right'
-          iconDirection='right'
-          textAlign='center'
-          onClick={() => this.props.setZoomLevel()} />
+        <Link to={'/'}>        
+          <Button
+            text='Kies gemeente'
+            icon='arrow'
+            iconPosition='right'
+            iconDirection='right'
+            textAlign='center'
+            onClick={() => this.props.setZoomLevel()} />
+        </Link>
         {this.renderMunicipalityButton()}
         {this.renderDistrictButton()}
         {this.renderNeighborhoodButton()}

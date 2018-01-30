@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import 'react-dates/initialize';
 
 import './styles/index.css'
-import App from './components/App'
+import App from './containers/App'
 
 import registerServiceWorker from './registerServiceWorker'
 

@@ -139,7 +139,7 @@ class NavigableMap extends Component {
       <div className="c-map">
         <LeafletMap
           center={position}
-          zoom={12}
+          zoom={10}
           zoomControl={false}
           dragging={false}
           tap={false}

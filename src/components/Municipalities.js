@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 import Button from './Button'
 import Container from './Container'
@@ -53,12 +54,13 @@ class Municipalities extends React.Component {
   renderList() {
     return this.props.list.map(item => {
       return (
-        <Container shadow={true} key={item.code}>
-          <div className='c-municipality'
-            onClick={() => this.props.select(item.code, item.name)}>
-            <h4>{item.name}</h4>
-          </div>
-        </Container>
+        <Link to={item.code} key={item.code}>
+          <Container shadow={true}>
+            <div className='c-municipality'>
+              <h4>{item.name}</h4>
+            </div>
+          </Container>
+        </Link>
       )
     })
   }

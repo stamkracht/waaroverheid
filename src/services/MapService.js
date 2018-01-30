@@ -50,18 +50,19 @@ class MapService {
     })
   }
 
-  getMunicipalities() {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.apiUrl}municipal`, {
-        method: 'GET',
-      })
-        .then(d => d.json())
-        .then(res => resolve(res['municipalities']))
-        .catch(err => reject(err))
-    })
+  async getMunicipalities() {
+    return fetch(`${this.apiUrl}municipal`)
+      .then(res => res.json())
+      .then(({municipalities}) => municipalities
+          .sort((a, b) => {
+            if ( a.name < b.name ) { return -1 }
+            if ( a.name > b.name ) { return 1 }
+            return 0
+          }))
+      .catch(err => console.log(err));
   }
 
-  getFeatures(code) {
+  getFeatures(code = '') {
     let url = `${this.apiUrl}municipal/${code}`
     if ( !!this.levels[code.slice(0, 2)] ) {
       url += `/${this.levels[code.slice(0, 2)]}`
@@ -76,7 +77,7 @@ class MapService {
     })
   }
 
-  getAdjacentFeatures(code) {
+  getAdjacentFeatures(code = '') {
     let url = `${this.apiUrl}municipal/${code}/adjacent`
     return new Promise((resolve, reject) => {
       fetch(url, {
