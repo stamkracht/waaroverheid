@@ -13,13 +13,14 @@ class Municipalities extends React.Component {
   }
 
   handleOnType(q) {
-    let query = q.toLowerCase()
+    let query = q.toLowerCase();
     this.props.filter(query)
   }
 
   handleOnSubmit() {
     if ( this.props.list.length > 0) {
-      this.props.select(this.props.list[0].code)
+      const item = this.props.list[0];
+      this.props.select(item.code, item.name)
     }
   }
 
@@ -79,6 +80,6 @@ Municipalities.defaultProps = {
   filter: undefined,
   select: undefined,
   showLocation: undefined,
-}
+};
 
 export default Municipalities
