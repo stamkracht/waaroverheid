@@ -99,7 +99,7 @@ class Reporting extends React.Component {
       return (
         <div className='c-dropdown' ref={node => { this.dropdown = node }}>
           <div className='c-dropdown--header'>
-            <h3>Report this document</h3>
+            <h3>Zoekresultaat rapporteren</h3>
             <div onClick={this.closeReporting.bind(this)}>
               <Icon icon='close' width='20' height='20'/>
             </div>
