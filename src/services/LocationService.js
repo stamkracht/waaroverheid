@@ -1,7 +1,7 @@
 class LocationService {
 
   constructor() {
-    this.coords = {}
+    this.coords = {};
 
     this.options = {
       enableHighAccuracy: false,
@@ -14,7 +14,7 @@ class LocationService {
     return new Promise((resolve, reject) => {
       if ( !!navigator.geolocation ) {
         navigator.geolocation.getCurrentPosition((position, a, b, c, d, e) => {
-          this.coords = position.coords
+          this.coords = position.coords;
           resolve(position.coords)
         }, (err) => {
           reject(`errr (${err.code}): ${err.message}`)

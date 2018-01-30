@@ -1,7 +1,7 @@
 import React from 'react'
 import levenshtein from 'js-levenshtein'
 
-import Map from './Map'
+import NavigableMap from './Map'
 import MapService from '../services/MapService'
 import ZoomControls from './ZoomControls'
 import Municipalities from './Municipalities'
@@ -15,7 +15,7 @@ import FiltersService from '../services/FiltersService'
 class App extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       loadingLocation: false,
@@ -25,6 +25,7 @@ class App extends React.Component {
       geo: {},
       adjacent: {},
       name: '',
+      namesByCode: new Map(),
       query: '',
       facets: {},
       documentsCount: 0,
@@ -34,10 +35,10 @@ class App extends React.Component {
       hasMoreDocs: true
     }
 
-    this.MapService = new MapService()
-    this.allMunicipalities = []
+    this.MapService = new MapService();
+    this.allMunicipalities = [];
 
-    this.DocumentService = new DocumentService()
+    this.DocumentService = new DocumentService();
 
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
@@ -56,18 +57,44 @@ class App extends React.Component {
         if ( a.name < b.name ) { return -1 }
         if ( a.name > b.name ) { return 1 }
         return 0
-      })
+      });
       this.setState({municipalities: this.allMunicipalities})
     })
   }
 
+  cacheNames(geoResponse) {
+    if (geoResponse.properties) {
+      ['GM', 'WK', 'BU']
+      .map(prefix => {
+        const name = geoResponse.properties[`${prefix}_NAAM`];
+        const code = geoResponse.properties[`${prefix}_CODE`];
+        if (name) {
+          this.state.namesByCode.set(code, name);
+        }
+      });
+    } else {
+      geoResponse.features
+      .map(
+        feature => {
+          ['GM', 'WK', 'BU']
+          .map(prefix => {
+            const name = feature.properties[`${prefix}_NAAM`];
+            const code = feature.properties[`${prefix}_CODE`];
+            if (name) {
+              this.state.namesByCode.set(code, name);
+            }
+          })
+        }
+      )
+    }
+  }
+
   async showUserLocation() {
-    await this.setState({loadingLocation: true})
-    let code_name = await this.MapService.getUserLocation()
-    let code = code_name[0]
-    let name = code_name[1]
-    let geo = await this.MapService.getFeatures(code)
-    let adjacent = await this.MapService.getAdjacentFeatures(code)
+    await this.setState({loadingLocation: true});
+    let [code, name] = await this.MapService.getUserLocation();
+    const geo = await this.MapService.getFeatures(code);
+    this.cacheNames(geo);
+    const adjacent = await this.MapService.getAdjacentFeatures(code);
     this.setState({loadingLocation: false, geo, adjacent, code, name})
   }
 
@@ -101,9 +128,13 @@ class App extends React.Component {
       this.setState({code, municipalities: this.allMunicipalities, filters: {}})
     } else {
       const geo = await this.MapService.getFeatures(code);
+      this.cacheNames(geo);
       const adjacent = await this.MapService.getAdjacentFeatures(code);
       let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
       const hasMoreDocs = true;
+      if ( !name ) {
+        name = this.state.namesByCode.get(code);
+      }
       this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
     }
   }
@@ -118,6 +149,7 @@ class App extends React.Component {
 
   async selectMunicipality(code, name) {
     const geo = await this.MapService.getFeatures(code);
+    this.cacheNames(geo);
     const adjacent = await this.MapService.getAdjacentFeatures(code);
     let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
     const hasMoreDocs = true;
@@ -126,30 +158,30 @@ class App extends React.Component {
 
   filterMunicipalities(q) {
     let municipalities = this.allMunicipalities.filter(item => {
-      let name = item.name.toLowerCase()
+      let name = item.name.toLowerCase();
       return name.indexOf(q) >= 0 || levenshtein(name, q) <= 2
     }).sort(function(a, b){
       if ( a.name < b.name ) { return -1 }
       if ( a.name > b.name ) { return 1 }
       return 0
-    })
+    });
     this.setState({municipalities})
   }
 
   resetQuery() {
-    this.setState({query: ''})
+    this.setState({query: ''});
     this.handleOnSubmitSearch('', this.state.filters)
   }
 
   updateFilters(key, filterName) {
-    const filters = Object.assign({}, this.state.filters)
-    const query = this.state.query
-    filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key)
+    const filters = Object.assign({}, this.state.filters);
+    const query = this.state.query;
+    filters[filterName].terms = this.state.filters[filterName].terms.filter(tag => tag !== key);
     if(!filters[filterName].terms.length) {
       delete filters[filterName]
     }
-    FiltersService.set(filters)
-    this.setState({filters})
+    FiltersService.set(filters);
+    this.setState({filters});
     this.handleOnSubmitSearch(query, filters)
   }
 
@@ -228,7 +260,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Map
+        <NavigableMap
           geo={this.state.geo}
           adjacent={this.state.adjacent}
           code={this.state.code}

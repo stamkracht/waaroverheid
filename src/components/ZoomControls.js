@@ -7,9 +7,9 @@ import '../styles/zoomControls.css'
 class ZoomControls extends React.Component {
 
   renderMunicipalityButton() {
-    let level = this.props.code.slice(0, 2)
+    const level = this.props.code.slice(0, 2);
     if ( level === 'GM' || level === 'WK' || level === 'BU' ) {
-      let code = `GM${this.props.code.match(/[0-9]{4}/g)[0]}`
+      const code = `GM${this.props.code.match(/[0-9]{4}/g)[0]}`;
       return (
         <Button
           text={'Gemeente'}
@@ -21,9 +21,9 @@ class ZoomControls extends React.Component {
   }
 
   renderDistrictButton() {
-    let level = this.props.code.slice(0, 2)
+    const level = this.props.code.slice(0, 2);
     if ( level === 'WK' || level === 'BU' ) {
-      let code = `WK${this.props.code.match(/[0-9]{6}/g)[0]}`
+      const code = `WK${this.props.code.match(/[0-9]{6}/g)[0]}`;
       return (
         <Button
           text={'Wijk'}
@@ -35,9 +35,9 @@ class ZoomControls extends React.Component {
   }
 
   renderNeighborhoodButton() {
-    let level = this.props.code.slice(0, 2)
+    const level = this.props.code.slice(0, 2);
     if ( level === 'BU' ) {
-      let code = `BU${this.props.code.match(/[0-9]{8}/g)[0]}`
+      const code = `BU${this.props.code.match(/[0-9]{8}/g)[0]}`;
       return (
         <Button
           text={'Buurt'}
@@ -69,6 +69,6 @@ class ZoomControls extends React.Component {
 ZoomControls.defaultProps = {
   setZoomLevel: undefined,
   code: '',
-}
+};
 
 export default ZoomControls
