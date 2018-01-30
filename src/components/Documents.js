@@ -25,7 +25,32 @@ class Documents extends Component {
     }
   }
 
+  renderStartDateTag(filter) {
+    return (
+      <Tag key={'from'}
+          text={`Vanaf: ${this.props.filters[filterName].from.slice(0, 10)}`}
+      />,
+      <Tag key={'to'}
+        text={`Tot: ${this.props.filters[filterName].to.slice(0, 10)}`}
+      />);
+  }
+
   renderTags() {
+    return ['classification', 'start_date']
+      .filter(filter => this.props.filters[filter])
+      .map(filter => {
+
+        switch(filter) {
+          case 'start_date':
+            return this.renderStartDateTag(this.props.filters[filter]);
+          case 'classification':
+            return this.renderClassificationTag(this.props.filters[filter])
+          
+        }
+
+      })
+
+
     return Object.keys(this.props.filters).map(filterName => {
       if(this.props.filters[filterName].from) {
           return [
