@@ -50,7 +50,7 @@ class Documents extends Component {
   }
 
   render() {
-    const loader = <div key={0}>Loading...</div>;
+    const loader = <div key={0}>Laden...</div>;
     return (
       <div className='outerContainer'>
       <Container>
