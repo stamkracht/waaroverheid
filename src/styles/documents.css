@@ -42,7 +42,8 @@
   cursor: pointer; }
 
 .c-tags .c-tags--text {
-  padding-right: 5px; }
+  padding-right: 5px;
+  font-size: 17px; }
 
 .c-selectedFilters .icon {
   padding: 2px 0 0 0;

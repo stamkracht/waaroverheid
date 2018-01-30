@@ -60,8 +60,6 @@
     font-size: small;
     margin: 5px 15px;
     text-align: center; }
-  .c-zoomControls .c-container:first-child {
-    margin-top: 15px; }
   .c-zoomControls .c-button.hovering:hover {
     box-shadow: none; }
   .c-button .c-button--text {

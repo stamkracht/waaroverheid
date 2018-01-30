@@ -120,6 +120,10 @@
   font-weight: normal;
 }
 
+.c-details p, a {
+  font-size: 15px;
+}
+
 .c-details .icon {
   position: relative;
   display: inline-block;
@@ -133,6 +137,7 @@
 
 .snippets {
   margin-left: 5px;
+  font-size: 15px;
 }
 
 .snippets p {

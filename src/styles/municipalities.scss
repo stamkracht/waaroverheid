@@ -15,6 +15,7 @@
 
   a {
     text-decoration: none;
+    margin: 0;
   }
 }
 
@@ -28,6 +29,10 @@
 .c-municipalities .c-container {
   width: 100%;
   margin: 15px 0;
+}
+
+.c-municipalities .c-municipalities--header .c-button--wrapper .c-container .c-button .c-button--text {
+  padding-right: 20px;
 }
 
 @media (max-width: 670px) {
@@ -56,6 +61,7 @@
 
 .c-municipalities .c-municipality h4 {
   margin: 0;
+  color: black;
 }
 
 .c-municipality:hover {
