@@ -4,80 +4,63 @@ import {Link} from 'react-router-dom'
 import Button from './Button'
 import '../styles/zoomControls.css'
 
+const ZoomButton = ({pathname, search, isActive, name, setZoomLevel}) => {
+  return (
+    <Link to={{pathname, search}} replace>        
+      <Button
+        text={name}
+        active={isActive}
+        onClick={() => setZoomLevel()}>
+      </Button>
+    </Link>
+  )
+}
 
-class ZoomControls extends React.Component {
+const ZoomControls = ({code, setZoomLevel, municipality, district, neighborhood, search}) => {
+  const level = code.slice(0, 2);
+  
+  return (
+    <div className='c-zoomControls'>     
+      <ZoomButton
+        pathname={'/'}
+        search={false}
+        name={'Kies gemeente'}
+        onClick={() => setZoomLevel()} />            
 
-  renderMunicipalityButton() {
-    const level = this.props.code.slice(0, 2);
-    if ( level === 'GM' || level === 'WK' || level === 'BU' ) {
-      const code = `GM${this.props.code.match(/[0-9]{4}/g)[0]}`;
-      return (
-        <Link to={`/${this.props.municipality}`} replace>        
-          <Button
-            text={'Gemeente'}
-            active={level === 'GM'}
-            onClick={() => this.props.setZoomLevel(code)}>
-          </Button>
-        </Link>
-      )
-    }
-  }
+      {(level === 'GM' || level === 'WK' || level === 'BU') && 
+      <ZoomButton
+        pathname={`/${municipality}`}
+        search={search}
+        name={'Gemeente'}
+        isActive={level === 'GM'}
+        setZoomLevel={() => setZoomLevel(`GM${code.match(/[0-9]{4}/g)[0]}`)}/>}
+        
+      {(level === 'WK' || level === 'BU') &&
+      <ZoomButton
+        pathname={`/${municipality}/${district}`}    
+        search={search}
+        name={'Wijk'}
+        isActive={level === 'WK'}
+        setZoomLevel={() => setZoomLevel(`WK${code.match(/[0-9]{6}/g)[0]}`)}/>}
 
-  renderDistrictButton() {
-    const level = this.props.code.slice(0, 2);
-    if ( level === 'WK' || level === 'BU' ) {
-      const code = `WK${this.props.code.match(/[0-9]{6}/g)[0]}`;
-      return (
-        <Link to={`/${this.props.municipality}/${this.props.district}`} replace>                
-          <Button
-            text={'Wijk'}
-            active={level === 'WK'}
-            onClick={() => this.props.setZoomLevel(code)}>
-          </Button>
-        </Link>
-      )
-    }
-  }
-
-  renderNeighborhoodButton() {
-    const level = this.props.code.slice(0, 2);
-    if ( level === 'BU' ) {
-      const code = `BU${this.props.code.match(/[0-9]{8}/g)[0]}`;
-      return (
-        <Link to={`/${this.props.municipality}/${this.props.district}/${this.props.neighborhood}`} replace>                        
-          <Button
-            text={'Buurt'}
-            active={level === 'BU'}
-            onClick={() => this.props.setZoomLevel(code)}>
-          </Button>
-        </Link>
-      )
-    }
-  }
-
-  render() {
-    return (
-      <div className='c-zoomControls'>
-        <Link to={'/'}>        
-          <Button
-            text='Kies gemeente'
-            icon='arrow'
-            iconPosition='right'
-            iconDirection='right'
-            textAlign='center'
-            onClick={() => this.props.setZoomLevel()} />
-        </Link>
-        {this.renderMunicipalityButton()}
-        {this.renderDistrictButton()}
-        {this.renderNeighborhoodButton()}
-      </div>
-    )
-  }
+      {(level === 'BU') && 
+      <ZoomButton
+        pathname={`/${municipality}/${district}/${neighborhood}`}
+        name={'Buurt'}
+        search={search}
+        isActive={level === 'BU'}
+        setZoomLevel={() => setZoomLevel(`BU${code.match(/[0-9]{8}/g)[0]}`)}/>}
+    </div>
+  )
 }
 
 ZoomControls.defaultProps = {
   setZoomLevel: undefined,
   code: '',
+  municipality: '',
+  district: '',
+  neighborhood: '',
+  search: {}
 };
 
 export default ZoomControls

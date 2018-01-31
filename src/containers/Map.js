@@ -41,8 +41,16 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    document.addEventListener('keydown', this.handleKeyDown, false);
-    this.selectArea(this.state.code)
+    document.addEventListener('keydown', this.handleKeyDown, false)
+    const searchParams = new URLSearchParams(this.props.location.search);
+    let filters = {};
+    for(let params of searchParams) {
+      filters[params[0]] = {terms: [...params[1].split(',')]};
+    }
+    FiltersService.set(filters);
+    this.setState({filters}, () => {
+      this.selectArea(this.state.code)
+    });
   }
 
   componentWillUnmount() {
@@ -112,12 +120,19 @@ class App extends React.Component {
     const {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, query);
     const page = 1;
     const hasMoreDocs = true;
-    this.setState({query, facets, documentsCount, documents, filters, page, hasMoreDocs})
+    this.setState({query, facets, documentsCount, documents, filters, page, hasMoreDocs}, () => this.handleRouting(this.state.code))
+  }
+
+  getSearchParams() {
+    const searchParams = new URLSearchParams();   
+    Object.keys(this.state.filters).map(filter => searchParams.append(filter, this.state.filters[filter].terms));
+    return searchParams.toString(); 
   }
 
   handleRouting(code) {
     let {municipality, district, neighborhood} = this.props.match.params;
-    let url = '';
+    let url = ''
+    const searchParams = this.getSearchParams()
 
     switch(code.slice(0,2)) {
       case 'GM':
@@ -133,7 +148,7 @@ class App extends React.Component {
         url = `/${municipality}/${district}/${neighborhood}`;
         break;
     }
-
+    url = searchParams ? `${url}?${searchParams}` : url;  
     this.props.history.push(url);
   }
 
@@ -200,6 +215,7 @@ class App extends React.Component {
         <ZoomControls
           code={this.state.code}
           setZoomLevel={this.selectArea.bind(this)}
+          search={this.props.location.search}
           municipality={this.props.match.params.municipality}
           district={this.props.match.params.district}
           neighborhood={this.props.match.params.neighborhood} />
