@@ -77,6 +77,7 @@ class NavigableMap extends Component {
     });
     layer.bindTooltip(tooltip, {
       'className': 'c-tooltip',
+      'opacity': 1.0,
       permanent: this.props.code.indexOf('BU') === 0,
     });
     layer.on({
@@ -101,6 +102,7 @@ class NavigableMap extends Component {
     });
     layer.bindTooltip(tooltip, {
       'className': 'c-tooltip adjacent',
+      'opacity': 1.0,
     });
     layer.on({
       click: this.handleOnClickAdjacent,

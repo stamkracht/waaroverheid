@@ -6,46 +6,54 @@
   bottom: 0;
   z-index: 0;
   background: white;
-}
-.c-map .leaflet-container .leaflet-pane.leaflet-tile-pane {
-  opacity: 0.75;
-}
 
-.c-map .leaflet-container .c-feature {
-  pointer-events: auto;
-  cursor: pointer;
-  fill: #ed6000;
-  stroke: #ed6000;
-  stroke-width: 2px;
-  stroke-opacity: 1;
-}
+  .leaflet-pane {
+    &.leaflet-tile-pane {
+      opacity: 0.75;
+    }
 
-.c-map .leaflet-container .c-feature.adjacent {
-  stroke-dasharray: 10 25;
-  fill-opacity: 0;
-}
+    .c-feature {
+      pointer-events: auto;
+      cursor: pointer;
+      fill: #ed6000;
+      stroke: #ed6000;
+      stroke-width: 2px;
+      stroke-opacity: 1;
 
-.c-map .leaflet-container .c-feature:hover,
-.c-map .leaflet-container .c-feature.active {
-  fill-opacity: 0.9;
-}
+      &.adjacent {
+        stroke-dasharray: 10 25;
+        fill-opacity: 0;
+      }
 
-.c-map .leaflet-container .c-feature.adjacent:hover {
-  fill-opacity: 0.4;
-}
+      &:hover, &.active {
+        fill-opacity: 0.9;
+      }
 
-/* Tooltip */
-.c-map .leaflet-container .leaflet-pane .leaflet-tooltip.c-tooltip {
-  margin: 0;
-  padding: 0;
-  color: black;
-  border: none;
-  box-shadow: none;
-  background-color: transparent;
-}
-.c-map .leaflet-container .leaflet-pane .leaflet-tooltip.c-tooltip:before {
-  content: none;
-}
-.c-map .leaflet-container .leaflet-pane .leaflet-tooltip.c-tooltip h1 {
-  margin: 0;
+      &.adjacent:hover {
+        fill-opacity: 0.4;
+      }
+    }
+
+    .leaflet-tooltip.c-tooltip {
+      margin: 0;
+      padding: 10px;
+      color: black;
+      border: 1px #ed6000;
+      box-shadow: none;
+      background-color: rgba(200, 200, 200, 0.8);
+
+      &:before {
+        content: none;
+      }
+
+      &.leaflet-tooltip-left {
+        text-align: right;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+    }
+  }
 }
