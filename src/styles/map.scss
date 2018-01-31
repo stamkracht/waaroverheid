@@ -40,7 +40,12 @@
       color: black;
       border: 1px #ed6000;
       box-shadow: none;
-      background-color: rgba(200, 200, 200, 0.8);
+      background: transparent linear-gradient(
+                      to bottom,
+                      transparent 0%,
+                      rgba(200, 200, 200, 0.7) 10px,
+                      rgba(200, 200, 200, 0.7) calc(100% - 10px),
+                      transparent 100%);
 
       &:before {
         content: none;
