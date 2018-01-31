@@ -20,7 +20,6 @@ class App extends React.Component {
       loadingLocation: false,
       drawerActive: false,
       municipalities: [],
-      code: this.props.match.params.neighborhood || this.props.match.params.district || this.props.match.params.municipality,
       geo: {},
       adjacent: {},
       name: '',
@@ -35,28 +34,40 @@ class App extends React.Component {
     };
 
     this.MapService = new MapService();
-
     this.DocumentService = new DocumentService();
-
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
   componentWillMount() {
     document.addEventListener('keydown', this.handleKeyDown, false)
     const searchParams = new URLSearchParams(this.props.location.search);
+    const {code} = this.props.match.params
+    
     let filters = {};
     for(let params of searchParams) {
       filters[params[0]] = {terms: [...params[1].split(',')]};
     }
     FiltersService.set(filters);
-    this.setState({filters}, () => {
-      this.selectArea(this.state.code)
+    this.setState({filters, code}, () => {
+      this.selectArea(code)
     });
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown, false)
   }
+
+  async componentWillReceiveProps(nextProps) {  
+    const {code} = nextProps.match.params
+    if(this.state.code !== code) {
+      const geo = await this.MapService.getFeatures(code);
+      const adjacent = await this.MapService.getAdjacentFeatures(code);
+      let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
+      const hasMoreDocs = true;
+      this.setState({code, geo, adjacent, facets, documentsCount, documents, hasMoreDocs})
+    }
+  }
+
 
   cacheNames(geoResponse) {
     if (geoResponse.properties) {
@@ -106,7 +117,7 @@ class App extends React.Component {
     const {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, query);
     const page = 1;
     const hasMoreDocs = true;
-    this.setState({query, facets, documentsCount, documents, filters, page, hasMoreDocs}, () => this.handleRouting(this.state.code))
+    this.setState({query, facets, documentsCount, documents, filters, page, hasMoreDocs}, () => this.handleRouting(this.props.match.params.code))
   }
 
   getSearchParams() {
@@ -116,24 +127,8 @@ class App extends React.Component {
   }
 
   handleRouting(code) {
-    let {municipality, district, neighborhood} = this.props.match.params;
-    let url = ''
+    let url = `/${code}`;
     const searchParams = this.getSearchParams()
-
-    switch(code.slice(0,2)) {
-      case 'GM':
-        municipality = code;
-        url = `/${municipality}`;
-        break;
-      case 'WK':
-        district = code;
-        url = `/${municipality}/${district}`;
-        break;
-      case 'BU':
-        neighborhood = code;
-        url = `/${municipality}/${district}/${neighborhood}`;
-        break;
-    }
     url = searchParams ? `${url}?${searchParams}` : url;  
     this.props.history.push(url);
   }
@@ -152,14 +147,6 @@ class App extends React.Component {
     this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
   }
 
-  async getMoreDocuments(page) {
-    const filters = Object.assign({}, this.state.filters);
-    FiltersService.set(filters);
-    let {meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, this.state.query, page);
-    const hasMoreDocs = (page - 1) * 5 < documentsCount;
-    this.setState({documentsCount, documents: [...this.state.documents.concat(documents)], page, hasMoreDocs})
-  }
-
   async selectMunicipality(code, name) {
     const geo = await this.MapService.getFeatures(code);
     this.cacheNames(geo);
@@ -169,7 +156,13 @@ class App extends React.Component {
     this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
   }
 
-
+  async getMoreDocuments(page) {
+    const filters = Object.assign({}, this.state.filters);
+    FiltersService.set(filters);
+    let {meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(this.state.code, this.state.query, page);
+    const hasMoreDocs = (page - 1) * 5 < documentsCount;
+    this.setState({documentsCount, documents: [...this.state.documents.concat(documents)], page, hasMoreDocs})
+  }
 
   resetQuery() {
     this.setState({query: ''});
@@ -196,64 +189,24 @@ class App extends React.Component {
   }
 
   renderControls() {
-    if ( this.state.code && !this.state.drawerActive ) {
+    if ( !this.state.drawerActive ) {
       return (
         <ZoomControls
           code={this.state.code}
           setZoomLevel={this.selectArea.bind(this)}
-          search={this.props.location.search}
-          municipality={this.props.match.params.municipality}
-          district={this.props.match.params.district}
-          neighborhood={this.props.match.params.neighborhood} />
+          search={this.props.location.search}/>
       )
     }
   }
 
   renderFilters() {
-    if ( this.state.code && !this.state.drawerActive && this.state.documentsCount) {
+    if ( !this.state.drawerActive && this.state.documentsCount) {
       return (
         <div>
           <Filters
             facets={this.state.facets}
             submit={this.handleOnSubmitSearch.bind(this)} />
         </div>
-      )
-    }
-  }
-
-  renderDocuments() {
-    if ( this.state.code ) {
-      return (
-        <Drawer
-          numberDoc={this.state.documentsCount}
-          area={this.state.name}
-          active={this.state.drawerActive}
-          toggle={this.toggleDrawer.bind(this)}
-          service={this.DocumentService}
-          facets={this.state.facets}
-          documents={this.state.documents}
-          filters={this.state.filters}
-          updateFilters={this.updateFilters.bind(this)}
-          query={this.state.query}
-          resetQuery={this.resetQuery.bind(this)}
-          getMoreDocuments={this.getMoreDocuments.bind(this)}
-          hasMoreDocs={this.state.hasMoreDocs}
-          />
-      )
-    }
-  }
-
-  renderAlert() {
-    if ( this.state.code ) {
-      return (
-        <Alert
-          service={this.DocumentService}
-          area={this.state.name}
-          filters={this.sliceFilters()}
-          updateFilters={this.updateFilters.bind(this)}
-          query={this.state.query}
-          resetQuery={this.resetQuery.bind(this)}
-        />
       )
     }
   }
@@ -274,9 +227,29 @@ class App extends React.Component {
           openDrawer={this.toggleDrawer.bind(this)} />
         {this.renderControls()}
         {this.renderFilters()}
-        {this.renderAlert()}
-        {this.renderDocuments()}
-      </div>
+        <Alert
+          service={this.DocumentService}
+          area={this.state.name}
+          filters={this.sliceFilters()}
+          updateFilters={this.updateFilters.bind(this)}
+          query={this.state.query}
+          resetQuery={this.resetQuery.bind(this)}/>
+
+        <Drawer
+          numberDoc={this.state.documentsCount}
+          area={this.state.name}
+          active={this.state.drawerActive}
+          toggle={this.toggleDrawer.bind(this)}
+          service={this.DocumentService}
+          facets={this.state.facets}
+          documents={this.state.documents}
+          filters={this.state.filters}
+          updateFilters={this.updateFilters.bind(this)}
+          query={this.state.query}
+          resetQuery={this.resetQuery.bind(this)}
+          getMoreDocuments={this.getMoreDocuments.bind(this)}
+          hasMoreDocs={this.state.hasMoreDocs}/>
+        </div>
     )
   }
 }

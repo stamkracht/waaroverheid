@@ -9,7 +9,10 @@ class App extends React.Component {
     <Router>
       <div>
         <Route path="/" component={Municipalities}/>
-        <Route path="/:municipality/:district?/:neighborhood?" component={Map}/>
+        <Route path="/:code" render={(props) => (
+          <Map {...props}/>
+        )}/>
+        
       </div>
     </Router>
     )

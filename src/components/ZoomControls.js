@@ -1,7 +1,7 @@
 import React from 'react'
 import ZoomButton from './ZoomButton'
 
-const ZoomControls = ({code, setZoomLevel, municipality, district, neighborhood, search}) => {
+const ZoomControls = ({code, setZoomLevel, search}) => {
   const level = code.slice(0, 2);
   
   return (
@@ -14,7 +14,7 @@ const ZoomControls = ({code, setZoomLevel, municipality, district, neighborhood,
 
       {(level === 'GM' || level === 'WK' || level === 'BU') && 
       <ZoomButton
-        pathname={`/${municipality}`}
+        pathname={`/GM${code.match(/[0-9]{4}/g)[0]}`}
         search={search}
         name={'Gemeente'}
         isActive={level === 'GM'}
@@ -22,7 +22,7 @@ const ZoomControls = ({code, setZoomLevel, municipality, district, neighborhood,
         
       {(level === 'WK' || level === 'BU') &&
       <ZoomButton
-        pathname={`/${municipality}/${district}`}    
+        pathname={`/WK${code.match(/[0-9]{6}/g)[0]}`}    
         search={search}
         name={'Wijk'}
         isActive={level === 'WK'}
@@ -30,7 +30,7 @@ const ZoomControls = ({code, setZoomLevel, municipality, district, neighborhood,
 
       {(level === 'BU') && 
       <ZoomButton
-        pathname={`/${municipality}/${district}/${neighborhood}`}
+        pathname={`/BU${code.match(/[0-9]{8}/g)[0]}`}
         name={'Buurt'}
         search={search}
         isActive={level === 'BU'}

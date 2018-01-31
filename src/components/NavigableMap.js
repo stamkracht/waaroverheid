@@ -8,7 +8,7 @@ import '../styles/map.css'
 
 class NavigableMap extends Component {
 
-  componentDidUpdate() {
+  componentDidUpdate(props) {
     if ( !!this.featureNode ) {
       let element = this.featureNode.leafletElement;
       element._map.fitBounds(element.getBounds())
