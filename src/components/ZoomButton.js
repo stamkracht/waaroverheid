@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom'
 import Button from './Button'
 import '../styles/zoomControls.css'
 
-const ZoomButton = ({pathname, search, isActive, name, setZoomLevel}) => {
+const ZoomButton = ({pathname, search, isActive, name, onClick}) => {
   return (
-    <Link to={{pathname, search}} replace>        
+    <Link to={{pathname, search}}>        
       <Button
         text={name}
         active={isActive}
-        onClick={() => setZoomLevel()}>
+        onClick={onClick}>
       </Button>
     </Link>
   )

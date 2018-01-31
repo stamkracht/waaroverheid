@@ -10,6 +10,7 @@ import DocumentService from '../services/DocumentService'
 import SearchService from '../services/SearchService'
 import FiltersService from '../services/FiltersService'
 
+
 class App extends React.Component {
 
   constructor(props) {
@@ -83,21 +84,6 @@ class App extends React.Component {
       )
     }
   }
-
-  REFACTOR_cacheNames(geo) {
-    const geoResponseKey = ['properties', 'features']
-    .filter(key => geo[key])
-    .reduce((memo, key) => key, '');
-
-    return ['GM', 'WK', 'BU']
-    .map(prefix => {
-        if(geoResponseKey) {
-          const name = geo[geoResponseKey][`${prefix}_NAAM`];
-          const code = geo[geoResponseKey][`${prefix}_CODE`];
-          return {code, name};
-  }
-      }).reduce((memo, namesByCode) => namesByCode, {code: null});
-}
 
   handleKeyDown(event) {
     if ( event.keyCode === 27 && this.state.drawerActive ) {

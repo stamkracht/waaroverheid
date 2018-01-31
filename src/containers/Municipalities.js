@@ -24,56 +24,31 @@ class MunicipalitiesContainer extends React.Component {
     this.setState({municipalities})
   }
 
-  cacheNames(geoResponse) {
-    if (geoResponse.properties) {
-      // eslint-disable-next-line
-      ['GM', 'WK', 'BU'].map(prefix => {
-        const name = geoResponse.properties[`${prefix}_NAAM`];
-        const code = geoResponse.properties[`${prefix}_CODE`];
-        if (name) {
-          this.state.namesByCode.set(code, name);
-        }
-      });
-    } else {
-      // eslint-disable-next-line
-      geoResponse.features.map(feature => {
-          // eslint-disable-next-line
-          ['GM', 'WK', 'BU'].map(prefix => {
-            const name = feature.properties[`${prefix}_NAAM`];
-            const code = feature.properties[`${prefix}_CODE`];
-            if (name) {
-              this.state.namesByCode.set(code, name);
-            }
-          })
-        }
-      )
-    }
-  }
-
   async showUserLocation() {
       await this.setState({loadingLocation: true});
-      let [code, name] = await this.MapService.getUserLocation();
-      const geo = await this.MapService.getFeatures(code);
-      this.cacheNames(geo);
-      const adjacent = await this.MapService.getAdjacentFeatures(code);
-      this.setState({loadingLocation: false, geo, adjacent, code, name})
+      let code = await this.MapService.getUserLocation();
+      this.props.history.push(`/${code}`);      
   }
 
   filterMunicipalities(q) {
-    let municipalities = this.allMunicipalities.filter(item => {
+    let municipalities = this.allMunicipalities
+    .filter(item => {
       let name = item.name.toLowerCase();
       return name.indexOf(q) >= 0 || levenshtein(name, q) <= 2
-    }).sort((a, b) => {
+    })
+    .sort((a, b) => {
       if ( a.name < b.name ) { return -1 }
       if ( a.name > b.name ) { return 1 }
       return 0
     });
+    
     this.setState({municipalities})
   }
 
   render() {
     return  (
         <Municipalities
+          history={this.props.history}
           loading={this.state.loadingLocation}
           list={this.state.municipalities}
           filter={this.filterMunicipalities.bind(this)}

@@ -8,6 +8,9 @@ import '../styles/municipalities.css'
 
 
 class Municipalities extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
   handleOnClick() {
     this.props.showLocation()
@@ -21,7 +24,7 @@ class Municipalities extends React.Component {
   handleOnSubmit() {
     if ( this.props.list.length > 0) {
       const item = this.props.list[0];
-      this.props.select(item.code, item.name)
+      this.props.history.push(`/${item.code}`)
     }
   }
 
