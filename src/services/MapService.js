@@ -22,15 +22,14 @@ class MapService {
   async getUserLocation() {
     return this.LocationService.getCoords()
       .then(coords => this.getPolygon(coords.latitude, coords.longitude))  //amstelveen test coords 52.308888, 4.873396
-      .then(res => isMobile() ? res.properties['BU_CODE'] : res.properties['GM_CODE'])
-      .catch(e => e);       
+      .then(res => isMobile() ? res.properties['BU_CODE'] : res.properties['GM_CODE']);
   }
 
   getPolygon(latitude, longitude) {
     let url = `${this.apiUrl}localize?lat=${latitude}&lon=${longitude}`
     url = isMobile() ? `${url}&type=neighborhood` : `${url}&type=municipality`
     
-    return fetch(url).then(res => res.json());
+    return fetch(url).then(res => res.status === 200 ? res.json() : Promise.reject(res));
   }
 
   async getMunicipalities() {

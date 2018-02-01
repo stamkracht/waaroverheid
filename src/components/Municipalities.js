@@ -6,85 +6,70 @@ import Container from './Container'
 import SearchBox from './SearchBox'
 import '../styles/municipalities.css'
 
-
-class Municipalities extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  handleOnClick() {
-    this.props.showLocation()
-  }
-
-  handleOnType(q) {
-    let query = q.toLowerCase();
-    this.props.filter(query)
-  }
-
-  handleOnSubmit() {
-    if ( this.props.list.length > 0) {
-      const item = this.props.list[0];
-      this.props.history.push(`/${item.code}`)
-    }
-  }
-
-  renderHeader() {
-    return (
-      <div className='c-municipalities--header'>
-        <h1>WaarOverheid</h1>
-        <div className='c-button--wrapper'>
-          <Button
-            text='Gebruik mijn locatie'
-            textAlign='center'
-            icon='location'
-            iconPosition='right'
-            loading={this.props.loading}
-            onClick={this.handleOnClick.bind(this)} />
-        </div>
+const Header = ({loadingLocation, showUserLocation}) => {
+  return (
+    <div className='c-municipalities--header'>
+      <h1>WaarOverheid</h1>
+      <div className='c-button--wrapper'>
+        <Button
+          text='Gebruik mijn locatie'
+          textAlign='center'
+          icon='location'
+          iconPosition='right'
+          loading={loadingLocation}
+          onClick={showUserLocation} />
       </div>
-    )
-  }
+    </div>
+  )
+}
 
-  renderSearch() {
+const Search = ({filterMunicipalities, municipalities, handleOnSubmit}) => {
+  return (
+    <SearchBox
+      onType={(query) => filterMunicipalities(query.toLowerCase())}
+      onSubmit={() => handleOnSubmit(municipalities)}>
+    </SearchBox>
+  )
+}
+
+const List = ({municipalities}) => {
+  return municipalities.map(item => {
     return (
-      <SearchBox
-        onType={this.handleOnType.bind(this)}
-        onSubmit={this.handleOnSubmit.bind(this)}>
-      </SearchBox>
+      <Link to={item.code} key={item.code}>
+        <Container shadow={true}>
+          <div className='c-municipality'>
+            <h4>{item.name}</h4>
+          </div>
+        </Container>
+      </Link>
     )
-  }
+  })
+}
 
-  renderList() {
-    return this.props.list.map(item => {
-      return (
-        <Link to={item.code} key={item.code}>
-          <Container shadow={true}>
-            <div className='c-municipality'>
-              <h4>{item.name}</h4>
-            </div>
-          </Container>
-        </Link>
-      )
-    })
-  }
+const Municipalities =({showUserLocation, filterMunicipalities, municipalities, loadingLocation, handleOnSubmit}) => {
+  return (
+    <div className='c-municipalities'>
+      <Header 
+        showUserLocation={showUserLocation}
+        loadingLocation={loadingLocation}/>
 
-  render() {
-    return (
-      <div className='c-municipalities'>
-        {this.renderHeader()}
-        {this.renderSearch()}
-        {this.renderList()}
-      </div>
-    )
-  }
+      <Search
+        filterMunicipalities={filterMunicipalities}      
+        municipalities={municipalities}
+        handleOnSubmit={handleOnSubmit}/>
+      
+      <List
+        municipalities={municipalities} />    
+    </div>
+  )
 }
 
 Municipalities.defaultProps = {
-  loading: false,
-  list: [],
-  filter: undefined,
-  select: undefined,
-  showLocation: undefined,
+  showUserLocation: false,
+  municipalities: [],
+  filterMunicipalities: undefined,
+  handleOnSubmit: undefined,
+  loadingLocation: false,
 };
 
 export default Municipalities

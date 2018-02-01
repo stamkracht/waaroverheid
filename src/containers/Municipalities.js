@@ -12,6 +12,8 @@ class MunicipalitiesContainer extends React.Component {
 
     this.state = {
       municipalities: [],
+      loadingLocationError: false,
+      loadingLocation: false
     };
 
     this.MapService = new MapService();
@@ -25,9 +27,14 @@ class MunicipalitiesContainer extends React.Component {
   }
 
   async showUserLocation() {
-      await this.setState({loadingLocation: true});
-      let code = await this.MapService.getUserLocation();
-      this.props.history.push(`/${code}`);      
+      await this.setState({loadingLocation: true, loadingLocationError: false});
+      try {
+        let code = await this.MapService.getUserLocation().catch(e => {throw Error(e)})
+        this.props.history.push(`/${code}`);      
+      } catch(e) {
+        //TODO: handle error
+        await this.setState({loadingLocation: false, loadingLocationError: true});
+      }
   }
 
   filterMunicipalities(q) {
@@ -45,14 +52,22 @@ class MunicipalitiesContainer extends React.Component {
     this.setState({municipalities})
   }
 
+  handleOnSubmit(municipalities) {
+    if(municipalities.length > 0) {
+      const code = municipalities[0].code;
+      this.props.history.push(`/${code}`);
+    }
+  }
+
   render() {
     return  (
         <Municipalities
           history={this.props.history}
-          loading={this.state.loadingLocation}
-          list={this.state.municipalities}
-          filter={this.filterMunicipalities.bind(this)}
-          showLocation={this.showUserLocation.bind(this)} />
+          loadingLocation={this.state.loadingLocation}
+          municipalities={this.state.municipalities}
+          filterMunicipalities={this.filterMunicipalities.bind(this)}
+          showUserLocation={this.showUserLocation.bind(this)} 
+          handleOnSubmit={this.handleOnSubmit.bind(this)}/>
       )
   }
 }
