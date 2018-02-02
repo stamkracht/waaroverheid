@@ -1,22 +1,18 @@
 import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Municipalities from './Municipalities';
+
+import { Route } from 'react-router-dom'
+import Municipalities from './municipality-list';
 import Map from './Map';
 
-class App extends React.Component {
-  render() {
-    return (
-    <Router>
-      <div>
-        <Route path="/" component={Municipalities}/>
-        <Route path="/:code" render={(props) => (
-          <Map {...props}/>
-        )}/>
-        
-      </div>
-    </Router>
-    )
-  }
-}
+const App = () => (
+    <div>
+        <main>
+            <Route path="/" component={Municipalities}/>
+            <Route path="/:code" render={(props) => (
+                <Map {...props}/>
+            )}/>
+        </main>
+    </div>
+)
 
 export default App

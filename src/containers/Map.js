@@ -11,7 +11,7 @@ import SearchService from '../services/SearchService'
 import FiltersService from '../services/FiltersService'
 
 
-class App extends React.Component {
+class MapContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -254,4 +254,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default MapContainer

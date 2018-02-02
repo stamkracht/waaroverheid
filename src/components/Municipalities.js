@@ -23,30 +23,29 @@ const Header = ({loadingLocation, showUserLocation}) => {
   )
 }
 
-const Search = ({filterMunicipalities, municipalities, handleOnSubmit}) => {
+const Search = ({filterMunicipalities, municipalities, chooseMunicipality}) => {
   return (
     <SearchBox
-      onType={(query) => filterMunicipalities(query.toLowerCase())}
-      onSubmit={() => handleOnSubmit(municipalities)}>
+      onType={(query) => filterMunicipalities(query.toLowerCase(), municipalities)}
+      onSubmit={() => chooseMunicipality(municipalities)}>
     </SearchBox>
   )
 }
 
-const List = ({municipalities}) => {
-  return municipalities.map(item => {
+const List = ({municipalities, changePage}) => {
+  return municipalities.map((item, i) => {
     return (
-      <Link to={item.code} key={item.code}>
-        <Container shadow={true}>
-          <div className='c-municipality'>
-            <h4>{item.name}</h4>
-          </div>
-        </Container>
-      </Link>
+      <Container key={i} shadow={true}>
+        <div className='c-municipality' onClick={() => changePage(item.code)}>
+          <h4>{item.name}</h4>
+        </div>
+      </Container>
     )
   })
 }
 
-const Municipalities =({showUserLocation, filterMunicipalities, municipalities, loadingLocation, handleOnSubmit}) => {
+const Municipalities =({showUserLocation, filterMunicipalities, municipalities, loadingLocation, chooseMunicipality, changePage}) => {
+
   return (
     <div className='c-municipalities'>
       <Header 
@@ -56,9 +55,10 @@ const Municipalities =({showUserLocation, filterMunicipalities, municipalities, 
       <Search
         filterMunicipalities={filterMunicipalities}      
         municipalities={municipalities}
-        handleOnSubmit={handleOnSubmit}/>
+        chooseMunicipality={chooseMunicipality}/>
       
       <List
+        changePage={changePage}
         municipalities={municipalities} />    
     </div>
   )
