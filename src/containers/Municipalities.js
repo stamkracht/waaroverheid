@@ -11,9 +11,8 @@ class MunicipalitiesContainer extends React.Component {
     this.MapService = new MapService();
   }
 
-  async componentDidMount() {
-    const municipalities = await this.MapService.getMunicipalities();
-    this.props.setInitialMunicipalities(municipalities)
+  componentWillMount() {
+    this.props.getMunicipalities()
    }
 
   async showUserLocation() {
@@ -35,7 +34,7 @@ class MunicipalitiesContainer extends React.Component {
       municipalities,
       filterMunicipalities,
       showUserLocation,
-      chooseMunicipality
+      getMunicipalities
     } = this.props;  
 
     return  (
@@ -46,7 +45,7 @@ class MunicipalitiesContainer extends React.Component {
           municipalities={municipalities}
           filterMunicipalities={filterMunicipalities}
           showUserLocation={this.showUserLocation.bind(this)}
-          chooseMunicipality={chooseMunicipality}/>
+          chooseMunicipality={getMunicipalities}/>
       )
   }
 }

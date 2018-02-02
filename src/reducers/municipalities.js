@@ -18,8 +18,9 @@ const initialState = {
 };
 
 function municipalities(state = initialState, action) {
-    switch(action.type) {
+    switch(action.type) {        
         case SET_INITIAL_MUNICIPALITIES:
+            console.log(action)
             return Object.assign({}, state, {all: action.municipalities, filtered: action.municipalities})
         case FILTER_MUNICIPALITIES:
             const {term} = action;

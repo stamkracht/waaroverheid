@@ -32,8 +32,8 @@ class MapService {
     return fetch(url).then(res => res.status === 200 ? res.json() : Promise.reject(res));
   }
 
-  async getMunicipalities() {
-    return fetch(`${this.apiUrl}municipal`)
+  getMunicipalities(url) {
+    return fetch(`${url}municipal`)
       .then(res => res.json())
       .then(({municipalities}) => municipalities
           .sort((a, b) => {

@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
-  setInitialMunicipalities,
+  getMunicipalities,
   filterMunicipalities,
   showUserLocation,
   showUserLocationError,
@@ -23,7 +23,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   changePage: (code) => push(`/${code}`),
-  setInitialMunicipalities,
+  getMunicipalities,
   filterMunicipalities,
   chooseMunicipality,
   showUserLocation,
