@@ -1,72 +1,73 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-
-import Button from './Button'
-import Container from './Container'
-import SearchBox from './SearchBox'
 import '../styles/municipalities.css'
+import MapService from '../services/MapService'
+import MunicipalitiesHeader from './MunicipalitiesHeader'
+import MunicipalitiesSearch from './SearchMunicipalities'
+import MunicipalitiesList from './ListMunicipalities'
 
-const Header = ({loadingLocation, showUserLocation}) => {
-  return (
-    <div className='c-municipalities--header'>
-      <h1>WaarOverheid</h1>
-      <div className='c-button--wrapper'>
-        <Button
-          text='Gebruik mijn locatie'
-          textAlign='center'
-          icon='location'
-          iconPosition='right'
-          loading={loadingLocation}
-          onClick={showUserLocation} />
-      </div>
-    </div>
-  )
-}
 
-const Search = ({filterMunicipalities, municipalities, chooseMunicipality}) => {
-  return (
-    <SearchBox
-      onType={(query) => filterMunicipalities(query.toLowerCase(), municipalities)}
-      onSubmit={() => chooseMunicipality(municipalities)}>
-    </SearchBox>
-  )
-}
+class Municipalities extends React.Component {
 
-const List = ({municipalities, changePage}) => {
-  return municipalities.map((item, i) => {
-    return (
-      <Container key={i} shadow={true}>
-        <div className='c-municipality' onClick={() => changePage(item.code)}>
-          <h4>{item.name}</h4>
-        </div>
-      </Container>
+  constructor(props) {
+    super(props);    
+  }
+
+  componentWillMount() {
+    this.props.getMunicipalities()
+  }
+
+  componentWillUpdate(props) {
+    if(props.code) {
+      this.props.changePage(props.code)
+    }
+  }
+
+  async showUserLocation() {
+    this.props.getUserLocation()
+    // this.props.showUserLocation();
+    // try {
+    //   let code = await this.MapService.getUserLocation().catch(e => {throw Error(e)})
+    //   this.props.resetUserLocation();
+    //   this.props.changePage(code);      
+    // } catch(e) {
+    //   this.props.showUserLocationError()      
+    // }
+  }
+
+  render() {
+    const {
+      changePage,
+      history,
+      loadingLocation,
+      municipalities,
+      filterMunicipalities,
+      getUserLocation,
+      getMunicipalities,
+      chooseMunicipality
+    } = this.props;  
+
+    return  (
+      <div className='c-municipalities'>
+        <MunicipalitiesHeader 
+          showUserLocation={getUserLocation}
+          loadingLocation={loadingLocation}/>
+
+        <MunicipalitiesSearch
+          filterMunicipalities={filterMunicipalities}      
+          municipalities={municipalities}
+          chooseMunicipality={chooseMunicipality}/>
+        
+        <MunicipalitiesList
+          changePage={changePage}
+          municipalities={municipalities} />    
+      </div>     
     )
-  })
-}
-
-const Municipalities =({showUserLocation, filterMunicipalities, municipalities, loadingLocation, chooseMunicipality, changePage}) => {
-
-  return (
-    <div className='c-municipalities'>
-      <Header 
-        showUserLocation={showUserLocation}
-        loadingLocation={loadingLocation}/>
-
-      <Search
-        filterMunicipalities={filterMunicipalities}      
-        municipalities={municipalities}
-        chooseMunicipality={chooseMunicipality}/>
-      
-      <List
-        changePage={changePage}
-        municipalities={municipalities} />    
-    </div>
-  )
+  }
 }
 
 Municipalities.defaultProps = {
   showUserLocation: false,
-  municipalities: [],
+  municipalities: {},
   filterMunicipalities: undefined,
   handleOnSubmit: undefined,
   loadingLocation: false,

@@ -4,6 +4,8 @@ import MapService from '../services/MapService'
 /**
  * Action Types
  */
+export const FETCH_USER_LOCATION = 'FETCH_USER_LOCATION'
+export const GET_USER_LOCATION = 'GET_USER_LOCATION'
 export const FETCH_MUNICIPALITIES = 'FETCH_MUNICIPALITIES'
  export const CHOOSE_MUNICIPALITY = 'CHOOSE_MUNICIPALITY'
  export const FILTER_MUNICIPALITIES = 'FILTER_MUNICIPALITIES'
@@ -23,12 +25,16 @@ export const FETCH_MUNICIPALITIES = 'FETCH_MUNICIPALITIES'
       return {type: FILTER_MUNICIPALITIES, term}
   }
 
+  export const getUserLocation = () => ({
+      type: FETCH_USER_LOCATION
+  })
+
   export const getMunicipalities = () => ({
       type: FETCH_MUNICIPALITIES
   })
 
-  export function showUserLocation(locationStatus) {
-      return {type: SHOW_USER_LOCATION, locationStatus}
+  export function showUserLocation(location) {
+      return {type: SHOW_USER_LOCATION, location}
   }
 
   export function showUserLocationError(locationStatus) {
@@ -38,14 +44,21 @@ export const FETCH_MUNICIPALITIES = 'FETCH_MUNICIPALITIES'
   export function resetUserLocation(locationStatus) {
       return {type: RESET_USER_LOCATION, locationStatus}
   }
-
-  const MapApi = new MapService();
   
   export function* fetchMunicipalities(action) {
-    console.log(action)
      try {
-        const municipalities = yield call(MapApi.getMunicipalities, MapApi.apiUrl);
+        const municipalities = yield call(MapService.getMunicipalities);
         yield put({type: SET_INITIAL_MUNICIPALITIES, municipalities});
+     } catch (e) {
+        //handle faled
+        console.log(e, 'failed')
+     }
+  }
+
+  export function* fetchUserLocation(action) {
+    try {
+        const location = yield call(MapService.getUserLocation);
+        yield put({type: SHOW_USER_LOCATION, location});
      } catch (e) {
         //handle faled
         console.log(e, 'failed')

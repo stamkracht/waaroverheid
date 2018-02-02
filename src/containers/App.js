@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { Route } from 'react-router-dom'
-import Municipalities from './municipality-list';
+import MunicipalitiesList from './MunicipalitiesList';
 import Map from './Map';
 
 const App = () => (
     <div>
         <main>
-            <Route path="/" component={Municipalities}/>
+            <Route path="/" component={MunicipalitiesList}/>
             <Route path="/:code" render={(props) => (
                 <Map {...props}/>
             )}/>

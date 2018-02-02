@@ -1,16 +1,14 @@
-class LocationService {
 
-  constructor() {
-    this.coords = {};
+const LocationService = (function () {
 
-    this.options = {
-      enableHighAccuracy: false,
-      timeout: 5000,
-      maximumAge: 0,
-    }
+  let coords = {};
+  let options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
   }
 
-  getCoords() {
+  function getCoords() {
     return new Promise((resolve, reject) => {
       if ( !!navigator.geolocation ) {
         navigator.geolocation.getCurrentPosition((position, a, b, c, d, e) => {
@@ -24,6 +22,11 @@ class LocationService {
       }
     })
   }
-}
+
+  return {
+    getCoords
+  }
+
+}());
 
 export default LocationService

@@ -1,39 +1,33 @@
 import * as keyBy from 'lodash/keyBy';
 import * as mapValues from 'lodash/mapValues';
 import * as maxBy from 'lodash/maxBy';
-
+import apiUrl from './ApiUrl'
 import LocationService from '../services/LocationService'
 import { isMobile } from '../utilities/device'
 
-class MapService {
+const MapService = (function() {
 
-  constructor() {
-    this.LocationService = new LocationService()
-
-    this.apiUrl = 'https://api.waaroverheid.nl/'
-
-    this.levels = {
-      'GM': 'districts',
-      'WK': 'neighborhoods',
-      'BU': '',
-    }
+  const levels = {
+    'GM': 'districts',
+    'WK': 'neighborhoods',
+    'BU': '',
   }
 
-  async getUserLocation() {
-    return this.LocationService.getCoords()
-      .then(coords => this.getPolygon(coords.latitude, coords.longitude))  //amstelveen test coords 52.308888, 4.873396
+  function getUserLocation() {
+    return LocationService.getCoords()
+      .then(coords => getPolygon(coords.latitude, coords.longitude))  //amstelveen test coords 52.308888, 4.873396
       .then(res => isMobile() ? res.properties['BU_CODE'] : res.properties['GM_CODE']);
   }
 
-  getPolygon(latitude, longitude) {
-    let url = `${this.apiUrl}localize?lat=${latitude}&lon=${longitude}`
+  function getPolygon(latitude, longitude) {
+    let url = `${apiUrl}localize?lat=${latitude}&lon=${longitude}`
     url = isMobile() ? `${url}&type=neighborhood` : `${url}&type=municipality`
     
     return fetch(url).then(res => res.status === 200 ? res.json() : Promise.reject(res));
   }
 
-  getMunicipalities(url) {
-    return fetch(`${url}municipal`)
+  function getMunicipalities() {
+    return fetch(`${apiUrl}municipal`)
       .then(res => res.json())
       .then(({municipalities}) => municipalities
           .sort((a, b) => {
@@ -44,10 +38,10 @@ class MapService {
       .catch(err => console.log(err));
   }
 
-  getFeatures(code = '') {
-    let url = `${this.apiUrl}municipal/${code}`
-    if ( !!this.levels[code.slice(0, 2)] ) {
-      url += `/${this.levels[code.slice(0, 2)]}`
+  function getFeatures(code = '') {
+    let url = `${apiUrl}municipal/${code}`
+    if ( !!levels[code.slice(0, 2)] ) {
+      url += `/${levels[code.slice(0, 2)]}`
     }
     return new Promise((resolve, reject) => {
       fetch(url, {
@@ -59,8 +53,8 @@ class MapService {
     })
   }
 
-  getAdjacentFeatures(code = '') {
-    let url = `${this.apiUrl}municipal/${code}/adjacent`
+  function getAdjacentFeatures(code = '') {
+    let url = `${apiUrl}municipal/${code}/adjacent`
     return new Promise((resolve, reject) => {
       fetch(url, {
         method: 'GET',
@@ -71,7 +65,7 @@ class MapService {
     })
   }
 
-  getAreaCounts(facets, selectedCode, totalCount) {
+  function getAreaCounts(facets, selectedCode, totalCount) {
     let buckets = [];
     let maxCount = 0;
     let counts = {};
@@ -108,6 +102,17 @@ class MapService {
       maxCount: maxCount
     }
   }
-}
+
+  return {
+    getUserLocation,
+    getPolygon,
+    getMunicipalities,
+    getFeatures,
+    getAdjacentFeatures,
+    getAreaCounts
+  }
+
+}());
+
 
 export default MapService

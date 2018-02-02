@@ -14,7 +14,7 @@ const initialState = {
     term: '', 
     loadingLocation: false,
     loadingLocationError: false,
-    code: ''
+    location: ''
 };
 
 function municipalities(state = initialState, action) {
@@ -38,11 +38,12 @@ function municipalities(state = initialState, action) {
         case CHOOSE_MUNICIPALITY:
             return Object.assign({}, state, {code: action.code})
         case SHOW_USER_LOCATION:
-            return Object.assign({}, state, {loadingLocation: true, loadingLocationError: false})
+            return Object.assign({}, state, {location: action.location})
         case SHOW_USER_LOCATION_ERROR: 
             return Object.assign({}, state, {loadingLocation: false, loadingLocationError: true})
         case RESET_USER_LOCATION: 
             return Object.assign({}, state, {loadingLocation: false, loadingLocationError: false})
+        
         default:
             return state
     }

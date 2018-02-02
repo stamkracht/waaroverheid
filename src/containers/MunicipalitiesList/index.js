@@ -7,9 +7,10 @@ import {
   filterMunicipalities,
   showUserLocation,
   showUserLocationError,
-  resetUserLocation
+  resetUserLocation,
+  getUserLocation
 } from '../../actions'
-import Municipalities from '../Municipalities'
+import Municipalities from '../../components/Municipalities'
 
 const chooseMunicipality = municipalities => municipalities.length ? push(`${municipalities[0].code}`) : null;
 const mapStateToProps = state => {
@@ -17,7 +18,8 @@ const mapStateToProps = state => {
       municipalities: state.municipalities.filtered,
       term: state.municipalities.term,
       loadingLocation: state.municipalities.loadingLocation,
-      loadingLocationError: state.municipalities.loadingLocationError
+      loadingLocationError: state.municipalities.loadingLocationError,
+      code: state.municipalities.location
   }
 };
 
@@ -28,7 +30,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   chooseMunicipality,
   showUserLocation,
   showUserLocationError,
-  resetUserLocation
+  resetUserLocation,
+  getUserLocation
 }, dispatch)
 
 export default connect(
