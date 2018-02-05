@@ -1,14 +1,14 @@
 import React from 'react'
 
-import NavigableMap from '../components/NavigableMap'
-import MapService from '../services/MapService'
-import ZoomControls from '../components/ZoomControls'
-import Alert from '../components/Alert'
-import Filters from '../components/Filters'
-import Drawer from '../components/Drawer'
-import DocumentService from '../services/DocumentService'
-import SearchService from '../services/SearchService'
-import FiltersService from '../services/FiltersService'
+import NavigableMap from '../../components/NavigableMap'
+import MapService from '../../services/MapService'
+import ZoomControls from '../../components/ZoomControls'
+import Alert from '../../components/Alert'
+import Filters from '../../components/Filters'
+import Drawer from '../../components/Drawer'
+import DocumentService from '../../services/DocumentService'
+import SearchService from '../../services/SearchService'
+import FiltersService from '../../services/FiltersService'
 
 
 class MapContainer extends React.Component {
@@ -33,7 +33,6 @@ class MapContainer extends React.Component {
       hasMoreDocs: true
     };
 
-    this.MapService = new MapService();
     this.DocumentService = new DocumentService();
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
@@ -60,8 +59,8 @@ class MapContainer extends React.Component {
   async componentWillReceiveProps(nextProps) {  
     const {code} = nextProps.match.params
     if(this.state.code !== code) {
-      const geo = await this.MapService.getFeatures(code);
-      const adjacent = await this.MapService.getAdjacentFeatures(code);
+      const geo = await MapService.getFeatures(code);
+      const adjacent = await MapService.getAdjacentFeatures(code);
       let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
       const hasMoreDocs = true;
       this.setState({code, geo, adjacent, facets, documentsCount, documents, hasMoreDocs})
@@ -136,9 +135,9 @@ class MapContainer extends React.Component {
   async selectArea(code, name) {
     if(!code) { return; }
     this.handleRouting(code);
-    const geo = await this.MapService.getFeatures(code);
+    const geo = await MapService.getFeatures(code);
     this.cacheNames(geo);
-    const adjacent = await this.MapService.getAdjacentFeatures(code);
+    const adjacent = await MapService.getAdjacentFeatures(code);
     let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
     const hasMoreDocs = true;
     if ( !name ) {
@@ -148,9 +147,9 @@ class MapContainer extends React.Component {
   }
 
   async selectMunicipality(code, name) {
-    const geo = await this.MapService.getFeatures(code);
+    const geo = await MapService.getFeatures(code);
     this.cacheNames(geo);
-    const adjacent = await this.MapService.getAdjacentFeatures(code);
+    const adjacent = await MapService.getAdjacentFeatures(code);
     let {facets, meta: {total: documentsCount}=0, events: documents=[]} = await SearchService.search(code);
     const hasMoreDocs = true;
     this.setState({code, geo, adjacent, name, facets, documentsCount, documents, hasMoreDocs})
@@ -218,7 +217,7 @@ class MapContainer extends React.Component {
           geo={this.state.geo}
           adjacent={this.state.adjacent}
           code={this.state.code}
-          counts={this.MapService.getAreaCounts(
+          counts={MapService.getAreaCounts(
               this.state.facets,
               this.state.code,
               this.state.documentsCount

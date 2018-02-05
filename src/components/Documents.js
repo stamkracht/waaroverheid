@@ -9,10 +9,6 @@ import Tag from './Tag'
 
 class Documents extends Component {
 
-  constructor (props) {
-    super(props);
-  }
-
   renderDocumentItems() {
     return this.props.documents.map((document, i) => <DocumentItem key={i} document={document} />)
   }

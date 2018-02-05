@@ -1,16 +1,11 @@
 import React from 'react'
 import '../styles/municipalities.css'
-import MapService from '../services/MapService'
 import MunicipalitiesHeader from './MunicipalitiesHeader'
 import MunicipalitiesSearch from './SearchMunicipalities'
 import MunicipalitiesList from './ListMunicipalities'
 
 
 class Municipalities extends React.Component {
-
-  constructor(props) {
-    super(props);    
-  }
 
   componentWillMount() {
     this.props.getMunicipalities()
@@ -37,12 +32,10 @@ class Municipalities extends React.Component {
   render() {
     const {
       changePage,
-      history,
       loadingLocation,
       municipalities,
       filterMunicipalities,
       getUserLocation,
-      getMunicipalities,
       chooseMunicipality
     } = this.props;  
 

@@ -6,7 +6,6 @@ const FiltersService = (function () {
     types: {terms: ['events']}
   };
   let FILTERS = Object.assign({}, BASE_FILTERS);
-  let APPLIED_FILTERS = {};
 
   function set(filters) {
     FILTERS = Object.assign(FILTERS, filters);
@@ -24,12 +23,7 @@ const FiltersService = (function () {
   }
 
   function reset() {
-    APPLIED_FILTERS = get();
     FILTERS = Object.assign({}, BASE_FILTERS);
-  }
-
-  function getAppliedFilters() {
-    return APPLIED_FILTERS;
   }
 
   return {
