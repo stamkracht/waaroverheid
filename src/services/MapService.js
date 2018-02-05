@@ -5,28 +5,26 @@ import apiUrl from './ApiUrl'
 import LocationService from '../services/LocationService'
 import { isMobile } from '../utilities/device'
 
-const MapService = (function() {
+const levels = {
+  'GM': 'districts',
+  'WK': 'neighborhoods',
+  'BU': '',
+}
 
-  const levels = {
-    'GM': 'districts',
-    'WK': 'neighborhoods',
-    'BU': '',
-  }
-
-  function getUserLocation() {
+ export function getUserLocation() {
     return LocationService.getCoords()
       .then(coords => getPolygon(coords.latitude, coords.longitude))  //amstelveen test coords 52.308888, 4.873396
       .then(res => isMobile() ? res.properties['BU_CODE'] : res.properties['GM_CODE']);
   }
 
-  function getPolygon(latitude, longitude) {
+export function getPolygon(latitude, longitude) {
     let url = `${apiUrl}localize?lat=${latitude}&lon=${longitude}`
     url = isMobile() ? `${url}&type=neighborhood` : `${url}&type=municipality`
     
     return fetch(url).then(res => res.status === 200 ? res.json() : Promise.reject(res));
   }
 
-  function getMunicipalities() {
+export function getMunicipalities() {
     return fetch(`${apiUrl}municipal`)
       .then(res => res.json())
       .then(({municipalities}) => municipalities
@@ -38,7 +36,7 @@ const MapService = (function() {
       .catch(err => console.log(err));
   }
 
-  function getFeatures(code = '') {
+export function getFeatures(code = '') {
     let url = `${apiUrl}municipal/${code}`
     if ( !!levels[code.slice(0, 2)] ) {
       url += `/${levels[code.slice(0, 2)]}`
@@ -53,7 +51,7 @@ const MapService = (function() {
     })
   }
 
-  function getAdjacentFeatures(code = '') {
+export function getAdjacentFeatures(code = '') {
     let url = `${apiUrl}municipal/${code}/adjacent`
     return new Promise((resolve, reject) => {
       fetch(url, {
@@ -65,7 +63,7 @@ const MapService = (function() {
     })
   }
 
-  function getAreaCounts(facets, selectedCode, totalCount) {
+export function getAreaCounts(facets, selectedCode, totalCount) {
     let buckets = [];
     let maxCount = 0;
     let counts = {};
@@ -102,17 +100,3 @@ const MapService = (function() {
       maxCount: maxCount
     }
   }
-
-  return {
-    getUserLocation,
-    getPolygon,
-    getMunicipalities,
-    getFeatures,
-    getAdjacentFeatures,
-    getAreaCounts
-  }
-
-}());
-
-
-export default MapService

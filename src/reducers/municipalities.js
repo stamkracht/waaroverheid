@@ -5,7 +5,7 @@ import {
     SHOW_USER_LOCATION,
     SHOW_USER_LOCATION_ERROR,
     RESET_USER_LOCATION
-} from '../actions'
+} from '../types'
 
 import levenshtein from 'js-levenshtein'
 const initialState = {

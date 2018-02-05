@@ -1,14 +1,14 @@
 import React from 'react'
 
-import NavigableMap from '../../components/NavigableMap'
-import MapService from '../../services/MapService'
-import ZoomControls from '../../components/ZoomControls'
-import Alert from '../../components/Alert'
-import Filters from '../../components/Filters'
-import Drawer from '../../components/Drawer'
-import DocumentService from '../../services/DocumentService'
-import SearchService from '../../services/SearchService'
-import FiltersService from '../../services/FiltersService'
+import NavigableMap from '../components/NavigableMap'
+import * as MapService from '../services/MapService'
+import ZoomControls from '../components/ZoomControls'
+import Alert from '../components/Alert'
+import Filters from '../components/Filters'
+import Drawer from '../components/Drawer'
+import DocumentService from '../services/DocumentService'
+import SearchService from '../services/SearchService'
+import FiltersService from '../services/FiltersService'
 
 
 class MapContainer extends React.Component {

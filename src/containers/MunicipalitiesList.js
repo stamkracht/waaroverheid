@@ -8,8 +8,8 @@ import {
   showUserLocationError,
   resetUserLocation,
   getUserLocation
-} from '../../actions'
-import Municipalities from '../../components/Municipalities'
+} from '../actions'
+import Municipalities from '../components/Municipalities'
 
 const chooseMunicipality = municipalities => municipalities.length ? push(`${municipalities[0].code}`) : null;
 const mapStateToProps = state => {
