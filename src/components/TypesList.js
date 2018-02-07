@@ -3,7 +3,6 @@ import React from 'react'
 import Button from './Button'
 import '../styles/typesList.css'
 import ListItem from './ListItem'
-import FiltersService from '../services/FiltersService'
 class TypesList extends React.Component {
 
   constructor(props) {
@@ -27,7 +26,7 @@ class TypesList extends React.Component {
       .map(item => item.key)
     };
 
-    return FiltersService.set(checkedItems)
+    return this.props.updateFilters(checkedItems);
   }
 
   renderItems() {

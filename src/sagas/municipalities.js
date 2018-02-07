@@ -1,6 +1,6 @@
 import { takeLatest } from 'redux-saga/effects'
 import * as TYPES from '../types';
-import { fetchMunicipalities, fetchUserLocation } from '../actions'
+import { fetchMunicipalities, fetchUserLocation } from '../actions/municipalities'
 
 export function* watchFetchMunicipalities() {
   yield takeLatest(TYPES.FETCH_MUNICIPALITIES, fetchMunicipalities);

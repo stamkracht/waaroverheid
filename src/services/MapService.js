@@ -41,26 +41,12 @@ export function getFeatures(code = '') {
     if ( !!levels[code.slice(0, 2)] ) {
       url += `/${levels[code.slice(0, 2)]}`
     }
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'GET',
-      })
-        .then(d => d.json())
-        .then(geo => resolve(geo))
-        .catch(err => reject(err))
-    })
+    return fetch(url).then(d => d.json())
   }
 
 export function getAdjacentFeatures(code = '') {
     let url = `${apiUrl}municipal/${code}/adjacent`
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'GET',
-      })
-        .then(d => d.json())
-        .then(geo => resolve(geo))
-        .catch(err => reject(err))
-    })
+    return fetch(url).then(d => d.json())    
   }
 
 export function getAreaCounts(facets, selectedCode, totalCount) {

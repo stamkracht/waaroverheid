@@ -1,7 +1,7 @@
 import React from 'react'
 import ZoomButton from './ZoomButton'
 
-const ZoomControls = ({code, setZoomLevel, search}) => {
+const ZoomControls = ({code, setZoomLevel, search, history}) => {
   const level = code.slice(0, 2);
   
   return (
@@ -10,7 +10,7 @@ const ZoomControls = ({code, setZoomLevel, search}) => {
         pathname={'/'}
         search={false}
         name={'Kies gemeente'}
-        onClick={() => setZoomLevel()} />            
+        onClick={() => history.push('')} />            
 
       {(level === 'GM' || level === 'WK' || level === 'BU') && 
       <ZoomButton

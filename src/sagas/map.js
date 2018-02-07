@@ -1,10 +1,11 @@
 import { takeLatest } from 'redux-saga/effects'
-import {FETCH_MUNICIPALITIES, FETCH_USER_LOCATION, fetchMunicipalities, fetchUserLocation} from '../actions'
+import {fetchArea, fetchSearch} from '../actions/map'
+import * as TYPES from '../types';
 
-export function* watchFetchMunicipalities() {
-  yield takeLatest(FETCH_MUNICIPALITIES, fetchMunicipalities);
+export function* watchFetchArea() {
+  yield takeLatest(TYPES.FETCH_AREA, fetchArea);
 }
 
-export function* watchGetUserLocation() {
-  yield takeLatest(FETCH_USER_LOCATION, fetchUserLocation)
+export function* watchFetchSearch() {
+  yield takeLatest(TYPES.FETCH_SEARCH, fetchSearch)
 }

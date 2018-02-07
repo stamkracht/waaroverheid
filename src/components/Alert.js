@@ -58,7 +58,7 @@ class Alert extends React.Component {
           return (
             <Tag key={i}
               text={tag}
-              onClick={() => this.props.updateFilters(tag, 'classification')}
+              onClick={() => this.props.removeFilters(tag, 'classification')}
             />
           )
         })
@@ -133,10 +133,8 @@ class Alert extends React.Component {
 }
 
 Alert.defaultProps = {
-  service: {},
   area: 'geselecteerd gebied',
   filters: {},
-  updateFilters: () => {},
   query: '',
   resetQuery: () => {},
 }

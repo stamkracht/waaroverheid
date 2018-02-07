@@ -41,11 +41,11 @@ class Filters extends React.Component {
 
   handleOnSubmit() {
     this.setState({active: true})
-    this.props.submit(this.state.query, Object.assign({}, FiltersService.get()))
+    this.props.submit()
   }
 
   handleOnType(query) {
-    this.setState({query})
+    this.props.updateQuery(query)    
   }
 
   handleBrushChange({startIndex, endIndex}, chartData) {
@@ -54,7 +54,7 @@ class Filters extends React.Component {
       to: chartData[endIndex].key_as_string,
     }};
 
-    FiltersService.set(startDate);
+    this.props.updateFilters(startDate);
   }
 
   renderTypes() {
@@ -66,6 +66,7 @@ class Filters extends React.Component {
             key={item}
             facet={item}
             text={'Soorten'}
+            updateFilters={this.props.updateFilters}
             list={this.props.facets[item].buckets} />
         )
     });

@@ -1,8 +1,6 @@
 import apiUrl from './ApiUrl';
 import FiltersService from './FiltersService';
 
-const SearchService = (function () {
-
   let PARAMS = {
     from: 0,
     size: 2,
@@ -20,10 +18,10 @@ const SearchService = (function () {
     query: ''
   };
 
-  function search(code, query = '', page = 1) {
+ export function search(code, query = '', filters = {}, page = 1) {
     return fetch(`${apiUrl}v0/${parseCode(code)}/search`, {
       method: 'POST',
-      body: handleData(code, query, page),
+      body: handleData(code, query, page, filters),
       headers: new Headers({
         'Content-Type': 'application/json'
       })
@@ -89,10 +87,21 @@ const SearchService = (function () {
     return [PARAMS.from, PARAMS.size]
   }
 
-  function handleData(code, query, page) {
+  function getSearchFilters(filters) {
+    return Object.keys(filters)
+      .filter(name => filters[name])
+      .reduce((memo, name) => {
+        const filter = {};
+        filter[name] = filters[name];
+        return Object.assign(memo, filter)
+      }, {});
+  }
+
+  function handleData(code, query, page, filters) {
     const areaFilter = getAreaFilter(code);
     const areaFacet = getAreaFacet(code);
     const params = Object.assign({}, PARAMS);
+    const searchFilters = getSearchFilters(filters);
     [params.from, params.size] = getPage(page);
     params.query = query;
     if (page <= 1) {
@@ -102,20 +111,11 @@ const SearchService = (function () {
       // no need for facets on subsequent pages
       delete params.facets
     }
-    params.filters = Object.assign({}, areaFilter, FiltersService.get());
+    params.filters = Object.assign({}, areaFilter, searchFilters);
     return JSON.stringify(params);
   }
 
-  function setParams(params) {
+  export function setParams(params) {
     PARAMS = Object.assign(PARAMS, params);
   }
 
-
-  return {
-    search,
-    setParams
-  }
-
-}());
-
-export default SearchService
