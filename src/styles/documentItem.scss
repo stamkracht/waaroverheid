@@ -71,6 +71,12 @@
   padding: 7px;
 }
 
+.c-documents--tag .c-button:hover,
+.c-button.active,
+.c-button.loading {
+  box-shadow: none;
+}
+
 .c-documents .c-button--text {
   min-width: 35px;
   line-height: 10px;
