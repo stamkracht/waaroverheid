@@ -1,8 +1,14 @@
+<<<<<<< 8be3529e90379b2ba8936e3997e92a9afe1bef28
 .c-documents .c-documents--item {
+=======
+.c-documents {
+  .c-documents--item {
+>>>>>>> Initial refactoring
     margin-bottom: 30px;
     text-align: left;
     width: 100%;
     border: 2px solid transparent;
+<<<<<<< 8be3529e90379b2ba8936e3997e92a9afe1bef28
 }
 
 .c-documents .c-documents--content {
@@ -111,10 +117,104 @@
 }
 
 .c-details .c-details--snippets {
+=======
+    &:hover {
+      border: 2px solid #ed6000;
+    }
+  }
+  .c-documents--content {
+    cursor: pointer;
+    position: relative;
+    .icon {
+      top: 50%;
+      margin-top: -35px;
+    }
+  }
+  .c-documents--text {
+    padding: 15px 15px 15px 70px;
+    width: 50%;
+    display: inline-block;
+    h3 {
+      font-weight: lighter;
+      margin: 5px 0;
+    }
+    h2 {
+      font-weight: 600;
+      margin: 5px 0;
+    }
+  }
+  .c-documents--dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+  .c-button {
+    background: #eeeeee;
+    padding: 7px;
+    .c-button--text {
+      min-width: 35px;
+      line-height: 10px;
+    }
+  }
+}
+
+.c-documents--tag {
+  width: 45%;
+  padding-right: 45px;
+  padding-top: 35px;
+  padding-bottom: 10px;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  div {
+    display: inline-block;
+    .c-container {
+      width: auto;
+      margin: 5px;
+    }
+  }
+}
+
+.c-details {
+  .c-container {
+    margin-top: 2px;
+  }
+  .c-details--content {
+    padding: 10px;
+    background: #eeeeee;
+    min-height: 54px;
+  }
+  .c-details--text {
+    margin-bottom: 10px;
+    padding-right: 34px;
+  }
+  .c-details--snippets {
+>>>>>>> Initial refactoring
     margin-bottom: 10px;
     font-style: italic;
     font-weight: lighter;
     padding-right: 34px;
+<<<<<<< 8be3529e90379b2ba8936e3997e92a9afe1bef28
+=======
+  }
+  h3, p, a {
+    margin: 5px;
+    font-weight: normal;
+  }
+  p, a {
+    font-size: 15px;
+  }
+  .icon {
+    position: relative;
+    display: inline-block;
+  }
+>>>>>>> Initial refactoring
 }
 
 .source__title {
@@ -123,6 +223,7 @@
     font-style: normal;
 }
 
+<<<<<<< 8be3529e90379b2ba8936e3997e92a9afe1bef28
 .c-details h3,
 p,
 a {
@@ -140,6 +241,8 @@ a {
     display: inline-block;
 }
 
+=======
+>>>>>>> Initial refactoring
 .c-documentList {
     padding: 1px;
     max-height: calc(100vh - 170px);
@@ -147,6 +250,7 @@ a {
 }
 
 .snippets {
+<<<<<<< 8be3529e90379b2ba8936e3997e92a9afe1bef28
     margin-left: 5px;
     font-size: 15px;
 
@@ -177,4 +281,50 @@ a {
     a {
         font-size: 14px;
     }
+=======
+  margin-left: 5px;
+  font-size: 15px;
+  p {
+    display: inline;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .c-documents {
+    .c-documents--text {
+      width: 92%;
+    }
+  }
+
+  .c-documents {
+    .c-documents--tag {
+      width: 100%;
+      padding-top: 0px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .c-documents {
+    .c-button {
+    font-size: small;
+    }
+  }
+
+  .c-documents--text {
+    h2 {
+      font-size: larger;
+    }
+    h3 {
+      font-size: 15px;
+    }
+  }
+
+  .c-details {
+    h3, p, a  {
+      font-size: 14px;
+    }
+  }
+>>>>>>> Initial refactoring
 }

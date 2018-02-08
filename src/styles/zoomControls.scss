@@ -1,23 +1,36 @@
 .c-zoomControls {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .c-zoomControls a {
-  margin: 0;
-  color: black;
-  text-align: center;
+    margin: 0;
+    color: black;
+    text-align: center;
 }
 
 .c-zoomControls a:first-child .c-container {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .c-zoomControls a .c-container {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 670px) {
+    .c-zoomControls .c-button {
+        padding: 5px;
+        min-width: 170px;
+    }
+
+    .c-zoomControls > .c-container {
+        font-size: small;
+        margin: 5px 15px;
+        text-align: center;
+    }
 }

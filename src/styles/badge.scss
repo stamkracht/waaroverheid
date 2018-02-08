@@ -1,13 +1,12 @@
 .c-badge {
-  border-radius: 10px;
-  background-color: #dddddd;
-  text-align: center;
-  color: #333;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 3px 7px;
-
-  .active {
-    color: #ED6000;
-  }
+    border-radius: 10px;
+    background-color: #dddddd;
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 7px;
+    &.active {
+        color: #ed6000;
+    }
 }
