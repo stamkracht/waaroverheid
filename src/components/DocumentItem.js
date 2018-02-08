@@ -86,7 +86,7 @@ class DocumentItem extends Component {
         <Icon icon='file' iconPosition='left' width='50' height='50'/>
         <div className='c-documents--text'>
           <h2>{this.props.document.name}</h2>
-          <h3>{moment(this.props.document.start_date).format('DD-MM-YYYY')}</h3>
+          <h3>{`${moment(this.props.document.start_date).format('DD-MM-YYYY')}, ${this.props.document.classification}`}</h3>
         </div>
         <div className='c-documents--tag'>
           {this.renderTags()}
