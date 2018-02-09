@@ -1,90 +1,100 @@
-.c-documents .c-reporting {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  user-select: none;
-}
+.c-documents {
 
-.c-documents .c-reporting .c-button {
-  padding: 0;
-  background: #eeeeee;
-}
+  .c-reporting {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    user-select: none;
 
-.c-documents .c-reporting .c-dropdown {
-  position: absolute;
-  z-index: 1000;
-  right: 10px;
-  top: 97%;
-  padding: 10px;
-  background: white;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-  white-space: nowrap;
-}
+    .c-button {
+      padding: 0;
+      background: #eeeeee;
+    }
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--header {
-  display: flex;
-  justify-content: space-between;
-}
+    .c-dropdown {
+      position: absolute;
+      z-index: 1000;
+      right: 10px;
+      top: 97%;
+      padding: 10px;
+      background: white;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+      transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
+      white-space: nowrap;
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--header  h3 {
-    font-weight: normal;
-    line-height: 30px;
-    margin: 5px 5px 5px 0px;
-}
+      .c-dropdown--header {
+        display: flex;
+        justify-content: space-between;
 
-.c-documents .c-reporting .c-dropdown ul {
-  list-style: none;
-  -webkit-padding-start: 0px;
-  -webkit-margin-before: 0.5em;
-}
+        h3 {
+          font-weight: normal;
+          line-height: 30px;
+          margin: 5px 5px 5px 0px;
+        }
+      }
 
-.c-documents .c-reporting .c-dropdown ul li {
-  font-size: normal;
-  margin: 5px;
-}
+      ul {
+        list-style: none;
+        -webkit-padding-start: 0px;
+        -webkit-margin-before: 0.5em;
 
-.c-documents .c-reporting .c-dropdown ul li span {
-  width: fit-content;
-}
+        li {
+          font-size: normal;
+          margin: 5px;
 
-.c-documents .c-reporting .c-dropdown .c-textarea {
-  display: block;
-  width: 100%;
-  min-height: 50px;
-  padding: 5px;
-  font-size: 14px;
-  font-weight: lighter;
-  border: 1px solid #ddd;
-  outline: none;
-  resize: none;
-}
+          span {
+            width: fit-content;
+          }
+        }
+      }
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--footer {
-  text-align: center;
-  margin: 10px 0;
-}
+      .c-textarea {
+        display: block;
+        width: 100%;
+        min-height: 50px;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: lighter;
+        border: 1px solid #ddd;
+        outline: none;
+        resize: none;
+      }
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container {
-  width: 100%;
-}
+      .c-dropdown--footer {
+        text-align: center;
+        margin: 10px 0;
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .c-button {
-  padding: 7px 10px 7px 10px;
-  width: 100%;
-}
+        .c-container {
+          width: 100%;
 
-.c-documents .c-reporting .c-dropdown .c-dropdown--footer .c-container .icon {
-  position: absolute;
+          .c-button {
+            padding: 7px 10px 7px 10px;
+            width: 100%;
+          }
+
+          .icon {
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
-  .c-documents .c-reporting .c-dropdown ul li {
-    font-size: small;
+  .c-documents {
+    .c-reporting {
+      .c-dropdown {
+        ul {
+          li {
+            font-size: small;
+          }
+        }
+        .c-textarea {
+          font-size: small;
+        }
+      }
+    }
   }
 
-  .c-documents .c-reporting .c-dropdown .c-textarea {
-    font-size: small;
-  }
-  
 }

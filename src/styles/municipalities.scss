@@ -13,66 +13,69 @@
     overflow: auto;
     text-align: left;
 
-    a {
-        text-decoration: none;
-        margin: 0;
-    }
-}
+  a {
+    text-decoration: none;
+    margin: 0;
+  }
 
-.c-municipalities .c-municipalities--header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    header {
-        width: 140px;
-        height: 50px;
-        background-image: url(./../images/logo-header.png);
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-}
-.c-municipalities .c-municipalities--header .c-button--wrapper {
-    margin-left: auto;
-}
-
-.c-municipalities .c-container {
+  .c-container {
     width: 100%;
     margin: 15px 0;
-}
+  }
 
-.c-municipalities .c-municipalities--header .c-button--wrapper .c-container .c-button .c-button--text {
-    padding-right: 20px;
-}
-
-@media (max-width: 670px) {
-    .c-municipalities .c-municipalities--header .c-button--wrapper .c-container .c-button .c-button--text {
-        padding-right: 40px;
-    }
-
-    .c-municipalities .c-container {
-        width: 100%;
-        margin: 7px 0;
-    }
-}
-
-.c-municipalities .c-searchBox {
+  .c-searchBox {
     width: auto;
-}
+  }
 
-.c-municipalities .c-municipality {
+  .c-municipality {
     text-align: left;
     cursor: pointer;
     padding: 15px;
     width: 100%;
     border: 2px solid transparent;
+    &:hover {
+      border: 2px solid #ed6000;
+    }
+    h4 {
+      margin: 0;
+      color: black;
+    }
+  }
+
+  .c-municipalities--header {
+    h1 {
+      display: inline-block;
+    }
+
+    .c-button--wrapper {
+      float: right;
+      .c-container {
+        .c-button {
+          .c-button--text {
+            padding-right: 20px;
+          }
+        }
+      }
+    }
+  }
 }
 
-.c-municipalities .c-municipality h4 {
-    margin: 0;
-    color: black;
-}
+@media (max-width: 670px) {
 
-.c-municipality:hover {
-    border: 2px solid #ed6000;
+  .c-municipalities {
+    .c-municipalities--header {
+      .c-button--wrapper {
+        .c-container {
+          width: 100%;
+          margin: 7px 0;
+          .c-button {
+            .c-button--text {
+              padding-right: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
