@@ -45,7 +45,7 @@ class Filters extends React.Component {
   }
 
   handleOnType(query) {
-    this.props.updateQuery(query)    
+    this.props.updateQuery(query)
   }
 
   handleBrushChange({startIndex, endIndex}, chartData) {

@@ -8,6 +8,22 @@ import '../styles/drawer.css'
 
 
 class Drawer extends React.Component {
+  constructor(props) {
+    super (props)
+
+    this.state = {
+      animateDrawer: false
+    }
+  }
+
+  componentWillReceiveProps({documentsCount}) {
+    if(documentsCount && !this.props.isDrawerOpen && this.props.documentsCount !== documentsCount) {
+      this.setState({animateDrawer: true})
+      setTimeout(() => {
+        this.setState({animateDrawer: false})
+      }, 5000);
+    }
+  }
 
   handleOnClick() {
     this.props.toggleDrawer(this.props.isDrawerOpen)
@@ -84,7 +100,7 @@ class Drawer extends React.Component {
 
   render() {
     return (
-      <div className={classNames('c-drawer', {'active': this.props.isDrawerOpen})}>
+      <div className={classNames('c-drawer', {'active': this.props.isDrawerOpen, 'c-drawer--animate': this.state.animateDrawer})}>
         {this.renderHeader()}
 
         {this.renderDocuments()}
