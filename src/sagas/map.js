@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects'
-import {fetchArea, fetchSearch} from '../actions/map'
+import {fetchArea, fetchSearch, fetchMoreDocs} from '../actions/map'
 import * as TYPES from '../types';
 
 export function* watchFetchArea() {
@@ -8,4 +8,8 @@ export function* watchFetchArea() {
 
 export function* watchFetchSearch() {
   yield takeLatest(TYPES.FETCH_SEARCH, fetchSearch)
+}
+
+export function* watchFetchMoreDocuments() {
+  yield takeLatest(TYPES.FETCH_MORE_DOCS, fetchMoreDocs)
 }

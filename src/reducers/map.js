@@ -6,7 +6,8 @@ import {
    UPDATE_FILTERS,
    RESET_FILTERS,
    UPDATE_QUERY,
-   REMOVE_FILTERS
+   REMOVE_FILTERS,
+   GET_MORE_DOCS
 } from '../types'
 
 const BASE_FILTERS = { 
@@ -22,8 +23,8 @@ const initialState = {
    code: '',
    search: {},
    hasMoreDocs: true,
-   drawerOpen: false,
-   namesByCode: new Map()
+   isDrawerOpen: false,
+   documentsCount: 0
 };
 
 //TODO: move to utility of some sort
@@ -65,6 +66,15 @@ function getName(geoResponse) {
     return filters;
   }
 
+function mergeDocuments(state, updatedSearch) {
+    const search = Object.assign({}, state.search);
+
+    search.events = search.events.concat(updatedSearch.events);
+    search.meta = updatedSearch.meta;
+
+    return search;
+}
+
 
 function map(state = initialState, action) {
     switch(action.type) {        
@@ -87,7 +97,7 @@ function map(state = initialState, action) {
         case TOGGLE_DRAWER:
             return {
                 ...state,
-                drawerOpen: action.drawerOpen
+                isDrawerOpen: !action.isDrawerOpen
             }
         case SEARCH:
             return {
@@ -113,6 +123,11 @@ function map(state = initialState, action) {
             return {
                 ...state,
                 query: action.query
+            }
+        case GET_MORE_DOCS:
+            return {
+                ...state,
+                search: mergeDocuments(state, action.search)
             }
 
         default:

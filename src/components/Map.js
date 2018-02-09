@@ -45,6 +45,16 @@ class Map extends React.Component {
       getSearch({code, filters, query})
     }
 
+    getMoreDocuments(page) {
+      const {
+        getMoreDocs,
+        code,
+        filters,
+        query
+      } = this.props;
+      getMoreDocs({code, filters, query, page}) 
+    }
+
 
   render() {
 
@@ -57,9 +67,11 @@ class Map extends React.Component {
       getSearch,
       facets,
       filters,
-      openDrawer,
-      drawerActive,
+      documents,
+      hasMoreDocs,
+      isDrawerOpen,
       documentsCount,
+      toggleDrawer,
       changePage,
       name,
       history,
@@ -67,6 +79,7 @@ class Map extends React.Component {
       resetQuery,
       updateFilters,
       updateQuery,
+      getMoreDocuments,
       location: {search}      
     } = this.props;
 
@@ -83,16 +96,16 @@ class Map extends React.Component {
             documentsCount
         )}
         select={getArea}
-        openDrawer={openDrawer} />
+        isDrawerOpen={isDrawerOpen} />
 
-       {!drawerActive && 
+       {!isDrawerOpen && 
         <ZoomControls
          code={code}
          setZoomLevel={getArea}
          history={history}
          search={search}/>
       }
-      {!drawerActive && documentsCount &&
+      {!isDrawerOpen && documentsCount &&
         <Filters
         facets={facets}
         updateFilters={updateFilters}
@@ -107,21 +120,21 @@ class Map extends React.Component {
         query={query}
         resetQuery={this.resetQuery.bind(this)}/>
 
-      {/*
+      
       <Drawer
-        numberDoc={this.state.documentsCount}
-        area={this.state.name}
-        active={this.state.drawerActive}
-        toggle={this.toggleDrawer.bind(this)}
+        documentsCount={documentsCount}
+        area={name}
+        isDrawerOpen={isDrawerOpen}
+        toggleDrawer={toggleDrawer}
         service={this.DocumentService}
-        facets={this.state.facets}
-        documents={this.state.documents}
-        filters={this.state.filters}
-        updateFilters={this.updateFilters.bind(this)}
-        query={this.state.query}
+        facets={facets}
+        documents={documents}
+        filters={filters}
+        updateFilters={updateFilters}
+        query={query}
         resetQuery={this.resetQuery.bind(this)}
         getMoreDocuments={this.getMoreDocuments.bind(this)}
-        hasMoreDocs={this.state.hasMoreDocs}/> */}
+        hasMoreDocs={hasMoreDocs}/>
 
     </div>)
   }

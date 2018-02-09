@@ -29,6 +29,15 @@ export const updateQuery = (query) => ({
 export const removeFilters = (filters) => ({
     type: TYPES.REMOVE_FILTERS, filters
 })
+
+export const toggleDrawer = (isDrawerOpen) => ({
+    type: TYPES.TOGGLE_DRAWER, isDrawerOpen
+})
+
+export const getMoreDocs = ({code, query, filters, page}) => ({
+    type: TYPES.FETCH_MORE_DOCS, code, query, filters, page
+})
+
   
 export function* fetchArea(action) {
     try {
@@ -46,6 +55,16 @@ export function* fetchSearch({code, query, filters, page}) {
     try {
         const search = yield call(Search.search, code, query, filters, page)   
         yield put({type: TYPES.SEARCH, search});        
+    } catch (e) {
+        //handle faled
+        console.log(e, 'failed')
+    }
+}
+
+export function* fetchMoreDocs({code, query, filters, page}) {
+    try {
+        const search = yield call(Search.search, code, query, filters, page)   
+        yield put({type: TYPES.GET_MORE_DOCS, search});        
     } catch (e) {
         //handle faled
         console.log(e, 'failed')

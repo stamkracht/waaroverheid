@@ -1,5 +1,5 @@
 import {watchFetchMunicipalities, watchGetUserLocation} from './municipalities'
-import {watchFetchArea, watchFetchSearch} from './map'
+import {watchFetchArea, watchFetchSearch, watchFetchMoreDocuments} from './map'
 import { all } from 'redux-saga/effects'
 
 
@@ -8,6 +8,7 @@ export default function* rootSaga() {
         watchFetchMunicipalities(),
         watchGetUserLocation(),
         watchFetchArea(),
-        watchFetchSearch()
+        watchFetchSearch(),
+        watchFetchMoreDocuments()
     ])
 }

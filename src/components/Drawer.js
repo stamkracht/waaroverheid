@@ -10,11 +10,11 @@ import '../styles/drawer.css'
 class Drawer extends React.Component {
 
   handleOnClick() {
-    this.props.toggle()
+    this.props.toggleDrawer(this.props.isDrawerOpen)
   }
 
   renderHeaderContent() {
-    let text = `${this.props.numberDoc} document${this.props.numberDoc === 1 ? '' : 'en'} gevonden in ${this.props.area}`
+    let text = `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${this.props.area}`
     if ( !this.props.active ) {
       return (
         <div>
@@ -37,7 +37,7 @@ class Drawer extends React.Component {
 
   renderHamburger() {
     return (
-      <div className={classNames('c-hamburger', {'active': this.props.active})}>
+      <div className={classNames('c-hamburger', {'active': this.props.isDrawerOpen})}>
         <span className='line' />
         <span className='line' />
         <span className='line' />
@@ -55,8 +55,8 @@ class Drawer extends React.Component {
   }
 
   renderDocuments = () => {
-    if(this.props.active) {
-      if(this.props.numberDoc === 0) {
+    if(this.props.isDrawerOpen) {
+      if(this.props.documentsCount === 0) {
         return (
           <div className='c-emptyContent'>
             <h2>Geen documenten gevonden</h2>
@@ -85,7 +85,7 @@ class Drawer extends React.Component {
 
   render() {
     return (
-      <div className={classNames('c-drawer', {'active': this.props.active})}>
+      <div className={classNames('c-drawer', {'active': this.props.isDrawerOpen})}>
         {this.renderHeader()}
 
         {this.renderDocuments()}

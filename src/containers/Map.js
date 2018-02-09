@@ -7,7 +7,9 @@ import {
  getSearch,
  updateFilters,
  updateQuery,
- removeFilters
+ removeFilters,
+ toggleDrawer,
+ getMoreDocs
 } from '../actions/map'
 import Map from '../components/Map'
 
@@ -21,7 +23,8 @@ const mapStateToProps = state => {
     counts,
     filters,
     name,
-    query
+    query,
+    isDrawerOpen
   } = state.map;
 
   const {
@@ -41,7 +44,8 @@ const mapStateToProps = state => {
     counts,
     filters,
     name,
-    query
+    query,
+    isDrawerOpen
   }
 };
 
@@ -52,7 +56,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   getSearch,
   updateFilters,
   updateQuery,
-  removeFilters
+  removeFilters,
+  toggleDrawer,
+  getMoreDocs
 }, dispatch)
 
 export default connect(
