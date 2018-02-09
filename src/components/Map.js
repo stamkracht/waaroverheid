@@ -14,10 +14,11 @@ class Map extends React.Component {
       this.props.getArea(this.props.match.params.code)
     } 
 
-    componentWillReceiveProps({code}) {
+    componentWillUpdate({code, filters}) {
+      
       if(this.props.code && code !== this.props.code) {
+        this.props.getArea(code)        
         this.props.history.push(code)
-        this.props.getArea(code);
       }
     }
 
@@ -83,7 +84,6 @@ class Map extends React.Component {
       location: {search}      
     } = this.props;
 
-    console.log(this.props)
     return (
     <div>
       <NavigableMap

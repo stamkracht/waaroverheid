@@ -25,6 +25,23 @@ class Drawer extends React.Component {
     }
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      animateDrawer: false
+    }
+  }
+
+  componentWillReceiveProps({documentsCount}) {
+    if(documentsCount) {
+      this.setState({animateDrawer: true})
+      setTimeout(() => {
+        this.setState({animateDrawer: false})
+      }, 5000);
+    }
+  }
+
   handleOnClick() {
     this.props.toggleDrawer(this.props.isDrawerOpen)
   }
