@@ -24,8 +24,7 @@
     "react-scripts": "1.0.17",
     "recharts": "^1.0.0-beta.9",
     "redux": "^3.7.2",
-    "redux-saga": "^0.16.0",
-    "redux-thunk": "^2.2.0"
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -35,9 +34,28 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
-    "gh-pages": "^1.1.0"
+    "gh-pages": "^1.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier": "1.10.2",
+    "pretty-quick": "^1.3.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --single-quote --tab-width=4 --print-width=120",
+      "git add"
+    ],
+    "*.scss": [
+      "prettier --write --single-quote --tab-width=4 --print-width=120",
+      "git add"
+    ],
+    "*.sass": [
+      "prettier --write --single-quote --tab-width=4 --print-width=120",
+      "git add"
+    ]
   }
 }
