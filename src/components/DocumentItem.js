@@ -58,8 +58,10 @@ class DocumentItem extends Component {
   renderSnippets = () => {
      if(this.props.document.sources) {
        return this.props.document.sources.map((source, i) => {
-         const note = source.note ? <a className='source__title' href={source.url} key={i}>{source.note}</a> : ''
-         const snippets = isArray(source.snippets) ? source.snippets.map((snippet, j) => <p key={j}>{snippet}&#8230;</p>) : ''
+         const note = source.note ? <a className='source__title' href={source.url} key={i}>{source.note}</a> : '';
+         const snippets = isArray(source.snippets) ? source.snippets.map(
+           (snippet, j) => <p key={j} dangerouslySetInnerHTML={{ __html: snippet }} />
+         ) : '';
          return (
           <div key={i}>
             {snippets.length >= 1 ? note : ''}

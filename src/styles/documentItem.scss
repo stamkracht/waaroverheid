@@ -108,6 +108,10 @@
   padding-right: 34px;
 }
 
+.c-details .c-details--toponym {
+  font-weight: bold;
+}
+
 .c-details .c-details--snippets {
   margin-bottom: 10px;
   font-style: italic;
@@ -144,10 +148,14 @@
 .snippets {
   margin-left: 5px;
   font-size: 15px;
-}
 
-.snippets p {
-  display: inline;
+  p {
+    display: inline;
+
+    &::after {
+      content: "\2026";
+    }
+  }
 }
 
 @media (max-width: 768px) {
