@@ -34,11 +34,11 @@ class Drawer extends React.Component {
   }
 
   componentWillReceiveProps({documentsCount}) {
-    if(documentsCount) {
+    if(documentsCount && this.props.documentsCount !== documentsCount) {
       this.setState({animateDrawer: true})
       setTimeout(() => {
         this.setState({animateDrawer: false})
-      }, 5000);
+      }, 2500);
     }
   }
 
