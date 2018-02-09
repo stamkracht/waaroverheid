@@ -26,7 +26,7 @@ class Documents extends Component {
     return (
       <Tag key={'start_date'}
           text={`Vanaf: ${from.slice(0, 10)}, Tot: ${to.slice(0, 10)}`}
-          onClick={() => this.props.updateFilters({to, from}, 'start_date')}/>
+          onClick={() => this.props.removeFilters({to, from}, 'start_date')}/>
     )
   }
 
@@ -35,7 +35,7 @@ class Documents extends Component {
 		    return (
 		        <Tag key={i}
               text={tag}
-              onClick={() => this.props.updateFilters(tag, 'classification')}/>
+              onClick={() => this.props.removeFilters(tag, 'classification')}/>
         )
     })
   }
@@ -82,7 +82,7 @@ class Documents extends Component {
 }
 
 Documents.defaultProps = {
-  num: 0,
+  documentsCount: 0,
   facets: {
     classification: { buckets: [] }
   },

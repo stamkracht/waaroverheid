@@ -130,7 +130,7 @@ class Map extends React.Component {
         facets={facets}
         documents={documents}
         filters={filters}
-        updateFilters={updateFilters}
+        removeFilters={this.removeFilters.bind(this)}
         query={query}
         resetQuery={this.resetQuery.bind(this)}
         getMoreDocuments={this.getMoreDocuments.bind(this)}

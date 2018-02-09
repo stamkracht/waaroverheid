@@ -69,14 +69,13 @@ class Drawer extends React.Component {
       }
       else {
         return <Documents
-          service={this.props.service}
-          num={this.props.numberDoc}
+          documentsCount={this.props.documentsCount}
           facets={this.props.facets}
           documents={this.props.documents}
           filters={this.props.filters}
           getMoreDocuments={this.props.getMoreDocuments}
           hasMoreDocs={this.props.hasMoreDocs}
-          updateFilters={this.props.updateFilters}
+          removeFilters={this.props.removeFilters}
           resetQuery={this.props.resetQuery}
           query={this.props.query}/>
       }
@@ -95,8 +94,8 @@ class Drawer extends React.Component {
 }
 
 Drawer.defaultProps = {
-  active: false,
-  numberDoc: 0,
+  isDrawerOpen: false,
+  documentsCount: 0,
   area: 'geselecteerd gebied',
   toggle: undefined,
   service: {},
