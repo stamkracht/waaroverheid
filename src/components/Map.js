@@ -23,7 +23,15 @@ class Map extends React.Component {
         const searchParams = new URLSearchParams();
         Object.keys(filters)
             .filter(filter => filter !== 'types' && filters[filter])
-            .map(filter => searchParams.append(filter, filters[filter].terms));
+            .forEach(filter => {
+                if (filter === 'classification') {
+                    searchParams.append(filter, filters[filter].terms);
+                }
+                if (filter === 'start_date') {
+                    searchParams.append('from', filters[filter].from);
+                    searchParams.append('to', filters[filter].to);
+                }
+            });
         return searchParams.toString();
     }
 

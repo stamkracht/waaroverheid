@@ -52,10 +52,6 @@
     "*.scss": [
       "prettier --write --single-quote --tab-width=4 --print-width=120",
       "git add"
-    ],
-    "*.sass": [
-      "prettier --write --single-quote --tab-width=4 --print-width=120",
-      "git add"
     ]
   }
 }

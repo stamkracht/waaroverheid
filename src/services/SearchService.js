@@ -90,8 +90,8 @@ function getPage(page) {
 function getSearchFilters(filters) {
     return Object.keys(filters)
         .filter(name => {
-            if (isObject(filters[name])) {
-                return filters[name].terms.length;
+            if (name === 'classification') {
+                return filters[name] && filters[name].terms.length;
             }
             return filters[name];
         })
