@@ -10,7 +10,6 @@ class Map extends React.Component {
     componentWillMount() {
         this.props.setFiltersfromURL(this.props.location.search, this.props.match.params);
         this.props.setCode(this.props.match.params.code);
-        console.log(this.props);
     }
 
     componentWillReceiveProps({ filters, query }) {

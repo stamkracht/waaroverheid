@@ -17,7 +17,6 @@ import Map from '../components/Map';
 
 const mapStateToProps = state => {
     const { geo, adjacent, code, hasMoreDocs, counts, filters, name, query, isDrawerOpen } = state.map;
-
     const { facets, meta: { total: documentsCount } = 0, events: documents = [] } = state.map.search;
 
     return {

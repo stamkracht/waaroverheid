@@ -18,25 +18,13 @@ const initialState = {
     documentsCount: 0
 };
 
-function getIsDrawerOpen(search) {
-    const searchParams = new URLSearchParams(search);
-    for (let params of searchParams) {
-        switch (params[0]) {
-            case 'isDrawerOpen':
-                return true;
-        }
-    }
-
-    return false;
-}
-
 function map(state = initialState, action) {
     switch (action.type) {
         case TYPES.SET_FILTERS_FROM_URL:
             return {
                 ...state,
                 filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
-                isDrawerOpen: getIsDrawerOpen(action.search)
+                isDrawerOpen: utils.getIsDrawerOpen(action.search)
             };
         case TYPES.SELECT_AREA:
             return {
@@ -45,7 +33,7 @@ function map(state = initialState, action) {
                 geo: action.geo,
                 adjacent: action.adjacent,
                 search: action.search,
-                name: utils.getName(action.geo)
+                name: utils.getName(action.geo, action.code)
             };
         case TYPES.TOGGLE_DRAWER:
             return {

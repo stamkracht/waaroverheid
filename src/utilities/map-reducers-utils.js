@@ -1,19 +1,8 @@
-export function getName(geoResponse) {
-    let name = '';
-
-    if (geoResponse.properties) {
-        ['GM', 'WK', 'BU']
-            .filter(prefix => geoResponse.properties[`${prefix}_NAAM`])
-            .map(prefix => (name = geoResponse.properties[`${prefix}_NAAM`]));
-    } else if (geoResponse.features) {
-        geoResponse.features.map(feature => {
-            ['GM', 'WK', 'BU']
-                .filter(prefix => feature.properties[`${prefix}_NAAM`])
-                .map(prefix => (name = feature.properties[`${prefix}_NAAM`]));
-        });
-    }
-
-    return name;
+export function getName(geoResponse, code = '') {
+    let prefix = code.slice(0, 2);
+    return geoResponse.properties
+        ? geoResponse.properties[`${prefix}_NAAM`]
+        : geoResponse.features[0].properties[`${prefix}_NAAM`];
 }
 
 export function removeFilters(stateFilters, { key, filterName }) {
@@ -60,4 +49,16 @@ export function getFiltersFromUrl(search) {
         }
     }
     return filters;
+}
+
+export function getIsDrawerOpen(search) {
+    const searchParams = new URLSearchParams(search);
+    for (let params of searchParams) {
+        switch (params[0]) {
+            case 'isDrawerOpen':
+                return true;
+        }
+    }
+
+    return false;
 }
