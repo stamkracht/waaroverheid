@@ -9,6 +9,8 @@ import Reporting from './Reporting';
 
 import '../styles/documentItem.css';
 
+var striptags = require('striptags');
+
 class DocumentItem extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +41,7 @@ class DocumentItem extends Component {
                     <Container shadow={true}>
                         <div className="c-details--content">
                             <div className="c-details--text">
-                                <h3>{this.props.document.description}</h3>
+                                <h3>{striptags(this.props.document.description)}</h3>
                             </div>
                             <div className="c-details--snippets">{this.renderSnippets()}</div>
                             <Reporting />
