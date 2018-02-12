@@ -38,7 +38,7 @@ class Drawer extends React.Component {
         let text = `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${
             this.props.area
         }`;
-        if (!this.props.active) {
+        if (!this.props.isDrawerOpen) {
             return (
                 <div>
                     <Icon icon="file" iconPosition="left" />
