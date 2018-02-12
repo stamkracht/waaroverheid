@@ -1,138 +1,134 @@
 .c-drawer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid;
-  text-align: left;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-  transition: all 0.3s ease-in-out;
-
-  &--animate {
-    transition: all 0.3s ease-in-out;
-    -webkit-animation: bounce 0.5s 2;
-  }
-}
-
-@keyframes bounce {
-  0% {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid;
+    text-align: left;
     height: 50px;
-  }
-  25% {
-    height: 55px;
-  }
-  75% {
-    height: 60px;
-  }
-  100% {
-    height: 50px;
-  }
-}
-
-  &.active {
-    height: 101%;
-  }
-
-  .c-drawer--header {
-    min-height: 30px;
-    padding: 10px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .c-drawer--title {
-    text-align: center;
-    margin-bottom: 5px;
-  }
-
-  .c-drawer--text {
-    display: inline-block;
-    margin-left: 5px;
-    line-height: 30px;
-    margin-left: 35px;
-    font-size: large;
-    font-weight: lighter;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 70vw;
-  }
-}
-
-.c-emptyContent {
-  margin: 50px 50px;
-  text-align: left;
-}
-
-.c-hamburger {
-  position: absolute;
-  right: 20px;
-  top: 10px;
-
-  .line{
-    width: 40px;
-    height: 5px;
-    background-color: #333333;
-    display: block;
-    margin: 4px auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
     transition: all 0.3s ease-in-out;
-  }
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.active {
-    right: 20px;
-    top: 25px;
-
-    .line:nth-child(2) {
-      opacity: 0;
+    &--animate {
+        transition: all 0.3s ease-in-out;
+        -webkit-animation: bounce 0.5s 2;
     }
 
-    .line:nth-child(1){
-      transform: translateY(13px) rotate(45deg);
-      margin: 5px auto;
+    &.active {
+        height: 101%;
     }
 
-    .line:nth-child(3){
-      transform: translateY(-13px) rotate(-45deg);
-      margin: 10px auto;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-
-  .c-drawer {
-
-    .c-drawer--text {
-      font-size: 16px;
+    .c-drawer--header {
+        min-height: 30px;
+        padding: 10px;
+        cursor: pointer;
+        user-select: none;
     }
 
     .c-drawer--title {
-      font-size: large;
-      padding: 0px 40px;
+        text-align: center;
+        margin-bottom: 5px;
     }
-  }
 
-  .c-hamburger {
-    top: 12px;
-    right: 16px;
-    &.active {
-      top: 13px;
-      right: 12px;
-      .line {
-        margin: 10px auto;
-      }
+    .c-drawer--text {
+        display: inline-block;
+        margin-left: 5px;
+        line-height: 30px;
+        margin-left: 35px;
+        font-size: large;
+        font-weight: lighter;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 70vw;
     }
+}
+
+.c-emptyContent {
+    margin: 50px 50px;
+    text-align: left;
+}
+
+.c-hamburger {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+
     .line {
-      width: 26px;
-      height: 3px;
+        width: 40px;
+        height: 5px;
+        background-color: #333333;
+        display: block;
+        margin: 4px auto;
+        transition: all 0.3s ease-in-out;
     }
-  }
 
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.active {
+        right: 20px;
+        top: 25px;
+
+        .line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .line:nth-child(1) {
+            transform: translateY(13px) rotate(45deg);
+            margin: 5px auto;
+        }
+
+        .line:nth-child(3) {
+            transform: translateY(-13px) rotate(-45deg);
+            margin: 10px auto;
+        }
+    }
+}
+
+@keyframes bounce {
+    0% {
+        height: 50px;
+    }
+    25% {
+        height: 55px;
+    }
+    75% {
+        height: 60px;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .c-drawer {
+        .c-drawer--text {
+            font-size: 16px;
+        }
+
+        .c-drawer--title {
+            font-size: large;
+            padding: 0px 40px;
+        }
+    }
+
+    .c-hamburger {
+        top: 12px;
+        right: 16px;
+        &.active {
+            top: 13px;
+            right: 12px;
+            .line {
+                margin: 10px auto;
+            }
+        }
+        .line {
+            width: 26px;
+            height: 3px;
+        }
+    }
 }
