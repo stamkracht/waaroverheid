@@ -1,69 +1,61 @@
-import React from 'react'
-import '../styles/municipalities.css'
-import MunicipalitiesHeader from './MunicipalitiesHeader'
-import MunicipalitiesSearch from './SearchMunicipalities'
-import MunicipalitiesList from './ListMunicipalities'
-
+import React from 'react';
+import '../styles/municipalities.css';
+import MunicipalitiesHeader from './MunicipalitiesHeader';
+import MunicipalitiesSearch from './SearchMunicipalities';
+import MunicipalitiesList from './ListMunicipalities';
 
 class Municipalities extends React.Component {
-
-  componentWillMount() {
-    this.props.getMunicipalities()
-  }
-
-  componentWillUpdate(props) {
-    if(props.code) {
-      this.props.changePage(props.code)
+    componentWillMount() {
+        this.props.getMunicipalities();
     }
-  }
 
-  async showUserLocation() {
-    this.props.getUserLocation()
-    // this.props.showUserLocation();
-    // try {
-    //   let code = await this.MapService.getUserLocation().catch(e => {throw Error(e)})
-    //   this.props.resetUserLocation();
-    //   this.props.changePage(code);      
-    // } catch(e) {
-    //   this.props.showUserLocationError()      
-    // }
-  }
+    async componentDidUpdate({ code }) {
+        if (code !== this.props.code) {
+            await this.props.changePage(code);
+            this.props.resetLocation();
+        }
+    }
 
-  render() {
-    const {
-      changePage,
-      loadingLocation,
-      municipalities,
-      filterMunicipalities,
-      getUserLocation,
-      chooseMunicipality
-    } = this.props;  
+    showUserLocation() {
+        this.props.showUserLocation();
+        this.props.getUserLocation();
+    }
 
-    return  (
-      <div className='c-municipalities'>
-        <MunicipalitiesHeader 
-          showUserLocation={getUserLocation}
-          loadingLocation={loadingLocation}/>
+    render() {
+        const {
+            changePage,
+            loadingLocation,
+            municipalities,
+            filterMunicipalities,
+            getUserLocation,
+            chooseMunicipality
+        } = this.props;
 
-        <MunicipalitiesSearch
-          filterMunicipalities={filterMunicipalities}      
-          municipalities={municipalities}
-          chooseMunicipality={chooseMunicipality}/>
-        
-        <MunicipalitiesList
-          changePage={changePage}
-          municipalities={municipalities} />    
-      </div>     
-    )
-  }
+        return (
+            <div className="c-municipalities">
+                <MunicipalitiesHeader
+                    showUserLocation={this.showUserLocation.bind(this)}
+                    loadingLocation={loadingLocation}
+                />
+
+                <MunicipalitiesSearch
+                    filterMunicipalities={filterMunicipalities}
+                    municipalities={municipalities}
+                    chooseMunicipality={chooseMunicipality}
+                />
+
+                <MunicipalitiesList changePage={changePage} municipalities={municipalities} />
+            </div>
+        );
+    }
 }
 
 Municipalities.defaultProps = {
-  showUserLocation: false,
-  municipalities: {},
-  filterMunicipalities: undefined,
-  handleOnSubmit: undefined,
-  loadingLocation: false,
+    showUserLocation: false,
+    municipalities: {},
+    filterMunicipalities: undefined,
+    handleOnSubmit: undefined,
+    loadingLocation: false
 };
 
-export default Municipalities
+export default Municipalities;
