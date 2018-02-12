@@ -34,3 +34,16 @@
         text-align: center;
     }
 }
+
+@media (max-width: 670px) {
+    .c-zoomControls .c-button {
+        padding: 5px;
+        min-width: 170px;
+    }
+
+    .c-zoomControls > .c-container {
+        font-size: small;
+        margin: 5px 15px;
+        text-align: center;
+    }
+}
