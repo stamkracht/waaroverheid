@@ -10,6 +10,7 @@ class Map extends React.Component {
     componentWillMount() {
         this.props.setFiltersfromURL(this.props.location.search, this.props.match.params);
         this.props.setCode(this.props.match.params.code);
+        console.log(this.props);
     }
 
     componentWillReceiveProps({ filters, query }) {
@@ -19,7 +20,7 @@ class Map extends React.Component {
         }
     }
 
-    getSearchParams(filters) {
+    getSearchParams(filters, isDrawerOpen) {
         const searchParams = new URLSearchParams();
         Object.keys(filters)
             .filter(filter => filter !== 'types' && filters[filter])
@@ -32,12 +33,17 @@ class Map extends React.Component {
                     searchParams.append('to', filters[filter].to);
                 }
             });
+
+        if (isDrawerOpen) {
+            searchParams.append('isDrawerOpen', true);
+        }
+
         return searchParams.toString();
     }
 
     handleRouting(code) {
         let url = `/${code}`;
-        const searchParams = this.getSearchParams(this.props.filters);
+        const searchParams = this.getSearchParams(this.props.filters, this.props.isDrawerOpen);
         url = searchParams ? `${url}?${searchParams}` : url;
         this.props.history.push(url);
     }
@@ -74,6 +80,11 @@ class Map extends React.Component {
     getMoreDocuments(page) {
         const { getMoreDocs, code, filters, query } = this.props;
         getMoreDocs({ code, filters, query, page });
+    }
+
+    async toggleDrawer(isDrawerOpen) {
+        await this.props.toggleDrawer(isDrawerOpen);
+        this.handleRouting(this.props.code);
     }
 
     render() {
@@ -146,7 +157,7 @@ class Map extends React.Component {
                     documentsCount={documentsCount}
                     area={name}
                     isDrawerOpen={isDrawerOpen}
-                    toggleDrawer={toggleDrawer}
+                    toggleDrawer={this.toggleDrawer.bind(this)}
                     service={this.DocumentService}
                     facets={facets}
                     documents={documents}

@@ -18,7 +18,17 @@ const initialState = {
     documentsCount: 0
 };
 
-function getIsDrawerOpen(search) {}
+function getIsDrawerOpen(search) {
+    const searchParams = new URLSearchParams(search);
+    for (let params of searchParams) {
+        switch (params[0]) {
+            case 'isDrawerOpen':
+                return true;
+        }
+    }
+
+    return false;
+}
 
 function map(state = initialState, action) {
     switch (action.type) {
@@ -26,7 +36,7 @@ function map(state = initialState, action) {
             return {
                 ...state,
                 filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
-                isDrawerOpen: getIsDrawerOpen()
+                isDrawerOpen: getIsDrawerOpen(action.search)
             };
         case TYPES.SELECT_AREA:
             return {
