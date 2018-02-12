@@ -86,6 +86,11 @@ class Map extends React.Component {
         this.handleRouting(this.props.code);
     }
 
+    setZoomLevel(code) {
+        const { filters, query } = this.props;
+        this.props.getArea({ code, filters, query });
+    }
+
     render() {
         const {
             geo,
@@ -126,7 +131,7 @@ class Map extends React.Component {
                 {!isDrawerOpen && (
                     <ZoomControls
                         code={code}
-                        setZoomLevel={getArea}
+                        setZoomLevel={this.setZoomLevel.bind(this)}
                         history={history}
                         goToMunicipalities={this.goToMunicipalities.bind(this)}
                         search={search}
