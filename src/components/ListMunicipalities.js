@@ -1,23 +1,21 @@
-import React from 'react'
-import Container from './Container'
+import React from 'react';
+import Container from './Container';
 
-
-const ListMunicipalities = ({municipalities, changePage}) => {
+const ListMunicipalities = ({ municipalities, changePage }) => {
     return municipalities.map((item, i) => {
-      return (
-        <Container key={i} shadow={true}>
-          <div className='c-municipality' onClick={() => changePage(item.code)}>
-            <h4>{item.name}</h4>
-          </div>
-        </Container>
-      )
-    })
-  }
+        return (
+            <Container key={i} shadow={true}>
+                <div className="c-municipality" onClick={() => changePage(item.code)}>
+                    <h4>{item.name}</h4>
+                </div>
+            </Container>
+        );
+    });
+};
 
-  ListMunicipalities.defaultProps = {
+ListMunicipalities.defaultProps = {
     municipalities: [],
     changePage: null
-  };
-  
-  export default ListMunicipalities
-  
+};
+
+export default ListMunicipalities;
