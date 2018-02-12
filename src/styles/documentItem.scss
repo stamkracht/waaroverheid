@@ -63,6 +63,12 @@
         .c-container {
             width: auto;
             margin: 5px;
+            .c-button {
+                &:hover,
+                &:active {
+                    box-shadow: none;
+                }
+            }
         }
     }
 }
