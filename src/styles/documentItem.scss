@@ -21,10 +21,12 @@
         width: 50%;
         display: inline-block;
         h3 {
+            word-wrap: break-word;
             font-weight: lighter;
             margin: 5px 0;
         }
         h2 {
+            word-wrap: break-word;
             font-weight: 600;
             margin: 5px 0;
         }
@@ -45,6 +47,7 @@
         .c-button--text {
             min-width: 35px;
             line-height: 10px;
+            white-space: nowrap;
         }
     }
 }
@@ -97,6 +100,7 @@
     a {
         margin: 5px;
         font-weight: normal;
+        word-wrap: break-word;
     }
     p,
     a {
@@ -117,12 +121,14 @@
 .c-documentList {
     padding: 1px;
     max-height: calc(100vh - 170px);
-    overflow: auto;
+    overflow-y: auto;
+    width: 100%;
 }
 
 .snippets {
     margin-left: 5px;
     font-size: 15px;
+    word-wrap: break-word;
     p {
         display: inline;
     }
