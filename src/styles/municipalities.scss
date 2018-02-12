@@ -13,69 +13,94 @@
     overflow: auto;
     text-align: left;
 
-  a {
-    text-decoration: none;
-    margin: 0;
-  }
-
-  .c-container {
-    width: 100%;
-    margin: 15px 0;
-  }
-
-  .c-searchBox {
-    width: auto;
-  }
-
-  .c-municipality {
-    text-align: left;
-    cursor: pointer;
-    padding: 15px;
-    width: 100%;
-    border: 2px solid transparent;
-    &:hover {
-      border: 2px solid #ed6000;
-    }
-    h4 {
-      margin: 0;
-      color: black;
-    }
-  }
-
-  .c-municipalities--header {
-    h1 {
-      display: inline-block;
+    a {
+        text-decoration: none;
+        margin: 0;
     }
 
-    .c-button--wrapper {
-      float: right;
-      .c-container {
-        .c-button {
-          .c-button--text {
-            padding-right: 20px;
-          }
+    .c-container {
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .c-searchBox {
+        width: auto;
+    }
+
+    .c-municipality {
+        text-align: left;
+        cursor: pointer;
+        padding: 15px;
+        width: 100%;
+        border: 2px solid transparent;
+        &:hover {
+            border: 2px solid #ed6000;
         }
-      }
+        h4 {
+            margin: 0;
+            color: black;
+        }
     }
-  }
+
+    .c-municipalities--header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        header {
+            width: 140px;
+            height: 50px;
+            background-image: url(./../images/logo-header.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .c-button--wrapper {
+            margin-left: auto;
+            .c-container {
+                .c-button {
+                    .c-button--text {
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .c-municipalities {
+        .c-municipalities--header {
+            display: block;
+            header {
+                margin: auto;
+            }
+            .c-button--wrapper {
+                margin-bottom: 30px;
+                .c-container {
+                    .c-button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 670px) {
-
-  .c-municipalities {
-    .c-municipalities--header {
-      .c-button--wrapper {
-        .c-container {
-          width: 100%;
-          margin: 7px 0;
-          .c-button {
-            .c-button--text {
-              padding-right: 40px;
+    .c-municipalities {
+        .c-municipalities--header {
+            .c-button--wrapper {
+                .c-container {
+                    width: 100%;
+                    margin: 7px 0;
+                    .c-button {
+                        .c-button--text {
+                            padding-right: 40px;
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
-
 }
