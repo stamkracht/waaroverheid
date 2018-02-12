@@ -18,10 +18,16 @@ const initialState = {
     documentsCount: 0
 };
 
+function getIsDrawerOpen(search) {}
+
 function map(state = initialState, action) {
     switch (action.type) {
         case TYPES.SET_FILTERS_FROM_URL:
-            return { ...state, filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)) };
+            return {
+                ...state,
+                filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
+                isDrawerOpen: getIsDrawerOpen()
+            };
         case TYPES.SELECT_AREA:
             return {
                 ...state,
