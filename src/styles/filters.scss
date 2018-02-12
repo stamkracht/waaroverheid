@@ -30,6 +30,7 @@
 }
 
 .filtersFooter {
+
   .c-container {
     margin: 10px auto;
   }
@@ -42,8 +43,12 @@
 .typesContainer {
   max-height: calc(75vh - 250px);
   padding: 10px 25px;
-  .c-button--text.left {
-    padding-left: 35px;
+
+  .c-button--text {
+
+    &.left {
+      padding-left: 35px;
+    }
   }
 }
 
@@ -62,14 +67,14 @@
     max-height: none;
     min-height: none;
     opacity: 1;
-  }
 
-  .filtersDropdown .filtersHeader {
-    display: block;
-  }
+    .filtersHeader {
+      display: block;
 
-  .filtersHeader .icon.right {
-    height: fit-content;
+      .icon.right {
+        height: fit-content;
+      }
+    }
   }
 
   .typesContainer {
@@ -78,4 +83,21 @@
     margin: 0 auto;
     padding: 10px 0 0 0;
   }
+
+  .c-filters {
+
+    .c-button {
+      padding: 5px;
+      min-width: 100px;
+      font-size: 14px;
+      text-align: center;
+
+      .icon {
+        &.right {
+          display: none;
+        }
+      }
+    }
+  }
+
 }

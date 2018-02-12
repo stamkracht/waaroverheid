@@ -1,102 +1,120 @@
 .c-alert {
-  position: fixed;
-  bottom: 50px;
-  right: 0px;
-  text-align: left;
+    position: fixed;
+    bottom: 50px;
+    right: 0px;
+    text-align: left;
+    .c-button--text {
+        &.left {
+            padding-left: 0;
+            min-width: 150px;
+        }
+    }
 }
 
 .react-responsive-modal-modal {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  max-width: 90vw;
-}
-
-.react-responsive-modal-modal .c-alert--header {
-  -webkit-margin-before: 1px;
-  -webkit-margin-after: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 90vw;
+    .c-alert--header {
+        -webkit-margin-before: 1px;
+        -webkit-margin-after: 20px;
+    }
+    .c-alert--content {
+        order: 2;
+        width: 100%;
+        .c-selectedFilters {
+            width: 100%;
+            display: flex;
+            justify-content: left;
+            flex-wrap: nowrap;
+        }
+        input {
+            width: 100%;
+            line-height: 30px;
+            font-family: sans-serif;
+            font-size: 16px;
+            border: none;
+            font-weight: lighter;
+            padding: 7px;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                -webkit-box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            &:focus {
+                outline: 0;
+                border: none;
+            }
+        }
+        p {
+            padding: 7px 0;
+            width: auto;
+            margin: 0;
+            color: red;
+        }
+        h3 {
+            font-weight: lighter;
+            -webkit-margin-before: 5px;
+            -webkit-margin-after: 5px;
+            font-size: 16px;
+        }
+    }
+    .c-alert--footer {
+        order: 99;
+        margin: auto;
+    }
+    .c-container {
+        .c-button {
+            background: #eeeeee;
+            font-size: medium;
+        }
+    }
 }
 
 .react-responsive-modal-close-icon {
-  order: 1;
-  position: relative;
-  top: 0;
-  right: 0;
+    order: 1;
+    position: relative;
+    top: 0;
+    right: 0;
 }
-
-.react-responsive-modal-modal .c-alert--content {
-  order: 2;
-  width: 100%;
-}
-
-.react-responsive-modal-modal .c-alert--content input {
-  width: 100%;
-  line-height: 30px;
-  font-family: sans-serif;
-  font-size: 16px;
-  border: none;
-  font-weight: lighter;
-  padding: 7px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-  transition: box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1), -webkit-box-shadow 200ms cubic-bezier(0.4,0.0,0.2,1);
-}
-
-.react-responsive-modal-modal .c-alert--content input:focus {
-  outline: 0;
-  border: none;
-}
-
-.react-responsive-modal-modal .c-alert--content p {
-  padding: 7px 0;
-  width: auto;
-  margin: 0;
-  color: red;
-}
-
-.react-responsive-modal-modal .c-alert--content h3 {
-  font-weight: lighter;
-  -webkit-margin-before: 5px;
-  -webkit-margin-after: 5px;
-  font-size: 16px;
-}
-
-.react-responsive-modal-modal .c-alert--footer {
-  order: 99;
-  margin: auto;
-}
-
-.react-responsive-modal-modal .c-alert--footer .c-container .c-button {
-  background: #eeeeee;
-  font-size: medium;
-}
-
-  .react-responsive-modal-modal .c-alert--content .c-selectedFilters {
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    flex-wrap: nowrap;
-  }
 
 @media (max-width: 767px) {
+    .react-responsive-modal-modal {
+        .c-alert--header {
+            -webkit-margin-before: 6px;
+            -webkit-margin-after: 10px;
+            font-size: 16px;
+        }
+        .c-alert--content {
+            h3 {
+                font-size: 14px;
+            }
+            input {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
 
-  .react-responsive-modal-modal .c-alert--header {
-    -webkit-margin-before: 6px;
-    -webkit-margin-after: 10px;
-    font-size: 16px;
-  }
+        .c-alert--footer {
+            .c-container {
+                .c-button {
+                    .c-button--text {
+                        line-height: 20px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
 
-  .react-responsive-modal-modal .c-alert--content h3 {
-    font-size: 14px;
-  }
-
-  .react-responsive-modal-modal .c-alert--content input {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .react-responsive-modal-modal .c-alert--footer .c-container .c-button .c-button--text {
-    line-height: 20px;
-    font-size: 14px;
-  }
-
+@media (max-width: 670px) {
+    .c-alert {
+        .icon {
+            padding: 5px 15px 5px 5px;
+        }
+        .c-button {
+            padding: 5px 5px 5px 20px;
+            min-width: 150px;
+        }
+    }
 }

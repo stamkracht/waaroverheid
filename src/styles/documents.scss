@@ -1,76 +1,72 @@
 .outerContainer {
-  padding: 10px 20px 20px 20px;
-}
-
-.outerContainer > .c-container {
-  width: 100%;
-  background: none;
-  text-align: center;
-  margin: 0;
+    padding: 10px 20px 20px 20px;
+    & > .c-container {
+        width: 100%;
+        background: none;
+        text-align: center;
+        margin: 0;
+    }
 }
 
 .c-documents {
-  width: 85%;
-  margin: 0 auto;
-}
-
-.c-documents .c-container {
-  margin: 0;
-  width: 100%;
-  position: relative;
-  opacity: 1;
-}
-
-.c-documents > .c-container {
-  margin-bottom: 50px;
-  width: 100%;
+    width: 85%;
+    margin: 0 auto;
+    .c-container {
+        margin: 0;
+        width: 100%;
+        position: relative;
+        opacity: 1;
+    }
+    & > .c-container {
+        margin-bottom: 50px;
+        width: 100%;
+    }
 }
 
 .c-selectedFilters {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  padding: 0 0 10px 0;
-  overflow-x: auto;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0 0 10px 0;
+    overflow-x: auto;
+    .icon {
+        padding: 2px 0 0 0;
+        position: relative;
+        display: inline-block;
+    }
 }
 
 .c-tags {
-  flex: 0 0 auto;
-}
+    flex: 0 0 auto;
+    .c-container {
+        width: auto;
+        background: #eeeeee;
+        margin: 5px;
+        padding: 7px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
 
-.c-tags .c-container {
-  width: auto;
-  background: #eeeeee;
-  margin: 5px;
-  padding: 7px;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.c-tags .c-tags--text {
-  padding-right: 5px;
-  font-size: 17px;
-}
-
-.c-selectedFilters .icon {
-  padding: 2px 0 0 0;
-  position: relative;
-  display: inline-block;
+    .c-tags--text {
+        padding-right: 5px;
+        font-size: 17px;
+    }
 }
 
 @media (max-width: 670px) {
-  .outerContainer {
-    padding: 5px 10px 10px 10px;
-  }
+    .outerContainer {
+        padding: 5px 10px 10px 10px;
+    }
 
-  .c-tags .c-container {
-    padding: 4px;
-  }
-
-  .c-tags .c-tags--text {
-    font-size: 15px;
-    line-height: 20px;
-  }
+    .c-tags {
+        .c-container {
+            padding: 4px;
+        }
+        .c-tags--text {
+            font-size: 15px;
+            line-height: 20px;
+        }
+    }
 }
