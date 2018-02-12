@@ -9,18 +9,6 @@ class Municipalities extends React.Component {
         this.props.getMunicipalities();
     }
 
-    async componentDidUpdate({ code }) {
-        if (code !== this.props.code) {
-            await this.props.changePage(code);
-            this.props.resetLocation();
-        }
-    }
-
-    showUserLocation() {
-        this.props.showUserLocation();
-        this.props.getUserLocation();
-    }
-
     render() {
         const {
             changePage,
@@ -33,10 +21,7 @@ class Municipalities extends React.Component {
 
         return (
             <div className="c-municipalities">
-                <MunicipalitiesHeader
-                    showUserLocation={this.showUserLocation.bind(this)}
-                    loadingLocation={loadingLocation}
-                />
+                <MunicipalitiesHeader showUserLocation={getUserLocation} loadingLocation={loadingLocation} />
 
                 <MunicipalitiesSearch
                     filterMunicipalities={filterMunicipalities}

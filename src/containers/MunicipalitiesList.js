@@ -11,6 +11,7 @@ import {
 import Municipalities from '../components/Municipalities';
 
 const chooseMunicipality = municipalities => (municipalities.length ? push(`${municipalities[0].code}`) : null);
+
 const mapStateToProps = state => {
     return {
         municipalities: state.municipalities.filtered,

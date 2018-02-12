@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import * as MapService from '../services/MapService';
 import * as TYPES from '../types';
+import { push } from 'react-router-redux';
 
 export function chooseMunicipalitu(municipality) {
     return { type: TYPES.CHOOSE_MUNICIPALITY, municipality };
@@ -38,8 +39,10 @@ export function* fetchMunicipalities(action) {
 
 export function* fetchUserLocation(action) {
     try {
+        yield put({ type: TYPES.SHOW_USER_LOCATION });
         const code = yield call(MapService.getUserLocation);
-        yield put({ type: TYPES.CHOOSE_MUNICIPALITY, code });
+        yield put(push(`/${code}`));
+        yield put({ type: TYPES.RESET_LOCATION });
     } catch (e) {
         //handle faled
         console.log(e, 'failed');

@@ -13,7 +13,7 @@ const levels = {
 
 export function getUserLocation() {
     return LocationService.getCoords()
-        .then(coords => getPolygon(coords.latitude, coords.longitude)) //amstelveen test coords 52.308888, 4.873396
+        .then(coords => getPolygon(52.308888, 4.873396)) //amstelveen test coords 52.308888, 4.873396
         .then(res => (isMobile() ? res.properties['BU_CODE'] : res.properties['GM_CODE']));
 }
 

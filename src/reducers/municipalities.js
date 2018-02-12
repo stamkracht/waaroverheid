@@ -33,10 +33,8 @@ function municipalities(state = initialState, action) {
         case TYPES.CHOOSE_MUNICIPALITY:
             return {
                 ...state,
-                code: action.code,
-                loadingLocation: false
+                code: action.code
             };
-
         case TYPES.SHOW_USER_LOCATION:
             return {
                 ...state,
@@ -45,8 +43,7 @@ function municipalities(state = initialState, action) {
         case TYPES.RESET_LOCATION:
             return {
                 ...state,
-                code: '',
-                term: ''
+                loadingLocation: false
             };
         default:
             return state;

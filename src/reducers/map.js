@@ -15,7 +15,8 @@ const initialState = {
     search: {},
     hasMoreDocs: true,
     isDrawerOpen: false,
-    documentsCount: 0
+    documentsCount: 0,
+    counts: {}
 };
 
 function map(state = initialState, action) {
@@ -33,7 +34,8 @@ function map(state = initialState, action) {
                 geo: action.geo,
                 adjacent: action.adjacent,
                 search: action.search,
-                name: utils.getName(action.geo, action.code)
+                name: utils.getName(action.geo, action.code),
+                counts: action.counts
             };
         case TYPES.TOGGLE_DRAWER:
             return {
@@ -43,7 +45,8 @@ function map(state = initialState, action) {
         case TYPES.SEARCH:
             return {
                 ...state,
-                search: action.search
+                search: action.search,
+                counts: action.counts
             };
         case TYPES.UPDATE_FILTERS:
             return {

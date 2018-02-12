@@ -1,4 +1,5 @@
 import { all, call, put } from 'redux-saga/effects';
+
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
 import * as Search from '../services/SearchService';
@@ -61,12 +62,13 @@ export const resetArea = () => ({
     type: TYPES.RESET_AREA
 });
 
-export function* fetchArea(action) {
+export function* fetchArea({ code, query, filters }) {
     try {
-        const geo = yield call(MapService.getFeatures, action.code);
-        const adjacent = yield call(MapService.getAdjacentFeatures, action.code);
-        const search = yield call(Search.search, action.code, action.query, action.filters);
-        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code: action.code });
+        const geo = yield call(MapService.getFeatures, code);
+        const adjacent = yield call(MapService.getAdjacentFeatures, code);
+        const search = yield call(Search.search, code, query, filters);
+        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
     } catch (e) {
         //handle faled
         console.log(e, 'failed');
@@ -76,7 +78,8 @@ export function* fetchArea(action) {
 export function* fetchSearch({ code, query, filters, page }) {
     try {
         const search = yield call(Search.search, code, query, filters, page);
-        yield put({ type: TYPES.SEARCH, search });
+        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+        yield put({ type: TYPES.SEARCH, search, counts });
     } catch (e) {
         //handle faled
         console.log(e, 'failed');

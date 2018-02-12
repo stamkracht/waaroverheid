@@ -123,7 +123,7 @@ class Map extends React.Component {
                     geo={geo}
                     adjacent={adjacent}
                     code={code}
-                    counts={MapService.getAreaCounts(facets, code, documentsCount)}
+                    counts={counts}
                     selectArea={this.selectArea.bind(this)}
                     isDrawerOpen={isDrawerOpen}
                 />
