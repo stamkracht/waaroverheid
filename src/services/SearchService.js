@@ -14,7 +14,7 @@ let PARAMS = {
             size: 100
         }
     },
-    sort: '_score',
+    sort: 'start_date',
     order: 'desc',
     query: ''
 };
@@ -103,12 +103,18 @@ function getSearchFilters(filters) {
 }
 
 function handleData(code, query, page, filters) {
+    const params = Object.assign({}, PARAMS);
     const areaFilter = getAreaFilter(code);
     const areaFacet = getAreaFacet(code);
-    const params = Object.assign({}, PARAMS);
     const searchFilters = getSearchFilters(filters);
     [params.from, params.size] = getPage(page);
     params.query = query;
+
+    //change sort order based on presence of query
+    if (query) {
+        params.sort = '_score';
+    }
+
     if (page <= 1) {
         // add districts or neighborhood facet on initial search
         params.facets = Object.assign({}, params.facets, areaFacet);
