@@ -67,6 +67,8 @@ export const resetArea = () => ({
     type: TYPES.RESET_AREA
 });
 
+export const getMap = store => store.map;
+
 export function* fetchArea({ code, query, filters }) {
     try {
         const geo = yield call(MapService.getFeatures, code);
@@ -94,7 +96,7 @@ export function* fetchSearch({ code, query, filters, page }) {
 export function* fetchMoreDocs({ code, query, filters, page }) {
     try {
         const search = yield call(Search.search, code, query, filters, page);
-        yield put({ type: TYPES.GET_MORE_DOCS, search });
+        yield put({ type: TYPES.GET_MORE_DOCS, search, page });
     } catch (e) {
         //handle failed
         console.log(e, 'failed');

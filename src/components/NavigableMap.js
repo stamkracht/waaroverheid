@@ -117,7 +117,6 @@ class NavigableMap extends Component {
                     }}
                     key={`${hash(this.props.geo)}${Date.now()}`}
                     data={this.props.geo}
-                    style={geo => console.log(geo)}
                     onEachFeature={this.onEachFeature.bind(this)}
                 />
             );
