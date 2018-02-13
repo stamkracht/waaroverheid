@@ -1,4 +1,4 @@
-import { all, call, put } from 'redux-saga/effects';
+import { all, call, put, select } from 'redux-saga/effects';
 
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
@@ -67,6 +67,8 @@ export const resetArea = () => ({
     type: TYPES.RESET_AREA
 });
 
+export const getMap = store => store.map;
+
 export function* fetchArea({ code, query, filters }) {
     try {
         const geo = yield call(MapService.getFeatures, code);
@@ -94,17 +96,18 @@ export function* fetchSearch({ code, query, filters, page }) {
 export function* fetchMoreDocs({ code, query, filters, page }) {
     try {
         const search = yield call(Search.search, code, query, filters, page);
-        yield put({ type: TYPES.GET_MORE_DOCS, search });
+        yield put({ type: TYPES.GET_MORE_DOCS, search, page });
     } catch (e) {
         //handle failed
         console.log(e, 'failed');
     }
 }
 
-export function* fetchResetFilters({ code }) {
+export function* fetchResetFilters() {
     try {
         yield put({ type: TYPES.RESET_FILTERS });
-        yield put({ type: TYPES.FETCH_SEARCH, code });
+        const { filters, code } = yield select(getMap);
+        yield put({ type: TYPES.FETCH_SEARCH, code, filters });
     } catch (e) {
         //handle failed
         console.log(e, 'failed');

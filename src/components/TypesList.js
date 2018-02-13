@@ -49,7 +49,6 @@ class TypesList extends React.Component {
                         })
                         .filter(isChecked => isChecked)
                         .reduce((memo, isChecked) => isChecked, false);
-                    console.log(item);
                     return item;
                 })
                 .map((item, i) => {

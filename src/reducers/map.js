@@ -40,7 +40,8 @@ function map(state = initialState, action) {
         case TYPES.TOGGLE_DRAWER:
             return {
                 ...state,
-                isDrawerOpen: !action.isDrawerOpen
+                isDrawerOpen: !action.isDrawerOpen,
+                hasMoreDocs: true
             };
         case TYPES.SEARCH:
             return {
@@ -71,7 +72,8 @@ function map(state = initialState, action) {
         case TYPES.GET_MORE_DOCS:
             return {
                 ...state,
-                search: utils.mergeDocuments(state, action.search)
+                search: utils.mergeDocuments(state, action.search),
+                hasMoreDocs: (action.page - 1) * 5 < action.search.meta.total
             };
         case TYPES.SET_CODE:
             return {
