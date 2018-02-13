@@ -115,8 +115,9 @@ class NavigableMap extends Component {
                     ref={node => {
                         this.featureNode = node;
                     }}
-                    key={hash(this.props.geo)}
+                    key={`${hash(this.props.geo)}${Date.now()}`}
                     data={this.props.geo}
+                    style={geo => console.log(geo)}
                     onEachFeature={this.onEachFeature.bind(this)}
                 />
             );
@@ -128,7 +129,7 @@ class NavigableMap extends Component {
             return (
                 <GeoJSON
                     className={'feature'}
-                    key={hash(this.props.adjacent)}
+                    key={`${hash(this.props.adjacent)}${Date.now()}`}
                     data={this.props.adjacent}
                     onEachFeature={this.onEachAdjacentFeature.bind(this)}
                 />
