@@ -1,4 +1,4 @@
-import { all, call, put } from 'redux-saga/effects';
+import { all, call, put, select } from 'redux-saga/effects';
 
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
@@ -101,10 +101,11 @@ export function* fetchMoreDocs({ code, query, filters, page }) {
     }
 }
 
-export function* fetchResetFilters({ code }) {
+export function* fetchResetFilters() {
     try {
         yield put({ type: TYPES.RESET_FILTERS });
-        yield put({ type: TYPES.FETCH_SEARCH, code });
+        const { filters, code } = yield select(getMap);
+        yield put({ type: TYPES.FETCH_SEARCH, code, filters });
     } catch (e) {
         //handle failed
         console.log(e, 'failed');
