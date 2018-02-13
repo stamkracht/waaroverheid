@@ -4,7 +4,9 @@ import Button from './Button';
 const MunicipalitiesHeader = ({ loadingLocation, showUserLocation }) => {
     return (
         <div className="c-municipalities--header">
-            <header />
+            <a href="http://www.waaroverheid.nl">
+                <header />
+            </a>
             <div className="c-button--wrapper">
                 <Button
                     text="Gebruik mijn locatie"
