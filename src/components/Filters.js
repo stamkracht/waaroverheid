@@ -18,7 +18,8 @@ class Filters extends React.Component {
         super(props);
 
         this.state = {
-            active: false
+            active: false,
+            reset: false
         };
     }
 
@@ -27,7 +28,7 @@ class Filters extends React.Component {
     }
 
     handleOnSubmit() {
-        this.setState({ active: false });
+        this.setState({ active: false, reset: true });
         this.props.submit();
     }
 
@@ -114,7 +115,6 @@ class Filters extends React.Component {
                     <div className="typesContainer">{this.renderTypes()}</div>
                 </div>
                 <div className="filtersFooter">
-                    <Button text="reset" onClick={this.props.resetFilters} />
                     <Button text="Zoeken" onClick={() => this.handleOnSubmit()} />
                 </div>
             </div>
@@ -126,6 +126,11 @@ class Filters extends React.Component {
             <div className="c-filters">
                 <div className="buttonContainer">
                     <Button text="Filters" icon="arrow" onClick={this.toggleFilters.bind(this)} />
+                    {this.state.reset && (
+                        <div className="resetFilter">
+                            <Button icon="clearFilter" text="" onClick={this.props.resetFilters} />
+                        </div>
+                    )}
                 </div>
                 {this.state.active && this.renderFilters()}
             </div>
