@@ -114,6 +114,7 @@ class Map extends React.Component {
             updateFilters,
             updateQuery,
             getMoreDocuments,
+            resetFilters,
             location: { search }
         } = this.props;
 
@@ -146,6 +147,7 @@ class Map extends React.Component {
                             removeFilters={this.removeFilters.bind(this)}
                             updateQuery={updateQuery}
                             submit={this.getSearch.bind(this)}
+                            resetFilters={resetFilters}
                         />
                     )}
 

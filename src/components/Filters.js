@@ -57,6 +57,7 @@ class Filters extends React.Component {
                         text={'Soorten'}
                         updateFilters={this.props.updateFilters}
                         list={this.props.facets[item].buckets}
+                        filters={this.props.filters}
                     />
                 );
             });
@@ -113,6 +114,7 @@ class Filters extends React.Component {
                     <div className="typesContainer">{this.renderTypes()}</div>
                 </div>
                 <div className="filtersFooter">
+                    <Button text="reset" onClick={this.props.resetFilters} />
                     <Button text="Zoeken" onClick={() => this.handleOnSubmit()} />
                 </div>
             </div>

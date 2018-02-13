@@ -35,6 +35,10 @@ export const updateQuery = query => ({
     query
 });
 
+export const resetFilters = () => ({
+    type: TYPES.RESET_FILTERS
+});
+
 export const removeFilters = filters => ({
     type: TYPES.REMOVE_FILTERS,
     filters
