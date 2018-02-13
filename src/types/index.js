@@ -25,3 +25,4 @@ export const FETCH_MORE_DOCS = 'FETCH_MORE_DOCS';
 export const SET_CODE = 'SET_CODE';
 export const RESET_AREA = 'RESET_AREA';
 export const RESET_LOCATION = 'RESET_LOCATION';
+export const FETCH_RESET_FILTERS = 'FETCH_RESET_FILTERS';

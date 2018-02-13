@@ -47,6 +47,7 @@ class TypesList extends React.Component {
                                     return this.props.filters.classification.terms.indexOf(item.key) > -1;
                             }
                         })
+                        .filter(isChecked => isChecked)
                         .reduce((memo, isChecked) => isChecked, false);
                     console.log(item);
                     return item;

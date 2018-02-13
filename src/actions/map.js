@@ -35,8 +35,9 @@ export const updateQuery = query => ({
     query
 });
 
-export const resetFilters = () => ({
-    type: TYPES.RESET_FILTERS
+export const resetFilters = code => ({
+    type: TYPES.FETCH_RESET_FILTERS,
+    code
 });
 
 export const removeFilters = filters => ({
@@ -85,7 +86,7 @@ export function* fetchSearch({ code, query, filters, page }) {
         const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
         yield put({ type: TYPES.SEARCH, search, counts });
     } catch (e) {
-        //handle faled
+        //handle failed
         console.log(e, 'failed');
     }
 }
@@ -95,7 +96,17 @@ export function* fetchMoreDocs({ code, query, filters, page }) {
         const search = yield call(Search.search, code, query, filters, page);
         yield put({ type: TYPES.GET_MORE_DOCS, search });
     } catch (e) {
-        //handle faled
+        //handle failed
+        console.log(e, 'failed');
+    }
+}
+
+export function* fetchResetFilters({ code }) {
+    try {
+        yield put({ type: TYPES.RESET_FILTERS });
+        yield put({ type: TYPES.FETCH_SEARCH, code });
+    } catch (e) {
+        //handle failed
         console.log(e, 'failed');
     }
 }

@@ -91,6 +91,11 @@ class Map extends React.Component {
         this.props.getArea({ code, filters, query });
     }
 
+    async resetFilters() {
+        await this.props.resetFilters(this.props.code);
+        this.handleRouting(this.props.code);
+    }
+
     render() {
         const {
             geo,
@@ -147,7 +152,7 @@ class Map extends React.Component {
                             removeFilters={this.removeFilters.bind(this)}
                             updateQuery={updateQuery}
                             submit={this.getSearch.bind(this)}
-                            resetFilters={resetFilters}
+                            resetFilters={this.resetFilters.bind(this)}
                         />
                     )}
 

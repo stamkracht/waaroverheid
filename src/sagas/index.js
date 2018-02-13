@@ -1,7 +1,6 @@
-import {watchFetchMunicipalities, watchGetUserLocation} from './municipalities'
-import {watchFetchArea, watchFetchSearch, watchFetchMoreDocuments} from './map'
-import { all } from 'redux-saga/effects'
-
+import { watchFetchMunicipalities, watchGetUserLocation } from './municipalities';
+import { watchFetchArea, watchFetchSearch, watchFetchMoreDocuments, watchFetchResetFilters } from './map';
+import { all } from 'redux-saga/effects';
 
 export default function* rootSaga() {
     yield all([
@@ -9,6 +8,7 @@ export default function* rootSaga() {
         watchGetUserLocation(),
         watchFetchArea(),
         watchFetchSearch(),
-        watchFetchMoreDocuments()
-    ])
+        watchFetchMoreDocuments(),
+        watchFetchResetFilters()
+    ]);
 }
