@@ -28,11 +28,11 @@ class NavigableMap extends Component {
     handleOnClickAdjacent = e => {
         let props = e.target.feature.properties;
         if (!!props['BU_CODE']) {
-            this.props.selectArea({ code: props['BU_CODE'] });
+            this.props.selectAdjacentArea({ code: props['BU_CODE'] });
         } else if (!!props['WK_CODE']) {
-            this.props.selectArea({ code: props['WK_CODE'] });
+            this.props.selectAdjacentArea({ code: props['WK_CODE'] });
         } else if (!!props['GM_CODE']) {
-            this.props.selectArea({ code: props['GM_CODE'] });
+            this.props.selectAdjacentArea({ code: props['GM_CODE'] });
         }
     };
 

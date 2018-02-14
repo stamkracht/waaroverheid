@@ -93,7 +93,7 @@ function map(state = initialState, action) {
                 code: action.code
             };
         case TYPES.RESET_AREA:
-            return Object.assign(...state, initialState);
+            return Object.assign(...state, initialState, { history: state.history });
         default:
             return state;
     }

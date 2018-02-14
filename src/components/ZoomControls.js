@@ -15,7 +15,7 @@ const ZoomControls = ({ code, setZoomLevel, search, goToMunicipalities, fetchFai
                         search={search}
                         name={'Gemeente'}
                         isActive={level === 'GM'}
-                        onClick={() => setZoomLevel({ code: `GM${code.match(/[0-9]{4}/g)[0]}` })}
+                        onClick={() => setZoomLevel(`GM${code.match(/[0-9]{4}/g)[0]}`)}
                     />
                 )}
 
@@ -25,7 +25,7 @@ const ZoomControls = ({ code, setZoomLevel, search, goToMunicipalities, fetchFai
                     search={search}
                     name={'Wijk'}
                     isActive={level === 'WK'}
-                    onClick={() => setZoomLevel({ code: `WK${code.match(/[0-9]{6}/g)[0]}` })}
+                    onClick={() => setZoomLevel(`WK${code.match(/[0-9]{6}/g)[0]}`)}
                 />
             )}
 
@@ -35,7 +35,7 @@ const ZoomControls = ({ code, setZoomLevel, search, goToMunicipalities, fetchFai
                     name={'Buurt'}
                     search={search}
                     isActive={level === 'BU'}
-                    onClick={() => setZoomLevel({ code: `BU${code.match(/[0-9]{8}/g)[0]}` })}
+                    onClick={() => setZoomLevel(`BU${code.match(/[0-9]{8}/g)[0]}`)}
                 />
             )}
         </div>

@@ -5,6 +5,7 @@ import Drawer from './Drawer';
 import ZoomControls from './ZoomControls';
 import Filters from './Filters';
 import * as MapService from '../services/MapService';
+import { getAdjacentArea } from '../actions/map';
 
 class Map extends React.Component {
     componentWillMount() {
@@ -39,6 +40,7 @@ class Map extends React.Component {
             getMoreDocs,
             resetArea,
             fetchFailed,
+            getAdjacentArea,
             location: { search }
         } = this.props;
 
@@ -50,6 +52,7 @@ class Map extends React.Component {
                     code={code}
                     counts={counts}
                     selectArea={getArea}
+                    selectAdjacentArea={getAdjacentArea}
                     isDrawerOpen={isDrawerOpen}
                 />
 
