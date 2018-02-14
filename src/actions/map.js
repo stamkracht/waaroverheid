@@ -3,6 +3,15 @@ import { all, call, put, select } from 'redux-saga/effects';
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
 import * as Search from '../services/SearchService';
+import * as RoutingService from '../services/RoutingService';
+import { SET_FILTERS_FROM_URL, FETCH_AREA } from '../types';
+
+export const initializeMap = (search, params, history) => ({
+    type: TYPES.FETCH_INITIAL_LOCATION,
+    search,
+    params,
+    history
+});
 
 export const setFiltersfromURL = (search, params) => ({
     type: TYPES.SET_FILTERS_FROM_URL,
@@ -10,11 +19,9 @@ export const setFiltersfromURL = (search, params) => ({
     params
 });
 
-export const getArea = ({ code, query, filters }) => ({
+export const getArea = ({ code }) => ({
     type: TYPES.FETCH_AREA,
-    code,
-    query,
-    filters
+    code
 });
 
 export const getSearch = ({ code, query, filters, page }) => ({
@@ -30,6 +37,11 @@ export const updateFilters = filters => ({
     filters
 });
 
+export const resetQuery = () => ({
+    type: TYPES.FETCH_UPDATE_QUERY,
+    query: ''
+});
+
 export const updateQuery = query => ({
     type: TYPES.UPDATE_QUERY,
     query
@@ -41,12 +53,12 @@ export const resetFilters = code => ({
 });
 
 export const removeFilters = filters => ({
-    type: TYPES.REMOVE_FILTERS,
+    type: TYPES.FETCH_REMOVE_FILTERS,
     filters
 });
 
 export const toggleDrawer = isDrawerOpen => ({
-    type: TYPES.TOGGLE_DRAWER,
+    type: TYPES.FETCH_TOGGLE_DRAWER,
     isDrawerOpen
 });
 
@@ -69,8 +81,41 @@ export const resetArea = () => ({
 
 export const getMap = store => store.map;
 
-export function* fetchArea({ code, query, filters }) {
+export function* fetchToggleDrawer(action) {
     try {
+        yield put({ type: TYPES.TOGGLE_DRAWER, isDrawerOpen: action.isDrawerOpen });
+        const { code, filters, query, history, isDrawerOpen } = yield select(getMap);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
+    } catch (e) {
+        //handle faled
+        console.log(e, 'failed');
+    }
+}
+
+export function* fetchUpdateQuery({ query }) {
+    try {
+        yield put({ type: TYPES.UPDATE_QUERY, query });
+        yield put({ type: TYPES.FETCH_SEARCH });
+    } catch (e) {
+        //handle faled
+        console.log(e, 'failed');
+    }
+}
+
+export function* fetchRemoveFilters({ filters }) {
+    try {
+        yield put({ type: TYPES.REMOVE_FILTERS, filters });
+        yield put({ type: TYPES.FETCH_SEARCH });
+    } catch (e) {
+        //handle faled
+        console.log(e, 'failed');
+    }
+}
+
+export function* fetchArea({ code }) {
+    try {
+        const { filters, query, isDrawerOpen, history } = yield select(getMap);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
         const geo = yield call(MapService.getFeatures, code);
         const adjacent = yield call(MapService.getAdjacentFeatures, code);
         const search = yield call(Search.search, code, query, filters);
@@ -82,9 +127,11 @@ export function* fetchArea({ code, query, filters }) {
     }
 }
 
-export function* fetchSearch({ code, query, filters, page }) {
+export function* fetchSearch() {
     try {
-        const search = yield call(Search.search, code, query, filters, page);
+        const { code, filters, query, isDrawerOpen, history } = yield select(getMap);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
+        const search = yield call(Search.search, code, query, filters);
         const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
         yield put({ type: TYPES.SEARCH, search, counts });
     } catch (e) {
@@ -93,8 +140,9 @@ export function* fetchSearch({ code, query, filters, page }) {
     }
 }
 
-export function* fetchMoreDocs({ code, query, filters, page }) {
+export function* fetchMoreDocs({ page }) {
     try {
+        const { code, filters, query } = yield select(getMap);
         const search = yield call(Search.search, code, query, filters, page);
         yield put({ type: TYPES.GET_MORE_DOCS, search, page });
     } catch (e) {
@@ -108,6 +156,17 @@ export function* fetchResetFilters() {
         yield put({ type: TYPES.RESET_FILTERS });
         const { filters, code } = yield select(getMap);
         yield put({ type: TYPES.FETCH_SEARCH, code, filters });
+    } catch (e) {
+        //handle failed
+        console.log(e, 'failed');
+    }
+}
+
+export function* fetchInitialLocation({ search, params, history }) {
+    try {
+        const { code } = params;
+        yield put({ type: SET_FILTERS_FROM_URL, search, params, history });
+        yield put({ type: FETCH_AREA, code });
     } catch (e) {
         //handle failed
         console.log(e, 'failed');

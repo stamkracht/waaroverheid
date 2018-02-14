@@ -1,5 +1,14 @@
 import { watchFetchMunicipalities, watchGetUserLocation } from './municipalities';
-import { watchFetchArea, watchFetchSearch, watchFetchMoreDocuments, watchFetchResetFilters } from './map';
+import {
+    watchFetchArea,
+    watchFetchSearch,
+    watchFetchMoreDocuments,
+    watchFetchResetFilters,
+    watchFetchInitialLocation,
+    watchFetchUpdateQuery,
+    watchFetchRemoveFilters,
+    watchFetchToggleDrawer
+} from './map';
 import { all } from 'redux-saga/effects';
 
 export default function* rootSaga() {
@@ -9,6 +18,10 @@ export default function* rootSaga() {
         watchFetchArea(),
         watchFetchSearch(),
         watchFetchMoreDocuments(),
-        watchFetchResetFilters()
+        watchFetchResetFilters(),
+        watchFetchInitialLocation(),
+        watchFetchUpdateQuery(),
+        watchFetchRemoveFilters(),
+        watchFetchToggleDrawer()
     ]);
 }

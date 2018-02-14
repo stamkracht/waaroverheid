@@ -1,18 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 import MunicipalitiesList from './MunicipalitiesList';
 import Map from './Map';
 
 const App = () => (
     <div>
-        <main>
-            <Route path="/" component={MunicipalitiesList}/>
-            <Route path="/:code" render={(props) => (
-                <Map {...props}/>
-            )}/>
-        </main>
+        <Route path="/" component={MunicipalitiesList} />
+        <Route path="/:code" component={Map} />
     </div>
-)
+);
 
-export default App
+export default App;

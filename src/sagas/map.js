@@ -1,5 +1,14 @@
 import { takeLatest } from 'redux-saga/effects';
-import { fetchArea, fetchSearch, fetchMoreDocs, fetchResetFilters } from '../actions/map';
+import {
+    fetchArea,
+    fetchSearch,
+    fetchMoreDocs,
+    fetchResetFilters,
+    fetchInitialLocation,
+    fetchUpdateQuery,
+    fetchRemoveFilters,
+    fetchToggleDrawer
+} from '../actions/map';
 import * as TYPES from '../types';
 
 export function* watchFetchArea() {
@@ -16,4 +25,20 @@ export function* watchFetchMoreDocuments() {
 
 export function* watchFetchResetFilters() {
     yield takeLatest(TYPES.FETCH_RESET_FILTERS, fetchResetFilters);
+}
+
+export function* watchFetchInitialLocation() {
+    yield takeLatest(TYPES.FETCH_INITIAL_LOCATION, fetchInitialLocation);
+}
+
+export function* watchFetchUpdateQuery() {
+    yield takeLatest(TYPES.FETCH_UPDATE_QUERY, fetchUpdateQuery);
+}
+
+export function* watchFetchRemoveFilters() {
+    yield takeLatest(TYPES.FETCH_REMOVE_FILTERS, fetchRemoveFilters);
+}
+
+export function* watchFetchToggleDrawer() {
+    yield takeLatest(TYPES.FETCH_TOGGLE_DRAWER, fetchToggleDrawer);
 }

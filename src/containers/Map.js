@@ -12,7 +12,9 @@ import {
     getMoreDocs,
     setCode,
     resetArea,
-    resetFilters
+    resetFilters,
+    initializeMap,
+    resetQuery
 } from '../actions/map';
 import Map from '../components/Map';
 
@@ -50,7 +52,9 @@ const mapDispatchToProps = dispatch =>
             getMoreDocs,
             setCode,
             resetArea,
-            resetFilters
+            resetFilters,
+            initializeMap,
+            resetQuery
         },
         dispatch
     );

@@ -20,12 +20,15 @@ const initialState = {
 };
 
 function map(state = initialState, action) {
+    console.log(action.type);
     switch (action.type) {
         case TYPES.SET_FILTERS_FROM_URL:
             return {
                 ...state,
+                code: action.params.code,
                 filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
-                isDrawerOpen: utils.getIsDrawerOpen(action.search)
+                isDrawerOpen: utils.getIsDrawerOpen(action.search),
+                history: action.history
             };
         case TYPES.SELECT_AREA:
             return {

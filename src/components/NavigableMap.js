@@ -17,9 +17,9 @@ class NavigableMap extends Component {
         let props = e.target.feature.properties;
         let level = this.props.code.slice(0, 2);
         if (level === 'GM') {
-            this.props.selectArea(props['WK_CODE'], props['WK_NAAM']);
+            this.props.selectArea({ code: props['WK_CODE'] });
         } else if (level === 'WK') {
-            this.props.selectArea(props['BU_CODE'], props['BU_NAAM']);
+            this.props.selectArea({ code: props['BU_CODE'] });
         } else if (level === 'BU') {
             this.props.openDrawer();
         }
@@ -28,11 +28,11 @@ class NavigableMap extends Component {
     handleOnClickAdjacent = e => {
         let props = e.target.feature.properties;
         if (!!props['BU_CODE']) {
-            this.props.selectArea(props['BU_CODE'], props['BU_NAAM']);
+            this.props.selectArea({ code: props['BU_CODE'] });
         } else if (!!props['WK_CODE']) {
-            this.props.selectArea(props['WK_CODE'], props['WK_NAAM']);
+            this.props.selectArea({ code: props['WK_CODE'] });
         } else if (!!props['GM_CODE']) {
-            this.props.selectArea(props['GM_CODE'], props['GM_NAAM']);
+            this.props.selectArea({ code: props['GM_CODE'] });
         }
     };
 
