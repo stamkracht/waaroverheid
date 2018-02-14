@@ -5,8 +5,6 @@ import Drawer from './Drawer';
 import ZoomControls from './ZoomControls';
 import Filters from './Filters';
 import * as MapService from '../services/MapService';
-import { getAdjacentArea } from '../actions/map';
-
 class Map extends React.Component {
     componentWillMount() {
         this.props.initializeMap(this.props.location.search, this.props.match.params, this.props.history);
