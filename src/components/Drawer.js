@@ -18,7 +18,7 @@ const NoDocuments = () => (
                 <h3>Probeer een andere gemeente of wijk</h3>
             </li>
             <li>
-                <h3>Meld u aan voor meldingen</h3>
+                <h3>Blijf op de hoogte via e-mail meldingen</h3>
             </li>
         </ul>
     </div>
@@ -26,10 +26,13 @@ const NoDocuments = () => (
 
 const FetchFailed = ({ resetArea }) => (
     <div className="c-emptyContent">
-        <h2>Gemeente Nog Neit Beschikbaar</h2>
+        <h2>Gemeente nog niet beschikbaar</h2>
         <ul>
             <li>
                 <h3>Probeer een andere gemeente</h3>
+            </li>
+            <li>
+                <h3>Blijf op de hoogte via e-mail meldingen</h3>
             </li>
         </ul>
     </div>
@@ -63,7 +66,7 @@ class Drawer extends React.Component {
 
     renderHeaderContent() {
         let text = this.props.fetchFailed
-            ? 'Gemeente nog neit beschikbaar'
+            ? 'Gemeente nog niet beschikbaar'
             : `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${
                   this.props.area
               }`;
