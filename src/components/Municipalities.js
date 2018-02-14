@@ -16,12 +16,17 @@ class Municipalities extends React.Component {
             municipalities,
             filterMunicipalities,
             getUserLocation,
-            chooseMunicipality
+            chooseMunicipality,
+            loadingLocationFailed
         } = this.props;
 
         return (
             <div className="c-municipalities">
-                <MunicipalitiesHeader showUserLocation={getUserLocation} loadingLocation={loadingLocation} />
+                <MunicipalitiesHeader
+                    showUserLocation={getUserLocation}
+                    loadingLocation={loadingLocation}
+                    loadingLocationFailed={loadingLocationFailed}
+                />
 
                 <MunicipalitiesSearch
                     filterMunicipalities={filterMunicipalities}

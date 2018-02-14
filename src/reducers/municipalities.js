@@ -6,7 +6,8 @@ const initialState = {
     filtered: [],
     term: '',
     code: '',
-    loadingLocation: false
+    loadingLocation: false,
+    loadingLocationFailed: false
 };
 
 function municipalities(state = initialState, action) {
@@ -43,6 +44,13 @@ function municipalities(state = initialState, action) {
         case TYPES.RESET_LOCATION:
             return {
                 ...state,
+                loadingLocation: false,
+                loadingLocationFailed: false
+            };
+        case TYPES.SHOW_USER_LOCATION_FAILED:
+            return {
+                ...state,
+                loadingLocationFailed: true,
                 loadingLocation: false
             };
         default:

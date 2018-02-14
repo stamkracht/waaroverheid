@@ -1,7 +1,7 @@
 import React from 'react';
 import ZoomButton from './ZoomButton';
 
-const ZoomControls = ({ code, setZoomLevel, search, history, goToMunicipalities, fetchFailed }) => {
+const ZoomControls = ({ code, setZoomLevel, search, goToMunicipalities, fetchFailed }) => {
     const level = code.slice(0, 2);
 
     return (
@@ -15,7 +15,7 @@ const ZoomControls = ({ code, setZoomLevel, search, history, goToMunicipalities,
                         search={search}
                         name={'Gemeente'}
                         isActive={level === 'GM'}
-                        onClick={() => setZoomLevel(`GM${code.match(/[0-9]{4}/g)[0]}`)}
+                        onClick={() => setZoomLevel({ code: `GM${code.match(/[0-9]{4}/g)[0]}` })}
                     />
                 )}
 
@@ -25,7 +25,7 @@ const ZoomControls = ({ code, setZoomLevel, search, history, goToMunicipalities,
                     search={search}
                     name={'Wijk'}
                     isActive={level === 'WK'}
-                    onClick={() => setZoomLevel(`WK${code.match(/[0-9]{6}/g)[0]}`)}
+                    onClick={() => setZoomLevel({ code: `WK${code.match(/[0-9]{6}/g)[0]}` })}
                 />
             )}
 
@@ -35,7 +35,7 @@ const ZoomControls = ({ code, setZoomLevel, search, history, goToMunicipalities,
                     name={'Buurt'}
                     search={search}
                     isActive={level === 'BU'}
-                    onClick={() => setZoomLevel(`BU${code.match(/[0-9]{8}/g)[0]}`)}
+                    onClick={() => setZoomLevel({ code: `BU${code.match(/[0-9]{8}/g)[0]}` })}
                 />
             )}
         </div>

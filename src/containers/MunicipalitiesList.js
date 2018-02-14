@@ -13,12 +13,14 @@ import Municipalities from '../components/Municipalities';
 const chooseMunicipality = municipalities => (municipalities.length ? push(`${municipalities[0].code}`) : null);
 
 const mapStateToProps = state => {
+    const { filtered: municipalities, term, loadingLocation, loadingLocationFailed, code } = state.municipalities;
+
     return {
-        municipalities: state.municipalities.filtered,
-        term: state.municipalities.term,
-        loadingLocation: state.municipalities.loadingLocation,
-        loadingLocationError: state.municipalities.loadingLocationError,
-        code: state.municipalities.code
+        municipalities,
+        term,
+        loadingLocation,
+        loadingLocationFailed,
+        code
     };
 };
 

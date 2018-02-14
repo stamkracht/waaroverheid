@@ -57,7 +57,6 @@ class Map extends React.Component {
                     <ZoomControls
                         code={code}
                         setZoomLevel={code => getArea({ code })}
-                        history={history}
                         goToMunicipalities={resetArea}
                         search={search}
                         fetchFailed={fetchFailed}

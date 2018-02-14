@@ -1,4 +1,5 @@
 import { call, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import * as MapService from '../services/MapService';
 import * as TYPES from '../types';
 import { push } from 'react-router-redux';
@@ -44,7 +45,8 @@ export function* fetchUserLocation(action) {
         yield put(push(`/${code}`));
         yield put({ type: TYPES.RESET_LOCATION });
     } catch (e) {
-        //handle faled
-        console.log(e, 'failed');
+        yield put({ type: TYPES.SHOW_USER_LOCATION_FAILED });
+        yield delay(3500);
+        yield put({ type: TYPES.RESET_LOCATION });
     }
 }
