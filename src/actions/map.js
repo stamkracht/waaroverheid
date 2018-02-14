@@ -129,6 +129,7 @@ export function* fetchArea({ code }) {
         yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
     } catch (e) {
         //handle faled
+        const { history } = yield select(getMap);
         yield put({ type: TYPES.FETCH_AREA_FAILED });
     }
 }

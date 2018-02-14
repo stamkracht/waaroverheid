@@ -38,6 +38,7 @@ class Map extends React.Component {
             removeFilters,
             getMoreDocs,
             resetArea,
+            fetchFailed,
             location: { search }
         } = this.props;
 
@@ -59,19 +60,21 @@ class Map extends React.Component {
                         history={history}
                         goToMunicipalities={resetArea}
                         search={search}
+                        fetchFailed={fetchFailed}
                     />
                 )}
-                {!isDrawerOpen && (
-                    <Filters
-                        facets={facets}
-                        filters={filters}
-                        updateFilters={updateFilters}
-                        removeFilters={(key, filterName) => removeFilters({ key, filterName })}
-                        updateQuery={updateQuery}
-                        submit={getSearch}
-                        resetFilters={resetFilters}
-                    />
-                )}
+                {!isDrawerOpen &&
+                    !fetchFailed && (
+                        <Filters
+                            facets={facets}
+                            filters={filters}
+                            updateFilters={updateFilters}
+                            removeFilters={(key, filterName) => removeFilters({ key, filterName })}
+                            updateQuery={updateQuery}
+                            submit={getSearch}
+                            resetFilters={resetFilters}
+                        />
+                    )}
 
                 <Alert
                     area={name}
@@ -93,6 +96,7 @@ class Map extends React.Component {
                     removeFilters={(key, filterName) => removeFilters({ key, filterName })}
                     query={query}
                     resetArea={resetArea}
+                    fetchFailed={fetchFailed}
                     resetQuery={() => updateQuery('')}
                     getMoreDocuments={page => getMoreDocs({ page })}
                     hasMoreDocs={hasMoreDocs}

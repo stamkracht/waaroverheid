@@ -2,11 +2,38 @@ import React from 'react';
 
 import Documents from './Documents';
 import Icon from './Icon';
+import Button from './Button';
 import { classNames } from '../utilities/class';
 
 import '../styles/drawer.css';
+import { resetArea } from '../actions/map';
 
 let timer;
+
+const NoDocuments = () => (
+    <div className="c-emptyContent">
+        <h2>Geen documenten gevonden</h2>
+        <ul>
+            <li>
+                <h3>Probeer een andere gemeente of wijk</h3>
+            </li>
+            <li>
+                <h3>Meld u aan voor meldingen</h3>
+            </li>
+        </ul>
+    </div>
+);
+
+const FetchFailed = ({ resetArea }) => (
+    <div className="c-emptyContent">
+        <h2>Gemeente Nog Neit Beschikbaar</h2>
+        <ul>
+            <li>
+                <h3>Probeer een andere gemeente</h3>
+            </li>
+        </ul>
+    </div>
+);
 
 class Drawer extends React.Component {
     constructor(props) {
@@ -35,9 +62,12 @@ class Drawer extends React.Component {
     }
 
     renderHeaderContent() {
-        let text = `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${
-            this.props.area
-        }`;
+        let text = this.props.fetchFailed
+            ? 'Gemeente nog neit beschikbaar'
+            : `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${
+                  this.props.area
+              }`;
+
         if (!this.props.isDrawerOpen) {
             return (
                 <div>
@@ -75,20 +105,10 @@ class Drawer extends React.Component {
 
     renderDocuments = () => {
         if (this.props.isDrawerOpen) {
-            if (this.props.documentsCount === 0) {
-                return (
-                    <div className="c-emptyContent">
-                        <h2>Geen documenten gevonden</h2>
-                        <ul>
-                            <li>
-                                <h3>Probeer een andere gemeente of wijk</h3>
-                            </li>
-                            <li>
-                                <h3>Meld u aan voor meldingen</h3>
-                            </li>
-                        </ul>
-                    </div>
-                );
+            if (this.props.documentsCount === 0 && !this.props.fetchFailed) {
+                return <NoDocuments />;
+            } else if (this.props.documentsCount === 0 && this.props.fetchFailed) {
+                return <FetchFailed resetArea={this.props.resetArea} />;
             } else {
                 return (
                     <Documents

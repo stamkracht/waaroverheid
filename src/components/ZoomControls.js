@@ -1,22 +1,23 @@
 import React from 'react';
 import ZoomButton from './ZoomButton';
 
-const ZoomControls = ({ code, setZoomLevel, search, history, goToMunicipalities }) => {
+const ZoomControls = ({ code, setZoomLevel, search, history, goToMunicipalities, fetchFailed }) => {
     const level = code.slice(0, 2);
 
     return (
         <div className="c-zoomControls">
             <ZoomButton pathname={'/'} search={false} name={'Kies gemeente'} onClick={goToMunicipalities} />
 
-            {(level === 'GM' || level === 'WK' || level === 'BU') && (
-                <ZoomButton
-                    pathname={`/GM${code.match(/[0-9]{4}/g)[0]}`}
-                    search={search}
-                    name={'Gemeente'}
-                    isActive={level === 'GM'}
-                    onClick={() => setZoomLevel(`GM${code.match(/[0-9]{4}/g)[0]}`)}
-                />
-            )}
+            {!fetchFailed &&
+                (level === 'GM' || level === 'WK' || level === 'BU') && (
+                    <ZoomButton
+                        pathname={`/GM${code.match(/[0-9]{4}/g)[0]}`}
+                        search={search}
+                        name={'Gemeente'}
+                        isActive={level === 'GM'}
+                        onClick={() => setZoomLevel(`GM${code.match(/[0-9]{4}/g)[0]}`)}
+                    />
+                )}
 
             {(level === 'WK' || level === 'BU') && (
                 <ZoomButton

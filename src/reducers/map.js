@@ -18,7 +18,8 @@ const initialState = {
     hasMoreDocs: true,
     isDrawerOpen: false,
     documentsCount: 0,
-    counts: {}
+    counts: {},
+    fetchFailed: false
 };
 
 function map(state = initialState, action) {
@@ -44,6 +45,7 @@ function map(state = initialState, action) {
         case TYPES.FETCH_AREA_FAILED:
             return {
                 ...state,
+                fetchFailed: true,
                 isDrawerOpen: true
             };
         case TYPES.TOGGLE_DRAWER:

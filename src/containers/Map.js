@@ -19,7 +19,7 @@ import {
 import Map from '../components/Map';
 
 const mapStateToProps = state => {
-    const { geo, adjacent, code, hasMoreDocs, counts, filters, name, query, isDrawerOpen } = state.map;
+    const { geo, adjacent, code, hasMoreDocs, counts, filters, name, query, isDrawerOpen, fetchFailed } = state.map;
     const { facets, meta: { total: documentsCount } = 0, events: documents = [] } = state.map.search;
     console.log(state);
     return {
@@ -34,7 +34,8 @@ const mapStateToProps = state => {
         filters,
         name,
         query,
-        isDrawerOpen
+        isDrawerOpen,
+        fetchFailed
     };
 };
 
