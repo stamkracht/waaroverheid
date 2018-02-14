@@ -1,5 +1,6 @@
 import { all, call, put, select } from 'redux-saga/effects';
-
+import { push } from 'react-router-redux';
+import { delay } from 'redux-saga';
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
 import * as Search from '../services/SearchService';
@@ -24,12 +25,8 @@ export const getArea = ({ code }) => ({
     code
 });
 
-export const getSearch = ({ code, query, filters, page }) => ({
-    type: TYPES.FETCH_SEARCH,
-    code,
-    query,
-    filters,
-    page
+export const getSearch = () => ({
+    type: TYPES.FETCH_SEARCH
 });
 
 export const updateFilters = filters => ({
@@ -47,9 +44,8 @@ export const updateQuery = query => ({
     query
 });
 
-export const resetFilters = code => ({
-    type: TYPES.FETCH_RESET_FILTERS,
-    code
+export const resetFilters = () => ({
+    type: TYPES.FETCH_RESET_FILTERS
 });
 
 export const removeFilters = filters => ({
@@ -76,10 +72,20 @@ export const setCode = code => ({
 });
 
 export const resetArea = () => ({
-    type: TYPES.RESET_AREA
+    type: TYPES.FETCH_RESET_AREA
 });
 
 export const getMap = store => store.map;
+
+export function* fetchResetArea() {
+    try {
+        yield put({ type: TYPES.RESET_AREA });
+        yield call(push, '');
+    } catch (e) {
+        //handle failed
+        console.log(e);
+    }
+}
 
 export function* fetchToggleDrawer(action) {
     try {
@@ -123,7 +129,7 @@ export function* fetchArea({ code }) {
         yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
     } catch (e) {
         //handle faled
-        console.log(e, 'failed');
+        yield put({ type: TYPES.FETCH_AREA_FAILED });
     }
 }
 

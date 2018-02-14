@@ -12,7 +12,9 @@ const initialState = {
     geo: {},
     adjacent: {},
     code: '',
-    search: {},
+    search: {
+        meta: { total: 0 }
+    },
     hasMoreDocs: true,
     isDrawerOpen: false,
     documentsCount: 0,
@@ -20,7 +22,6 @@ const initialState = {
 };
 
 function map(state = initialState, action) {
-    console.log(action.type);
     switch (action.type) {
         case TYPES.SET_FILTERS_FROM_URL:
             return {
@@ -39,6 +40,11 @@ function map(state = initialState, action) {
                 search: action.search,
                 name: utils.getName(action.geo, action.code),
                 counts: action.counts
+            };
+        case TYPES.FETCH_AREA_FAILED:
+            return {
+                ...state,
+                isDrawerOpen: true
             };
         case TYPES.TOGGLE_DRAWER:
             return {
@@ -60,7 +66,8 @@ function map(state = initialState, action) {
         case TYPES.RESET_FILTERS:
             return {
                 ...state,
-                filters: Object.assign({}, BASE_FILTERS)
+                filters: Object.assign({}, BASE_FILTERS),
+                query: ''
             };
         case TYPES.REMOVE_FILTERS:
             return {

@@ -11,11 +11,6 @@ class Map extends React.Component {
         this.props.initializeMap(this.props.location.search, this.props.match.params, this.props.history);
     }
 
-    async goToMunicipalities() {
-        await this.props.resetArea();
-        this.props.changePage('');
-    }
-
     render() {
         const {
             geo,
@@ -42,6 +37,7 @@ class Map extends React.Component {
             resetFilters,
             removeFilters,
             getMoreDocs,
+            resetArea,
             location: { search }
         } = this.props;
 
@@ -61,22 +57,21 @@ class Map extends React.Component {
                         code={code}
                         setZoomLevel={code => getArea({ code })}
                         history={history}
-                        goToMunicipalities={this.goToMunicipalities.bind(this)}
+                        goToMunicipalities={resetArea}
                         search={search}
                     />
                 )}
-                {!isDrawerOpen &&
-                    documentsCount && (
-                        <Filters
-                            facets={facets}
-                            filters={filters}
-                            updateFilters={updateFilters}
-                            removeFilters={(key, filterName) => removeFilters({ key, filterName })}
-                            updateQuery={updateQuery}
-                            submit={getSearch}
-                            resetFilters={resetFilters}
-                        />
-                    )}
+                {!isDrawerOpen && (
+                    <Filters
+                        facets={facets}
+                        filters={filters}
+                        updateFilters={updateFilters}
+                        removeFilters={(key, filterName) => removeFilters({ key, filterName })}
+                        updateQuery={updateQuery}
+                        submit={getSearch}
+                        resetFilters={resetFilters}
+                    />
+                )}
 
                 <Alert
                     area={name}
@@ -97,6 +92,7 @@ class Map extends React.Component {
                     filters={filters}
                     removeFilters={(key, filterName) => removeFilters({ key, filterName })}
                     query={query}
+                    resetArea={resetArea}
                     resetQuery={() => updateQuery('')}
                     getMoreDocuments={page => getMoreDocs({ page })}
                     hasMoreDocs={hasMoreDocs}
