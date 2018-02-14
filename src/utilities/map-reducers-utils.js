@@ -1,3 +1,5 @@
+import * as isArray from 'lodash/isArray';
+
 export function getName(geoResponse, code = '') {
     let prefix = code.slice(0, 2);
     return geoResponse.properties
@@ -24,7 +26,9 @@ export function removeFilters(stateFilters, { key, filterName }) {
 export function mergeDocuments(state, updatedSearch) {
     const search = Object.assign({}, state.search);
 
-    search.events = search.events.concat(updatedSearch.events);
+    if (isArray(updatedSearch.events)) {
+        search.events = search.events.concat(updatedSearch.events);
+    }
     search.meta = updatedSearch.meta;
 
     return search;
