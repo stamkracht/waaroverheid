@@ -138,9 +138,11 @@ export function* fetchArea({ code }) {
     try {
         const { filters, query, isDrawerOpen, history } = yield select(getMap);
         yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
-        const geo = yield call(MapService.getFeatures, code);
-        const adjacent = yield call(MapService.getAdjacentFeatures, code);
-        const search = yield call(Search.search, code, query, filters);
+        const [geo, adjacent, search] = yield all([
+            yield call(MapService.getFeatures, code),
+            yield call(MapService.getAdjacentFeatures, code),
+            yield call(Search.search, code, query, filters)
+        ]);
         const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
         yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
     } catch (e) {
@@ -190,9 +192,11 @@ export function* fetchInitialLocation({ search, params, history }) {
         const { code } = params;
         const { filters, query, isDrawerOpen } = yield select(getMap);
         yield put({ type: SET_FILTERS_FROM_URL, search, params, history });
-        const geo = yield call(MapService.getFeatures, code);
-        const adjacent = yield call(MapService.getAdjacentFeatures, code);
-        const search = yield call(Search.search, code, query, filters);
+        const [geo, adjacent, search] = yield all([
+            yield call(MapService.getFeatures, code),
+            yield call(MapService.getAdjacentFeatures, code),
+            yield call(Search.search, code, query, filters)
+        ]);
         const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
         yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
     } catch (e) {
