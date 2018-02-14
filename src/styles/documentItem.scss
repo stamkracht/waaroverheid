@@ -95,16 +95,14 @@
         font-weight: lighter;
         padding-right: 34px;
     }
-    h3,
-    p,
-    a {
+    .c-details--text *,
+    .c-details--snippets * {
         margin: 5px;
-        font-weight: normal;
         word-wrap: break-word;
-    }
-    p,
-    a {
         font-size: 15px;
+    }
+    .c-details--toponym {
+        font-weight: bold;
     }
     .icon {
         position: relative;
@@ -131,6 +129,9 @@
     word-wrap: break-word;
     p {
         display: inline;
+        &::after {
+            content: '\2026';
+        }
     }
 }
 

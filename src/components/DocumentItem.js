@@ -43,7 +43,7 @@ class DocumentItem extends Component {
                     <Container shadow={true}>
                         <div className="c-details--content">
                             <div className="c-details--text">
-                                <h3 dangerouslySetInnerHTML={this.createMarkup(this.props.document.description)} />
+                                <div dangerouslySetInnerHTML={this.createMarkup(this.props.document.description)} />
                             </div>
                             <div className="c-details--snippets">{this.renderSnippets()}</div>
                             <Reporting />
