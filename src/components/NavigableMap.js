@@ -21,7 +21,7 @@ class NavigableMap extends Component {
         } else if (level === 'WK') {
             this.props.selectArea({ code: props['BU_CODE'] });
         } else if (level === 'BU') {
-            this.props.openDrawer();
+            this.props.toggleDrawer(this.props.isDrawerOpen);
         }
     };
 

@@ -61,6 +61,7 @@ class Map extends React.Component {
                     selectArea={getArea}
                     selectAdjacentArea={getAdjacentArea}
                     isDrawerOpen={isDrawerOpen}
+                    toggleDrawer={toggleDrawer}
                 />
 
                 {!isDrawerOpen && (
