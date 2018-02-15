@@ -83,6 +83,7 @@ class Map extends React.Component {
                             updateQuery={updateQuery}
                             submit={getSearch}
                             resetFilters={resetFilters}
+                            areFiltersDefined={search}
                         />
                     )}
 
