@@ -7,9 +7,9 @@ import * as Search from '../services/SearchService';
 import * as RoutingService from '../services/RoutingService';
 import { SET_FILTERS_FROM_URL, FETCH_AREA } from '../types';
 
-export const initializeMap = (search, params, history) => ({
+export const initializeMap = (location, params, history) => ({
     type: TYPES.FETCH_INITIAL_LOCATION,
-    search,
+    location,
     params,
     history
 });
@@ -187,11 +187,11 @@ export function* fetchResetFilters() {
     }
 }
 
-export function* fetchInitialLocation({ search, params, history }) {
+export function* fetchInitialLocation({ location, history, params }) {
     try {
         const { code } = params;
-        const { filters, query, isDrawerOpen } = yield select(getMap);
-        yield put({ type: SET_FILTERS_FROM_URL, search, params, history });
+        yield put({ type: SET_FILTERS_FROM_URL, search: location.search, params, history });
+        const { filters, query } = yield select(getMap);
         const [geo, adjacent, search] = yield all([
             yield call(MapService.getFeatures, code),
             yield call(MapService.getAdjacentFeatures, code),

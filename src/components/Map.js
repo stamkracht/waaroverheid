@@ -7,7 +7,16 @@ import Filters from './Filters';
 import * as MapService from '../services/MapService';
 class Map extends React.Component {
     componentWillMount() {
-        this.props.initializeMap(this.props.location.search, this.props.match.params, this.props.history);
+        this.props.initializeMap(this.props.location, this.props.match.params, this.props.history);
+    }
+
+    componentDidUpdate(newProps) {
+        if (
+            newProps.location.pathname !== this.props.location.pathname ||
+            newProps.location.search !== this.props.location.search
+        ) {
+            this.props.initializeMap(this.props.location, this.props.match.params, this.props.history);
+        }
     }
 
     render() {
