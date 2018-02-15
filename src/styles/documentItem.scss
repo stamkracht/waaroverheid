@@ -118,7 +118,7 @@
 
 .c-documentList {
     padding: 1px;
-    max-height: 100vh;
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
     width: 100%;
 }
