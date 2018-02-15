@@ -14,8 +14,11 @@
         padding: 10px 40px 10px 10px;
         border: none;
         font-weight: lighter;
+        &:focus {
+            outline: 0;
+            border: none;
+        }
     }
-
     &:hover {
         input {
             outline: 0;
