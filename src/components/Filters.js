@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import Icon from './Icon';
 import Button from './Button';
@@ -6,7 +7,6 @@ import SearchBox from './SearchBox';
 import TypesList from './TypesList';
 import Chart from './Chart';
 import Tag from './Tag';
-import FiltersService from '../services/FiltersService';
 
 import 'react-input-range/lib/css/index.css';
 import '../styles/filters.css';
@@ -39,7 +39,9 @@ class Filters extends React.Component {
         const startDate = {
             start_date: {
                 from: chartData[startIndex].key_as_string,
-                to: chartData[endIndex].key_as_string
+                to: moment(chartData[endIndex].key)
+                    .add(1, 'month')
+                    .toISOString()
             }
         };
 

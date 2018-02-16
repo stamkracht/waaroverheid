@@ -1,6 +1,4 @@
 import apiUrl from './ApiUrl';
-import FiltersService from './FiltersService';
-import isObject from 'lodash/isObject';
 
 let PARAMS = {
     from: 0,
@@ -8,7 +6,7 @@ let PARAMS = {
     facets: {
         types: {},
         start_date: {
-            interval: 'year'
+            interval: 'month'
         },
         classification: {
             size: 100
