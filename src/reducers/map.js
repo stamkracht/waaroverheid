@@ -32,7 +32,8 @@ function map(state = initialState, action) {
                 filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
                 isDrawerOpen: utils.getIsDrawerOpen(action.search),
                 query: utils.getQuery(action.search),
-                history: action.history
+                history: action.history,
+                fetchFailed: false
             };
         case TYPES.SELECT_AREA:
             return {

@@ -5,7 +5,7 @@ import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
 import * as Search from '../services/SearchService';
 import * as RoutingService from '../services/RoutingService';
-import { SET_FILTERS_FROM_URL, FETCH_AREA } from '../types';
+import { SET_FILTERS_FROM_URL, FETCH_AREA, SELECT_AREA, SET_CODE } from '../types';
 
 export const initializeMap = (location, params, history) => ({
     type: TYPES.FETCH_INITIAL_LOCATION,
@@ -84,12 +84,21 @@ export const getMap = store => store.map;
 
 export function* fetchAdjacentArea({ code }) {
     try {
+        const { filters, query, isDrawerOpen, history } = yield select(getMap);
         yield put({ type: TYPES.RESET_AREA });
-        yield put({ type: TYPES.SET_CODE, code });
-        yield put({ type: TYPES.FETCH_AREA, code });
+        const [geo, adjacent, search] = yield all([
+            yield call(MapService.getFeatures, code),
+            yield call(MapService.getAdjacentFeatures, code),
+            yield call(Search.search, code, query, filters)
+        ]);
+
+        if (geo && adjacent && search) {
+            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+            yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+            yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
+        }
     } catch (e) {
-        //handle failed
-        console.log(e);
+        yield put({ type: TYPES.FETCH_AREA_FAILED });
     }
 }
 
@@ -137,7 +146,6 @@ export function* fetchRemoveFilters({ filters }) {
 export function* fetchArea({ code }) {
     try {
         const { filters, query, isDrawerOpen, history } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
         const [geo, adjacent, search] = yield all([
             yield call(MapService.getFeatures, code),
             yield call(MapService.getAdjacentFeatures, code),
@@ -145,9 +153,9 @@ export function* fetchArea({ code }) {
         ]);
         const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
         yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
     } catch (e) {
-        //handle faled
-        const { history } = yield select(getMap);
+        yield put({ type: TYPES.RESET_AREA });
         yield put({ type: TYPES.FETCH_AREA_FAILED });
     }
 }
@@ -197,10 +205,12 @@ export function* fetchInitialLocation({ location, history, params }) {
             yield call(MapService.getAdjacentFeatures, code),
             yield call(Search.search, code, query, filters)
         ]);
-        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+        if (geo && adjacent && search) {
+            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+            yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+        }
     } catch (e) {
-        //handle failed
-        console.log(e, 'failed');
+        yield put({ type: TYPES.RESET_AREA });
+        yield put({ type: TYPES.FETCH_AREA_FAILED });
     }
 }

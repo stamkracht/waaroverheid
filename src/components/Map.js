@@ -19,6 +19,10 @@ class Map extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.resetArea();
+    }
+
     render() {
         const {
             geo,
