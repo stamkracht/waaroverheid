@@ -107,7 +107,7 @@ export function* fetchToggleDrawer(action) {
     try {
         yield put({ type: TYPES.TOGGLE_DRAWER, isDrawerOpen: action.isDrawerOpen });
         const { code, filters, query, history, isDrawerOpen } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
     } catch (e) {
         //handle faled
         console.log(e, 'failed');
@@ -137,7 +137,7 @@ export function* fetchRemoveFilters({ filters }) {
 export function* fetchArea({ code }) {
     try {
         const { filters, query, isDrawerOpen, history } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
         const [geo, adjacent, search] = yield all([
             yield call(MapService.getFeatures, code),
             yield call(MapService.getAdjacentFeatures, code),
@@ -155,7 +155,7 @@ export function* fetchArea({ code }) {
 export function* fetchSearch() {
     try {
         const { code, filters, query, isDrawerOpen, history } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
         const search = yield call(Search.search, code, query, filters);
         const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
         yield put({ type: TYPES.SEARCH, search, counts });

@@ -19,7 +19,8 @@ const initialState = {
     isDrawerOpen: false,
     documentsCount: 0,
     counts: {},
-    fetchFailed: false
+    fetchFailed: false,
+    query: ''
 };
 
 function map(state = initialState, action) {
@@ -30,6 +31,7 @@ function map(state = initialState, action) {
                 code: action.params.code,
                 filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
                 isDrawerOpen: utils.getIsDrawerOpen(action.search),
+                query: utils.getQuery(action.search),
                 history: action.history
             };
         case TYPES.SELECT_AREA:

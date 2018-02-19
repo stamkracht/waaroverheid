@@ -1,5 +1,17 @@
 import * as isArray from 'lodash/isArray';
 
+export function getQuery(search) {
+    const searchParams = new URLSearchParams(search);
+    for (let params of searchParams) {
+        switch (params[0]) {
+            case 'query':
+                return params[1];
+            default:
+                '';
+        }
+    }
+}
+
 export function getName(geoResponse, code = '') {
     let prefix = code.slice(0, 2);
     return geoResponse.properties
