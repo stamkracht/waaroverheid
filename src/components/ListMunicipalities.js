@@ -7,6 +7,7 @@ const ListMunicipalities = ({ municipalities, changePage }) => {
             <Container key={i} shadow={true}>
                 <div className="c-municipality" onClick={() => changePage(item.code)}>
                     <h4>{item.name}</h4>
+                    {item.count ? '' : <span className="no-search">(nog niet beschikbaar)</span>}
                 </div>
             </Container>
         );

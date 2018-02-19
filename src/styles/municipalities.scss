@@ -33,12 +33,21 @@
         padding: 15px;
         width: 100%;
         border: 2px solid transparent;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         &:hover {
             border: 2px solid #ed6000;
         }
         h4 {
             margin: 0;
             color: black;
+            display: inline-block;
+        }
+        span.no-search {
+            color: #cf5900;
+            padding-left: 7px;
+            font-style: italic;
         }
     }
 
