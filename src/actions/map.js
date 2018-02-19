@@ -1,4 +1,4 @@
-import { all, call, put, select } from 'redux-saga/effects';
+import { all, call, put, select, take } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { delay } from 'redux-saga';
 import * as TYPES from '../types';
@@ -84,21 +84,12 @@ export const getMap = store => store.map;
 
 export function* fetchAdjacentArea({ code }) {
     try {
-        const { filters, query, isDrawerOpen, history } = yield select(getMap);
+        const { code: oldCode } = yield select(getMap);
         yield put({ type: TYPES.RESET_AREA });
-        const [geo, adjacent, search] = yield all([
-            yield call(MapService.getFeatures, code),
-            yield call(MapService.getAdjacentFeatures, code),
-            yield call(Search.search, code, query, filters)
-        ]);
-
-        if (geo && adjacent && search) {
-            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-            yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
-            yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
-        }
+        yield call(fetchArea, { code, oldCode });
     } catch (e) {
-        yield put({ type: TYPES.FETCH_AREA_FAILED });
+        //handle failed
+        console.log(e);
     }
 }
 
@@ -143,7 +134,7 @@ export function* fetchRemoveFilters({ filters }) {
     }
 }
 
-export function* fetchArea({ code }) {
+export function* fetchArea({ code, oldCode }) {
     try {
         const { filters, query, isDrawerOpen, history } = yield select(getMap);
         const [geo, adjacent, search] = yield all([
@@ -151,22 +142,31 @@ export function* fetchArea({ code }) {
             yield call(MapService.getAdjacentFeatures, code),
             yield call(Search.search, code, query, filters)
         ]);
-        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
+        if (geo && adjacent && search) {
+            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+            yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+            yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
+        }
     } catch (e) {
         yield put({ type: TYPES.RESET_AREA });
         yield put({ type: TYPES.FETCH_AREA_FAILED });
+        if (oldCode) {
+            yield put({ type: SET_CODE, code: oldCode });
+            yield take(TYPES.TOGGLE_DRAWER);
+            yield call(fetchArea, { code: oldCode });
+        }
     }
 }
 
 export function* fetchSearch() {
     try {
         const { code, filters, query, isDrawerOpen, history } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
         const search = yield call(Search.search, code, query, filters);
-        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-        yield put({ type: TYPES.SEARCH, search, counts });
+        if (search) {
+            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+            yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
+            yield put({ type: TYPES.SEARCH, search, counts });
+        }
     } catch (e) {
         //handle failed
         console.log(e, 'failed');

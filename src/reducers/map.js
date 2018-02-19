@@ -43,7 +43,8 @@ function map(state = initialState, action) {
                 adjacent: action.adjacent,
                 search: action.search,
                 name: utils.getName(action.geo, action.code),
-                counts: action.counts
+                counts: action.counts,
+                fetchFailed: false
             };
         case TYPES.FETCH_AREA_FAILED:
             return {
