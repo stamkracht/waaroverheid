@@ -10,6 +10,7 @@ export function getQuery(search) {
                 '';
         }
     }
+    return '';
 }
 
 export function getName(geoResponse, code = '') {

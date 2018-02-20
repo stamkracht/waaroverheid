@@ -13,12 +13,17 @@ const initialState = {
     adjacent: {},
     code: '',
     search: {
-        meta: { total: 0 }
+        meta: { total: 0 },
+        facets: {},
+        events: []
     },
     hasMoreDocs: true,
     isDrawerOpen: false,
     documentsCount: 0,
-    counts: {},
+    counts: {
+        byCode: {},
+        maxCount: 0
+    },
     fetchFailed: false,
     query: ''
 };
@@ -35,22 +40,38 @@ function map(state = initialState, action) {
                 history: action.history,
                 fetchFailed: false
             };
+        case TYPES.FETCH_INITIAL_LOCATION_FAILED:
+            return {
+                ...state
+            };
         case TYPES.SELECT_AREA:
             return {
                 ...state,
                 code: action.code,
                 geo: action.geo,
                 adjacent: action.adjacent,
-                search: action.search,
                 name: utils.getName(action.geo, action.code),
-                counts: action.counts,
                 fetchFailed: false
             };
         case TYPES.FETCH_AREA_FAILED:
             return {
                 ...state,
-                fetchFailed: true,
-                isDrawerOpen: true
+                geo: {},
+                adjacent: {},
+                fetchFailed: true
+            };
+        case TYPES.FETCH_SEARCH_FAILED:
+            return {
+                ...state,
+                search: {
+                    meta: { total: 0 },
+                    facets: {},
+                    events: []
+                },
+                counts: {
+                    byCode: {},
+                    maxCount: 0
+                }
             };
         case TYPES.TOGGLE_DRAWER:
             return {

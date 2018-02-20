@@ -24,7 +24,12 @@ export function search(code, query = '', filters = {}, page = 1) {
         headers: new Headers({
             'Content-Type': 'application/json'
         })
-    }).then(res => res.json());
+    }).then(res => {
+        if (res.status === 200) {
+            return res.json();
+        }
+        return Promise.reject(res);
+    });
 }
 
 function parseCode(code) {

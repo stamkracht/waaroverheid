@@ -84,9 +84,9 @@ export const getMap = store => store.map;
 
 export function* fetchAdjacentArea({ code }) {
     try {
-        const { code: oldCode } = yield select(getMap);
-        yield put({ type: TYPES.RESET_AREA });
-        yield call(fetchArea, { code, oldCode });
+        // const { code: oldCode } = yield select(getMap);
+        //yield put({ type: TYPES.RESET_AREA });
+        yield call(fetchArea, { code });
     } catch (e) {
         //handle failed
         console.log(e);
@@ -137,24 +137,14 @@ export function* fetchRemoveFilters({ filters }) {
 export function* fetchArea({ code, oldCode }) {
     try {
         const { filters, query, isDrawerOpen, history } = yield select(getMap);
-        const [geo, adjacent, search] = yield all([
+        const [geo, adjacent] = yield all([
             yield call(MapService.getFeatures, code),
-            yield call(MapService.getAdjacentFeatures, code),
-            yield call(Search.search, code, query, filters)
+            yield call(MapService.getAdjacentFeatures, code)
         ]);
-        if (geo && adjacent && search) {
-            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-            yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
-            yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
-        }
+        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, code });
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
     } catch (e) {
-        yield put({ type: TYPES.RESET_AREA });
         yield put({ type: TYPES.FETCH_AREA_FAILED });
-        if (oldCode) {
-            yield put({ type: SET_CODE, code: oldCode });
-            yield take(TYPES.TOGGLE_DRAWER);
-            yield call(fetchArea, { code: oldCode });
-        }
     }
 }
 
@@ -168,8 +158,7 @@ export function* fetchSearch() {
             yield put({ type: TYPES.SEARCH, search, counts });
         }
     } catch (e) {
-        //handle failed
-        console.log(e, 'failed');
+        yield put({ type: TYPES.FETCH_SEARCH_FAILED });
     }
 }
 
@@ -199,18 +188,8 @@ export function* fetchInitialLocation({ location, history, params }) {
     try {
         const { code } = params;
         yield put({ type: SET_FILTERS_FROM_URL, search: location.search, params, history });
-        const { filters, query } = yield select(getMap);
-        const [geo, adjacent, search] = yield all([
-            yield call(MapService.getFeatures, code),
-            yield call(MapService.getAdjacentFeatures, code),
-            yield call(Search.search, code, query, filters)
-        ]);
-        if (geo && adjacent && search) {
-            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-            yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
-        }
+        yield all([yield call(fetchArea, { code }), yield call(fetchSearch)]);
     } catch (e) {
-        yield put({ type: TYPES.RESET_AREA });
-        yield put({ type: TYPES.FETCH_AREA_FAILED });
+        yield put({ type: TYPES.FETCH_INITIAL_LOCATION_FAILED });
     }
 }
