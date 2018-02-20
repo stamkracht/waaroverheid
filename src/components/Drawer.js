@@ -66,7 +66,7 @@ class Drawer extends React.Component {
 
     renderHeaderContent() {
         let text = this.props.searchFailed
-            ? `${this.props.area} gemeente nog niet beschikbaar.`
+            ? `${this.props.area} is nog niet beschikbaar`
             : `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${
                   this.props.area
               }`;
