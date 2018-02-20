@@ -7,23 +7,27 @@ const BASE_FILTERS = {
     types: { terms: ['events'] }
 };
 
+const BASE_SEARCH = {
+    meta: { total: 0 },
+    facets: { start_date: { buckets: [] } },
+    events: []
+};
+
+const BASE_COUNTS = {
+    byCode: {},
+    maxCount: 0
+};
+
 const initialState = {
-    filters: Object.assign({}, BASE_FILTERS),
+    filters: { ...BASE_FILTERS },
     geo: {},
     adjacent: {},
     code: '',
-    search: {
-        meta: { total: 0 },
-        facets: {},
-        events: []
-    },
+    search: { ...BASE_SEARCH },
     hasMoreDocs: true,
     isDrawerOpen: false,
     documentsCount: 0,
-    counts: {
-        byCode: {},
-        maxCount: 0
-    },
+    counts: { ...BASE_COUNTS },
     fetchFailed: false,
     query: ''
 };
@@ -63,15 +67,8 @@ function map(state = initialState, action) {
         case TYPES.FETCH_SEARCH_FAILED:
             return {
                 ...state,
-                search: {
-                    meta: { total: 0 },
-                    facets: {},
-                    events: []
-                },
-                counts: {
-                    byCode: {},
-                    maxCount: 0
-                }
+                search: { ...BASE_SEARCH },
+                counts: { ...BASE_COUNTS }
             };
         case TYPES.TOGGLE_DRAWER:
             return {
