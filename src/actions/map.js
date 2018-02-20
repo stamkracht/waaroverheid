@@ -21,7 +21,7 @@ export const setFiltersfromURL = (search, params) => ({
 });
 
 export const getAdjacentArea = ({ code }) => ({
-    type: TYPES.FETCH_ADJACENT_AREA,
+    type: TYPES.FETCH_AREA,
     code
 });
 
@@ -81,17 +81,6 @@ export const resetArea = () => ({
 });
 
 export const getMap = store => store.map;
-
-export function* fetchAdjacentArea({ code }) {
-    try {
-        // const { code: oldCode } = yield select(getMap);
-        //yield put({ type: TYPES.RESET_AREA });
-        yield call(fetchArea, { code });
-    } catch (e) {
-        //handle failed
-        console.log(e);
-    }
-}
 
 export function* fetchResetArea() {
     try {

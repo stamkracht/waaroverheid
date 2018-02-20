@@ -8,8 +8,7 @@ import {
     fetchUpdateQuery,
     fetchRemoveFilters,
     fetchToggleDrawer,
-    fetchResetArea,
-    fetchAdjacentArea
+    fetchResetArea
 } from '../actions/map';
 import * as TYPES from '../types';
 
@@ -47,8 +46,4 @@ export function* watchFetchToggleDrawer() {
 
 export function* watchFetchResetArea() {
     yield takeLatest(TYPES.FETCH_RESET_AREA, fetchResetArea);
-}
-
-export function* watchFetchAdjacentArea() {
-    yield takeLatest(TYPES.FETCH_ADJACENT_AREA, fetchAdjacentArea);
 }

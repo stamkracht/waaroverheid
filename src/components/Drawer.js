@@ -65,8 +65,8 @@ class Drawer extends React.Component {
     }
 
     renderHeaderContent() {
-        let text = this.props.fetchFailed
-            ? 'Gemeente nog niet beschikbaar'
+        let text = this.props.searchFailed
+            ? `${this.props.area} gemeente nog niet beschikbaar.`
             : `${this.props.documentsCount} document${this.props.documentsCount === 1 ? '' : 'en'} gevonden in ${
                   this.props.area
               }`;
@@ -110,8 +110,8 @@ class Drawer extends React.Component {
         if (this.props.isDrawerOpen) {
             if (this.props.documentsCount === 0 && !this.props.fetchFailed) {
                 return <NoDocuments />;
-            } else if (this.props.documentsCount === 0 && this.props.fetchFailed) {
-                return <FetchFailed resetArea={this.props.resetArea} />;
+            } else if (this.props.documentsCount === 0 && this.props.searchFailed) {
+                return <FetchFailed />;
             } else {
                 return (
                     <Documents

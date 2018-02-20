@@ -42,7 +42,8 @@ function map(state = initialState, action) {
                 isDrawerOpen: utils.getIsDrawerOpen(action.search),
                 query: utils.getQuery(action.search),
                 history: action.history,
-                fetchFailed: false
+                fetchFailed: false,
+                searchFailed: false
             };
         case TYPES.FETCH_INITIAL_LOCATION_FAILED:
             return {
@@ -67,6 +68,7 @@ function map(state = initialState, action) {
         case TYPES.FETCH_SEARCH_FAILED:
             return {
                 ...state,
+                searchFailed: true,
                 search: { ...BASE_SEARCH },
                 counts: { ...BASE_COUNTS }
             };
@@ -80,7 +82,8 @@ function map(state = initialState, action) {
             return {
                 ...state,
                 search: action.search,
-                counts: action.counts
+                counts: action.counts,
+                searchFailed: false
             };
         case TYPES.UPDATE_FILTERS:
             return {

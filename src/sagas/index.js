@@ -8,8 +8,7 @@ import {
     watchFetchUpdateQuery,
     watchFetchRemoveFilters,
     watchFetchToggleDrawer,
-    watchFetchResetArea,
-    watchFetchAdjacentArea
+    watchFetchResetArea
 } from './map';
 import { all } from 'redux-saga/effects';
 
@@ -25,7 +24,6 @@ export default function* rootSaga() {
         watchFetchUpdateQuery(),
         watchFetchRemoveFilters(),
         watchFetchToggleDrawer(),
-        watchFetchResetArea(),
-        watchFetchAdjacentArea()
+        watchFetchResetArea()
     ]);
 }
