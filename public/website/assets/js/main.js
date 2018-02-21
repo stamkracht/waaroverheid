@@ -161,7 +161,7 @@ var urlParams;
 
         // High contrast
         if ('contrast' in urlParams) {
-            $('body').addClass('contrast', 1500);
+            $('body').addClass('contrast');
         }
     });
 })(jQuery);
