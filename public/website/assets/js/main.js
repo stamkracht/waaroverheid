@@ -3,6 +3,20 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+// Query string parsing
+var urlParams;
+(window.onpopstate = function() {
+    var match,
+        pl = /\+/g, // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function(s) {
+            return decodeURIComponent(s.replace(pl, ' '));
+        },
+        query = window.location.search.substring(1);
+
+    urlParams = {};
+    while ((match = search.exec(query))) urlParams[decode(match[1])] = decode(match[2]);
+})();
 
 (function($) {
     'use strict';
@@ -136,5 +150,18 @@
                 // Hide on escape.
                 if (event.keyCode == 27) $menu._hide();
             });
+
+        // Add querystring to menu links
+        if (location.search) {
+            $('#menu a, a.special').each(function() {
+                var splitTarget = this.href.split('#', 2);
+                this.href = splitTarget[0] + location.search + '#' + splitTarget[1];
+            });
+        }
+
+        // High contrast
+        if ('contrast' in urlParams) {
+            $('body').addClass('contrast', 1500);
+        }
     });
 })(jQuery);
