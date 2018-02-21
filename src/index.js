@@ -2,6 +2,7 @@ import React from 'react';
 
 import { render } from 'react-dom';
 import 'react-dates/initialize';
+import 'url-search-params-polyfill';
 import './styles/index.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './containers/App';
