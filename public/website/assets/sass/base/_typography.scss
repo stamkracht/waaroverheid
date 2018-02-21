@@ -39,7 +39,7 @@ textarea {
 
 a {
     @include vendor('transition', 'color #{_duration(transition)} ease-in-out, border-bottom-color #{_duration(transition)} ease-in-out');
-    border-bottom: dotted 1px _palette(fg-light);
+    border-bottom: dotted 3px _palette(fg-light);
     color: _palette(fg-bold);
     text-decoration: none;
 
