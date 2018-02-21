@@ -20,7 +20,7 @@ class Map extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.resetArea();
+        this.props.resetArea();    
     }
 
     render() {
