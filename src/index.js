@@ -2,7 +2,9 @@ import React from 'react';
 
 import { render } from 'react-dom';
 import 'react-dates/initialize';
+import 'es6-symbol/implement';
 import 'url-search-params-polyfill';
+import 'iterators-polyfill';
 import './styles/index.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './containers/App';
