@@ -66,6 +66,7 @@ class Alert extends React.Component {
     renderModalContent() {
         return (
             <div className="c-alert--content">
+                <p className="notyet">Nog even geduld: deze functionaliteit wordt 24 februari verwacht.</p>
                 <h3>
                     Ontvang een e-mail bij nieuwe zoekresultaten in {this.props.area}
                     {Object.getOwnPropertyNames(this.props.filters).length === 0
