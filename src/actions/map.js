@@ -1,11 +1,11 @@
-import { all, call, put, select } from 'redux-saga/effects';
+import { all, call, put, select, take } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { delay } from 'redux-saga';
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
 import * as Search from '../services/SearchService';
 import * as RoutingService from '../services/RoutingService';
-import { SET_FILTERS_FROM_URL, FETCH_AREA } from '../types';
+import { SET_FILTERS_FROM_URL, FETCH_AREA, SELECT_AREA, SET_CODE } from '../types';
 
 export const initializeMap = (location, params, history) => ({
     type: TYPES.FETCH_INITIAL_LOCATION,
@@ -21,7 +21,7 @@ export const setFiltersfromURL = (search, params) => ({
 });
 
 export const getAdjacentArea = ({ code }) => ({
-    type: TYPES.FETCH_ADJACENT_AREA,
+    type: TYPES.FETCH_AREA,
     code
 });
 
@@ -82,17 +82,6 @@ export const resetArea = () => ({
 
 export const getMap = store => store.map;
 
-export function* fetchAdjacentArea({ code }) {
-    try {
-        yield put({ type: TYPES.RESET_AREA });
-        yield put({ type: TYPES.SET_CODE, code });
-        yield put({ type: TYPES.FETCH_AREA, code });
-    } catch (e) {
-        //handle failed
-        console.log(e);
-    }
-}
-
 export function* fetchResetArea() {
     try {
         yield put({ type: TYPES.RESET_AREA });
@@ -107,7 +96,7 @@ export function* fetchToggleDrawer(action) {
     try {
         yield put({ type: TYPES.TOGGLE_DRAWER, isDrawerOpen: action.isDrawerOpen });
         const { code, filters, query, history, isDrawerOpen } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
     } catch (e) {
         //handle faled
         console.log(e, 'failed');
@@ -134,20 +123,16 @@ export function* fetchRemoveFilters({ filters }) {
     }
 }
 
-export function* fetchArea({ code }) {
+export function* fetchArea({ code, oldCode }) {
     try {
         const { filters, query, isDrawerOpen, history } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
-        const [geo, adjacent, search] = yield all([
+        const [geo, adjacent] = yield all([
             yield call(MapService.getFeatures, code),
-            yield call(MapService.getAdjacentFeatures, code),
-            yield call(Search.search, code, query, filters)
+            yield call(MapService.getAdjacentFeatures, code)
         ]);
-        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, code });
+        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
     } catch (e) {
-        //handle faled
-        const { history } = yield select(getMap);
         yield put({ type: TYPES.FETCH_AREA_FAILED });
     }
 }
@@ -155,13 +140,14 @@ export function* fetchArea({ code }) {
 export function* fetchSearch() {
     try {
         const { code, filters, query, isDrawerOpen, history } = yield select(getMap);
-        yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, history);
         const search = yield call(Search.search, code, query, filters);
-        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-        yield put({ type: TYPES.SEARCH, search, counts });
+        if (search) {
+            const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
+            yield call(RoutingService.handleRouting, code, filters, isDrawerOpen, query, history);
+            yield put({ type: TYPES.SEARCH, search, counts });
+        }
     } catch (e) {
-        //handle failed
-        console.log(e, 'failed');
+        yield put({ type: TYPES.FETCH_SEARCH_FAILED });
     }
 }
 
@@ -191,16 +177,8 @@ export function* fetchInitialLocation({ location, history, params }) {
     try {
         const { code } = params;
         yield put({ type: SET_FILTERS_FROM_URL, search: location.search, params, history });
-        const { filters, query } = yield select(getMap);
-        const [geo, adjacent, search] = yield all([
-            yield call(MapService.getFeatures, code),
-            yield call(MapService.getAdjacentFeatures, code),
-            yield call(Search.search, code, query, filters)
-        ]);
-        const counts = yield call(MapService.getAreaCounts, search.facets, code, search.meta.total);
-        yield put({ type: TYPES.SELECT_AREA, geo, adjacent, search, code, counts });
+        yield all([yield call(fetchArea, { code }), yield call(fetchSearch)]);
     } catch (e) {
-        //handle failed
-        console.log(e, 'failed');
+        yield put({ type: TYPES.FETCH_INITIAL_LOCATION_FAILED });
     }
 }

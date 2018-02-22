@@ -19,6 +19,10 @@ class Map extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.resetArea();    
+    }
+
     render() {
         const {
             geo,
@@ -48,6 +52,7 @@ class Map extends React.Component {
             resetArea,
             fetchFailed,
             getAdjacentArea,
+            searchFailed,
             location: { search }
         } = this.props;
 
@@ -107,6 +112,7 @@ class Map extends React.Component {
                     removeFilters={(key, filterName) => removeFilters({ key, filterName })}
                     query={query}
                     resetArea={resetArea}
+                    searchFailed={searchFailed}
                     fetchFailed={fetchFailed}
                     resetQuery={() => updateQuery('')}
                     getMoreDocuments={page => getMoreDocs({ page })}

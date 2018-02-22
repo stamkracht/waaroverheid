@@ -1,4 +1,4 @@
-function getSearchParams(filters, isDrawerOpen) {
+function getSearchParams(filters, isDrawerOpen, query) {
     const searchParams = new URLSearchParams();
     Object.keys(filters)
         .filter(filter => filter !== 'types' && filters[filter])
@@ -16,16 +16,20 @@ function getSearchParams(filters, isDrawerOpen) {
         searchParams.append('isDrawerOpen', true);
     }
 
+    if (query) {
+        searchParams.append('query', query);
+    }
+
     return searchParams.toString();
 }
 
-function getUrl(code, filters, isDrawerOpen) {
+function getUrl(code, filters, isDrawerOpen, query) {
     let url = `/${code}`;
-    const searchParams = getSearchParams(filters, isDrawerOpen);
+    const searchParams = getSearchParams(filters, isDrawerOpen, query);
     return searchParams ? `${url}?${searchParams}` : url;
 }
 
-export function handleRouting(code, filters, isDrawerOpen, history) {
-    let url = getUrl(code, filters, isDrawerOpen);
+export function handleRouting(code, filters, isDrawerOpen, query, history) {
+    let url = getUrl(code, filters, isDrawerOpen, query);
     history.push(url);
 }

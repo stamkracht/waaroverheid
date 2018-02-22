@@ -7,19 +7,29 @@ const BASE_FILTERS = {
     types: { terms: ['events'] }
 };
 
+const BASE_SEARCH = {
+    meta: { total: 0 },
+    facets: { start_date: { buckets: [] } },
+    events: []
+};
+
+const BASE_COUNTS = {
+    byCode: {},
+    maxCount: 0
+};
+
 const initialState = {
-    filters: Object.assign({}, BASE_FILTERS),
+    filters: { ...BASE_FILTERS },
     geo: {},
     adjacent: {},
     code: '',
-    search: {
-        meta: { total: 0 }
-    },
+    search: { ...BASE_SEARCH },
     hasMoreDocs: true,
     isDrawerOpen: false,
     documentsCount: 0,
-    counts: {},
-    fetchFailed: false
+    counts: { ...BASE_COUNTS },
+    fetchFailed: false,
+    query: ''
 };
 
 function map(state = initialState, action) {
@@ -30,7 +40,14 @@ function map(state = initialState, action) {
                 code: action.params.code,
                 filters: Object.assign({}, state.filters, utils.getFiltersFromUrl(action.search)),
                 isDrawerOpen: utils.getIsDrawerOpen(action.search),
-                history: action.history
+                query: utils.getQuery(action.search),
+                history: action.history,
+                fetchFailed: false,
+                searchFailed: false
+            };
+        case TYPES.FETCH_INITIAL_LOCATION_FAILED:
+            return {
+                ...state
             };
         case TYPES.SELECT_AREA:
             return {
@@ -38,15 +55,22 @@ function map(state = initialState, action) {
                 code: action.code,
                 geo: action.geo,
                 adjacent: action.adjacent,
-                search: action.search,
                 name: utils.getName(action.geo, action.code),
-                counts: action.counts
+                fetchFailed: false
             };
         case TYPES.FETCH_AREA_FAILED:
             return {
                 ...state,
-                fetchFailed: true,
-                isDrawerOpen: true
+                geo: {},
+                adjacent: {},
+                fetchFailed: true
+            };
+        case TYPES.FETCH_SEARCH_FAILED:
+            return {
+                ...state,
+                searchFailed: true,
+                search: { ...BASE_SEARCH },
+                counts: { ...BASE_COUNTS }
             };
         case TYPES.TOGGLE_DRAWER:
             return {
@@ -58,7 +82,8 @@ function map(state = initialState, action) {
             return {
                 ...state,
                 search: action.search,
-                counts: action.counts
+                counts: action.counts,
+                searchFailed: false
             };
         case TYPES.UPDATE_FILTERS:
             return {
