@@ -121,7 +121,8 @@
     max-height: calc(100vh - 170px);
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    width: 100%;
+    width: inherit;
+    position: fixed;
 }
 
 .snippets {
