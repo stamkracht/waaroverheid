@@ -173,6 +173,12 @@
             font-size: 14px;
         }
     }
+
+    .c-documents {
+        .c-documents--item {
+            margin-bottom: 20px;
+        }
+    }
 }
 
 @supports (-webkit-overflow-scrolling: touch) {
