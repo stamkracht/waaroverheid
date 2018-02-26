@@ -118,7 +118,7 @@
 
 .c-documentList {
     padding: 1px;
-    max-height: calc(100vh - 170px);
+    max-height: calc(100vh - 145px);
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -172,5 +172,12 @@
         a {
             font-size: 14px;
         }
+    }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+    .c-documentList {
+        padding: 1px;
+        max-height: calc(100vh - 185px);
     }
 }
