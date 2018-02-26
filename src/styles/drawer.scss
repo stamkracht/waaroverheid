@@ -113,6 +113,7 @@
         .c-drawer--title {
             font-size: large;
             padding: 0px 40px;
+            margin-top: 5px;
         }
     }
 
@@ -120,7 +121,7 @@
         top: 12px;
         right: 16px;
         &.active {
-            top: 13px;
+            top: 9px;
             right: 12px;
             .line {
                 margin: 10px auto;
