@@ -131,4 +131,12 @@
             height: 3px;
         }
     }
+
+    .c-drawer {
+        &.active {
+            .c-drawer--header {
+                padding-bottom: 3px;
+            }
+        }
+    }
 }
