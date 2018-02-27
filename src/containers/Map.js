@@ -15,7 +15,8 @@ import {
     resetFilters,
     initializeMap,
     resetQuery,
-    getAdjacentArea
+    getAdjacentArea,
+    submitAlert
 } from '../actions/map';
 import Map from '../components/Map';
 
@@ -70,7 +71,8 @@ const mapDispatchToProps = dispatch =>
             resetFilters,
             initializeMap,
             resetQuery,
-            getAdjacentArea
+            getAdjacentArea,
+            submitAlert
         },
         dispatch
     );

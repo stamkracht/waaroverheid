@@ -27,7 +27,11 @@ class Alert extends React.Component {
     }
 
     handleSubmit() {
-        this.setState({ validEmail: validate(this.emailInput.value) });
+        const validEmail = validate(this.emailInput.value);
+        this.setState({ validEmail: validEmail });
+        if (validEmail) {
+            this.props.submit(this.emailInput.value);
+        }
     }
 
     handleTags(item) {
@@ -124,9 +128,11 @@ class Alert extends React.Component {
 
 Alert.defaultProps = {
     area: 'geselecteerd gebied',
+    code: '',
     filters: {},
     query: '',
-    resetQuery: () => {}
+    resetQuery: () => {},
+    submit: undefined
 };
 
 export default Alert;

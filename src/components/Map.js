@@ -20,7 +20,7 @@ class Map extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.resetArea();    
+        this.props.resetArea();
     }
 
     render() {
@@ -53,6 +53,7 @@ class Map extends React.Component {
             fetchFailed,
             getAdjacentArea,
             searchFailed,
+            submitAlert,
             location: { search }
         } = this.props;
 
@@ -94,10 +95,12 @@ class Map extends React.Component {
 
                 <Alert
                     area={name}
+                    code={code}
                     filters={filters['classification'] || {}}
                     removeFilters={(key, filterName) => removeFilters({ key, filterName })}
                     query={query}
                     resetQuery={() => updateQuery('')}
+                    submit={submitAlert}
                 />
 
                 <Drawer

@@ -80,6 +80,11 @@ export const resetArea = () => ({
     type: TYPES.FETCH_RESET_AREA
 });
 
+export const submitAlert = email => ({
+    type: TYPES.POST_ALERT_SUBSCRIPTION,
+    email
+});
+
 export const getMap = store => store.map;
 
 export function* fetchResetArea() {
@@ -180,5 +185,16 @@ export function* fetchInitialLocation({ location, history, params }) {
         yield all([yield call(fetchArea, { code }), yield call(fetchSearch)]);
     } catch (e) {
         yield put({ type: TYPES.FETCH_INITIAL_LOCATION_FAILED });
+    }
+}
+
+export function* postAlertSubscription({ email }) {
+    try {
+        const { code, filters, query } = yield select(getMap);
+        yield call(Search.subscribeForAlert, email, code, query, filters);
+        yield put({ type: TYPES.SUBMIT_ALERT, email });
+    } catch (e) {
+        //handle failed
+        console.log(e, 'subscription for alert');
     }
 }
