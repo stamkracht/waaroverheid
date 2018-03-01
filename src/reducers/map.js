@@ -29,7 +29,8 @@ const initialState = {
     documentsCount: 0,
     counts: { ...BASE_COUNTS },
     fetchFailed: false,
-    query: ''
+    query: '',
+    emailFailed: false
 };
 
 function map(state = initialState, action) {
@@ -116,6 +117,17 @@ function map(state = initialState, action) {
             return {
                 ...state,
                 code: action.code
+            };
+        case TYPES.SUBMIT_ALERT:
+            return {
+                ...state,
+                email: action.email,
+                emailFailed: false
+            };
+        case TYPES.POST_ALERT_SUBSCRIPTION_FAILED:
+            return {
+                ...state,
+                emailFailed: true
             };
         case TYPES.RESET_AREA:
             return Object.assign(...state, initialState, { history: state.history });

@@ -54,6 +54,8 @@ class Map extends React.Component {
             getAdjacentArea,
             searchFailed,
             submitAlert,
+            email,
+            emailFailed,
             location: { search }
         } = this.props;
 
@@ -101,6 +103,8 @@ class Map extends React.Component {
                     query={query}
                     resetQuery={() => updateQuery('')}
                     submit={submitAlert}
+                    email={email}
+                    emailFailed={emailFailed}
                 />
 
                 <Drawer

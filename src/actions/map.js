@@ -195,6 +195,7 @@ export function* postAlertSubscription({ email }) {
         yield put({ type: TYPES.SUBMIT_ALERT, email });
     } catch (e) {
         //handle failed
+        yield put({ type: TYPES.POST_ALERT_SUBSCRIPTION_FAILED });
         console.log(e, 'subscription for alert');
     }
 }
