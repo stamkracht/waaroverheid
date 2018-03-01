@@ -187,7 +187,9 @@ Alert.defaultProps = {
     filters: {},
     query: '',
     resetQuery: () => {},
-    submit: undefined
+    submit: undefined,
+    email: '',
+    emailFailed: false
 };
 
 export default Alert;
