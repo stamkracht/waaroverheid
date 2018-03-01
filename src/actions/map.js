@@ -190,8 +190,8 @@ export function* fetchInitialLocation({ location, history, params }) {
 
 export function* postAlertSubscription({ email }) {
     try {
-        const { code, filters, query } = yield select(getMap);
-        yield call(Search.subscribeForAlert, email, code, query, filters);
+        const { code, filters, query, name } = yield select(getMap);
+        yield call(Search.subscribeForAlert, email, code, query, filters, name);
         yield put({ type: TYPES.SUBMIT_ALERT, email });
     } catch (e) {
         //handle failed
