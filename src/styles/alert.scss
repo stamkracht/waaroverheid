@@ -28,6 +28,23 @@
             display: flex;
             justify-content: left;
             flex-wrap: nowrap;
+            .c-container {
+                margin: 5px;
+                cursor: default;
+                .c-button {
+                    &:hover,
+                    &:active {
+                        box-shadow: none;
+                        cursor: default;
+                    }
+                    padding: 7px;
+                    .c-button--text {
+                        line-height: 15px;
+                        white-space: nowrap;
+                        min-width: auto;
+                    }
+                }
+            }
         }
         input {
             width: 100%;
@@ -95,6 +112,16 @@
             input {
                 font-size: 14px;
                 line-height: 20px;
+            }
+            .c-selectedFilters {
+                .c-container {
+                    .c-button {
+                        .c-button--text {
+                            font-size: 14px;
+                            line-height: 14px;
+                        }
+                    }
+                }
             }
         }
 

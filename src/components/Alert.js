@@ -51,10 +51,32 @@ class Alert extends React.Component {
         }
     }
 
+    renderQueryUnclickable() {
+        if (this.props.query) {
+            return (
+                <div>
+                    <Button key={'query'} text={this.props.query} />
+                </div>
+            );
+        }
+    }
+
     renderTags() {
         return Object.keys(this.props.filters).map(filterName => {
             return this.props.filters.terms.map((tag, i) => {
                 return <Tag key={i} text={tag} onClick={() => this.props.removeFilters(tag, 'classification')} />;
+            });
+        });
+    }
+
+    renderTagsUnclickable() {
+        return Object.keys(this.props.filters).map(filterName => {
+            return this.props.filters.terms.map((tag, i) => {
+                return (
+                    <div key={i}>
+                        <Button text={tag} />
+                    </div>
+                );
             });
         });
     }
@@ -64,46 +86,79 @@ class Alert extends React.Component {
     }
 
     renderModalHeader() {
-        return <h2 className="c-alert--header">Blijf op de hoogte</h2>;
+        if (this.props.email) {
+            return <h2 className="c-alert--header">Subscription successful!</h2>;
+        } else if (this.props.emailFailed) {
+            return <h2 className="c-alert--header">Something went wrong</h2>;
+        } else {
+            return <h2 className="c-alert--header">Blijf op de hoogte</h2>;
+        }
     }
 
     renderModalContent() {
-        return (
-            <div className="c-alert--content">
-                <p className="notyet">Nog even geduld: deze functionaliteit wordt 5 maart verwacht.</p>
-                <h3>
-                    Ontvang een e-mail bij nieuwe zoekresultaten in {this.props.area}
-                    {Object.getOwnPropertyNames(this.props.filters).length === 0
-                        ? '.'
-                        : ' met toepassing van deze filters:'}
-                </h3>
-                <div className="c-selectedFilters">
-                    {this.renderQuery()}
-                    {this.renderTags()}
+        if (this.props.emailFailed) {
+            return (
+                <div className="c-alert--content">
+                    <h3>Unfortunately the subscription to email alerts failed. Please try again.</h3>
                 </div>
-                <input
-                    placeholder="Typ uw e-mail adres"
-                    ref={node => {
-                        this.emailInput = node;
-                    }}
-                />
-                {this.renderEmailError()}
-            </div>
-        );
+            );
+        } else if (this.props.email) {
+            return (
+                <div className="c-alert--content">
+                    <h3>
+                        {this.props.email} successfully subscribed to email alerts
+                        {Object.getOwnPropertyNames(this.props.filters).length === 0
+                            ? '.'
+                            : ' met toepassing van deze filters:'}
+                    </h3>
+                    <div className="c-selectedFilters">
+                        {this.renderQuery()}
+                        {this.renderTagsUnclickable()}
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="c-alert--content">
+                    <p className="notyet">Nog even geduld: deze functionaliteit wordt 5 maart verwacht.</p>
+                    <h3>
+                        Ontvang een e-mail bij nieuwe zoekresultaten in {this.props.area}
+                        {Object.getOwnPropertyNames(this.props.filters).length === 0
+                            ? '.'
+                            : ' met toepassing van deze filters:'}
+                    </h3>
+                    <div className="c-selectedFilters">
+                        {this.renderQuery()}
+                        {this.renderTags()}
+                    </div>
+                    <input
+                        placeholder="Typ uw e-mail adres"
+                        ref={node => {
+                            this.emailInput = node;
+                        }}
+                    />
+                    {this.renderEmailError()}
+                </div>
+            );
+        }
     }
 
     renderModalFooter() {
-        return (
-            <div className="c-alert--footer">
-                <Button
-                    text="Verzenden"
-                    shadow={true}
-                    hovering={true}
-                    textAlign="center"
-                    onClick={this.handleSubmit.bind(this)}
-                />
-            </div>
-        );
+        if (this.props.email || this.props.emailFailed) {
+            return <div />;
+        } else {
+            return (
+                <div className="c-alert--footer">
+                    <Button
+                        text="Verzenden"
+                        shadow={true}
+                        hovering={true}
+                        textAlign="center"
+                        onClick={this.handleSubmit.bind(this)}
+                    />
+                </div>
+            );
+        }
     }
 
     renderModal() {
