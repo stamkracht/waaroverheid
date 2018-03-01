@@ -1,3 +1,5 @@
+import * as includes from 'lodash/includes';
+
 import apiUrl from './ApiUrl';
 
 let PARAMS = {
@@ -133,13 +135,14 @@ export function setParams(params) {
     PARAMS = Object.assign(PARAMS, params);
 }
 
-export function subscribeForAlert(email, code, query, filters) {
+export function subscribeForAlert(email, code, query, filters, areaName) {
     const docIndex = `wo_${parseCode(code)}`;
     const queryPayload = handleData(code, query, 1, filters);
     const payload = {
         email: email,
         doc_index: docIndex,
         query: queryPayload,
+        area_name: areaName,
         url: `${window.location.pathname}${window.location.search}`
     };
 
@@ -150,7 +153,7 @@ export function subscribeForAlert(email, code, query, filters) {
             'Content-Type': 'application/json'
         })
     }).then(res => {
-        if (res.status in [200, 201]) {
+        if (includes([200, 201], res.status)) {
             return res.status;
         }
         return Promise.reject(res);
