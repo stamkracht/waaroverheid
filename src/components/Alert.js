@@ -106,7 +106,7 @@ class Alert extends React.Component {
             return (
                 <div className="c-alert--content">
                     <h3>
-                        {this.props.email} successfully subscribed to email alerts
+                        {this.props.email} successfully subscribed to email alerts in {this.props.area}
                         {Object.getOwnPropertyNames(this.props.filters).length === 0
                             ? '.'
                             : ' met toepassing van deze filters:'}
