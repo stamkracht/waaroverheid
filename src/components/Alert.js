@@ -111,7 +111,7 @@ class Alert extends React.Component {
                             : ' met toepassing van deze filters:'}
                     </h3>
                     <div className="c-selectedFilters">
-                        {this.renderQuery()}
+                        {this.renderQueryUnclickable()}
                         {this.renderTagsUnclickable()}
                     </div>
                 </div>
