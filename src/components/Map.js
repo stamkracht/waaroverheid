@@ -56,6 +56,8 @@ class Map extends React.Component {
             submitAlert,
             email,
             emailFailed,
+            isModalOpen,
+            toggleModal,
             location: { search }
         } = this.props;
 
@@ -105,6 +107,8 @@ class Map extends React.Component {
                     submit={submitAlert}
                     email={email}
                     emailFailed={emailFailed}
+                    isModalOpen={isModalOpen}
+                    toggleModal={isModalOpen => toggleModal(isModalOpen)}
                 />
 
                 <Drawer

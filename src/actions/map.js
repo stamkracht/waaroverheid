@@ -63,6 +63,11 @@ export const toggleDrawer = isDrawerOpen => ({
     isDrawerOpen
 });
 
+export const toggleModal = isModalOpen => ({
+    type: TYPES.TOGGLE_MODAL,
+    isModalOpen
+});
+
 export const getMoreDocs = ({ code, query, filters, page }) => ({
     type: TYPES.FETCH_MORE_DOCS,
     code,

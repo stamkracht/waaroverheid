@@ -30,7 +30,9 @@ const initialState = {
     counts: { ...BASE_COUNTS },
     fetchFailed: false,
     query: '',
-    emailFailed: false
+    email: '',
+    emailFailed: false,
+    isModalOpen: false
 };
 
 function map(state = initialState, action) {
@@ -78,6 +80,12 @@ function map(state = initialState, action) {
                 ...state,
                 isDrawerOpen: !action.isDrawerOpen,
                 hasMoreDocs: true
+            };
+        case TYPES.TOGGLE_MODAL:
+            return {
+                ...state,
+                isModalOpen: !action.isModalOpen,
+                email: ''
             };
         case TYPES.SEARCH:
             return {

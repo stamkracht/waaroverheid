@@ -12,18 +12,17 @@ class Alert extends React.Component {
         super(props);
 
         this.state = {
-            active: false,
             validEmail: false,
             update: false
         };
     }
 
     onOpenModal() {
-        this.setState({ active: true });
+        this.props.toggleModal(this.props.isModalOpen);
     }
 
     onCloseModal() {
-        this.setState({ active: false });
+        this.props.toggleModal(this.props.isModalOpen);
     }
 
     handleSubmit() {
@@ -163,7 +162,7 @@ class Alert extends React.Component {
 
     renderModal() {
         return (
-            <Modal little open={this.state.active} onClose={this.onCloseModal.bind(this)}>
+            <Modal little open={this.props.isModalOpen} onClose={this.onCloseModal.bind(this)}>
                 {this.renderModalHeader()}
                 {this.renderModalContent()}
                 {this.renderModalFooter()}
@@ -189,7 +188,9 @@ Alert.defaultProps = {
     resetQuery: () => {},
     submit: undefined,
     email: '',
-    emailFailed: false
+    emailFailed: false,
+    toggleModal: () => {},
+    isModalOpen: false
 };
 
 export default Alert;
