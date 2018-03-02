@@ -58,6 +58,8 @@ class Map extends React.Component {
             emailFailed,
             isModalOpen,
             toggleModal,
+            submitFlag,
+            flagFailed,
             location: { search }
         } = this.props;
 
@@ -128,6 +130,8 @@ class Map extends React.Component {
                     resetQuery={() => updateQuery('')}
                     getMoreDocuments={page => getMoreDocs({ page })}
                     hasMoreDocs={hasMoreDocs}
+                    submitFeedback={submitFlag}
+                    flagFailed={flagFailed}
                 />
             </div>
         );

@@ -124,6 +124,8 @@ class Drawer extends React.Component {
                         removeFilters={this.props.removeFilters}
                         resetQuery={this.props.resetQuery}
                         query={this.props.query}
+                        submitFeedback={this.props.submitFeedback}
+                        flagFailed={this.props.flagFailed}
                     />
                 );
             }
@@ -159,7 +161,9 @@ Drawer.defaultProps = {
     filters: {},
     updateFilters: () => {},
     getMoreDocuments: () => {},
-    resetQuery: () => {}
+    resetQuery: () => {},
+    submitFeedback: () => {},
+    flagFailed: false
 };
 
 export default Drawer;

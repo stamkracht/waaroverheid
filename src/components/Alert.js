@@ -17,11 +17,7 @@ class Alert extends React.Component {
         };
     }
 
-    onOpenModal() {
-        this.props.toggleModal(this.props.isModalOpen);
-    }
-
-    onCloseModal() {
+    toggleModal() {
         this.props.toggleModal(this.props.isModalOpen);
     }
 
@@ -81,7 +77,7 @@ class Alert extends React.Component {
     }
 
     renderModalButton() {
-        return <Button text="Meldingen" icon="mail" textAlign="center" onClick={this.onOpenModal.bind(this)} />;
+        return <Button text="Meldingen" icon="mail" textAlign="center" onClick={this.toggleModal.bind(this)} />;
     }
 
     renderModalHeader() {
@@ -162,7 +158,7 @@ class Alert extends React.Component {
 
     renderModal() {
         return (
-            <Modal little open={this.props.isModalOpen} onClose={this.onCloseModal.bind(this)}>
+            <Modal little open={this.props.isModalOpen} onClose={this.toggleModal.bind(this)}>
                 {this.renderModalHeader()}
                 {this.renderModalContent()}
                 {this.renderModalFooter()}

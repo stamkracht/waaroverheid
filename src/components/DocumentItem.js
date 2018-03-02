@@ -46,7 +46,7 @@ class DocumentItem extends Component {
                                 <div dangerouslySetInnerHTML={this.createMarkup(this.props.document.description)} />
                             </div>
                             <div className="c-details--snippets">{this.renderSnippets()}</div>
-                            <Reporting />
+                            <Reporting submitFeedback={this.props.submitFeedback} flagFailed={this.props.flagFailed} />
                         </div>
                     </Container>
                 </div>
@@ -121,7 +121,9 @@ class DocumentItem extends Component {
 }
 
 DocumentItem.defaultProps = {
-    document: {}
+    document: {},
+    submitFeedback: () => {},
+    flagFailed: false
 };
 
 export default DocumentItem;

@@ -90,6 +90,10 @@ export const submitAlert = email => ({
     email
 });
 
+export const submitFlag = () => ({
+    type: TYPES.POST_FLAG
+});
+
 export const getMap = store => store.map;
 
 export function* fetchResetArea() {
@@ -201,6 +205,17 @@ export function* postAlertSubscription({ email }) {
     } catch (e) {
         //handle failed
         yield put({ type: TYPES.POST_ALERT_SUBSCRIPTION_FAILED });
-        console.log(e, 'subscription for alert');
+    }
+}
+
+export function* postFlag({}) {
+    try {
+        const { code, filters, query, name } = yield select(getMap);
+        // yield call(SubmitFlag, code, query, filters, name);
+        yield put({ type: TYPES.SUBMIT_FLAG });
+    } catch (e) {
+        //handle failed
+        yield put({ type: TYPES.POST_FLAG_FAILED });
+        console.log(e, 'Submit flag failed');
     }
 }

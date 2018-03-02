@@ -32,7 +32,8 @@ const initialState = {
     query: '',
     email: '',
     emailFailed: false,
-    isModalOpen: false
+    isModalOpen: false,
+    flagFailed: false
 };
 
 function map(state = initialState, action) {
@@ -136,6 +137,16 @@ function map(state = initialState, action) {
             return {
                 ...state,
                 emailFailed: true
+            };
+        case TYPES.SUBMIT_FLAG:
+            return {
+                ...state,
+                flagFailed: false
+            };
+        case TYPES.POST_FLAG_FAILED:
+            return {
+                ...state,
+                flagFailed: true
             };
         case TYPES.RESET_AREA:
             return Object.assign(...state, initialState, { history: state.history });

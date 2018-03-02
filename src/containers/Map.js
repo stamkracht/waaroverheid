@@ -17,7 +17,8 @@ import {
     resetQuery,
     getAdjacentArea,
     submitAlert,
-    toggleModal
+    toggleModal,
+    submitFlag
 } from '../actions/map';
 import Map from '../components/Map';
 
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
         searchFailed,
         email,
         emailFailed,
-        isModalOpen
+        isModalOpen,
+        flagFailed
     } = state.map;
     const { facets, meta: { total: documentsCount } = 0, events: documents = [] } = state.map.search;
     console.log('Current State -> ', state);
@@ -57,7 +59,8 @@ const mapStateToProps = state => {
         searchFailed,
         email,
         emailFailed,
-        isModalOpen
+        isModalOpen,
+        flagFailed
     };
 };
 
@@ -80,7 +83,8 @@ const mapDispatchToProps = dispatch =>
             resetQuery,
             getAdjacentArea,
             submitAlert,
-            toggleModal
+            toggleModal,
+            submitFlag
         },
         dispatch
     );
