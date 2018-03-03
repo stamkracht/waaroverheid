@@ -159,3 +159,27 @@ export function subscribeForAlert(email, code, query, filters, areaName) {
         return Promise.reject(res);
     });
 }
+
+export function submitUserFeedback(resultId, flags, comment, code, query, page, filters) {
+    const docIndex = `wo_${parseCode(code)}`;
+    const queryPayload = handleData(code, query, page, filters);
+    const payload = {
+        ...queryPayload,
+        result_id: resultId,
+        flags: flags,
+        comment: comment
+    };
+
+    return fetch(`${apiUrl}v0/${docIndex}/feedback`, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }).then(res => {
+        if (includes([200, 201], res.status)) {
+            return res.json();
+        }
+        return Promise.reject(res);
+    });
+}

@@ -90,8 +90,11 @@ export const submitAlert = email => ({
     email
 });
 
-export const submitFlag = () => ({
-    type: TYPES.POST_FLAG
+export const submitFlag = (resultId, flags, comment) => ({
+    type: TYPES.POST_USER_FEEDBACK,
+    resultId,
+    flags,
+    comment
 });
 
 export const getMap = store => store.map;
@@ -208,14 +211,14 @@ export function* postAlertSubscription({ email }) {
     }
 }
 
-export function* postFlag({}) {
+export function* postUserFeedback({ resultId, flags, comment }) {
     try {
-        const { code, filters, query, name } = yield select(getMap);
-        // yield call(SubmitFlag, code, query, filters, name);
-        yield put({ type: TYPES.SUBMIT_FLAG });
+        const { code, filters, query, page } = yield select(getMap);
+        yield call(Search.submitUserFeedback, resultId, flags, comment, code, query, page, filters);
+        yield put({ type: TYPES.USER_FEEDBACK_SAVED });
     } catch (e) {
         //handle failed
-        yield put({ type: TYPES.POST_FLAG_FAILED });
+        yield put({ type: TYPES.USER_FEEDBACK_POST_FAILED });
         console.log(e, 'Submit flag failed');
     }
 }

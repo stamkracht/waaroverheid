@@ -18,6 +18,7 @@ class Reporting extends React.Component {
                 Privacygevoelig: false,
                 Overig: false
             },
+            comment: '',
             justFlagged: false
         };
 
@@ -46,6 +47,10 @@ class Reporting extends React.Component {
         this.setState({ options: { ...this.state.options, ...updatedOption } });
     }
 
+    handleCommentChange(event) {
+        this.setState({ comment: event.target.value });
+    }
+
     openReporting() {
         this.setState({ active: true });
     }
@@ -56,7 +61,7 @@ class Reporting extends React.Component {
 
     handleSubmit() {
         let flags = Object.assign({}, this.state.options);
-        this.props.submitFeedback(flags); //TO DO
+        this.props.submitFeedback(this.props.resultId, flags, this.state.comment);
         this.setState({ justFlagged: true });
     }
 
@@ -77,7 +82,14 @@ class Reporting extends React.Component {
 
     renderTextArea() {
         if (Object.keys(this.state.options).some(option => this.state.options[option])) {
-            return <textarea className="c-textarea" placeholder={this.placeholder} />;
+            return (
+                <textarea
+                    className="c-textarea"
+                    value={this.state.comment}
+                    onChange={this.handleCommentChange.bind(this)}
+                    placeholder={this.placeholder}
+                />
+            );
         }
     }
 
@@ -99,49 +111,51 @@ class Reporting extends React.Component {
 
     renderReportingMenu() {
         if (this.state.active) {
-            return (
-                <div
-                    className="c-dropdown"
-                    ref={node => {
-                        this.dropdown = node;
-                    }}
-                >
-                    <div className="c-dropdown--header">
-                        <h3>Zoekresultaat rapporteren</h3>
-                        <div onClick={this.closeReporting.bind(this)}>
-                            <Icon icon="close" width="20" height="20" />
+            if (this.state.justFlagged) {
+                return (
+                    <div
+                        className="c-dropdown"
+                        ref={node => {
+                            this.dropdown = node;
+                        }}
+                    >
+                        <div className="c-dropdown--header">
+                            <h3>Zoekresultaat rapporteren</h3>
+                            <div onClick={this.closeReporting.bind(this)}>
+                                <Icon icon="close" width="20" height="20" />
+                            </div>
+                        </div>
+                        <div>
+                            <span>
+                                {this.props.flagFailed
+                                    ? `Er is iets misgegaan. Probeer het later nog eens.`
+                                    : `Bedankt voor uw feedback!`}
+                            </span>
                         </div>
                     </div>
-                    <div className="c-dropdown--select">
-                        <ul>{this.renderOptions()}</ul>
-                    </div>
-                    {this.renderTextArea()}
-                    {this.renderSubmitButton()}
-                </div>
-            );
-        } else if (this.state.active && this.state.justFlagged) {
-            return (
-                <div
-                    className="c-dropdown"
-                    ref={node => {
-                        this.dropdown = node;
-                    }}
-                >
-                    <div className="c-dropdown--header">
-                        <h3>Zoekresultaat rapporteren</h3>
-                        <div onClick={this.closeReporting.bind(this)}>
-                            <Icon icon="close" width="20" height="20" />
+                );
+            } else {
+                return (
+                    <div
+                        className="c-dropdown"
+                        ref={node => {
+                            this.dropdown = node;
+                        }}
+                    >
+                        <div className="c-dropdown--header">
+                            <h3>Zoekresultaat rapporteren</h3>
+                            <div onClick={this.closeReporting.bind(this)}>
+                                <Icon icon="close" width="20" height="20" />
+                            </div>
                         </div>
+                        <div className="c-dropdown--select">
+                            <ul>{this.renderOptions()}</ul>
+                        </div>
+                        {this.renderTextArea()}
+                        {this.renderSubmitButton()}
                     </div>
-                    <div>
-                        <span>
-                            {this.props.flagFailed
-                                ? `Something went wrong. Please try again.`
-                                : `Thank you for your feedback!`}
-                        </span>
-                    </div>
-                </div>
-            );
+                );
+            }
         }
     }
 
@@ -159,7 +173,8 @@ Reporting.defaultProps = {
     label: 'this is a label',
     id: Math.round(Math.random() * 1000),
     submitFeedback: () => {},
-    flagFailed: false
+    flagFailed: false,
+    resultId: undefined
 };
 
 export default Reporting;

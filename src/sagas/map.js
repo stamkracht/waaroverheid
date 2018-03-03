@@ -9,7 +9,8 @@ import {
     fetchRemoveFilters,
     fetchToggleDrawer,
     fetchResetArea,
-    postAlertSubscription
+    postAlertSubscription,
+    postUserFeedback
 } from '../actions/map';
 import * as TYPES from '../types';
 
@@ -51,4 +52,8 @@ export function* watchFetchResetArea() {
 
 export function* watchPostAlertSubscription() {
     yield takeLatest(TYPES.POST_ALERT_SUBSCRIPTION, postAlertSubscription);
+}
+
+export function* watchPostUserFeedback() {
+    yield takeLatest(TYPES.POST_USER_FEEDBACK, postUserFeedback);
 }

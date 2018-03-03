@@ -46,7 +46,11 @@ class DocumentItem extends Component {
                                 <div dangerouslySetInnerHTML={this.createMarkup(this.props.document.description)} />
                             </div>
                             <div className="c-details--snippets">{this.renderSnippets()}</div>
-                            <Reporting submitFeedback={this.props.submitFeedback} flagFailed={this.props.flagFailed} />
+                            <Reporting
+                                submitFeedback={this.props.submitFeedback}
+                                flagFailed={this.props.flagFailed}
+                                resultId={this.props.document.id}
+                            />
                         </div>
                     </Container>
                 </div>

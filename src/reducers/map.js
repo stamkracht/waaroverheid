@@ -138,12 +138,12 @@ function map(state = initialState, action) {
                 ...state,
                 emailFailed: true
             };
-        case TYPES.SUBMIT_FLAG:
+        case TYPES.USER_FEEDBACK_SAVED:
             return {
                 ...state,
                 flagFailed: false
             };
-        case TYPES.POST_FLAG_FAILED:
+        case TYPES.USER_FEEDBACK_POST_FAILED:
             return {
                 ...state,
                 flagFailed: true
