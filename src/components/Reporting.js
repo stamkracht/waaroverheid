@@ -21,7 +21,7 @@ class Reporting extends React.Component {
             justFlagged: false
         };
 
-        this.placeholder = ['Why?', 'Waarom?', 'Por qué?', 'Perché?'][(Math.random() * 5) | 0];
+        this.placeholder = 'Waarom?';
 
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
