@@ -82,29 +82,33 @@ class Alert extends React.Component {
 
     renderModalHeader() {
         if (this.props.email) {
-            return <h2 className="c-alert--header">Subscription successful!</h2>;
+            return <h2 className="c-alert--header">Instellen is gelukt</h2>;
         } else if (this.props.emailFailed) {
-            return <h2 className="c-alert--header">Something went wrong</h2>;
+            return <h2 className="c-alert--header">Er is iets misgegaan</h2>;
         } else {
             return <h2 className="c-alert--header">Blijf op de hoogte</h2>;
         }
     }
 
     renderModalContent() {
+        const filterMessage =
+            Object.getOwnPropertyNames(this.props.filters).length === 0 && this.props.query.length === 0
+                ? '.'
+                : ' met toepassing van deze filters:';
+
         if (this.props.emailFailed) {
             return (
                 <div className="c-alert--content">
-                    <h3>Unfortunately the subscription to email alerts failed. Please try again.</h3>
+                    <h3>Er ging iets mis bij het instellen van de meldingen. Probeer het later nog eens.</h3>
                 </div>
             );
         } else if (this.props.email) {
             return (
                 <div className="c-alert--content">
                     <h3>
-                        {this.props.email} successfully subscribed to email alerts in {this.props.area}
-                        {Object.getOwnPropertyNames(this.props.filters).length === 0
-                            ? '.'
-                            : ' met toepassing van deze filters:'}
+                        Er is een mail naar {this.props.email} verzonden om te bevestigen dat u meldingen over{' '}
+                        {this.props.area} wilt ontvangen
+                        {filterMessage}
                     </h3>
                     <div className="c-selectedFilters">
                         {this.renderQueryUnclickable()}
@@ -118,9 +122,7 @@ class Alert extends React.Component {
                     <p className="notyet">Nog even geduld: deze functionaliteit wordt 5 maart verwacht.</p>
                     <h3>
                         Ontvang een e-mail bij nieuwe zoekresultaten in {this.props.area}
-                        {Object.getOwnPropertyNames(this.props.filters).length === 0
-                            ? '.'
-                            : ' met toepassing van deze filters:'}
+                        {filterMessage}
                     </h3>
                     <div className="c-selectedFilters">
                         {this.renderQuery()}
