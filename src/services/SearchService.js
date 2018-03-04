@@ -160,7 +160,7 @@ export function subscribeForAlert(email, code, query, filters, areaName) {
     });
 }
 
-export function submitUserFeedback(resultId, flags, comment, code, query, page, filters) {
+export function submitUserFeedback(resultId, resultType, flags, comment, code, query, page, filters) {
     const docIndex = `wo_${parseCode(code)}`;
     const queryPayload = handleData(code, query, page, filters);
     const payload = {
@@ -170,7 +170,7 @@ export function submitUserFeedback(resultId, flags, comment, code, query, page, 
         comment: comment
     };
 
-    return fetch(`${apiUrl}v0/${docIndex}/feedback`, {
+    return fetch(`${apiUrl}v0/${docIndex}/${resultType}/feedback`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: new Headers({

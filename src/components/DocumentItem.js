@@ -50,6 +50,7 @@ class DocumentItem extends Component {
                                 submitFeedback={this.props.submitFeedback}
                                 flagFailed={this.props.flagFailed}
                                 resultId={this.props.document.id}
+                                resultType={this.props.document.meta._type}
                             />
                         </div>
                     </Container>

@@ -61,7 +61,7 @@ class Reporting extends React.Component {
 
     handleSubmit() {
         let flags = Object.assign({}, this.state.options);
-        this.props.submitFeedback(this.props.resultId, flags, this.state.comment);
+        this.props.submitFeedback(this.props.resultId, this.props.resultType, flags, this.state.comment);
         this.setState({ justFlagged: true });
     }
 
@@ -174,7 +174,8 @@ Reporting.defaultProps = {
     id: Math.round(Math.random() * 1000),
     submitFeedback: () => {},
     flagFailed: false,
-    resultId: undefined
+    resultId: undefined,
+    resultType: 'items'
 };
 
 export default Reporting;
