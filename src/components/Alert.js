@@ -119,7 +119,6 @@ class Alert extends React.Component {
         } else {
             return (
                 <div className="c-alert--content">
-                    <p className="notyet">Nog even geduld: deze functionaliteit wordt 5 maart verwacht.</p>
                     <h3>
                         Ontvang een e-mail bij nieuwe zoekresultaten in {this.props.area}
                         {filterMessage}
