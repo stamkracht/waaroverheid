@@ -41,7 +41,6 @@ const mapStateToProps = state => {
         flagFailed
     } = state.map;
     const { facets, meta: { total: documentsCount } = 0, events: documents = [] } = state.map.search;
-    console.log('Current State -> ', state);
     return {
         geo,
         adjacent,

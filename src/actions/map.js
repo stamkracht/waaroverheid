@@ -1,6 +1,6 @@
 import { all, call, put, select, take } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { delay } from 'redux-saga';
+import { delay, throttle } from 'redux-saga';
 import * as TYPES from '../types';
 import * as MapService from '../services/MapService';
 import * as Search from '../services/SearchService';

@@ -43,7 +43,7 @@ export function mergeDocuments(state, updatedSearch) {
         search.events = search.events.concat(updatedSearch.events);
     }
     search.meta = updatedSearch.meta;
-
+    console.log(search);
     return search;
 }
 
