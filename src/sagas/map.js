@@ -1,4 +1,4 @@
-import { takeLatest, throttle } from 'redux-saga/effects';
+import { takeLatest, takeEvery } from 'redux-saga/effects';
 import {
     fetchArea,
     fetchSearch,
@@ -23,7 +23,7 @@ export function* watchFetchSearch() {
 }
 
 export function* watchFetchMoreDocuments() {
-    yield throttle(100, TYPES.FETCH_MORE_DOCS, fetchMoreDocs);
+    yield takeEvery(TYPES.FETCH_MORE_DOCS, fetchMoreDocs);
 }
 
 export function* watchFetchResetFilters() {
