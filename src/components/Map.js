@@ -105,7 +105,7 @@ class Map extends React.Component {
                     filters={filters['classification'] || {}}
                     removeFilters={(key, filterName) => removeFilters({ key, filterName })}
                     query={query}
-                    resetQuery={() => updateQuery('')}
+                    resetQuery={resetQuery}
                     submit={submitAlert}
                     email={email}
                     emailFailed={emailFailed}
@@ -127,7 +127,7 @@ class Map extends React.Component {
                     resetArea={resetArea}
                     searchFailed={searchFailed}
                     fetchFailed={fetchFailed}
-                    resetQuery={() => updateQuery('')}
+                    resetQuery={resetQuery}
                     getMoreDocuments={page => getMoreDocs({ page })}
                     hasMoreDocs={hasMoreDocs}
                     submitFeedback={submitFlag}
