@@ -109,12 +109,14 @@ function map(state = initialState, action) {
         case TYPES.REMOVE_FILTERS:
             return {
                 ...state,
-                filters: utils.removeFilters(state.filters, action.filters)
+                filters: utils.removeFilters(state.filters, action.filters),
+                hasMoreDocs: true
             };
         case TYPES.UPDATE_QUERY:
             return {
                 ...state,
-                query: action.query
+                query: action.query,
+                hasMoreDocs: true
             };
         case TYPES.GET_MORE_DOCS:
             return {
