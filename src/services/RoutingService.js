@@ -10,6 +10,9 @@ function getSearchParams(filters, isDrawerOpen, query) {
                 searchParams.append('from', filters[filter].from);
                 searchParams.append('to', filters[filter].to);
             }
+            if (filter === 'processing_finished') {
+                searchParams.append('loaded_since', filters[filter].from);
+            }
         });
 
     if (isDrawerOpen) {

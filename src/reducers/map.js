@@ -4,7 +4,8 @@ import * as utils from '../utilities/map-reducers-utils';
 const BASE_FILTERS = {
     start_date: null,
     classification: null,
-    types: { terms: ['events'] }
+    types: { terms: ['events'] },
+    processing_finished: null
 };
 
 const BASE_SEARCH = {
