@@ -33,6 +33,10 @@ export function removeFilters(stateFilters, { key, filterName }) {
         }
     }
 
+    if (filterName === 'processing_finished') {
+        delete filters.processing_finished;
+    }
+
     return filters;
 }
 
@@ -63,6 +67,8 @@ export function getFiltersFromUrl(search) {
             case 'classification':
                 filters.classification = { terms: [...params[1].split(',')] };
                 break;
+            case 'loaded_since':
+                filters.processing_finished = { from: params[1] };
         }
     }
     return filters;

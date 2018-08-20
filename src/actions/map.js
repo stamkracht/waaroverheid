@@ -196,6 +196,7 @@ export function* fetchInitialLocation({ location, history, params }) {
         const { code } = params;
         yield put({ type: SET_FILTERS_FROM_URL, search: location.search, params, history });
         yield all([yield call(fetchArea, { code }), yield call(fetchSearch)]);
+        yield put({ type: TYPES.REMOVE_FILTERS, filters: { filterName: 'processing_finished' } });
     } catch (e) {
         yield put({ type: TYPES.FETCH_INITIAL_LOCATION_FAILED });
     }
