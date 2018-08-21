@@ -228,10 +228,16 @@ hr {
     text-align: right;
 }
 
-body.contrast {
+h2,
+p,
+a {
+    color: #000;
+}
+
+body.soft {
     h2,
     p,
     a {
-        color: #000;
+        color: #fff;
     }
 }

@@ -160,8 +160,8 @@ var urlParams;
         }
 
         // High contrast
-        if ('contrast' in urlParams) {
-            $('body').addClass('contrast');
+        if ('soft' in urlParams) {
+            $('body').addClass('soft');
         }
     });
 })(jQuery);
