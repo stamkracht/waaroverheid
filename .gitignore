@@ -10,6 +10,7 @@
 /build
 
 # styling
+.sass-cache/
 /src/styles/*.css
 /public/website/assets/sass/*.css
 /public/website/assets/sass/*.css.map
