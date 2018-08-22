@@ -11,6 +11,8 @@
 
 # styling
 /src/styles/*.css
+/public/website/assets/sass/*.css
+/public/website/assets/sass/*.css.map
 
 # misc
 .DS_Store
